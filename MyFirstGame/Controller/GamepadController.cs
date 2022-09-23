@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MyFirstGame.interfaces;
-using sprint0;
+using Sprint0.interfaces;
+using Sprint0;
 using Sprint0.Command;
 
 namespace Sprint0.Controller
 {
-    public class GamepadController : IController
+    public class GamepadController : Controllers
     {
 
         private ICommand ExitCommand { get; set; }       //q for quit this game
@@ -32,7 +32,7 @@ namespace Sprint0.Controller
             previousState = GamePad.GetState(playerIndex);
         }
 
-        public void Update()
+        public override void Update()
         {
             GamePadState currentState = GamePad.GetState(playerIndex);
 
