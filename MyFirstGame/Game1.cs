@@ -5,12 +5,12 @@ using Sprint0.Sprites;
 using Sprint0.Command;
 using Sprint0.Controller;
 using Sprint0.interfaces;
-using Spring0.Sprites;
 
 namespace Sprint0
 {
     public class Game1 : Game
     {
+        //new version ray
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
