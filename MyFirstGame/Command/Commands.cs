@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using MyFirstGame.interfaces;
-using MyFirstGame.Sprites;
-using sprint0;
+using Sprint0.interfaces;
 using Sprint0.Sprites;
+using Sprint0;
 using System;
 using System.Collections.Generic;
 using System.Linq;

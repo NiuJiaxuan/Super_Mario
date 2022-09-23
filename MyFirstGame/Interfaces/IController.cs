@@ -8,6 +8,8 @@ namespace Sprint0.interfaces
 {
     interface IController
     {
+        void Command(int key, ICommand command);
+
         void Update();
     }
 }

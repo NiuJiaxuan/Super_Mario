@@ -5,6 +5,7 @@ using Sprint0.Sprites;
 using Sprint0.Command;
 using Sprint0.Controller;
 using Sprint0.interfaces;
+using Spring0.Sprites;
 
 namespace Sprint0
 {
@@ -41,7 +42,7 @@ namespace Sprint0
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
-            keyboard.ExitCommand = new ExitCommand(this);
+            keyboard.Command((int)Keys.Q, new ExitCommand(this));
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
