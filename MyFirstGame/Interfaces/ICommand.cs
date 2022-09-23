@@ -10,8 +10,6 @@ namespace Sprint0.interfaces
     public interface ICommand
     {
 
-
-
         void Execute();
     }
 }

@@ -8,7 +8,7 @@ using Sprint0.interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Spring0.Sprites
+namespace Sprint0.Sprites
 {
     public class MNaSprite : ISprite
     {

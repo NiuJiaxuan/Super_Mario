@@ -1,5 +1,4 @@
-﻿using MyFirstGame.Sprites;
-using sprint0;
+﻿using Sprint0;
 using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
