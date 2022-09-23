@@ -46,8 +46,7 @@ namespace Sprint0
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
-            gamepad.ExitCommand = new ExitCommand(this);
-
+            gamepad.Command((int)Buttons.Start, new ExitCommand(this));
 
 
             base.Initialize();
@@ -66,14 +65,14 @@ namespace Sprint0
             //non moving non animated sprite create 
             nmna = new NmNaSprite(kirby, new Vector2(200, 300));
             //non mv non ani display command
-            keyboard.NmNaCommand = new ShowNmNaCommand(this.nmna);
-            gamepad.NmNaCommand = new ShowNmNaCommand(this.nmna);
+            keyboard.Command((int)Keys.W, new ShowNmNaCommand(this.nmna));
+            gamepad.Command((int)Buttons.A, new ShowNmNaCommand(nmna));
 
             // mv non ani sprite create
             mna = new MNaSprite(kirby, new Vector2(450, 240));
             // mv non ani display command
-            keyboard.MNaCommand = new ShowMNaCommand(this.mna);
-            gamepad.MNaCommand = new ShowMNaCommand(mna); 
+            keyboard.Command((int)Keys.E, new ShowMNaCommand(this.mna));
+            gamepad.Command((int)Buttons.X, new ShowMNaCommand(mna));
 
             //----------------------animated texture load-------------------------------
 
@@ -85,13 +84,13 @@ namespace Sprint0
             //non mv ani sprite create
             nma = new NmASprite(skyman, 1, 8, new Vector2(100,100));
             //non mv ani sprite display command connected
-            keyboard.NmACommand = new ShowNmACommand(nma);
-            gamepad.NmACommand = new ShowNmACommand(nma);
+            keyboard.Command((int)Keys.R, new ShowNmACommand(nma));
+            gamepad.Command((int)Buttons.B, new ShowNmACommand(nma));
 
             //mv ani sprite create
             ma = new MASprite(skyman, 1, 8, new Vector2(100,200));
-            keyboard.MACommand = new ShowMACommand(ma);
-            gamepad.MACommand = new ShowMACommand(ma);
+            keyboard.Command((int)Keys.T, new ShowMACommand(ma));
+            gamepad.Command((int)Buttons.Y, new ShowMACommand(ma));
 
             //load font
             HUDFont = Content.Load<SpriteFont>("File");

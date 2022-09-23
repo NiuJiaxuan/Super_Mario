@@ -17,7 +17,7 @@ namespace Sprint0.Controller
             commands = new Dictionary<int, ICommand>();
         }
 
-        void Command(int key, ICommand command)
+        public void Command(int key, ICommand command)
         {
             commands.Add(key, command);
         }
