@@ -21,24 +21,52 @@ namespace Sprint0.Sprites
 
 
         bool isAnimated;
-        int currentFrame;
-        int totalFrames;
+        Point currentFrame;
+        Point animatedSpriteSize;
+        int timeSinceLastFrame = 0;
+        int delayTime;
+        
 
-
-        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible, bool isAnimated )
+        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible, bool isAnimated, int delayTime, Point animatedSpriteSize)
         {
             this.texture = texture;
             this.position = position;
             this.speed = speed;
             this.isVisible = isVisible;
             this.isAnimated = isAnimated;
+            this.delayTime = delayTime;
+            this.animatedSpriteSize = animatedSpriteSize;
+            currentFrame = new Point(0,0);
 
         }
         
-
-
-        public void Update()
+        private void Animation(GameTime gameTime)
         {
+            if (isAnimated)
+            {
+                timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+                if(timeSinceLastFrame >= delayTime)
+                {
+                    timeSinceLastFrame -= delayTime;
+                    currentFrame.X++;
+                    if(currentFrame.X >= animatedSpriteSize.X)
+                    {
+                        currentFrame.X = 0;
+                        currentFrame.Y++;
+                        if (currentFrame.Y >= animatedSpriteSize.Y)
+                            currentFrame.Y = 0;
+                    }
+                }
+            }
+        }
+
+
+        public void Update(GameTime gameTime)
+        {
+
+            Animation(gameTime);
+
+
 
         }
 

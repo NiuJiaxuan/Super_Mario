@@ -13,7 +13,7 @@ namespace Sprint0.Sprites
      class MarioSprite :Sprite
     {
         public MarioSprite(Game1 game, Vector2 position)
-            : base (game.Content.Load<Texture2D>("small-standing-mario"), position,new Vector2(0,0), true,  false )
+            : base (game.Content.Load<Texture2D>("small-standing-mario"), position,new Vector2(0,0), true,  false,0 )
         {
 
         }
