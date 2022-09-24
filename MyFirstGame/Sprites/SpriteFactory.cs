@@ -35,7 +35,7 @@ namespace Sprint0.Sprites
 
         public override Sprite Create()
         {
-            return new MarioSprite();
+            return null;
         }
     }
 
