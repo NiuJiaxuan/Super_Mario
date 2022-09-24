@@ -24,6 +24,8 @@ namespace Sprint0
 
         private IController keyboard;
         private IController gamepad;
+
+        private Sprite mario;
  
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
@@ -92,8 +94,11 @@ namespace Sprint0
             keyboard.Command((int)Keys.T, new ShowMACommand(ma));
             gamepad.Command((int)Buttons.Y, new ShowMACommand(ma));
 
-            //load font
+            //--------------------------------load font---------------------------------------
             HUDFont = Content.Load<SpriteFont>("File");
+
+
+            mario = PlayerOneAvatarFactory.Instance.Create(this, new Vector2(100,100));
 
 
         }
@@ -132,6 +137,7 @@ namespace Sprint0
             mna.Draw(_spriteBatch);
             nma.Draw(_spriteBatch);
             ma.Draw(_spriteBatch);
+            mario.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
