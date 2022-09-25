@@ -10,7 +10,7 @@ using Sprint0.interfaces;
 
 namespace Sprint0.Sprites
 {
-    public class NmASprite : ISprite
+    public class NmASprite 
     {
         public Texture2D nma { get; set; }
         public int Rows { get; set; }

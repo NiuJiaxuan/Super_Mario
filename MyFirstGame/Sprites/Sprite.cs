@@ -13,21 +13,22 @@ namespace Sprint0.Sprites
     {
 
         Vector2 position;
-        Texture2D texture;
+        public Texture2D texture;
         Vector2 speed;
 
-
         bool isVisible;
-
 
         bool isAnimated;
         Point currentFrame;
         Point animatedSpriteSize;
+        Point frameSize;
         int timeSinceLastFrame = 0;
         int delayTime;
+
+
         
 
-        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible, bool isAnimated, int delayTime, Point animatedSpriteSize)
+        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible, bool isAnimated, int delayTime, Point animatedSpriteSize, Point frameSize)
         {
             this.texture = texture;
             this.position = position;
@@ -35,6 +36,7 @@ namespace Sprint0.Sprites
             this.isVisible = isVisible;
             this.isAnimated = isAnimated;
             this.delayTime = delayTime;
+            this.frameSize = frameSize;
             this.animatedSpriteSize = animatedSpriteSize;
             currentFrame = new Point(0,0);
 
@@ -73,7 +75,10 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(texture, position, Color.White);
+            batch.Draw(texture, position,
+                new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
+                frameSize.X, frameSize.Y),
+                Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
         }
 
 

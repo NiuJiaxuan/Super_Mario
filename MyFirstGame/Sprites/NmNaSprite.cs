@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Sprites
 {
-    public class NmNaSprite : ISprite
+    public class NmNaSprite 
     {
         public Texture2D NmNa { get; set; }
         public Vector2 Position;

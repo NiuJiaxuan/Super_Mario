@@ -9,7 +9,7 @@ using Sprint0.interfaces;
 
 namespace Sprint0.Sprites
 {
-    public class MASprite : ISprite
+    public class MASprite 
     {
 
         public Texture2D ma { get; set; }

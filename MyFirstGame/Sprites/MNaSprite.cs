@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint0.Sprites
 {
-    public class MNaSprite : ISprite
+    public class MNaSprite 
     {
 
         public Texture2D MNa { get; set; }

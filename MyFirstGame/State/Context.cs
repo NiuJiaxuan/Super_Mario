@@ -3,25 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sprint0.State;
+using Sprint0.interfaces;
+using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Sprites;
+using Microsoft.Xna.Framework;
 
 namespace Sprint0.State
 {
-     class MarioPowerState
+     class MarioContext11
     {
-        public static State smallMario;
-        public static State superMario;
-        public static State fireMario;
-        public static State deadMario;
-        public static State StarMario;
 
-        private State currentState;
+        private IState currentState;
+        private Dictionary<String, IState> movingStates;
+        private Dictionary<String, IState> powerState;
 
+        private ISprite mario;
 
-        public MarioPowerState()
+        public MarioContext11(Game1 game, Vector2 pos)
         {
-            this.currentState = new State();
         }
 
+        public void stateChange()
+        {
+
+        }
+
+        public void Update()
+        {
+
+        }
+
+        public void Draw()
+        {
+
+        }
 
     }
 }
+ 

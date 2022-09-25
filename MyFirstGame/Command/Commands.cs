@@ -24,6 +24,11 @@ namespace Sprint0.Command
 
     }
 
+
+
+
+
+
     public abstract class NmNaCommand : ICommand
     {
         protected NmNaSprite receiver;

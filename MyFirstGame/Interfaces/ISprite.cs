@@ -9,7 +9,7 @@ namespace Sprint0.interfaces
     public interface ISprite
     {
         void Draw(SpriteBatch spriteBatch);
-        void Update();
+        void Update(GameTime gameTime);
         int Width();
         int Height();
     }
