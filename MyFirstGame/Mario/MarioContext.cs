@@ -51,10 +51,14 @@ namespace Sprint0.Mario
         }
         public void ChangeToFire()
         {
+            if(lifecount<3 && lifecount>0)
+                lifecount++;
             currentState = new FireMario(this);
         }
         public void ChangeToSuper()
         {
+            if(lifecount<3 && lifecount>0)
+                lifecount++;
             currentState = new SuperMario(this);
         }
         public void TakeDamage()
