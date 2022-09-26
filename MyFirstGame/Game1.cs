@@ -6,6 +6,7 @@ using Sprint0.Command;
 using Sprint0.Controller;
 using Sprint0.interfaces;
 using Sprint0.Mario;
+using Sprint0.Block;
 
 namespace Sprint0
 {
@@ -22,6 +23,12 @@ namespace Sprint0
         private IController gamepad;
 
         private MarioAvatar mario;
+        private QuestionBlock questionBlock;
+        private UsedBlock usedBlock;
+        private FloorBlock floorBlock;
+        private BrickBlock brickBlock;
+        private StairBlock stairBlock;
+        private BrickBlock hiddenBrickBlock;
  
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
@@ -40,6 +47,13 @@ namespace Sprint0
 
             //-------------------------mario initial----------------------
             mario = new MarioAvatar(this, new Vector2(100, 100));
+            questionBlock = new QuestionBlock(this, new Vector2(100, 200));
+            usedBlock = new UsedBlock(this, new Vector2(150, 200));
+            floorBlock = new FloorBlock(this, new Vector2(200, 200));
+            brickBlock = new BrickBlock(this, new Vector2(250, 200));
+            stairBlock = new StairBlock(this, new Vector2(300, 200));
+            hiddenBrickBlock = new BrickBlock(this, new Vector2(100, 300));
+            hiddenBrickBlock.Hide();
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
@@ -47,6 +61,9 @@ namespace Sprint0
             keyboard.Command((int)Keys.I, new ChangeToFireMario(mario.marioContext));
             keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario.marioContext));
             keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario.marioContext));
+            keyboard.Command((int)Keys.W, new QuestionBlockBump(questionBlock));
+            keyboard.Command((int)Keys.B, new BrickBlockBump(brickBlock));
+            keyboard.Command((int)Keys.H, new BrickBlockChangeVisible(hiddenBrickBlock));
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
@@ -80,6 +97,12 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
+            questionBlock.Update(gameTime);
+            usedBlock.Update(gameTime);
+            floorBlock.Update(gameTime);
+            brickBlock.Update(gameTime);
+            stairBlock.Update(gameTime);
+            hiddenBrickBlock.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -94,10 +117,15 @@ namespace Sprint0
 
             _spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
             _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
-            //_spriteBatch.Draw(earth, new Vector2(400,240),Color.White);
-            //_spriteBatch.Draw(shuttle, new Vector2(450, 240), Color.White);
+            
 
             mario.Draw(_spriteBatch);
+            questionBlock.Draw(_spriteBatch);
+            usedBlock.Draw(_spriteBatch); 
+            brickBlock.Draw(_spriteBatch); 
+            stairBlock.Draw(_spriteBatch);
+            floorBlock.Draw(_spriteBatch);
+            hiddenBrickBlock.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

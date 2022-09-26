@@ -25,8 +25,13 @@ namespace Sprint0.Sprites
         int timeSinceLastFrame = 0;
         int delayTime;
 
+        public float velocity = 4f;
+        public bool isBump = false;
+        public double bumpHeight;
+        public double originHight;
 
-        
+
+
 
         public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible, bool isAnimated, int delayTime, Point animatedSpriteSize, Point frameSize)
         {
@@ -38,10 +43,28 @@ namespace Sprint0.Sprites
             this.delayTime = delayTime;
             this.frameSize = frameSize;
             this.animatedSpriteSize = animatedSpriteSize;
+            bumpHeight = position.Y - 25;
+            originHight = position.Y;
             currentFrame = new Point(0,0);
 
         }
         
+        public void Bump(GameTime gameTime)
+        {
+            if (isBump)
+            {
+                position.Y -= velocity;
+                if (position.Y < bumpHeight)
+                {
+                    velocity = -velocity;
+                }
+                if (position.Y > originHight)
+                {
+                    velocity = 0;
+                }
+            }
+        }
+
         private void Animation(GameTime gameTime)
         {
             if (isAnimated)
@@ -63,23 +86,27 @@ namespace Sprint0.Sprites
         }
 
 
+
         public void Update(GameTime gameTime)
         {
 
             Animation(gameTime);
-
-
+            Bump(gameTime);
 
         }
 
 
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(texture, position,
-                new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
-                frameSize.X, frameSize.Y),
-                Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+            if (isVisible)
+            {
+                batch.Draw(texture, position,
+                    new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
+                    frameSize.X, frameSize.Y),
+                    Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+            }
         }
+
 
 
         public int Height()
@@ -91,5 +118,21 @@ namespace Sprint0.Sprites
         {
             return texture.Width;
         }
+
+        public void IsBump()
+        {
+            isBump = true;
+        }
+
+        public void ChangeToVisible()
+        {
+            isVisible = true;
+        }
+
+        public void HideSprite()
+        {
+            isVisible = false;
+        }
+
     }
 }

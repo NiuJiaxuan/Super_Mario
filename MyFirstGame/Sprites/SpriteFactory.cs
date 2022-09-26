@@ -27,6 +27,17 @@ namespace Sprint0.Sprites
 
     }
 
+    abstract class BlockFactory
+    {
+        protected Random random;
+
+        protected BlockFactory()
+        {
+            random = new Random(DateTime.Now.Millisecond);
+        }
+        public abstract ISprite CreateBlock(Game1 game, Vector2 postion);
+    }
+
 
     // player one factory or mario factory
     // generate a new mario sprite
@@ -189,6 +200,113 @@ namespace Sprint0.Sprites
         public override ISprite DeadMario(Game1 game, Vector2 pos)
         {
             return new SuperMarioStandingSprite(game, pos);
+        }
+    }
+
+    class QuestionBlockFactory : BlockFactory
+    {
+        private static BlockFactory instance;
+
+        public static BlockFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new QuestionBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite CreateBlock(Game1 game, Vector2 pos)
+        {
+            return new QuestionBlockSprite(game, pos);
+        }
+    }
+    class FloorBlockFactory : BlockFactory
+    {
+        private static BlockFactory instance;
+
+        public static BlockFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new FloorBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite CreateBlock(Game1 game, Vector2 pos)
+        {
+            return new FloorBlockSprite(game, pos);
+        }
+    }
+
+    class BrickBlockFactory : BlockFactory
+    {
+        private static BlockFactory instance;
+
+        public static BlockFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new BrickBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite CreateBlock(Game1 game, Vector2 pos)
+        {
+            return new BrickBlockSprite(game, pos);
+        }
+    }
+    class UsedBlockFactory : BlockFactory
+    {
+        private static BlockFactory instance;
+
+        public static BlockFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new UsedBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite CreateBlock(Game1 game, Vector2 pos)
+        {
+            return new UsedBlockSprite(game, pos);
+        }
+    }
+    class StairBlockFactory : BlockFactory
+    {
+        private static BlockFactory instance;
+
+        public static BlockFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new StairBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite CreateBlock(Game1 game, Vector2 pos)
+        {
+            return new StairBlockSprite(game, pos);
         }
     }
 

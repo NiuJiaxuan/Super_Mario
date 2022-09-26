@@ -1,4 +1,5 @@
 ﻿using Sprint0;
+using Sprint0.Block;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using System;
@@ -64,4 +65,35 @@ namespace Sprint0.Command
             receiver.TakeDamage();
         }
     }
+    public class QuestionBlockBump : QuestionBlockCommand
+    {
+        public QuestionBlockBump(QuestionBlock receiver)
+            : base(receiver) { }
+        public override void Execute()
+        {
+            receiver.ChangeToUsedBlock();
+        }
+    }
+
+    public class BrickBlockBump : BrickBlockCommand
+    {
+        public BrickBlockBump(BrickBlock receiver)
+            : base(receiver) { }
+        public override void Execute()
+        {
+            receiver.Bump();
+        }
+    }
+
+    public class BrickBlockChangeVisible : BrickBlockCommand
+    {
+        public BrickBlockChangeVisible(BrickBlock receiver)
+            : base(receiver) { }
+        public override void Execute()
+        {
+            receiver.ChangeVisble();
+            receiver.Bump();
+        }
+    }
+
 }

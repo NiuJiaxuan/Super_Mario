@@ -12,5 +12,8 @@ namespace Sprint0.interfaces
         void Update(GameTime gameTime);
         int Width();
         int Height();
+        void IsBump();
+        void ChangeToVisible();
+        void HideSprite();
     }
 }
