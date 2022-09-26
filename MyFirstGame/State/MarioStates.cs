@@ -22,21 +22,16 @@ namespace Sprint0.State
             this.currentSprite = NormalMarioFactory.Instance.IdleMario(mario.game, mario.position);
             this.mario = mario;
         }
-
-
-
+        public void Update(GameTime gameTime)
+        {
+            currentSprite.Update(gameTime);
+        }
         public void Draw(SpriteBatch batch)
         {
             currentSprite.Draw(batch);
         }
 
-        public void Update(GameTime gameTime)
-        {
-            if(Keyboard.GetState().IsKeyDown(Keys.F))
-            mario.setState(new FireMario(mario));
 
-            currentSprite.Update(gameTime);
-        }
     }
 
     public class FireMario : IState
@@ -50,11 +45,28 @@ namespace Sprint0.State
             this.marioContext = mario;
         }
 
+        public void Update(GameTime gameTime)
+        {
 
+            currentSprite.Update(gameTime);
+        }
 
         public void Draw(SpriteBatch batch)
         {
             currentSprite.Draw(batch);
+        }
+
+    }
+
+    public class SuperMario : IState
+    {
+        private ISprite currentSprite;
+        private MarioContext marioContext;
+
+        public SuperMario(MarioContext mario)
+        {
+            this.currentSprite = SuperMarioFactory.Instance.IdleMario(mario.game, mario.position);
+            this.marioContext = mario;
         }
 
         public void Update(GameTime gameTime)
@@ -62,6 +74,34 @@ namespace Sprint0.State
 
             currentSprite.Update(gameTime);
         }
+
+        public void Draw(SpriteBatch batch)
+        {
+            currentSprite.Draw(batch);
+        }
     }
 
+
+    public class DeadMario : IState
+    {
+        private ISprite currentSprite;
+        private MarioContext marioContext;
+
+        public DeadMario(MarioContext mario)
+        {
+            this.currentSprite = DeadMarioFactory.Instance.DeadMario(mario.game, mario.position);
+            this.marioContext = mario;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+
+            currentSprite.Update(gameTime);
+        }
+
+        public void Draw(SpriteBatch batch)
+        {
+            currentSprite.Draw(batch);
+        }
+    }
 }

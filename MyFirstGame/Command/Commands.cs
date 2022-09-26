@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Sprint0.Mario;
 
 namespace Sprint0.Command
 {
@@ -25,57 +25,16 @@ namespace Sprint0.Command
     }
 
 
-
-
-
-
-    public abstract class NmNaCommand : ICommand
+    public abstract class MarioCommand : ICommand
     {
-        protected NmNaSprite receiver;
-
-        protected NmNaCommand(NmNaSprite receiver)
-        {
-            this.receiver=receiver; 
-        }
-
-        public abstract void Execute();
-    }
-
-    public abstract class NmACommand : ICommand
-    {
-        protected NmASprite receiver;
-
-        protected NmACommand(NmASprite receiver)
+        protected MarioContext receiver;
+        protected MarioCommand(MarioContext receiver)
         {
             this.receiver = receiver;
         }
-
         public abstract void Execute();
     }
 
-    public abstract class MNaCommand : ICommand
-    {
-        protected MNaSprite receiver;
-
-        protected MNaCommand(MNaSprite receiver)
-        {
-            this.receiver = receiver;
-        }
-
-        public abstract void Execute();
-    }
-
-    public abstract class MACommand : ICommand
-    {
-        protected MASprite receiver;
-
-        protected MACommand(MASprite receiver)
-        {
-            this.receiver = receiver;
-        }
-
-        public abstract void Execute();
-    }
 
 }
 

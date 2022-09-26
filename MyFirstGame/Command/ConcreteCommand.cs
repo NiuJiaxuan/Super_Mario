@@ -1,4 +1,5 @@
 ﻿using Sprint0;
+using Sprint0.Mario;
 using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
@@ -19,46 +20,48 @@ namespace Sprint0.Command
         }
     }
 
-    public class ShowNmNaCommand : NmNaCommand
+
+    public class ChangeToFireMario : MarioCommand
     {
-        public ShowNmNaCommand(NmNaSprite receiver)
-            : base(receiver) { }
+        public ChangeToFireMario(MarioContext receiver)
+            :base(receiver) { }
 
         public override void Execute()
         {
-            receiver.VisibleCommand();
+            receiver.ChangeToFire();
         }
     }
 
-    public class ShowNmACommand : NmACommand
+    public class ChangeToSuperMario : MarioCommand
     {
-        public ShowNmACommand(NmASprite receiver)
+        public ChangeToSuperMario(MarioContext receiver)
             : base(receiver) { }
 
         public override void Execute()
         {
-            receiver.VisibleCommand();
-        }
-    }
-    public class ShowMNaCommand : MNaCommand
-    {
-        public ShowMNaCommand(MNaSprite receiver)
-            : base(receiver) { }
-
-        public override void Execute()
-        {
-            receiver.VisibleCommand();
+            receiver.ChangeToSuper();
         }
     }
 
-    public class ShowMACommand : MACommand
+    public class ChangeToNormalMario : MarioCommand
     {
-        public ShowMACommand(MASprite receiver)
+        public ChangeToNormalMario(MarioContext receiver)
             : base(receiver) { }
 
         public override void Execute()
         {
-            receiver.VisibleCommand();
+            receiver.ChangeToNormal();
+        }
+    }
+
+    public class MarioTakeDamege : MarioCommand
+    {
+        public MarioTakeDamege(MarioContext receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.TakeDamage();
         }
     }
 }

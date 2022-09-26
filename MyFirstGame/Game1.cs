@@ -38,9 +38,15 @@ namespace Sprint0
         {
             // TODO: Add your initialization logic here
 
+            //-------------------------mario initial----------------------
+            mario = new MarioAvatar(this, new Vector2(100, 100));
+
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
             keyboard.Command((int)Keys.Q, new ExitCommand(this));
+            keyboard.Command((int)Keys.I, new ChangeToFireMario(mario.marioContext));
+            keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario.marioContext));
+            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario.marioContext));
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
@@ -62,7 +68,6 @@ namespace Sprint0
             HUDFont = Content.Load<SpriteFont>("File");
 
 
-            mario = new MarioAvatar(this, new Vector2(100, 100));
 
         }
 

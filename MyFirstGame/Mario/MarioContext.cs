@@ -4,6 +4,7 @@ using Sprint0.Controller;
 using Sprint0.interfaces;
 using Sprint0.Sprites;
 using Sprint0.State;
+using Sprint0.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,10 @@ namespace Sprint0.Mario
     public class MarioContext
     {
 
-
-
-        private IController keyboard;
-
-
         private IState currentState;
+
+
+        public int lifecount;
 
         public Game1 game;
         public Vector2 position;
@@ -33,6 +32,8 @@ namespace Sprint0.Mario
             this.position = position;
 
             currentState = new NormalMario(this);
+            lifecount = 1;
+
         }
 
 
@@ -42,12 +43,25 @@ namespace Sprint0.Mario
         }
 
 
-         
+        
 
-        private void commandSetup()
+        public void ChangeToNormal()
         {
-            keyboard = new KeyboardController();
-
+            currentState = new NormalMario(this);
+        }
+        public void ChangeToFire()
+        {
+            currentState = new FireMario(this);
+        }
+        public void ChangeToSuper()
+        {
+            currentState = new SuperMario(this);
+        }
+        public void TakeDamage()
+        {
+            lifecount--;
+            if (lifecount <= 0)
+                currentState = new DeadMario(this);
         }
 
 
@@ -57,8 +71,9 @@ namespace Sprint0.Mario
            
             currentState.Update(gameTime);
 
-
         }
+
+
 
         public void Update(GameTime gameTime)
         {

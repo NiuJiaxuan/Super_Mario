@@ -158,4 +158,38 @@ namespace Sprint0.Sprites
         }
     }
 
+    abstract class DMarioFactory
+    {
+        protected Random random;
+
+        protected DMarioFactory()
+        {
+            random = new Random(DateTime.Now.Millisecond);
+        }
+        public abstract ISprite DeadMario(Game1 game, Vector2 postion);
+
+    }
+
+    class DeadMarioFactory : DMarioFactory
+    {
+        private static DeadMarioFactory instance;
+
+        public static DeadMarioFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new DeadMarioFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite DeadMario(Game1 game, Vector2 pos)
+        {
+            return new SuperMarioStandingSprite(game, pos);
+        }
+    }
+
 }

@@ -18,7 +18,7 @@ namespace Sprint0.Mario
 
         private IState currentState;
 
-        private MarioContext marioContext;
+        public MarioContext marioContext;
 
         public MarioAvatar(Game1 game, Vector2 position)
         {
