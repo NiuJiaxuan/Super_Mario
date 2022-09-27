@@ -26,8 +26,11 @@ namespace Sprint0.Sprites
         int delayTime;
 
         public float velocity = 4f;
+        public float horizonVelocity = 2f;
+        public float verticalVelocity = 4f;
         public bool isBump = false;
         public bool isAppear = false;
+        public bool isSuperMario = false;
         public double bumpHeight;
         public double originHight;
         public double h;
@@ -52,7 +55,7 @@ namespace Sprint0.Sprites
         
         public void Bump(GameTime gameTime)
         {
-            if (isBump)
+            if (isBump && !isSuperMario)
             {
                 position.Y -= velocity;
                 if (position.Y < bumpHeight)
@@ -78,6 +81,20 @@ namespace Sprint0.Sprites
                 if(position.Y < h+38)
                 {
                     velocity = 0;
+                }
+            }
+        }
+
+        public void Fall(GameTime gameTime)
+        {
+            if (isSuperMario)
+            {
+                position.Y += verticalVelocity;
+                verticalVelocity += 1f;
+                position.X += horizonVelocity;
+                if (horizonVelocity > 0)
+                {
+                    horizonVelocity -= 1f;
                 }
             }
         }
@@ -108,8 +125,11 @@ namespace Sprint0.Sprites
         {
 
             Animation(gameTime);
+
             Bump(gameTime);
+            
             Appear(gameTime);
+            Fall(gameTime);
 
         }
 
@@ -155,6 +175,15 @@ namespace Sprint0.Sprites
         public void HideSprite()
         {
             isVisible = false;
+        }
+
+        public void IsSuperMario()
+        {
+            isSuperMario = true;
+        }
+        public void NegativeHorizonVelocity()
+        {
+            horizonVelocity = -horizonVelocity;
         }
 
     }

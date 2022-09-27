@@ -52,6 +52,7 @@ namespace Sprint0.Sprites
         public BrickBlockSprite(Game1 game1, Vector2 vector2)
             : base(game1.Content.Load<Texture2D>("brickblock"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(30, 30))
         {
+
         }
 
     }
@@ -75,6 +76,14 @@ namespace Sprint0.Sprites
     {
         public StairBlockSprite(Game1 game1, Vector2 vector2)
             : base(game1.Content.Load<Texture2D>("stairBlock"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(31, 30))
+        {
+        }
+
+    }
+    class BrickBlockPieceSprite : Sprite
+    {
+        public BrickBlockPieceSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("smallBrickBlock"), vector2, new Vector2(0, 0), false, false, 0, Point.Zero, new Point(15, 15))
         {
         }
 

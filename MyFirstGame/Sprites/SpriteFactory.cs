@@ -310,4 +310,26 @@ namespace Sprint0.Sprites
         }
     }
 
+    class BrickBlockPieceFactory : BlockFactory
+    {
+        private static BlockFactory instance;
+
+        public static BlockFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new BrickBlockPieceFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite CreateBlock(Game1 game, Vector2 pos)
+        {
+            return new BrickBlockPieceSprite(game, pos);
+        }
+    }
+
 }

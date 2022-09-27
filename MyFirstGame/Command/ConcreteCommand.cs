@@ -83,6 +83,7 @@ namespace Sprint0.Command
         public override void Execute()
         {
             receiver.Bump();
+            receiver.Explode();
         }
     }
 

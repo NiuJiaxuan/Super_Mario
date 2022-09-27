@@ -97,6 +97,7 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
+            brickBlock.isSuperMario = mario.marioContext.isSuperMario;
             questionBlock.Update(gameTime);
             usedBlock.Update(gameTime);
             floorBlock.Update(gameTime);

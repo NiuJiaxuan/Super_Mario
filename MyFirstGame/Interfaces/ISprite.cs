@@ -16,5 +16,7 @@ namespace Sprint0.interfaces
         void ChangeToVisible();
         void HideSprite();
         void IsAppear();
+        void IsSuperMario();
+        void NegativeHorizonVelocity();
     }
 }
