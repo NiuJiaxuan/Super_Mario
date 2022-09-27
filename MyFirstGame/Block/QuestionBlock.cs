@@ -18,8 +18,8 @@ namespace Sprint0.Block
         private ISprite questionBlock;
         private ISprite usedBlock;
         private ISprite currentBlock;
+        private ISprite hiddenItem;
 
-       
 
 
         public QuestionBlock(Game1 game, Vector2 position)
@@ -28,6 +28,8 @@ namespace Sprint0.Block
             this.position = position;
             questionBlock = QuestionBlockFactory.Instance.CreateBlock(game, position); 
             usedBlock = UsedBlockFactory.Instance.CreateBlock(game, position);
+            hiddenItem = BrickBlockFactory.Instance.CreateBlock(game, position);
+            hiddenItem.HideSprite();
             currentBlock = questionBlock;
 
         }
@@ -38,16 +40,25 @@ namespace Sprint0.Block
             currentBlock.IsBump();
         }
 
+        public void ContainItem()
+        {
+            hiddenItem.ChangeToVisible();
+            hiddenItem.IsAppear();
+        }
+
         public void Update(GameTime gameTime)
         {
 
             currentBlock.Update(gameTime);
+            hiddenItem.Update(gameTime);
 
         }
 
         public void Draw(SpriteBatch batch)
         {
+            hiddenItem.Draw(batch);
             currentBlock.Draw(batch);
+            
         }
 
     }

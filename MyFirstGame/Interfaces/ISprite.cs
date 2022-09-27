@@ -15,5 +15,6 @@ namespace Sprint0.interfaces
         void IsBump();
         void ChangeToVisible();
         void HideSprite();
+        void IsAppear();
     }
 }

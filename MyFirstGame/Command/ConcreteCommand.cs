@@ -72,6 +72,7 @@ namespace Sprint0.Command
         public override void Execute()
         {
             receiver.ChangeToUsedBlock();
+            receiver.ContainItem();
         }
     }
 

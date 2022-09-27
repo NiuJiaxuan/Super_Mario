@@ -27,9 +27,10 @@ namespace Sprint0.Sprites
 
         public float velocity = 4f;
         public bool isBump = false;
+        public bool isAppear = false;
         public double bumpHeight;
         public double originHight;
-
+        public double h;
 
 
 
@@ -45,8 +46,8 @@ namespace Sprint0.Sprites
             this.animatedSpriteSize = animatedSpriteSize;
             bumpHeight = position.Y - 25;
             originHight = position.Y;
+            h = position.Y - 60;
             currentFrame = new Point(0,0);
-
         }
         
         public void Bump(GameTime gameTime)
@@ -59,6 +60,22 @@ namespace Sprint0.Sprites
                     velocity = -velocity;
                 }
                 if (position.Y > originHight)
+                {
+                    velocity = 0;
+                }
+            }
+        }
+
+        public void Appear(GameTime gameTime)
+        {
+            if (isAppear)
+            {
+                
+                if (position.Y > h)
+                {
+                    position.Y -= velocity;
+                }
+                if(position.Y < h+38)
                 {
                     velocity = 0;
                 }
@@ -92,6 +109,7 @@ namespace Sprint0.Sprites
 
             Animation(gameTime);
             Bump(gameTime);
+            Appear(gameTime);
 
         }
 
@@ -122,6 +140,11 @@ namespace Sprint0.Sprites
         public void IsBump()
         {
             isBump = true;
+        }
+
+        public void IsAppear()
+        {
+            isAppear = true;
         }
 
         public void ChangeToVisible()
