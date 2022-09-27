@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace Sprint0.Mario
 {
@@ -47,35 +48,36 @@ namespace Sprint0.Mario
 
         public void ChangeToNormal()
         {
+            lifecount = 1;
             currentState = new NormalMario(this);
-        }
-        public void ChangeToFire()
-        {
-            if(lifecount<3 && lifecount>0)
-                lifecount++;
-            currentState = new FireMario(this);
         }
         public void ChangeToSuper()
         {
-            if(lifecount<3 && lifecount>0)
-                lifecount++;
+            lifecount = 2;
             currentState = new SuperMario(this);
+        }
+        public void ChangeToFire()
+        {
+            lifecount = 3;
+            currentState = new FireMario(this);
         }
         public void TakeDamage()
         {
             lifecount--;
-            if (lifecount <= 0)
-                currentState = new DeadMario(this);
+            switch (lifecount)
+            {
+                case 0: 
+                    currentState = new DeadMario(this); 
+                    break;
+                case 1: 
+                    currentState = new NormalMario(this); 
+                    break;
+                case 2: 
+                    currentState = new SuperMario(this); 
+                    break;
+            }
         }
 
-
-
-        public void PowerChanges(GameTime gameTime)
-        {
-           
-            currentState.Update(gameTime);
-
-        }
 
 
 

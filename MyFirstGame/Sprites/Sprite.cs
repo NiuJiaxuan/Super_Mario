@@ -24,11 +24,12 @@ namespace Sprint0.Sprites
         Point frameSize;
         int timeSinceLastFrame = 0;
         int delayTime;
-
+        SpriteEffects orientation;
 
         
 
-        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible, bool isAnimated, int delayTime, Point animatedSpriteSize, Point frameSize)
+        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible,
+            bool isAnimated, int delayTime, Point animatedSpriteSize, Point frameSize,SpriteEffects orientation)
         {
             this.texture = texture;
             this.position = position;
@@ -39,6 +40,7 @@ namespace Sprint0.Sprites
             this.frameSize = frameSize;
             this.animatedSpriteSize = animatedSpriteSize;
             currentFrame = new Point(0,0);
+            this.orientation = orientation;
 
         }
         
@@ -65,7 +67,6 @@ namespace Sprint0.Sprites
 
         public void Update(GameTime gameTime)
         {
-
             Animation(gameTime);
 
 
@@ -78,7 +79,7 @@ namespace Sprint0.Sprites
             batch.Draw(texture, position,
                 new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
                 frameSize.X, frameSize.Y),
-                Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                Color.White, 0, Vector2.Zero, 1, orientation, 0);
         }
 
 

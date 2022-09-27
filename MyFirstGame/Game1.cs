@@ -47,6 +47,7 @@ namespace Sprint0
             keyboard.Command((int)Keys.I, new ChangeToFireMario(mario.marioContext));
             keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario.marioContext));
             keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario.marioContext));
+            keyboard.Command((int)Keys.O, new MarioTakeDamege(mario.marioContext));
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
