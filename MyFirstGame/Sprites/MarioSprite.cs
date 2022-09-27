@@ -42,34 +42,12 @@ namespace Sprint0.Sprites
 
         bool isAnimated;
 
-        int delayTime;
+        int delayTime = 50;
         int timeSinceLastFrame;
         Point currentFrame;
         Point animatedSpriteSize;
         Point frameSize;
 
-
-
-
-        public int Rows;
-        public int Columns;
-
-        public KeyboardState movementDir;
-        public string direction;
-
-        public int speed;
-        private Texture2D marioRight;
-        private int marioRightRow;
-        private int marioRightColumn;
-        private Texture2D marioStandingLeft;
-        private Texture2D marioStandingRight;
-
-        private Texture2D marioJumpingRight;
-        private int marioJumpingRightRows;
-        private int marioJumpingRightColumns;
-        private Texture2D marioJumpingLeft;
-        private int marioJumpingLeftRows;
-        private int marioJumpingLeftColumns;
 
 
         public MarioSprite(Texture2D marioStanding, Vector2 position, Texture2D marioWalking, Texture2D marioJumping, Texture2D marioCrouching, SpriteEffects orientation)
@@ -84,38 +62,8 @@ namespace Sprint0.Sprites
             this.velocity = new Vector2(0, 0);
             this.currentFrame = new Point(0, 0);
             this.currentTexture = marioStanding;
+            this.isAnimated = false;
 
-
-
-
-            mario = texture;
-            Rows = rows;
-            Columns = columns;
-            currentFrame = 0;
-            totalFrames = Rows * Columns;
-            position = vector2;
-            Next = false;
-            speed = 15;
-            TimeSinceLastFrame = 0;
-            MillisecondsPerFrame = 250;
-            direction = "";
-
-            marioRight = marioRightMain;
-            marioRightRow = rows2;
-            marioRightColumn = columns2;
-            marioStandingLeft = marioStandingLeftMain;
-            marioStandingRight = marioStandingRightMain;
-
-            marioJumpingLeft = marioJumpingLeftMain;
-            marioJumpingLeftRows = rows3;
-            marioJumpingLeftColumns = columns3;
-
-            marioJumpingRight = marioJumpingRightMain;
-            marioJumpingRightRows = rows4;
-            marioJumpingRightColumns = columns4;
-
-            marioCrouching = marioCrouchingMain;
-            isCrouch = false;
         }
 
         private void Animation(GameTime gameTime)
@@ -183,14 +131,21 @@ namespace Sprint0.Sprites
                 velocity.X *= ori; 
                 currentTexture = marioWalking;
                 Animation(gameTime);
-                HorizontalMovement();
 
             }
             else if (isJump)
             {
                 velocity.Y = -10;
                 velocity.X *= ori;
-                HorizontalMovement();
+                currentTexture = marioJumping;
+            }
+            else if (isCrouch)
+            {
+                currentTexture = marioCrouching;
+            }
+            else
+            {
+                currentTexture = marioStanding;
             }
         }
 
@@ -198,113 +153,18 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int width = mario.Width / Columns;
-            int height = mario.Height / Rows;
-            int row = currentFrame / Columns;
-            int column = currentFrame % Columns;
 
-            Rectangle sourceRectangle;
-            Rectangle destinationRectangle;
-
-
-            Debug.WriteLine(direction);
-            if (pressed)
-            {
-
-
-
-                if (direction.Equals("left"))
-                {
-                    MoveLeft();
-                    sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                    destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-                    spriteBatch.Draw(mario, destinationRectangle, sourceRectangle, Color.White);
-
-                }
-                else if (direction.Equals("right"))
-                {
-                    MoveRight();
-                    width = mario.Width / marioRightColumn;
-                    height = mario.Height / marioRightRow;
-                    row = currentFrame / marioRightColumn;
-                    column = currentFrame % marioRightColumn;
-
-                    sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                    destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-                    spriteBatch.Draw(marioRight, destinationRectangle, sourceRectangle, Color.White);
-                }
-            }
-            else if (isJump)
-            {
-                if (direction.Equals("left"))
-                {
-
-                    width = mario.Width / marioJumpingLeftColumns;
-                    height = mario.Height / marioJumpingLeftRows;
-                    row = currentFrame / marioJumpingLeftColumns;
-                    column = currentFrame % marioJumpingLeftColumns;
-
-                    sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                    destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-                    Debug.WriteLine("Left Jump");
-                    spriteBatch.Draw(marioJumpingLeft, destinationRectangle, sourceRectangle, Color.White);
-                }
-                else if (direction.Equals("right"))
-                {
-                    width = mario.Width / marioJumpingRightColumns;
-                    height = mario.Height / marioJumpingRightRows;
-                    row = currentFrame / marioJumpingRightColumns;
-                    column = currentFrame % marioJumpingRightColumns;
-
-                    sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                    destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-                    spriteBatch.Draw(marioJumpingRight, destinationRectangle, sourceRectangle, Color.White);
-                }
-                else
-                {
-                    sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                    destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-                    Debug.WriteLine("else Jump");
-                    spriteBatch.Draw(mario, destinationRectangle, sourceRectangle, Color.White);
-                }
-
-            }
-
-            else if (isCrouch)
-            {
-                spriteBatch.Draw(marioCrouching, position, Color.White);
-            }
-            else if (direction.Equals("left"))
-            {
-                spriteBatch.Draw(marioStandingLeft, position, Color.White);
-            }
-            else if (direction.Equals("right"))
-            {
-                spriteBatch.Draw(marioStandingRight, position, Color.White);
-            }
-            else
-            {
-                spriteBatch.Draw(marioStanding, position, 
-                    new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
-                    frameSize.X, frameSize.Y),
-                    Color.White, 0, Vector2.Zero, 1, orientation, 0);
-            }
+            spriteBatch.Draw(marioStanding, position,                     
+                new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
+                frameSize.X, frameSize.Y),
+                Color.White, 0, Vector2.Zero, 1, orientation, 0);
+            
         }
+        
 
- 
-        private void NextFrame(GameTime gameTime, ref bool next)
+        public void Animated()
         {
-            TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-            if (TimeSinceLastFrame > MillisecondsPerFrame)
-            {
-                TimeSinceLastFrame -= MillisecondsPerFrame;
-                next = true;
-            }
-            else
-            {
-                next = false;
-            }
-
+            isAnimated = !isAnimated;
         }
 
         public void MoveRight()

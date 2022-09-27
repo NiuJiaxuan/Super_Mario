@@ -10,48 +10,43 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Sprites
 {
-     class NormalMarioStandingSprite :Sprite
+     class NormalMarioStandingSprite :MarioSprite
     {
         public NormalMarioStandingSprite(Game1 game, Vector2 position, SpriteEffects orientation)
-            : base (game.Content.Load<Texture2D>("small-standing-mario"), position,new Vector2(0,0), true,false,0,Point.Zero, new Point(18,24),orientation )
-        {
-
-        }
-    }
-
-    class NormalMarioRunningSprite : Sprite
-    {
-        public NormalMarioRunningSprite(Game1 game, Vector2 position,Vector2 speed, SpriteEffects orientation)
-            : base(game.Content.Load<Texture2D>("small-standing-mario"), position,speed, true, false, 0, Point.Zero, new Point(18, 24), orientation)
+            : base (game.Content.Load<Texture2D>("small-standing-mario"), position, game.Content.Load<Texture2D>("small-walking-mario"),
+                  game.Content.Load<Texture2D>("small-jumping-mario"), game.Content.Load<Texture2D>("small-crouching-mario"),orientation)
         {
 
         }
     }
 
 
-    class FireMarioStandingSprite : Sprite
+    class FireMarioStandingSprite : MarioSprite
     {
-        public FireMarioStandingSprite(Game1 game1, Vector2 vector2, SpriteEffects orientation)
-            : base(game1.Content.Load<Texture2D>("fire-standing-mario"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(22,48), orientation)
+        public FireMarioStandingSprite(Game1 game, Vector2 position, SpriteEffects orientation)
+            : base(game.Content.Load<Texture2D>("fire-standing-mario"), position, game.Content.Load<Texture2D>("fire-walking-mario"),
+                  game.Content.Load<Texture2D>("fire-jumping-mario"), game.Content.Load<Texture2D>("fire-crouching-mario"), orientation)
         {
 
         }
     }
 
 
-    class SuperMarioStandingSprite : Sprite
+    class SuperMarioStandingSprite : MarioSprite
     {
-        public SuperMarioStandingSprite(Game1 game1, Vector2 vector2, SpriteEffects orientation)
-            : base(game1.Content.Load<Texture2D>("super-standing-mario"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(22, 48),  orientation)
+        public SuperMarioStandingSprite(Game1 game, Vector2 position, SpriteEffects orientation)
+            : base(game.Content.Load<Texture2D>("super-standing-mario"), position, game.Content.Load<Texture2D>("super-walking-mario"),
+                  game.Content.Load<Texture2D>("super-jumping-mario"), game.Content.Load<Texture2D>("super-crouching-mario"), orientation)
         {
 
         }
     }
 
-    class DeadMarioSprite : Sprite
+    class DeadMarioSprite : MarioSprite
     {
-        public DeadMarioSprite(Game1 game1, Vector2 vector2, SpriteEffects orientation)
-            : base(game1.Content.Load<Texture2D>("dead-mario"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(18,18), orientation)
+        public DeadMarioSprite(Game1 game, Vector2 position, SpriteEffects orientation)
+            : base(game.Content.Load<Texture2D>("dead-mario"), position, game.Content.Load<Texture2D>("dead-mario"),
+                  game.Content.Load<Texture2D>("dead-mario"), game.Content.Load<Texture2D>("dead-mario"), orientation)
         {
 
         }

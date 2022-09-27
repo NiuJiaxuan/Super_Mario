@@ -19,7 +19,7 @@ namespace Sprint0.State
 
         public NormalMario(MarioContext mario)
         {
-            this.currentSprite = NormalMarioFactory.Instance.IdleMario(mario.game, mario.position);
+            this.currentSprite = NormalMarioFactory.Instance.CreateMario(mario.game, mario.position, SpriteEffects.None);
             this.mario = mario;
         }
         public void Update(GameTime gameTime)
@@ -41,7 +41,7 @@ namespace Sprint0.State
 
         public FireMario(MarioContext mario)
         {
-            this.currentSprite = FireMarioFactory.Instance.IdleMario(mario.game, mario.position);
+            this.currentSprite = FireMarioFactory.Instance.CreateMario(mario.game, mario.position, SpriteEffects.None);
             this.marioContext = mario;
         }
 
@@ -65,7 +65,7 @@ namespace Sprint0.State
 
         public SuperMario(MarioContext mario)
         {
-            this.currentSprite = SuperMarioFactory.Instance.IdleMario(mario.game, mario.position);
+            this.currentSprite = SuperMarioFactory.Instance.CreateMario(mario.game, mario.position,SpriteEffects.None);
             this.marioContext = mario;
         }
 
