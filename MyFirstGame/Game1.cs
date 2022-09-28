@@ -8,6 +8,7 @@ using Sprint0.interfaces;
 using Sprint0.Mario;
 using Sprint0.Block;
 using Sprint0.Items;
+using System.Collections.Generic;
 
 namespace Sprint0
 {
@@ -35,6 +36,8 @@ namespace Sprint0
         private BrickBlock brickBlock;
         private StairBlock stairBlock;
         private BrickBlock hiddenBrickBlock;
+        private BrickBlock brickBlockWithItem;
+        private BrickBlock brickBlockWithNoItem;
  
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
@@ -64,6 +67,11 @@ namespace Sprint0
             brickBlock = new BrickBlock(this, new Vector2(250, 200));
             stairBlock = new StairBlock(this, new Vector2(300, 200));
             hiddenBrickBlock = new BrickBlock(this, new Vector2(100, 300));
+            brickBlockWithItem = new BrickBlock(this, new Vector2(150, 300)); 
+            brickBlockWithNoItem = new BrickBlock(this, new Vector2(200, 300));
+
+
+            brickBlockWithItem.ContainItem();
             hiddenBrickBlock.Hide();
 
             //-------------------------keyboard control------------------
@@ -120,6 +128,8 @@ namespace Sprint0
             brickBlock.Update(gameTime);
             stairBlock.Update(gameTime);
             hiddenBrickBlock.Update(gameTime);
+            brickBlockWithItem.Update(gameTime);
+            brickBlockWithNoItem.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -148,6 +158,8 @@ namespace Sprint0
             stairBlock.Draw(_spriteBatch);
             floorBlock.Draw(_spriteBatch);
             hiddenBrickBlock.Draw(_spriteBatch);
+            brickBlockWithItem.Draw(_spriteBatch);
+            brickBlockWithNoItem.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

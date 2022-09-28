@@ -16,8 +16,12 @@ namespace Sprint0.Block
         public Game1 game;
         public Vector2 position;
         public bool isSuperMario;
+        public bool isContain = true;
 
+        private ISprite currentBlock;
         private ISprite brickBlock;
+        private ISprite hiddenItem;
+        private ISprite usedBlock;
         private ISprite brickBlockPiece1;
         private ISprite brickBlockPiece2;
         private ISprite brickBlockPiece3;
@@ -32,22 +36,34 @@ namespace Sprint0.Block
             this.position = position;
             
             brickBlock = BrickBlockFactory.Instance.CreateBlock(game, position);
+            hiddenItem = SuperMushroomFactory.Instance.Create(game, position);
+            usedBlock = UsedBlockFactory.Instance.CreateBlock(game, position);
+            hiddenItem.HideSprite();
             brickBlockPiece1 = BrickBlockPieceFactory.Instance.CreateBlock(game, position);
-            brickBlockPiece2 = BrickBlockPieceFactory.Instance.CreateBlock(game, new Vector2(position.X + 16 , position.Y));
-            brickBlockPiece3 = BrickBlockPieceFactory.Instance.CreateBlock(game, new Vector2(position.X , position.Y + 16));
-            brickBlockPiece4 = BrickBlockPieceFactory.Instance.CreateBlock(game, new Vector2(position.X + 16 , position.Y + 16));
+            brickBlockPiece2 = BrickBlockPieceFactory.Instance.CreateBlock(game, new Vector2(position.X + 24 , position.Y));
+            brickBlockPiece3 = BrickBlockPieceFactory.Instance.CreateBlock(game, new Vector2(position.X , position.Y + 24));
+            brickBlockPiece4 = BrickBlockPieceFactory.Instance.CreateBlock(game, new Vector2(position.X + 24 , position.Y + 24));
             brickBlockPiece1.NegativeHorizonVelocity();
             brickBlockPiece3.NegativeHorizonVelocity();
+            currentBlock = brickBlock;
         }
 
         public void Bump()
         {
-            brickBlock.IsBump();
+            if (isContain)
+            {
+                hiddenItem.ChangeToVisible();
+            }
+            else
+            {
+                currentBlock = usedBlock;
+            }
+            currentBlock.IsBump();
         }
 
         public void ChangeVisble()
         {
-            brickBlock.ChangeToVisible();
+            currentBlock.ChangeToVisible();
         }
 
         public void ChangeToSuperMario()
@@ -61,7 +77,7 @@ namespace Sprint0.Block
 
         public void Hide()
         {
-            brickBlock.HideSprite();
+            currentBlock.HideSprite();
         }
 
         public void Explode()
@@ -77,10 +93,16 @@ namespace Sprint0.Block
             }
         }
 
+        public void ContainItem()
+        {
+            isContain = true;
+        }
+
         public void Update(GameTime gameTime)
         {
 
-            brickBlock.Update(gameTime);
+            currentBlock.Update(gameTime);
+            hiddenItem.Update(gameTime);
             brickBlockPiece1.Update(gameTime);
             brickBlockPiece2.Update(gameTime);
             brickBlockPiece3.Update(gameTime);
@@ -89,12 +111,14 @@ namespace Sprint0.Block
 
         public void Draw(SpriteBatch batch)
         {
-            brickBlock.Draw(batch);
+            currentBlock.Draw(batch);
+            hiddenItem.Draw(batch);
             brickBlockPiece1.Draw(batch);
             brickBlockPiece2.Draw(batch);
             brickBlockPiece3.Draw(batch);
             brickBlockPiece4.Draw(batch);
         }
+       
 
 
     }
