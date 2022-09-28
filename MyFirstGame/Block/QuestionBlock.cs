@@ -28,7 +28,7 @@ namespace Sprint0.Block
             this.position = position;
             questionBlock = QuestionBlockFactory.Instance.CreateBlock(game, position); 
             usedBlock = UsedBlockFactory.Instance.CreateBlock(game, position);
-            hiddenItem = BrickBlockFactory.Instance.CreateBlock(game, position);
+            hiddenItem = CoinFactory.Instance.Create(game, position);
             hiddenItem.HideSprite();
             currentBlock = questionBlock;
 

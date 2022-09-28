@@ -7,6 +7,7 @@ using Sprint0.Controller;
 using Sprint0.interfaces;
 using Sprint0.Mario;
 using Sprint0.Block;
+using Sprint0.Items;
 
 namespace Sprint0
 {
@@ -23,6 +24,11 @@ namespace Sprint0
         private IController gamepad;
 
         private MarioAvatar mario;
+        private Coin coin;
+        private Star star;
+        private FireFlower fireFlower;
+        private SuperMushroom superMushroom;
+        private OneUpMushroom oneUpMushroom;
         private QuestionBlock questionBlock;
         private UsedBlock usedBlock;
         private FloorBlock floorBlock;
@@ -47,6 +53,11 @@ namespace Sprint0
 
             //-------------------------mario initial----------------------
             mario = new MarioAvatar(this, new Vector2(100, 100));
+            fireFlower = new FireFlower(this, new Vector2(150, 100));
+            coin = new Coin(this, new Vector2(200, 100));
+            superMushroom = new SuperMushroom(this, new Vector2(250, 100));
+            oneUpMushroom = new OneUpMushroom(this, new Vector2(300, 100));
+            star = new Star(this, new Vector2(350, 100));
             questionBlock = new QuestionBlock(this, new Vector2(100, 200));
             usedBlock = new UsedBlock(this, new Vector2(150, 200));
             floorBlock = new FloorBlock(this, new Vector2(200, 200));
@@ -61,7 +72,7 @@ namespace Sprint0
             keyboard.Command((int)Keys.I, new ChangeToFireMario(mario.marioContext));
             keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario.marioContext));
             keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario.marioContext));
-            keyboard.Command((int)Keys.W, new QuestionBlockBump(questionBlock));
+            keyboard.Command((int)Keys.OemQuestion, new QuestionBlockBump(questionBlock));
             keyboard.Command((int)Keys.B, new BrickBlockBump(brickBlock));
             keyboard.Command((int)Keys.H, new BrickBlockChangeVisible(hiddenBrickBlock));
 
@@ -98,6 +109,11 @@ namespace Sprint0
 
             mario.Update(gameTime);
             brickBlock.isSuperMario = mario.marioContext.isSuperMario;
+            fireFlower.Update(gameTime);
+            coin.Update(gameTime);
+            superMushroom.Update(gameTime);
+            oneUpMushroom.Update(gameTime);
+            star.Update(gameTime);
             questionBlock.Update(gameTime);
             usedBlock.Update(gameTime);
             floorBlock.Update(gameTime);
@@ -121,6 +137,11 @@ namespace Sprint0
             
 
             mario.Draw(_spriteBatch);
+            fireFlower.Draw(_spriteBatch);
+            coin.Draw(_spriteBatch);
+            superMushroom.Draw(_spriteBatch);
+            oneUpMushroom.Draw(_spriteBatch);
+            star.Draw(_spriteBatch);
             questionBlock.Draw(_spriteBatch);
             usedBlock.Draw(_spriteBatch); 
             brickBlock.Draw(_spriteBatch); 

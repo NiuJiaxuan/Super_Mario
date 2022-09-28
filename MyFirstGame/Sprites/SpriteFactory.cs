@@ -332,4 +332,128 @@ namespace Sprint0.Sprites
         }
     }
 
+    abstract class SpriteFactory
+    {
+        protected SpriteFactory()
+        {
+
+        }
+        public abstract ISprite Create(Game1 game, Vector2 pos);
+    }
+
+    class CoinFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new CoinFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new CoinSprite(game, pos);
+        }
+    }
+
+    /*Star sprite*/
+    class StarFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new StarFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new StarSprite(game, pos);
+        }
+    }
+
+
+    /*FireFlower sprite*/
+    class FireFlowerFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new FireFlowerFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new FireFlowerSprite(game, pos);
+        }
+    }
+
+    /*Coin sprite*/
+    class SuperMushroomFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SuperMushroomFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new SuperMushroomSprite(game, pos);
+        }
+    }
+
+    /*Coin sprite*/
+    class OneUpMushroomFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new OneUpMushroomFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new OneUpMushroomSprite(game, pos);
+        }
+    }
+
 }
