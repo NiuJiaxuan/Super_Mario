@@ -20,7 +20,8 @@ namespace Sprint0.Block
 
         private ISprite currentBlock;
         private ISprite brickBlock;
-        private ISprite hiddenItem;
+        private ISprite hiddenItem1;
+        private ISprite hiddenItem2;
         private ISprite usedBlock;
         private ISprite brickBlockPiece1;
         private ISprite brickBlockPiece2;
@@ -36,9 +37,11 @@ namespace Sprint0.Block
             this.position = position;
             
             brickBlock = BrickBlockFactory.Instance.CreateBlock(game, position);
-            hiddenItem = SuperMushroomFactory.Instance.Create(game, position);
+            hiddenItem1 = SuperMushroomFactory.Instance.Create(game, position);
+            hiddenItem2 = StarFactory.Instance.Create(game, position);
             usedBlock = UsedBlockFactory.Instance.CreateBlock(game, position);
-            hiddenItem.HideSprite();
+            hiddenItem1.HideSprite();
+            hiddenItem2.HideSprite();
             brickBlockPiece1 = BrickBlockPieceFactory.Instance.CreateBlock(game, position);
             brickBlockPiece2 = BrickBlockPieceFactory.Instance.CreateBlock(game, new Vector2(position.X + 24 , position.Y));
             brickBlockPiece3 = BrickBlockPieceFactory.Instance.CreateBlock(game, new Vector2(position.X , position.Y + 24));
@@ -48,11 +51,19 @@ namespace Sprint0.Block
             currentBlock = brickBlock;
         }
 
+        public void ContainItem(ISprite item)
+        {
+            item.ChangeToVisible();
+            item.IsAppear();
+        }
+
         public void Bump()
         {
             if (isContain)
             {
-                hiddenItem.ChangeToVisible();
+                ContainItem(hiddenItem1);
+                ContainItem(hiddenItem2);
+                isContain = false;
             }
             else
             {
@@ -93,16 +104,13 @@ namespace Sprint0.Block
             }
         }
 
-        public void ContainItem()
-        {
-            isContain = true;
-        }
 
         public void Update(GameTime gameTime)
         {
 
             currentBlock.Update(gameTime);
-            hiddenItem.Update(gameTime);
+            hiddenItem1.Update(gameTime);
+            hiddenItem2.Update(gameTime);
             brickBlockPiece1.Update(gameTime);
             brickBlockPiece2.Update(gameTime);
             brickBlockPiece3.Update(gameTime);
@@ -112,7 +120,8 @@ namespace Sprint0.Block
         public void Draw(SpriteBatch batch)
         {
             currentBlock.Draw(batch);
-            hiddenItem.Draw(batch);
+            hiddenItem1.Draw(batch);
+            hiddenItem2.Draw(batch);
             brickBlockPiece1.Draw(batch);
             brickBlockPiece2.Draw(batch);
             brickBlockPiece3.Draw(batch);
