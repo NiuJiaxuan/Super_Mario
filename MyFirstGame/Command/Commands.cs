@@ -27,8 +27,8 @@ namespace Sprint0.Command
 
     public abstract class MarioCommand : ICommand
     {
-        protected MarioContext receiver;
-        protected MarioCommand(MarioContext receiver)
+        protected MarioEntity receiver;
+        protected MarioCommand(MarioEntity receiver)
         {
             this.receiver = receiver;
         }

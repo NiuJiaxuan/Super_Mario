@@ -11,86 +11,50 @@ namespace Sprint0.Sprites
 {
     public class Sprite : ISprite
     {
+        // Texture
+        public Texture2D texture { get; set; }
 
-        Vector2 position;
-        public Texture2D texture;
-        Vector2 speed;
+        // Movement
+        public Vector2 Position { get; set; }
+        public Vector2 Speed { get; set; }
+        public Vector2 Accelation { get; set; }
 
-        bool isVisible;
+        // Visible
+        public bool isVisible { get; set; }
 
-        bool isAnimated;
-        Point currentFrame;
-        Point animatedSpriteSize;
-        Point frameSize;
-        int timeSinceLastFrame = 0;
-        int delayTime;
-        SpriteEffects orientation;
 
-        
+        public SpriteEffects Orientation { get; set; }  
 
-        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible,
-            bool isAnimated, int delayTime, Point animatedSpriteSize, Point frameSize,SpriteEffects orientation)
+        Tile tile;
+
+        public Sprite(Texture2D texture, Vector2 position,Vector2 speed,
+            Point frameOrigin,  Point sheetSize, Point frameSize, bool isAnimated)
         {
+            tile = new Tile(texture, frameOrigin, sheetSize, frameSize, isAnimated);
             this.texture = texture;
-            this.position = position;
-            this.speed = speed;
-            this.isVisible = isVisible;
-            this.isAnimated = isAnimated;
-            this.delayTime = delayTime;
-            this.frameSize = frameSize;
-            this.animatedSpriteSize = animatedSpriteSize;
-            currentFrame = new Point(0,0);
-            this.orientation = orientation;
+            this.Position = position;
+            this.Speed = speed;
+            Orientation = SpriteEffects.None;
+        }
 
-        }
-        
-        private void Animation(GameTime gameTime)
-        {
-            if (isAnimated)
-            {
-                timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-                if(timeSinceLastFrame >= delayTime)
-                {
-                    timeSinceLastFrame -= delayTime;
-                    currentFrame.X++;
-                    if(currentFrame.X >= animatedSpriteSize.X)
-                    {
-                        currentFrame.X = 0;
-                        currentFrame.Y++;
-                        if (currentFrame.Y >= animatedSpriteSize.Y)
-                            currentFrame.Y = 0;
-                    }
-                }
-            }
-        }
+
+        public float Width { get; set; }
+        public float Height { get; set; }
+
 
 
         public void Update(GameTime gameTime)
         {
-            Animation(gameTime);
-
-
-
+            tile.Update(gameTime);
         }
 
 
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(texture, position,
-                new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
-                frameSize.X, frameSize.Y),
-                Color.White, 0, Vector2.Zero, 1, orientation, 0);
+            tile.Draw(batch,Position, Orientation);
         }
 
 
-        public int Height()
-        {
-            return texture.Height;
-        }
 
-        public int Width()
-        {
-            return texture.Width;
-        }
     }
 }

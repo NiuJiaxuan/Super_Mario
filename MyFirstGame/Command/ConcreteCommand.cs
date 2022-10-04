@@ -23,7 +23,7 @@ namespace Sprint0.Command
 
     public class ChangeToFireMario : MarioCommand
     {
-        public ChangeToFireMario(MarioContext receiver)
+        public ChangeToFireMario(MarioEntity receiver)
             :base(receiver) { }
 
         public override void Execute()
@@ -34,7 +34,7 @@ namespace Sprint0.Command
 
     public class ChangeToSuperMario : MarioCommand
     {
-        public ChangeToSuperMario(MarioContext receiver)
+        public ChangeToSuperMario(MarioEntity receiver)
             : base(receiver) { }
 
         public override void Execute()
@@ -45,7 +45,7 @@ namespace Sprint0.Command
 
     public class ChangeToNormalMario : MarioCommand
     {
-        public ChangeToNormalMario(MarioContext receiver)
+        public ChangeToNormalMario(MarioEntity receiver)
             : base(receiver) { }
 
         public override void Execute()
@@ -56,7 +56,7 @@ namespace Sprint0.Command
 
     public class MarioTakeDamege : MarioCommand
     {
-        public MarioTakeDamege(MarioContext receiver)
+        public MarioTakeDamege(MarioEntity receiver)
             : base(receiver) { }
 
         public override void Execute()

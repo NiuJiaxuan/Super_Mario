@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.useless
 {
-    public class NmNaSprite 
+    public class NmNaSprite
     {
         public Texture2D NmNa { get; set; }
         public Vector2 Position;
-        public Boolean isVisible = false;
+        public bool isVisible = false;
 
 
         public NmNaSprite(Texture2D nmNa, Vector2 position)

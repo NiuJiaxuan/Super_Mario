@@ -16,13 +16,13 @@ namespace Sprint0.Mario
         private int lifeCount;
         private ISprite marioSprite;
 
-        private IState currentState;
+        private IMarioState currentState;
 
-        public MarioContext marioContext;
+        public MarioEntity marioContext;
 
         public MarioAvatar(Game1 game, Vector2 position)
         {
-            marioContext = new MarioContext(game,position);
+            marioContext = new MarioEntity(game,position);
         }
 
 

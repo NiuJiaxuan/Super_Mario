@@ -1,5 +1,4 @@
-﻿using Sprint0;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +7,20 @@ using Sprint0.interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.useless
 {
-    public class MNaSprite 
+    public class MNaSprite
     {
 
         public Texture2D MNa { get; set; }
         public float speed = 2f;
 
-        public Boolean isVisible = false;
+        public bool isVisible = false;
 
         public Vector2 Postion;
 
         //basic initialization method for moving non animated sprite
-        public MNaSprite (Texture2D texture, Vector2 postion)
+        public MNaSprite(Texture2D texture, Vector2 postion)
         {
             MNa = texture;
             Postion = postion;
@@ -29,7 +28,7 @@ namespace Sprint0.Sprites
 
 
         // draw allow sprite to show up 
-         public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             if (isVisible)
             {
@@ -37,23 +36,23 @@ namespace Sprint0.Sprites
             }
         }
 
-         public int Height()
+        public int Height()
         {
             return MNa.Height;
         }
-         public int Width()
+        public int Width()
         {
             return MNa.Width;
         }
 
 
-         public void Update()
+        public void Update()
         {
             Postion.Y -= speed;
-            if(Postion.Y <= 0 || Postion.Y >= (480 - this.Height()))
+            if (Postion.Y <= 0 || Postion.Y >= 480 - Height())
             {
                 speed = -speed;
-            } 
+            }
 
         }
 

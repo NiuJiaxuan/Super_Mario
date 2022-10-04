@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework;
 using Sprint0.interfaces;
 
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.useless
 {
-    public class NmASprite 
+    public class NmASprite
     {
         public Texture2D nma { get; set; }
         public int Rows { get; set; }
@@ -18,11 +18,11 @@ namespace Sprint0.Sprites
         private int currentFrame;
         private int totalFrames;
 
-        public Boolean isVisible = false;
+        public bool isVisible = false;
 
         public Vector2 position;
 
-        public NmASprite(Texture2D texture, int rows, int columns,Vector2 vector2)
+        public NmASprite(Texture2D texture, int rows, int columns, Vector2 vector2)
         {
             nma = texture;
             Rows = rows;
@@ -36,7 +36,7 @@ namespace Sprint0.Sprites
         public void Update()
         {
             currentFrame++;
-            if(currentFrame == totalFrames)
+            if (currentFrame == totalFrames)
             {
                 currentFrame = 0;
             }

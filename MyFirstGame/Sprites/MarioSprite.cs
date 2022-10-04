@@ -16,185 +16,119 @@ using Sprint0.interfaces;
 
 namespace Sprint0.Sprites
 {
-    public class MarioSprite : ISprite
+ //----------------------------------------------------------------Normal Mario----------------------------------------------------------------------
+    class NormalMarioIdleSprite : Sprite
     {
-        private bool Next;
-
-        private int MillisecondsPerFrame;
-        private int TimeSinceLastFrame;
-
-        Texture2D currentTexture;
-
-        Texture2D marioStanding;
-        Texture2D marioWalking;
-        Texture2D marioJumping;
-        Texture2D marioCrouching;
-        SpriteEffects orientation;
-
-
-        public Boolean isVisible;
-        public Vector2 position;
-        public Vector2 velocity;
-
-        public bool pressed = false;
-        public bool isJump = false;
-        private bool isCrouch;
-
-        bool isAnimated;
-
-        int delayTime = 50;
-        int timeSinceLastFrame;
-        Point currentFrame;
-        Point animatedSpriteSize;
-        Point frameSize;
-
-
-
-        public MarioSprite(Texture2D marioStanding, Vector2 position, Texture2D marioWalking, Texture2D marioJumping, Texture2D marioCrouching, SpriteEffects orientation)
+        public NormalMarioIdleSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("small-standing-mario"),position, Vector2.Zero, Point.Zero, new Point(1,1), new Point(18,24), false)
         {
 
-            this.marioStanding = marioStanding;
-            this.position = position;
-            this.marioWalking = marioWalking;
-            this.marioJumping = marioJumping;
-            this.marioCrouching = marioCrouching;
-            this.orientation = orientation;
-            this.velocity = new Vector2(0, 0);
-            this.currentFrame = new Point(0, 0);
-            this.currentTexture = marioStanding;
-            this.isAnimated = false;
-
         }
+    }
 
-        private void Animation(GameTime gameTime)
-        {
-            if (isAnimated)
-            {
-                timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-                if (timeSinceLastFrame >= delayTime)
-                {
-                    timeSinceLastFrame -= delayTime;
-                    currentFrame.X++;
-                    if (currentFrame.X >= animatedSpriteSize.X)
-                    {
-                        currentFrame.X = 0;
-                        currentFrame.Y++;
-                        if (currentFrame.Y >= animatedSpriteSize.Y)
-                            currentFrame.Y = 0;
-                    }
-                }
-            }
-        }
-
-        private void HorizontalMovement()
-        {
-            position.X += velocity.X;
-        }
-
-        private void Jumping()
-        {
-            if (isJump)
-            {
-                float ground = position.Y;
-                position.Y += velocity.Y;
-                Debug.WriteLine(position.Y);
-                if (position.Y <= 60)
-                {
-                    velocity.Y = -velocity.Y;
-                    Debug.WriteLine(position.Y);
-                    if (position.Y >= ground)
-                    {
-                        velocity.Y = 0;
-                        isJump = false;
-                    }
-                }
-            }
-        }
-
-
-
-        public void Update(GameTime gameTime)
-        {
-            changMarioSprite(gameTime);
-            HorizontalMovement();
-            Jumping();
-
-        }
-
-
-        private void changMarioSprite(GameTime gameTime)
-        {                
-            int ori = 1;
-            if (orientation == SpriteEffects.FlipVertically) ori = -1;
-            if (pressed)
-            {
-                velocity.X *= ori; 
-                currentTexture = marioWalking;
-                Animation(gameTime);
-
-            }
-            else if (isJump)
-            {
-                velocity.Y = -10;
-                velocity.X *= ori;
-                currentTexture = marioJumping;
-            }
-            else if (isCrouch)
-            {
-                currentTexture = marioCrouching;
-            }
-            else
-            {
-                currentTexture = marioStanding;
-            }
-        }
-
-
-
-        public void Draw(SpriteBatch spriteBatch)
+    class NormalMarioJumpSprite : Sprite
+    {
+        public NormalMarioJumpSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("small-jumping-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18, 18), false)
         {
 
-            spriteBatch.Draw(marioStanding, position,                     
-                new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
-                frameSize.X, frameSize.Y),
-                Color.White, 0, Vector2.Zero, 1, orientation, 0);
+        }
+    }
+
+    class NormalMarioWalkSprite : Sprite
+    {
+        public NormalMarioWalkSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("small-walking-mario"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(24, 24), true)
+        {
+
+        }
+    }
+
+    class NormalMarioCrouchSprite : Sprite
+    {
+        public NormalMarioCrouchSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("small-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18, 24), false)
+        {
+
+        }
+    }
+
+//-------------------------------------------------------Fire Mario-------------------------------------------------------------------------
+
+    class FireMarioIdleSprite : Sprite
+    {
+        public FireMarioIdleSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("fire-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22,48), false)
+        {
+
+        }
+    }
+    class FireMarioJumpSprite : Sprite
+    {
+        public FireMarioJumpSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("fire-jumping-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 43), false)
+        {
+
+        }
+    }
+    class FireMarioWalkSprite : Sprite
+    {
+        public FireMarioWalkSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("fire-walking-mario"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(22, 46), true)
+        {
+
+        }
+    }
+    class FireMarioCrouchSprite : Sprite
+    {
+        public FireMarioCrouchSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("fire-crouching-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(17, 24), false)
+        {
+
+        }
+    }
+
+//--------------------------------------------------------------Super Mario--------------------------------------------------------------------------
+    class SuperMarioIdleSprite : Sprite
+    {
+        public SuperMarioIdleSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("super-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 48), false)
+        {
+
+        }
+    }
+    class SuperMarioJumpSprite : Sprite
+    {
+        public SuperMarioJumpSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("large-jumping-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 48), false)
+        {
+
+        }
+    }
+    class SuperMarioWalkSprite : Sprite
+    {
+        public SuperMarioWalkSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("large-walking-mario"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(22, 46), true)
+        {
             
         }
-        
-
-        public void Animated()
+    }
+    class SuperMarioCrouchSprite : Sprite
+    {
+        public SuperMarioCrouchSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("large-crouching-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(17, 24), false)
         {
-            isAnimated = !isAnimated;
-        }
 
-        public void MoveRight()
+        }
+    }
+
+//--------------------------------------------------------Dead Mario------------------------------------------------------------------------------
+    class DeadMarioSprite : Sprite
+    {
+        public DeadMarioSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("dead-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18,18), false)
         {
-            if (position.X < 400)
-            {
-                position.X += 1;
-            }
-        }
 
-        public void MoveLeft()
-        {
-            if (position.X > 50)
-            {
-                position.X -= 1;
-            }
         }
-
-        public void Jump()
-        {
-            if (position.Y == 100)
-            {
-                isJump = true;
-            }
-        }
-
-        public void Crouch()
-        {
-            isCrouch = !isCrouch;
-        }
-
     }
 }

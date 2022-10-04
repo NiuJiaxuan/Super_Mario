@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.interfaces;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.useless
 {
-    public class MASprite 
+    public class MASprite
     {
 
         public Texture2D ma { get; set; }
@@ -18,7 +18,7 @@ namespace Sprint0.Sprites
         private int currentFrame;
         private int totalFrames;
 
-        public Boolean isVisible = false;
+        public bool isVisible = false;
 
         public float speed = 2f;
         public Vector2 position;
@@ -43,7 +43,7 @@ namespace Sprint0.Sprites
             }
 
             position.X -= speed;
-            if(position.X < 0|| position.X> (800 - this.Width()/Columns))
+            if (position.X < 0 || position.X > 800 - Width() / Columns)
             {
                 speed = -speed;
             }
