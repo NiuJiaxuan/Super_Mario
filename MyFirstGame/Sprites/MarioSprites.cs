@@ -100,7 +100,7 @@ namespace Sprint0.Sprites
     class SuperMarioJumpSprite : Sprite
     {
         public SuperMarioJumpSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("large-jumping-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 48), false)
+            : base(game.Content.Load<Texture2D>("large-jumping-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 43), false)
         {
 
         }

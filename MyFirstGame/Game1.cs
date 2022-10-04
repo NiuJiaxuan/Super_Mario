@@ -21,8 +21,17 @@ namespace Sprint0
         private IController keyboard;
         private IController gamepad;
 
-        private MarioAvatar mario;
- 
+        private MarioEntity mario;
+
+        private MarioFactory marioFactory = null;
+
+        public MarioFactory MarioFactory
+        {
+            get { return marioFactory ?? MarioFactory.Instance; }
+            protected set { marioFactory = value; }
+        }
+
+
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
 
@@ -39,15 +48,29 @@ namespace Sprint0
             // TODO: Add your initialization logic here
 
             //-------------------------mario initial----------------------
-            mario = new MarioAvatar(this, new Vector2(100, 100));
+            mario = new MarioEntity(this, new Vector2(100, 100));
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
             keyboard.Command((int)Keys.Q, new ExitCommand(this));
-            keyboard.Command((int)Keys.I, new ChangeToFireMario(mario.marioContext));
-            keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario.marioContext));
-            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario.marioContext));
-            keyboard.Command((int)Keys.O, new MarioTakeDamege(mario.marioContext));
+            keyboard.Command((int)Keys.I, new ChangeToFireMario(mario));
+            keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario));
+            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario));
+            keyboard.Command((int)Keys.O, new MarioTakeDamege(mario));
+
+            keyboard.Command((int)Keys.W, new MarioJump(mario));
+            keyboard.Command((int)Keys.Up, new MarioJump(mario));
+
+            keyboard.Command((int)Keys.S, new MarioCrouch(mario));
+            keyboard.Command((int)Keys.Down, new MarioCrouch(mario));
+
+            keyboard.Command((int)Keys.A, new FaceLeft(mario));
+            keyboard.Command((int)Keys.Left, new FaceLeft(mario));
+
+            keyboard.Command((int)Keys.D, new FaceRight(mario));
+            keyboard.Command((int)Keys.Right, new FaceRight(mario));
+
+
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);

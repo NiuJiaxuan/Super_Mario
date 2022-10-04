@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Sprint0.Sprites;
 using Sprint0.interfaces;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace Sprint0.Sprites
 {
@@ -14,36 +15,37 @@ namespace Sprint0.Sprites
     // to use, create a new facotry class inherient this class an add implement in create method
     public abstract class MarioSpriteFactory 
     {
+
         public enum eMarioType
         {
-            DeadMario = 0x0000,
+            DeadMario = 0,
 
-            NormalIdleMario = 0x0001,
-            NormalWalkMario = 0x0002,
-            NormalJumpMario = 0x0003,
-            NormalCrouchMario = 0x0004,
+            NormalIdleMario = 1,
+            NormalWalkMario = 2,
+            NormalJumpMario = 3,
+            NormalCrouchMario = 4,
 
-            FireIdleMario = 0x0010,
-            FireWalkMario = 0x0020,
-            FireJumpMario = 0x0030,
-            FireCrouchMario = 0x0040,
+            FireIdleMario = 11,
+            FireWalkMario = 12,
+            FireJumpMario = 13,
+            FireCrouchMario = 14,
 
-            SuperIdleMario = 0x0100,
-            SuperWalkMario = 0x0200,
-            SuperJumpMario = 0x0300,
-            SuperCrouchMario = 0x0400,
+            SuperIdleMario = 21,
+            SuperWalkMario = 22,
+            SuperJumpMario = 23,
+            SuperCrouchMario = 24,
         }
         protected MarioSpriteFactory()
         {
         }
-        public abstract ISprite CreateMario(Game1 game, Vector2 pos,  eMarioType type);
+        public abstract ISprite CreateMario(Game1 game, Vector2 pos,  int type);
 
     }
 
 
     // player one factory or mario factory
     // generate a new mario sprite
-    class MarioFactory : MarioSpriteFactory
+    public class MarioFactory : MarioSpriteFactory
     {
         private static MarioFactory instance;
 
@@ -59,10 +61,12 @@ namespace Sprint0.Sprites
             }
         }
 
-        public override ISprite CreateMario(Game1 game, Vector2 pos, eMarioType type)
+        public override Sprite CreateMario(Game1 game, Vector2 pos, int type)
         {
             Sprite sprite = null;
-            switch (type)
+            Debug.WriteLine(type);
+            Debug.WriteLine((eMarioType)type);
+            switch ((eMarioType)type)
             {
                 case eMarioType.DeadMario:
                     sprite = new DeadMarioSprite(game, pos);

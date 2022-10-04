@@ -17,6 +17,8 @@ namespace Sprint0.Mario.MarioPowerState
 
         IMarioPowerState IMarioPowerState.PreviousState { get { return previousState;} }
 
+        protected IMarioMotionState CurrentMotionState { get { return Mario.currentMotionState; } }
+
         protected MarioPowerState(MarioEntity mario)
         {
             Mario = mario;

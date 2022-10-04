@@ -20,21 +20,30 @@ namespace Sprint0.Mario.MarioMotionState
             CurrentState = this;
             this.previousState = state;
 
+            int type = Mario.generateType(CurrentState,PowerState);
+            Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game,Mario.Position,type);
+            Mario.marioType = type;
         }
 
-        public override void IdleToWalk()
+        public override void IdleTransion()
         {
-            base.IdleToWalk();
+            CurrentState.Exit();
+            CurrentState = new IdleState(Mario);
+            CurrentState.Enter(this);
         }
 
-        public override void IdleToJump()
+        public override void WalkTransion()
         {
-            base.IdleToJump();
+            CurrentState.Exit();
+            CurrentState = new WalkState(Mario);
+            CurrentState.Enter(this);
         }
 
-        public override void IdleToCrouch()
+        public override void CrouchTransion()
         {
-            base.IdleToCrouch();
+            CurrentState.Exit();
+            CurrentState = new CrouchState(Mario);
+            CurrentState.Enter(this);
         }
 
         public override void Exit()

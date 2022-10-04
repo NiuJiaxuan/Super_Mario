@@ -11,7 +11,6 @@ namespace Sprint0.Sprites
 {
     public abstract class Entity : ISprite
     {
-        private Game1 _game;
         private Sprite _sprite;
         public Game1 game;
         public Vector2 position;
@@ -24,41 +23,40 @@ namespace Sprint0.Sprites
 
         public virtual SpriteEffects Orientation
         {
-            get { return _sprite.Orientation; }
-            set { _sprite.Orientation = value; }
+            get { return Sprite.Orientation; }
+            set { Sprite.Orientation = value; }
         }
 
         public Vector2 Speed
         {
-            get { return _sprite.Speed; }
-            set { _sprite.Speed = value; }
+            get { return Sprite.Speed; }
+            set { Sprite.Speed = value; }
         }
 
         public Vector2 Accelation
         {
-            get { return _sprite.Accelation; }
-            set { _sprite.Accelation = value; }
+            get { return Sprite.Accelation; }
+            set { Sprite.Accelation = value; }
         }
 
         public Vector2 Position
         {
-            get { return _sprite.Position; }
-            set { _sprite.Position = value; }
+            get { return Sprite.Position; }
+            set { Sprite.Position = value; }
         }
 
         public Entity (Game1 game, Vector2 position)
         {
             this.game = game; 
-            Position = position;
         }
 
         public virtual void Update (GameTime gameTime)
         {
-            _sprite.Update(gameTime);
+            Sprite.Update(gameTime);
         }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            _sprite.Draw(spriteBatch);
+            Sprite.Draw(spriteBatch);
         }
     }
 }

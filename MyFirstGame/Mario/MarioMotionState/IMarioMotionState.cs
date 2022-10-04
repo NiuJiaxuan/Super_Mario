@@ -14,7 +14,6 @@ namespace Sprint0.Mario.MarioMotionState
     {
         
         IMarioMotionState PreviousState { get; }
-        IMarioPowerState PowerState { get; }
         void Enter(IMarioMotionState state);
         void Exit();
         void JumpTransion();

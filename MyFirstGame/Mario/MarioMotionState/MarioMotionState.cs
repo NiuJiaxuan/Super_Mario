@@ -12,9 +12,11 @@ namespace Sprint0.Mario.MarioMotionState
     public abstract class MarioMotionState : IMarioMotionState
     {
         protected IMarioMotionState previousState;
-        protected IMarioPowerState powerState;
-        protected IMarioPowerState PowerState { get { return Mario.currentPowerState; } set { Mario.currentPowerState = value; } }
+
+        protected IMarioPowerState PowerState { get { return Mario.currentPowerState; } }
+
         public MarioEntity Mario;
+
         protected IMarioMotionState CurrentState { get { return Mario.currentMotionState; } set { Mario.currentMotionState = value; } }
         IMarioMotionState IMarioMotionState.PreviousState { get { return previousState; } }
 

@@ -5,53 +5,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint0.Mario.MarioMotionState
+namespace Sprint0.Mario.MarioPowerState
 {
-    public class CrouchState : MarioMotionState
+    public class FireState : MarioPowerState
     {
-        public CrouchState(MarioEntity mario)
+
+        Vector2 anchor;
+        public FireState(MarioEntity mario)
             : base(mario)
         {
-
         }
 
-        public override void Enter(IMarioMotionState state)
+        public override void Enter(IMarioPowerState powerState)
         {
             CurrentState = this;
-            this.previousState = state;
+            this.previousState = powerState;
+            anchor.X += Mario.Sprite.FrameSize.X;
 
-            int type = Mario.generateType(CurrentState, PowerState);
+            int type = Mario.generateType(CurrentMotionState, CurrentState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
             Mario.marioType = type;
         }
 
-        public override void WalkTransion()
+        public override void NormalTransion()
         {
             CurrentState.Exit();
-            CurrentState = new WalkState(Mario);
+            CurrentState = new NormalState(Mario);
             CurrentState.Enter(this);
         }
-        public override void JumpTransion()
+        public override void DeadTransion()
         {
             CurrentState.Exit();
-            CurrentState = new JumpState(Mario);
+            CurrentState = new DeadState(Mario);
             CurrentState.Enter(this);
         }
-        public override void IdleTransion()
+        public override void SuperTransion()
         {
             CurrentState.Exit();
-            CurrentState = new IdleState(Mario);
+            CurrentState = new SuperState(Mario);
             CurrentState.Enter(this);
         }
 
         public override void Exit()
         {
             base.Exit();
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
         }
     }
 }

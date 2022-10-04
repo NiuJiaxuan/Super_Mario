@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Controller;
 using Sprint0.interfaces;
 using Sprint0.Sprites;
-using Sprint0.State;
 using Sprint0.Command;
 using System;
 using System.Collections.Generic;
@@ -25,69 +24,72 @@ namespace Sprint0.Mario
 
 
 
-        private Sprite marioSprite;
+
+        public virtual  MarioFactory MarioFactory => game.MarioFactory;
+
 
 
         public enum eMarioType
         {
-            DeadMario = 0x0000,
+            DeadMario = 0,
 
-            NormalIdleMario = 0x0001,
-            NormalWalkMario = 0x0002,
-            NormalJumpMario = 0x0003,
-            NormalCrouchMario = 0x0004,
+            NormalIdleMario = 1,
+            NormalWalkMario = 2,
+            NormalJumpMario = 3,
+            NormalCrouchMario = 4,
 
-            FireIdleMario = 0x0010,
-            FireWalkMario = 0x0020,
-            FireJumpMario = 0x0030,
-            FireCrouchMario = 0x0040,
+            FireIdleMario = 11,
+            FireWalkMario = 12,
+            FireJumpMario = 13,
+            FireCrouchMario = 14,
 
-            SuperIdleMario = 0x0100,
-            SuperWalkMario = 0x0200,
-            SuperJumpMario = 0x0300,
-            SuperCrouchMario = 0x0400,
+            SuperIdleMario = 21,
+            SuperWalkMario = 22,
+            SuperJumpMario = 23,
+            SuperCrouchMario = 24,
         }
 
-        public eMarioType marioType { get; set; }
+        public int marioType { get; set; }
 
         public int generateType(IMarioMotionState motionState, IMarioPowerState powerState)
         {
-            int type = 0x0000;
+            int type = 0;
             switch (motionState)
             {
                 case IdleState:
-                    type = 0x0001;
+                    type = 1;
                     break;
                 case WalkState:
-                    type = 0x0002;
+                    type = 2;
                     break;
                 case JumpState:
-                    type = 0x0003;
+                    type = 3;
                     break;
                 case CrouchState:
-                    type = 0x0004;
+                    type = 4;
                     break;
             }
             switch (powerState)
             {
-                case NormalState:
-                    type = type << 1;
+                case NormalState: 
+                    type +=0;
                     break;
-                case FireMario:
-                    type = type << 2;
+                case FireState:
+                    type +=10;
                     break;
-                case SuperMario:
-                    type = type << 3;
+                case SuperState:
+                    type +=20;
                     break;
-                case DeadMario:
-                    type = 0x000;
+                case DeadState:
+                    type = 0;
                     break;
             }
+            Debug.WriteLine(type);
 
             return type;
         }
 
-        
+
 
 
 
@@ -96,12 +98,15 @@ namespace Sprint0.Mario
         {
             currentMotionState = new IdleState(this);
             currentPowerState = new NormalState(this);
+            Debug.WriteLine(currentPowerState.ToString());
+            Debug.WriteLine(currentMotionState.ToString());
+            Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
         }
 
 
         public override void Update(GameTime gameTime)
         {            
-            marioSprite.Update(gameTime);
+            base.Update(gameTime);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -112,13 +117,21 @@ namespace Sprint0.Mario
 
         public override void Draw(SpriteBatch batch)
         {
-            marioSprite.Draw(batch);
+            base.Draw(batch);
         }
 
  //----------------------------------------Motion Command Method-----------------------------------
         public void Jump()
         {
-            currentMotionState?.JumpTransion();
+            switch (currentMotionState)
+            {
+                case CrouchState:
+                    currentMotionState?.IdleTransion();
+                    break;
+                default:
+                    currentMotionState?.JumpTransion();
+                    break;
+            }
         }
 
         public void Idle()
@@ -126,16 +139,40 @@ namespace Sprint0.Mario
             currentMotionState?.IdleTransion();
         }
 
-        public void Walk()
+        public void WalkRight()
         {
+            Sprite.Orientation = SpriteEffects.None;
+            currentMotionState?.WalkTransion();
+        }
+        public void WalkLeft()
+        {
+            Sprite.Orientation = SpriteEffects.FlipHorizontally;
             currentMotionState?.WalkTransion();
         }
         public void Crouch()
         {
-            currentMotionState?.CrouchTransion();
+            switch (currentMotionState)
+            {
+                case JumpState:
+                    currentMotionState?.IdleTransion();
+                    break;
+                default:
+                    currentMotionState?.CrouchTransion();
+                    break;
+            }
+        }
+        public void FaceRight()
+        {
+            Sprite.Orientation = SpriteEffects.None;
+
+        }
+        public void FaceLeft()
+        {
+            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+
         }
 
-//-------------------------------------------Power Command Method--------------------------------
+        //-------------------------------------------Power Command Method--------------------------------
 
         public void Fire()
         {
@@ -149,9 +186,20 @@ namespace Sprint0.Mario
         {
             currentPowerState?.SuperTransion();
         }
-        public void Dead()
+        public void TakeDamage()
         {
-            currentPowerState?.DeadTransion();
+            switch (currentPowerState)
+            {
+                case NormalState:
+                    currentPowerState?.DeadTransion();
+                    break;
+                case SuperState:
+                    currentPowerState?.NormalTransion();
+                    break;
+                case FireState:
+                    currentPowerState?.SuperTransion();
+                    break;
+            }
         }
     }
 }

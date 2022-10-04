@@ -28,7 +28,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.ChangeToFire();
+            receiver.Fire();
         }
     }
 
@@ -39,7 +39,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.ChangeToSuper();
+            receiver.Super();
         }
     }
 
@@ -50,7 +50,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.ChangeToNormal();
+            receiver.Normal();
         }
     }
 
@@ -62,6 +62,69 @@ namespace Sprint0.Command
         public override void Execute()
         {
             receiver.TakeDamage();
+        }
+    }
+    public class FaceRight : MarioCommand
+    {
+        public FaceRight(MarioEntity receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.FaceRight();
+        }
+    }
+    public class FaceLeft : MarioCommand
+    {
+        public FaceLeft(MarioEntity receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.FaceLeft();
+        }
+    }
+
+    public class MarioJump : MarioCommand
+    {
+        public MarioJump(MarioEntity receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.Jump();
+        }
+    }
+
+    public class MarioCrouch : MarioCommand
+    {
+        public MarioCrouch(MarioEntity receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.Crouch();
+        }
+    }
+
+    public class MarioWalkRight : MarioCommand
+    {
+        public MarioWalkRight(MarioEntity receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.WalkRight();
+        }
+    }
+    public class MarioWalkLeft : MarioCommand
+    {
+        public MarioWalkLeft(MarioEntity receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.WalkLeft();
         }
     }
 }

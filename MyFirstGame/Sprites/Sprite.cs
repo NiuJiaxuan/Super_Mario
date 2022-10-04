@@ -22,6 +22,7 @@ namespace Sprint0.Sprites
         // Visible
         public bool isVisible { get; set; }
 
+        public Point FrameSize { get { return tile.frameSize; } }
 
         public SpriteEffects Orientation { get; set; }  
 
