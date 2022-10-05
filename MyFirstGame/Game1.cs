@@ -106,7 +106,7 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
-            block.Mario = mario;
+            //block.Mario = mario;
 
             base.Update(gameTime);
         }

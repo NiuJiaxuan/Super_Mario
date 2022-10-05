@@ -34,17 +34,17 @@ namespace Sprint0.Sprites
 
     // player one factory or mario factory
     // generate a new mario sprite
-    public class MarioFactory : MarioSpriteFactory
+    public class BlockFactory : MarioSpriteFactory
     {
-        private static MarioFactory instance;
+        private static BlockFactory instance;
 
-        public static MarioFactory Instance
+        public static BlockFactory Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new MarioFactory();
+                    instance = new BlockFactory();
                 }
                 return instance;
             }
