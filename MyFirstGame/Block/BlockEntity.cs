@@ -34,34 +34,10 @@ namespace Sprint0.State
             SmallBrickBlock = 5,
         }
 
-        public int generateType(IBlockState blockState)
-        {
-            int type = 0;
-            switch (blockState)
-            {
-                case IdleState:
-                    type = 1;
-                    break;
-                case WalkState:
-                    type = 2;
-                    break;
-                case JumpState:
-                    type = 3;
-                    break;
-                case CrouchState:
-                    type = 4;
-                    break;
-            }
-            Debug.WriteLine(type);
-
-            return type;
-        }
-
         public BlockEntity(Game1 game, Vector2 position) : base(game, position)
         {
 
         }
-        public int blockType { get; set; }
 
         public override void Update(GameTime gameTime)
         {

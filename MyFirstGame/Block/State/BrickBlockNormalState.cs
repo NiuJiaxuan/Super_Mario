@@ -27,9 +27,9 @@ namespace Sprint0.Block.State
             {
                 Origion = Block.Position;
             }
-            int type = Block.generateType(CurrentState);
-            Block.Sprite = Block.BlockFactory.CreateBlock(Block.game, Block.Position, type);
-            Block.blockType = type;
+            
+            Block.Sprite = Block.BlockFactory.CreateBlock(Block.game, Block.Position, (int)BlockSpriteFactory.eBlockType.BrickBlock);
+            Block.BlockType = BlockEntity.eBlockType.BrickBlock;
             Block.Position = Origion;
 
         }
