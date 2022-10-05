@@ -59,6 +59,7 @@ namespace Sprint0
 
             //-------------------------mario initial----------------------
             mario = new MarioEntity(this, new Vector2(100, 100));
+            block = new BlockEntity(this, new Vector2(200, 100));
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
@@ -114,6 +115,7 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
+            //block.Update(gameTime);
             //block.Mario = mario;
 
             base.Update(gameTime);
@@ -133,6 +135,7 @@ namespace Sprint0
             //_spriteBatch.Draw(shuttle, new Vector2(450, 240), Color.White);
 
             mario.Draw(_spriteBatch);
+            //block.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
