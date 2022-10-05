@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint0.interfaces;
 using Sprint0.Mario.MarioPowerState;
 using System;
@@ -19,6 +20,8 @@ namespace Sprint0.Mario.MarioMotionState
 
         protected IMarioMotionState CurrentState { get { return Mario.currentMotionState; } set { Mario.currentMotionState = value; } }
         IMarioMotionState IMarioMotionState.PreviousState { get { return previousState; } }
+  
+        
 
         protected MarioMotionState(MarioEntity mario)
         {

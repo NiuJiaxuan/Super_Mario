@@ -13,7 +13,6 @@ namespace Sprint0.Sprites
     {
         private Sprite _sprite;
         public Game1 game;
-        public Vector2 position;
 
         public Sprite Sprite
         {

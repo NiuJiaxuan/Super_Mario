@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,9 @@ namespace Sprint0.Mario.MarioMotionState
             this.previousState = state;
             type = Mario.generateType(CurrentState, PowerState);
 
+            SpriteEffects facing = Mario.Sprite.Orientation;
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
+            Mario.Sprite.Orientation = facing;
             Mario.marioType = type;
         }
 

@@ -157,7 +157,8 @@ namespace Sprint0.Mario
                     currentMotionState?.IdleTransion();
                     break;
                 default:
-                    currentMotionState?.CrouchTransion();
+                    if(currentPowerState.GetType() != typeof(NormalState))
+                        currentMotionState?.CrouchTransion();
                     break;
             }
         }

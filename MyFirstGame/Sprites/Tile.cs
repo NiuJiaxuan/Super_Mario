@@ -78,7 +78,7 @@ namespace Sprint0.Sprites
 
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects orientation)
         {
-            spriteBatch.Draw(Texture, position,
+            spriteBatch.Draw(Texture, new Vector2(position.X, position.Y-Texture.Height),
                 new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
                 frameSize.X, frameSize.Y),
                 Color.White, 0, Vector2.Zero, 1, orientation, 0);

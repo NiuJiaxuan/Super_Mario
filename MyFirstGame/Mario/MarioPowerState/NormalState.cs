@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,10 @@ namespace Sprint0.Mario.MarioPowerState
             CurrentState = this;
             this.previousState = powerState;
 
+            SpriteEffects facing = Mario.Sprite.Orientation;
             int type = Mario.generateType(CurrentMotionState, CurrentState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
+            Mario.Sprite.Orientation = facing;
             Mario.marioType = type;
         }
 

@@ -35,7 +35,6 @@ namespace Sprint0.Controller
                     if (commands.ContainsKey((int)key)) commands[(int)key].Execute();
                     
                 }
-
             }
 
             previousState = currentState;
