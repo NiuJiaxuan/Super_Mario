@@ -34,69 +34,43 @@ namespace Sprint0.Sprites
 
     // player one factory or mario factory
     // generate a new mario sprite
-    public class MarioFactory : MarioSpriteFactory
+    public class BlockFactory : BlockSpriteFactory
     {
-        private static MarioFactory instance;
+        private static BlockFactory instance;
 
-        public static MarioFactory Instance
+        public static BlockFactory Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new MarioFactory();
+                    instance = new BlockFactory();
                 }
                 return instance;
             }
         }
 
-        public override Sprite CreateMario(Game1 game, Vector2 pos, int type)
+        public override Sprite CreateBlock(Game1 game, Vector2 pos, int type)
         {
             Sprite sprite = null;
             Debug.WriteLine(type);
-            Debug.WriteLine((eMarioType)type);
-            switch ((eMarioType)type)
+            Debug.WriteLine((eBlockType)type);
+            switch ((eBlockType)type)
             {
-                case eMarioType.DeadMario:
-                    sprite = new DeadMarioSprite(game, pos);
+                case eBlockType.QuestionBlock:
+                    sprite = new QuestionBlockSprite(game, pos);
                     break;
-                case eMarioType.NormalIdleMario:
-                    sprite = new NormalMarioIdleSprite(game, pos);
+                case eBlockType.BrickBlock:
+                    sprite = new BrickBlockSprite(game, pos);
                     break;
-                case eMarioType.NormalJumpMario:
-                    sprite = new NormalMarioJumpSprite(game, pos);
+                case eBlockType.FloorBlock:
+                    sprite = new FloorBlockSprite(game, pos);
                     break;
-                case eMarioType.NormalWalkMario:
-                    sprite = new NormalMarioWalkSprite(game, pos);
+                case eBlockType.SmallBrickBlock:
+                    sprite = new SmallBrickBlockSprite(game, pos);
                     break;
-                case eMarioType.NormalCrouchMario:
-                    sprite = new NormalMarioCrouchSprite(game, pos);
-                    break;
-
-                case eMarioType.FireIdleMario:
-                    sprite = new FireMarioIdleSprite(game, pos);
-                    break;
-                case eMarioType.FireJumpMario:
-                    sprite = new FireMarioJumpSprite(game, pos);
-                    break;
-                case eMarioType.FireWalkMario:
-                    sprite = new FireMarioWalkSprite(game, pos);
-                    break;
-                case eMarioType.FireCrouchMario:
-                    sprite = new FireMarioCrouchSprite(game, pos);
-                    break;
-
-                case eMarioType.SuperIdleMario:
-                    sprite = new SuperMarioIdleSprite(game, pos);
-                    break;
-                case eMarioType.SuperJumpMario:
-                    sprite = new SuperMarioJumpSprite(game, pos);
-                    break;
-                case eMarioType.SuperWalkMario:
-                    sprite = new SuperMarioWalkSprite(game, pos);
-                    break;
-                case eMarioType.SuperCrouchMario:
-                    sprite = new SuperMarioCrouchSprite(game, pos);
+                case eBlockType.StairBlock:
+                    sprite = new StairBlockSprite(game, pos);
                     break;
             }
             return sprite;

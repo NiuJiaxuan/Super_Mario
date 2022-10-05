@@ -6,7 +6,8 @@ using Sprint0.Command;
 using Sprint0.Controller;
 using Sprint0.interfaces;
 using Sprint0.Mario;
-using Sprint0.Block;
+using Sprint0.Block.State;
+using Sprint0.State;
 
 namespace Sprint0
 {
@@ -26,11 +27,18 @@ namespace Sprint0
         private BlockEntity block;
 
         private MarioFactory marioFactory = null;
+        private BlockFactory blockFactory = null;
 
         public MarioFactory MarioFactory
         {
             get { return marioFactory ?? MarioFactory.Instance; }
             protected set { marioFactory = value; }
+        }
+
+        public BlockFactory BlockFactory
+        {
+            get { return blockFactory ?? BlockFactory.Instance; }
+            protected set { blockFactory = value; }
         }
 
 
@@ -106,7 +114,7 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
-            block.Mario = mario;
+            //block.Mario = mario;
 
             base.Update(gameTime);
         }
