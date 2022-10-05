@@ -15,6 +15,7 @@ using Sprint0.interfaces;
 
 namespace Sprint0.Sprites
 {
+
     class QuestionBlockSprite : Sprite
     {
         public QuestionBlockSprite(Game1 game, Vector2 position)

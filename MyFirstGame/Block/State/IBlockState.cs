@@ -6,16 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint0.Block.BlockState
+namespace Sprint0.Block.State
 {
     public interface IBlockState
     {
-        IBlockState PreviousState { get; set; }
-
-        void Enter(IBlockState state);
+        IBlockState PreviousState { get; }
+        void Enter(IBlockState previousState);
         void Exit();
         void Update(GameTime gameTime);
-
         void NormalTransition();
         void BumpTransition();
         void UsedTransition();

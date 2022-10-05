@@ -6,6 +6,8 @@ using Sprint0.Command;
 using Sprint0.Controller;
 using Sprint0.interfaces;
 using Sprint0.Mario;
+using Sprint0.Block.State;
+using Sprint0.State;
 using Sprint0.Block;
 
 namespace Sprint0
@@ -23,14 +25,21 @@ namespace Sprint0
         private IController gamepad;
 
         private MarioEntity mario;
-        private BlockEntity block;
+        private BrickBlockEntity brickBlock;
 
         private MarioFactory marioFactory = null;
+        private BlockFactory blockFactory = null;
 
         public MarioFactory MarioFactory
         {
             get { return marioFactory ?? MarioFactory.Instance; }
             protected set { marioFactory = value; }
+        }
+
+        public BlockFactory BlockFactory
+        {
+            get { return blockFactory ?? BlockFactory.Instance; }
+            protected set { blockFactory = value; }
         }
 
 
@@ -51,6 +60,9 @@ namespace Sprint0
 
             //-------------------------mario initial----------------------
             mario = new MarioEntity(this, new Vector2(100, 100));
+
+            //-------------------------block initial----------------------
+            //brickBlock = new BrickBlockEntity(this, new Vector2(100, 200));
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
@@ -106,6 +118,7 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
+            //brickBlock.Update(gameTime);
             //block.Mario = mario;
 
             base.Update(gameTime);
@@ -125,6 +138,7 @@ namespace Sprint0
             //_spriteBatch.Draw(shuttle, new Vector2(450, 240), Color.White);
 
             mario.Draw(_spriteBatch);
+            //brickBlock.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
