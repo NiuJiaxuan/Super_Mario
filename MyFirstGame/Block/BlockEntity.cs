@@ -42,7 +42,7 @@ namespace Sprint0.Block
             CurrentState?.BumpTransition();
         }
 
-        BreakTransition
+        public void BreakTransition()
         {
             switch (Mario.currentPowerState)
             {
