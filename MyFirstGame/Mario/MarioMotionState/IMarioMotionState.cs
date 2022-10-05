@@ -22,7 +22,6 @@ namespace Sprint0.Mario.MarioMotionState
         void CrouchTransion();
         void Update(GameTime gameTime);
         
-        
-
+       
     }
 }

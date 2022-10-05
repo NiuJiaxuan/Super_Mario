@@ -19,5 +19,6 @@ namespace Sprint0.Block.BlockState
         void NormalTransition();
         void BumpTransition();
         void UsedTransition();
+        void BreakTransition();
     }
 }

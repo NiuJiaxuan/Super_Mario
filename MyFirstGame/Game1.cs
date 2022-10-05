@@ -6,6 +6,7 @@ using Sprint0.Command;
 using Sprint0.Controller;
 using Sprint0.interfaces;
 using Sprint0.Mario;
+using Sprint0.Block;
 
 namespace Sprint0
 {
@@ -22,6 +23,7 @@ namespace Sprint0
         private IController gamepad;
 
         private MarioEntity mario;
+        private BlockEntity block;
 
         private MarioFactory marioFactory = null;
 
@@ -104,6 +106,7 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
+            block.Mario = mario;
 
             base.Update(gameTime);
         }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.BlockState;
+using Sprint0.Mario;
+using Sprint0.Mario.MarioPowerState;
 using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace Sprint0.Block
     {
 
         public IBlockState CurrentState { get; set; }
+        public MarioEntity Mario { get; set; }
 
         public BlockEntity(Game1 game, Vector2 position) : base(game, position)
         {
@@ -37,6 +40,22 @@ namespace Sprint0.Block
         public void BumpTransition()
         {
             CurrentState?.BumpTransition();
+        }
+
+        BreakTransition
+        {
+            switch (Mario.currentPowerState)
+            {
+                case SuperState:
+
+                    break;
+                case FireState:
+
+                    break;
+                default:
+
+                    break;
+            }
         }
     }
 }
