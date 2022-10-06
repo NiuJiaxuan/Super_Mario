@@ -17,7 +17,7 @@ namespace Sprint0.Block.BlockState
         IBlockState IBlockState.PreviousState
         {
             get { return previousState; }
-            set { previousState = value; }
+            //set { previousState = value; }
         }
 
         public BlockEntity Block { get; protected set; }  

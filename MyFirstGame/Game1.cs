@@ -9,6 +9,7 @@ using Sprint0.Mario;
 using Sprint0.Block.State;
 using Sprint0.State;
 using Sprint0.Block;
+using Sprint0.Enemy;
 
 namespace Sprint0
 {
@@ -26,9 +27,13 @@ namespace Sprint0
 
         private MarioEntity mario;
         private BrickBlockEntity brickBlock;
+        private GoombaEntity goomba;
+        private KoopaTroopaEntity koopaTroopa;
 
         private MarioFactory marioFactory = null;
         private BlockFactory blockFactory = null;
+        private EnemyFactory goombaFactory = null;
+        private EnemyFactory koopaTroopaFactory = null;
 
         public MarioFactory MarioFactory
         {
@@ -40,6 +45,17 @@ namespace Sprint0
         {
             get { return blockFactory ?? BlockFactory.Instance; }
             protected set { blockFactory = value; }
+        }
+        public EnemyFactory GoombaFactory
+        {
+            get { return koopaTroopaFactory ?? EnemyFactory.Instance; }
+            protected set { koopaTroopaFactory = value; }
+        }
+
+        public EnemyFactory KoopaTroopaFactory
+        {
+            get { return goombaFactory ?? EnemyFactory.Instance; }
+            protected set { goombaFactory = value; }
         }
 
 
@@ -61,6 +77,8 @@ namespace Sprint0
             //-------------------------mario initial----------------------
             mario = new MarioEntity(this, new Vector2(100, 100));
 
+            goomba = new GoombaEntity(this, new Vector2(500, 100));
+            koopaTroopa = new KoopaTroopaEntity(this, new Vector2(600, 100));
             //-------------------------block initial----------------------
             //brickBlock = new BrickBlockEntity(this, new Vector2(100, 200));
 
@@ -118,6 +136,8 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
+            goomba.Update(gameTime);
+            koopaTroopa.Update(gameTime);
             //brickBlock.Update(gameTime);
             //block.Mario = mario;
 
@@ -138,6 +158,8 @@ namespace Sprint0
             //_spriteBatch.Draw(shuttle, new Vector2(450, 240), Color.White);
 
             mario.Draw(_spriteBatch);
+            goomba.Draw(_spriteBatch);
+            koopaTroopa.Draw(_spriteBatch);
             //brickBlock.Draw(_spriteBatch);
 
             _spriteBatch.End();
