@@ -27,6 +27,7 @@ namespace Sprint0
 
         private MarioEntity mario;
         private BrickBlockEntity brickBlock;
+        private QuestionBlockEntity questionBlock;
         private GoombaEntity goomba;
         private KoopaTroopaEntity koopaTroopa;
 
@@ -87,7 +88,8 @@ namespace Sprint0
             koopaTroopa = new KoopaTroopaEntity(this, new Vector2(600, 100));
 
             //-------------------------block initial----------------------
-            brickBlock = new BrickBlockEntity(this, new Vector2(100, 200));
+            questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200));
+            brickBlock = new BrickBlockEntity(this, new Vector2(200, 200));
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
@@ -110,6 +112,7 @@ namespace Sprint0
             keyboard.Command((int)Keys.Right, new FaceRight(mario));
 
             keyboard.Command((int)Keys.B, new BlockBump(brickBlock));
+            keyboard.Command((int)Keys.OemQuestion, new BlockBump(questionBlock));
 
 
 
@@ -148,6 +151,7 @@ namespace Sprint0
             goomba.Update(gameTime);
             koopaTroopa.Update(gameTime);
             brickBlock.Update(gameTime);
+            questionBlock.Update(gameTime);
             //block.Mario = mario;
 
             base.Update(gameTime);
@@ -170,6 +174,7 @@ namespace Sprint0
             goomba.Draw(_spriteBatch);
             koopaTroopa.Draw(_spriteBatch);
             brickBlock.Draw(_spriteBatch);
+            questionBlock.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

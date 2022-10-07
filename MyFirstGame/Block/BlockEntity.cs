@@ -31,7 +31,8 @@ namespace Sprint0.State
             BrickBlock = 2,
             FloorBlock = 3,
             StairBlock = 4,
-            SmallBrickBlock = 5,
+            UsedBlock = 5,
+            SmallBrickBlock = 6,
         }
 
         public BlockEntity(Game1 game, Vector2 position) : base(game, position)

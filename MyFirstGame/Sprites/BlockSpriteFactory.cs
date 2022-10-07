@@ -22,7 +22,8 @@ namespace Sprint0.Sprites
             BrickBlock = 2,
             FloorBlock = 3,
             StairBlock = 4,
-            SmallBrickBlock = 5,
+            UsedBlock = 5,
+            SmallBrickBlock = 6,
         }
         protected BlockSpriteFactory()
         {
@@ -71,6 +72,9 @@ namespace Sprint0.Sprites
                     break;
                 case eBlockType.StairBlock:
                     sprite = new StairBlockSprite(game, pos);
+                    break;
+                case eBlockType.UsedBlock:
+                    sprite = new UsedBlockSprite(game, pos);
                     break;
             }
             return sprite;
