@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Mario;
+using Sprint0.State;
 
 namespace Sprint0.Command
 {
@@ -29,6 +30,16 @@ namespace Sprint0.Command
     {
         protected MarioEntity receiver;
         protected MarioCommand(MarioEntity receiver)
+        {
+            this.receiver = receiver;
+        }
+        public abstract void Execute();
+    }
+
+    public abstract class BlockCommand : ICommand
+    {
+        protected BlockEntity receiver;
+        protected BlockCommand(BlockEntity receiver)
         {
             this.receiver = receiver;
         }

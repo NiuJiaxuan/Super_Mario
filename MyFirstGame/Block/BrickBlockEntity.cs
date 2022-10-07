@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
+using Sprint0.Sprites;
 using Sprint0.State;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace Sprint0.Block
     {
         public BrickBlockEntity(Game1 game, Vector2 position)
             : base(game, position)
-        {        
+        {
+            Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
             BlockType = eBlockType.BrickBlock;
             CurrentState = new BrickBlockNormalState(this);
             CurrentState.Enter(null);
