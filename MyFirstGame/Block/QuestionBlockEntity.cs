@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
+using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.State;
 using System;
@@ -14,8 +15,8 @@ namespace Sprint0.Block
 {
     public class QuestionBlockEntity : BlockEntity
     {
-        public QuestionBlockEntity(Game1 game, Vector2 position)
-            : base(game, position)
+        public QuestionBlockEntity(Game1 game, Vector2 position, MarioEntity mario)
+            : base(game, position,mario)
         {
             Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.QuestionBlock);
             BlockType = eBlockType.QuestionBlock;

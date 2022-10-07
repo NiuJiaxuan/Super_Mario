@@ -21,12 +21,8 @@ namespace Sprint0.State
 
         public IBlockState CurrentState { get; set; }
         public eBlockType BlockType { get; set; }
-        public MarioEntity mario;
-        public MarioEntity Mario
-        {
-            get { return mario; }
-            set { mario = value; }
-        }
+        public MarioEntity Mario { get; set; }
+
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
         public bool isVisible = true;
@@ -41,9 +37,9 @@ namespace Sprint0.State
             SmallBrickBlock = 6,
         }
 
-        public BlockEntity(Game1 game, Vector2 position) : base(game, position)
+        public BlockEntity(Game1 game, Vector2 position,MarioEntity mario) : base(game, position)
         {
-
+            Mario = mario;
         }
 
         public override void Update(GameTime gameTime)

@@ -92,13 +92,12 @@ namespace Sprint0
             koopaTroopa = new KoopaTroopaEntity(this, new Vector2(600, 100));
 
             //-------------------------block initial----------------------
-            questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200));
-            brickBlock = new BrickBlockEntity(this, new Vector2(200, 200));
-            floorBlock = new FloorBlockEntity(this, new Vector2(300, 200));
-            stairBlock = new StairBlockEntity(this, new Vector2(400, 200));
-            hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300));
+            questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200),mario);
+            brickBlock = new BrickBlockEntity(this, new Vector2(200, 200),mario);
+            floorBlock = new FloorBlockEntity(this, new Vector2(300, 200),mario);
+            stairBlock = new StairBlockEntity(this, new Vector2(400, 200),mario);
+            hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300),mario);
             hiddenBrickBlock.hideBrickBlock();
-            questionBlock.Mario = mario;
 
 
             //-------------------------keyboard control------------------
@@ -158,8 +157,7 @@ namespace Sprint0
             keyboard.Update();
             gamepad.Update();
 
-            brickBlock.Mario = mario;
-            mario.Update(gameTime);
+            mario.Update(gameTime);       
             goomba.Update(gameTime);
             koopaTroopa.Update(gameTime);
             brickBlock.Update(gameTime);
