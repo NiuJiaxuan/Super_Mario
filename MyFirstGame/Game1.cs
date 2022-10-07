@@ -28,6 +28,9 @@ namespace Sprint0
         private MarioEntity mario;
         private BrickBlockEntity brickBlock;
         private QuestionBlockEntity questionBlock;
+        private BrickBlockEntity hiddenBrickBlock;
+        private FloorBlockEntity floorBlock;
+        private StairBlockEntity stairBlock;
         private GoombaEntity goomba;
         private KoopaTroopaEntity koopaTroopa;
 
@@ -90,6 +93,11 @@ namespace Sprint0
             //-------------------------block initial----------------------
             questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200));
             brickBlock = new BrickBlockEntity(this, new Vector2(200, 200));
+            floorBlock = new FloorBlockEntity(this, new Vector2(300, 200));
+            stairBlock = new StairBlockEntity(this, new Vector2(400, 200));
+            hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300));
+            hiddenBrickBlock.hideBrickBlock();
+
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
@@ -113,6 +121,7 @@ namespace Sprint0
 
             keyboard.Command((int)Keys.B, new BlockBump(brickBlock));
             keyboard.Command((int)Keys.OemQuestion, new BlockBump(questionBlock));
+            keyboard.Command((int)Keys.H, new ChangeToVisible(hiddenBrickBlock));
 
 
 
@@ -152,6 +161,9 @@ namespace Sprint0
             koopaTroopa.Update(gameTime);
             brickBlock.Update(gameTime);
             questionBlock.Update(gameTime);
+            stairBlock.Update(gameTime);
+            floorBlock.Update(gameTime);
+            hiddenBrickBlock.Update(gameTime);
             //block.Mario = mario;
 
             base.Update(gameTime);
@@ -175,6 +187,9 @@ namespace Sprint0
             koopaTroopa.Draw(_spriteBatch);
             brickBlock.Draw(_spriteBatch);
             questionBlock.Draw(_spriteBatch);
+            hiddenBrickBlock.Draw(_spriteBatch);    
+            stairBlock.Draw(_spriteBatch);
+            floorBlock.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

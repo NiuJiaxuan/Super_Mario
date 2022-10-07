@@ -51,13 +51,16 @@ namespace Sprint0.State
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            
             base.Draw(spriteBatch);
+            
         }
 
         public void BumpTransition()
         {
             CurrentState?.BumpTransition();
         }
+
 
         public void BreakTransition()
         {

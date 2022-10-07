@@ -34,6 +34,7 @@ namespace Sprint0.Sprites
         }
     }
 
+
     class FloorBlockSprite : Sprite
     {
         public FloorBlockSprite(Game1 game, Vector2 position)

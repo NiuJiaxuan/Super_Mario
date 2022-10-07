@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Mario;
 using Sprint0.State;
+using Sprint0.Block;
 
 namespace Sprint0.Command
 {
@@ -40,6 +41,15 @@ namespace Sprint0.Command
     {
         protected BlockEntity receiver;
         protected BlockCommand(BlockEntity receiver)
+        {
+            this.receiver = receiver;
+        }
+        public abstract void Execute();
+    }
+    public abstract class BrickBlockCommand : ICommand
+    {
+        protected BrickBlockEntity receiver;
+        protected BrickBlockCommand(BrickBlockEntity receiver)
         {
             this.receiver = receiver;
         }

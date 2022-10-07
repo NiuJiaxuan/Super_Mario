@@ -1,4 +1,5 @@
 ﻿using Sprint0;
+using Sprint0.Block;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.State;
@@ -135,6 +136,17 @@ namespace Sprint0.Command
             : base (receiver) { }
         public override void Execute()
         {
+            receiver.BumpTransition();
+        }
+
+    }
+    public class ChangeToVisible : BrickBlockCommand
+    {
+        public ChangeToVisible(BrickBlockEntity receiver)
+            : base(receiver) { }
+        public override void Execute()
+        {
+            receiver.changeToVisible();
             receiver.BumpTransition();
         }
 

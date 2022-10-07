@@ -32,7 +32,7 @@ namespace Sprint0.Sprites
 
         public int timeSinceLastFrame = 0;
 
-        public int delayTime = 100;
+        public int delayTime = 400;
         public int DelayTime
         {
             get { return delayTime;}
