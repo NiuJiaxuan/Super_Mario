@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Sprites;
+using Sprint0.Mario.MarioPowerState;
+using Sprint0.Mario;
 
 namespace Sprint0.Block.State
 {
@@ -16,6 +18,7 @@ namespace Sprint0.Block.State
             : base(block)
         {
         }
+        public MarioEntity Mario { get; set; }
 
         public override void Enter(IBlockState previousState)
         {
@@ -37,6 +40,12 @@ namespace Sprint0.Block.State
         {
             CurrentState.Exit();
             CurrentState = new BrickBlockBumpState(Block);
+            CurrentState.Enter(this);
+        }
+        public override void BreakTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new BrickBlockBreakState(Block);
             CurrentState.Enter(this);
         }
     }

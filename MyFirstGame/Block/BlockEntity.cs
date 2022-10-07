@@ -19,9 +19,8 @@ namespace Sprint0.State
     {
 
         public IBlockState CurrentState { get; set; }
-        public eBlockType BlockType { get; set; }
+        public eBlockType BlockType { get; set; }      
         public MarioEntity Mario { get; set; }
-
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
 
@@ -56,26 +55,21 @@ namespace Sprint0.State
             
         }
 
-        public void BumpTransition()
+        public void BumpOrBreakTransition()
         {
-            CurrentState?.BumpTransition();
-        }
-
-
-        public void BreakTransition()
-        {
-            switch (Mario.currentPowerState)
+            /switch (Mario.currentPowerState)
             {
                 case SuperState:
-                    
+                    CurrentState?.BreakTransition();
                     break;
                 case FireState:
-
+                    CurrentState?.BreakTransition();
                     break;
                 default:
-
+                    CurrentState?.BumpTransition();
                     break;
             }
         }
+
     }
 }

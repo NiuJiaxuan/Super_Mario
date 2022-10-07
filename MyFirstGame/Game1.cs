@@ -97,6 +97,7 @@ namespace Sprint0
             stairBlock = new StairBlockEntity(this, new Vector2(400, 200));
             hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300));
             hiddenBrickBlock.hideBrickBlock();
+            brickBlock.Mario = mario;
 
 
             //-------------------------keyboard control------------------
@@ -119,8 +120,8 @@ namespace Sprint0
             keyboard.Command((int)Keys.D, new FaceRight(mario));
             keyboard.Command((int)Keys.Right, new FaceRight(mario));
 
-            keyboard.Command((int)Keys.B, new BlockBump(brickBlock));
-            keyboard.Command((int)Keys.OemQuestion, new BlockBump(questionBlock));
+            keyboard.Command((int)Keys.B, new BlockBumpOrBreak(brickBlock));
+            keyboard.Command((int)Keys.OemQuestion, new BlockBumpOrBreak(questionBlock));
             keyboard.Command((int)Keys.H, new ChangeToVisible(hiddenBrickBlock));
 
 
@@ -156,6 +157,7 @@ namespace Sprint0
             keyboard.Update();
             gamepad.Update();
 
+            brickBlock.Mario = mario;
             mario.Update(gameTime);
             goomba.Update(gameTime);
             koopaTroopa.Update(gameTime);
@@ -164,7 +166,6 @@ namespace Sprint0
             stairBlock.Update(gameTime);
             floorBlock.Update(gameTime);
             hiddenBrickBlock.Update(gameTime);
-            //block.Mario = mario;
 
             base.Update(gameTime);
         }

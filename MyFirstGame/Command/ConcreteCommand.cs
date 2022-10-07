@@ -130,13 +130,13 @@ namespace Sprint0.Command
         }
     }
 
-    public class BlockBump : BlockCommand
+    public class BlockBumpOrBreak : BlockCommand
     {
-        public BlockBump (BlockEntity receiver)
+        public BlockBumpOrBreak(BlockEntity receiver)
             : base (receiver) { }
         public override void Execute()
         {
-            receiver.BumpTransition();
+            receiver.BumpOrBreakTransition();
         }
 
     }
@@ -147,7 +147,7 @@ namespace Sprint0.Command
         public override void Execute()
         {
             receiver.changeToVisible();
-            receiver.BumpTransition();
+            receiver.BumpOrBreakTransition();
         }
 
     }
