@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.Sprites;
 using Sprint0.Command;
 using Sprint0.Controller;
 using Sprint0.interfaces;
@@ -10,6 +9,8 @@ using Sprint0.Block.State;
 using Sprint0.State;
 using Sprint0.Block;
 using Sprint0.Enemy;
+using Sprint0.Sprites.factory;
+using Sprint0.Sprites;
 
 namespace Sprint0
 {
@@ -26,11 +27,11 @@ namespace Sprint0
         private IController gamepad;
 
         private MarioEntity mario;
-        private BrickBlockEntity brickBlock;
-        private QuestionBlockEntity questionBlock;
-        private BrickBlockEntity hiddenBrickBlock;
-        private FloorBlockEntity floorBlock;
-        private StairBlockEntity stairBlock;
+        private BlockEntity brickBlock;
+        private BlockEntity questionBlock;
+        private BlockEntity hiddenBrickBlock;
+        private BlockEntity floorBlock;
+        private BlockEntity stairBlock;
         private GoombaEntity goomba;
         private KoopaTroopaEntity koopaTroopa;
 
@@ -97,7 +98,7 @@ namespace Sprint0
             stairBlock = new StairBlockEntity(this, new Vector2(400, 200));
             hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300));
             hiddenBrickBlock.hideBrickBlock();
-            brickBlock.Mario = mario;
+            questionBlock.Mario = mario;
 
 
             //-------------------------keyboard control------------------

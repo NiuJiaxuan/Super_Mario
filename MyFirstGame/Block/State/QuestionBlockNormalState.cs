@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Sprites;
+using Sprint0.Sprites.factory;
 
 namespace Sprint0.Block.State
 {

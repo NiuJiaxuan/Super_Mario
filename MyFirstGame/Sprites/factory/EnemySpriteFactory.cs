@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Sprint0.Enemy;
 using Sprint0.interfaces;
+using Sprint0.Sprites.Sprites;
 using Sprint0.Sprites.useless;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.factory
 {
     public abstract class EnemySpriteFactory
     {

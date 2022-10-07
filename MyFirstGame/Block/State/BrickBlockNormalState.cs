@@ -5,9 +5,10 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Sprites;
 using Sprint0.Mario.MarioPowerState;
 using Sprint0.Mario;
+using Sprint0.Sprites.factory;
+using Sprint0.Sprites;
 
 namespace Sprint0.Block.State
 {

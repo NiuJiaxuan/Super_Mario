@@ -140,9 +140,9 @@ namespace Sprint0.Command
         }
 
     }
-    public class ChangeToVisible : BrickBlockCommand
+    public class ChangeToVisible : BlockCommand
     {
-        public ChangeToVisible(BrickBlockEntity receiver)
+        public ChangeToVisible(BlockEntity receiver)
             : base(receiver) { }
         public override void Execute()
         {

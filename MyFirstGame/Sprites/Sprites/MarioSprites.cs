@@ -14,13 +14,13 @@ using Microsoft.Xna.Framework.Input;
 using Sprint0.interfaces;
 
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.Sprites
 {
- //----------------------------------------------------------------Normal Mario----------------------------------------------------------------------
+    //----------------------------------------------------------------Normal Mario----------------------------------------------------------------------
     class NormalMarioIdleSprite : Sprite
     {
         public NormalMarioIdleSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("small-standing-mario"),position, Vector2.Zero, Point.Zero, new Point(1,1), new Point(18,24), false)
+            : base(game.Content.Load<Texture2D>("small-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18, 24), false)
         {
 
         }
@@ -53,12 +53,12 @@ namespace Sprint0.Sprites
         }
     }
 
-//-------------------------------------------------------Fire Mario-------------------------------------------------------------------------
+    //-------------------------------------------------------Fire Mario-------------------------------------------------------------------------
 
     class FireMarioIdleSprite : Sprite
     {
         public FireMarioIdleSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("fire-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22,48), false)
+            : base(game.Content.Load<Texture2D>("fire-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 48), false)
         {
 
         }
@@ -88,7 +88,7 @@ namespace Sprint0.Sprites
         }
     }
 
-//--------------------------------------------------------------Super Mario--------------------------------------------------------------------------
+    //--------------------------------------------------------------Super Mario--------------------------------------------------------------------------
     class SuperMarioIdleSprite : Sprite
     {
         public SuperMarioIdleSprite(Game1 game, Vector2 position)
@@ -110,7 +110,7 @@ namespace Sprint0.Sprites
         public SuperMarioWalkSprite(Game1 game, Vector2 position)
             : base(game.Content.Load<Texture2D>("large-walking-mario"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(22, 46), true)
         {
-            
+
         }
     }
     class SuperMarioCrouchSprite : Sprite
@@ -122,11 +122,11 @@ namespace Sprint0.Sprites
         }
     }
 
-//--------------------------------------------------------Dead Mario------------------------------------------------------------------------------
+    //--------------------------------------------------------Dead Mario------------------------------------------------------------------------------
     class DeadMarioSprite : Sprite
     {
         public DeadMarioSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("dead-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18,18), false)
+            : base(game.Content.Load<Texture2D>("dead-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18, 18), false)
         {
 
         }

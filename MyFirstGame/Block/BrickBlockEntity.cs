@@ -14,7 +14,7 @@ namespace Sprint0.Block
 {
     public class BrickBlockEntity : BlockEntity
     {
-        public bool isVisible = true;
+
 
         public BrickBlockEntity(Game1 game, Vector2 position)
             : base(game, position)
@@ -24,15 +24,6 @@ namespace Sprint0.Block
             CurrentState = new BrickBlockNormalState(this);
             CurrentState.Enter(null);
 
-        }
-        public void hideBrickBlock()
-        {
-            isVisible = false;
-        }
-
-        public void changeToVisible()
-        {
-            isVisible = true;
         }
 
         public override void Update(GameTime gameTime)

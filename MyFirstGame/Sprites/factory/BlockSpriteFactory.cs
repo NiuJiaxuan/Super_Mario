@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Sprites;
 using Sprint0.interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.factory
 {
     //Abstract sprite factory class
     // to use, create a new facotry class inherient this class an add implement in create method

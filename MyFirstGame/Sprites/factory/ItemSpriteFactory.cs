@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Sprint0.interfaces;
+using Sprint0.Sprites.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.factory
 {
     public abstract class ItemSpriteFactory
     {
@@ -65,7 +66,7 @@ namespace Sprint0.Sprites
             }
             return sprite;
         }
-     }
-}   
+    }
+}
 
 
