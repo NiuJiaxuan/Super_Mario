@@ -16,13 +16,20 @@ namespace Sprint0.Item
             : base(game, position)
         {
             ItemType = eItemType.Coin;
-            Sprite = ItemSpriteFactory.CreateItem(game, position, ItemType);
+            Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
         }
-    }
 
-    public CoinEntity(Game1 game, Sprite sprite)
-             : base(game, sprite)
-    {
-        ItemType = eItemType.Coin;
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+        }
+
+
     }
 }

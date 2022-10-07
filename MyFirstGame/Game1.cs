@@ -30,6 +30,7 @@ namespace Sprint0
         private GoombaEntity goomba;
         private KoopaTroopaEntity koopaTroopa;
 
+        private ItemFactory itemFactory = null;
         private MarioFactory marioFactory = null;
         private BlockFactory blockFactory = null;
         private EnemyFactory goombaFactory = null;
@@ -40,7 +41,11 @@ namespace Sprint0
             get { return marioFactory ?? MarioFactory.Instance; }
             protected set { marioFactory = value; }
         }
-
+        public ItemFactory ItemFactory
+        {
+            get { return itemFactory ?? ItemFactory.Instance; }
+            protected set { itemFactory = value; }
+        }
         public BlockFactory BlockFactory
         {
             get { return blockFactory ?? BlockFactory.Instance; }

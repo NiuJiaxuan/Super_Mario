@@ -12,6 +12,8 @@ namespace Sprint0.Item
 {
     public class ItemEntity : Entity
     {
+
+        public virtual ItemFactory ItemFactory => game.ItemFactory;
         public enum eItemType
         {
             Coin = 0,
