@@ -58,7 +58,7 @@ namespace Sprint0.Sprites
             this.game = game; 
         }
 
-        public virtual void Update (GameTime gameTime, List<Entity> entities)
+        public virtual void Update (GameTime gameTime/*, List<Entity> entities*/)
         {
             Sprite.Update(gameTime);
         }

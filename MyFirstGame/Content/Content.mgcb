@@ -104,6 +104,18 @@
 /processorParam:TextureFormat=Color
 /build:fire-standing-mario.png
 
+#begin fire-walking-mario.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:fire-walking-mario.png
+
 #begin FireFlower.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -319,18 +331,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SuperMushroom.png
-
-#begin usedBlock.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:usedBlock.jpg
 
 #begin usedBlock.jpg
 /importer:TextureImporter

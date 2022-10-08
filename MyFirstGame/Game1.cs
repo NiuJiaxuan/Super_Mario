@@ -114,11 +114,11 @@ namespace Sprint0
             keyboard.Command((int)Keys.S, new MarioCrouch(mario));
             keyboard.Command((int)Keys.Down, new MarioCrouch(mario));
 
-            keyboard.Command((int)Keys.A, new FaceLeft(mario));
-            keyboard.Command((int)Keys.Left, new FaceLeft(mario));
+            keyboard.Command((int)Keys.A, new MarioWalkLeft(mario));
+            keyboard.Command((int)Keys.Left, new MarioWalkLeft(mario));
 
-            keyboard.Command((int)Keys.D, new FaceRight(mario));
-            keyboard.Command((int)Keys.Right, new FaceRight(mario));
+            keyboard.Command((int)Keys.D, new MarioWalkRight(mario));
+            keyboard.Command((int)Keys.Right, new MarioWalkRight(mario));
 
             keyboard.Command((int)Keys.B, new BlockBumpOrBreak(brickBlock));
             keyboard.Command((int)Keys.OemQuestion, new BlockBumpOrBreak(questionBlock));

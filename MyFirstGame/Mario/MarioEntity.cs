@@ -106,7 +106,7 @@ namespace Sprint0.Mario
 
         }
 
-        public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
+/*         public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
         {
             foreach ( Entity entity in entities)
             {
@@ -124,12 +124,12 @@ namespace Sprint0.Mario
 
 
         }
-
-        public override void Update(GameTime gameTime, List<Entity> entities)
+*/
+        public override void Update(GameTime gameTime/*, List<Entity> entities*/)
         {
-            CollisionDetection(Sprite, entities);
+ //           CollisionDetection(Sprite, entities);
 
-            base.Update(gameTime, entities);
+            base.Update(gameTime/*, entities*/);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
