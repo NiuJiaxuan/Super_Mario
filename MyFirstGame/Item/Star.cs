@@ -1,22 +1,19 @@
-﻿using Sprint0.Sprites;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Block.State;
 
 namespace Sprint0.Item
 {
-    public class CoinEntity : ItemEntity
+    public class StarEntity : ItemEntity
     {
-        public CoinEntity(Game1 game, Vector2 position)
+        public StarEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
-            ItemType = eItemType.Coin;
+            ItemType = eItemType.Star;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
         }
 
