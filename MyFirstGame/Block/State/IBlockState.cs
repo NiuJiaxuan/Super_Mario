@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Mario.MarioMotionState;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace Sprint0.Block.State
         void BumpTransition();
         void UsedTransition();
         void BreakTransition();
+        void EmptyTransition();
     }
 }

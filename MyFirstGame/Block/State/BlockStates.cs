@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Sprint0.Block.State;
 using Sprint0.State;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint0.State
 {
@@ -38,8 +39,11 @@ namespace Sprint0.State
         public virtual void UsedTransition() { }
 
         public virtual void BreakTransition() { }
+        public virtual void EmptyTransition() { }
 
         public virtual void Update(GameTime gameTime) { }
+        public virtual void Draw(SpriteBatch batch) { }
+
 
 
     }

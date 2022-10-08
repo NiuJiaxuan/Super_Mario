@@ -37,6 +37,7 @@ namespace Sprint0.Block.State
             Block.Position = Origion;
 
         }
+        
         public override void BumpTransition()
         {
             CurrentState.Exit();
@@ -48,6 +49,7 @@ namespace Sprint0.Block.State
             CurrentState.Exit();
             CurrentState = new BrickBlockBreakState(Block);
             CurrentState.Enter(this);
+            
         }
     }
 }

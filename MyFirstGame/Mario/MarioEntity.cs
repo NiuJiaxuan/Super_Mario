@@ -254,14 +254,17 @@ namespace Sprint0.Mario
 
         public void Fire()
         {
+            
             currentPowerState?.FireTransion();
         }
         public void Normal()
         {
+            
             currentPowerState?.NormalTransion();
         }
         public void Super()
         {
+            
             currentPowerState?.SuperTransion();
         }
         public void TakeDamage()

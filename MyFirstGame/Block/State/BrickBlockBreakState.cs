@@ -5,43 +5,41 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Text;
 using System.Threading.Tasks;
+using Sprint0.Sprites;
+using Sprint0.Sprites.factory;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint0.Block.State
 {
     class BrickBlockBreakState : BlockStates
     {
-        Vector2 Origion;
-
         public BrickBlockBreakState(BlockEntity block)
             : base(block)
-        {
+        {           
         }
 
         public override void Enter(IBlockState previousState)
         {
             CurrentState = this;
             this.previousState = previousState;
-            Origion = Block.Position;
+            Block.SmallBlock1 = Block.BlockFactory.CreateBlock(Block.game, Block.Position, (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
+            Block.SmallBlock2 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X + 15, Block.Position.Y), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
+            Block.SmallBlock3 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X, Block.Position.Y - 15), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
+            Block.SmallBlock4 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X + 15, Block.Position.Y - 15), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
+            Block.smallBlockVisible = true;
+            Block.breakBlockVisible = false;
+            
+        }
 
-            Block.Speed = new Vector2(0, -40);
-        }
-        public override void Exit()
-        {
-            Block.Position = Origion;
-            Block.Speed = new Vector2(0, 0);
-        }
-        public override void NormalTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new BrickBlockNormalState(Block);
-            CurrentState.Enter(this);
-        }
+
+
         public override void Update(GameTime gameTime)
         {
-            if (Math.Abs(Block.Position.Y - Origion.Y) > 10)
-                Block.Speed = new Vector2(0, Block.Speed.Y * -1);
-            else if (Math.Abs(Block.Position.Y - Origion.Y) == 0)
-                NormalTransition();
+            Block.SmallBlock1.Position = new Vector2(Block.SmallBlock1.Position.X - 10, Block.SmallBlock1.Position.Y + 10);
+            Block.SmallBlock2.Position = new Vector2(Block.SmallBlock2.Position.X + 10, Block.SmallBlock2.Position.Y + 10);
+            Block.SmallBlock3.Position = new Vector2(Block.SmallBlock3.Position.X - 10, Block.SmallBlock3.Position.Y - 10);
+            Block.SmallBlock4.Position = new Vector2(Block.SmallBlock4.Position.X + 10, Block.SmallBlock4.Position.Y - 10);
+
         }
     }
 }
