@@ -18,7 +18,10 @@ namespace Sprint0.State
 {
     public class BlockEntity : Entity
     {
-
+        private Sprite smallBlock1;
+        private Sprite smallBlock2;
+        private Sprite smallBlock3;
+        private Sprite smallBlock4;
         public IBlockState CurrentState { get; set; }
         public eBlockType BlockType { get; set; }
         public MarioEntity Mario { get; set; }
@@ -26,7 +29,28 @@ namespace Sprint0.State
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
         public bool isVisible = true;
-
+        public bool smallBlockVisible = false;
+        public bool breakBlockVisible = true;
+        public Sprite SmallBlock1
+        {
+            get { return smallBlock1; }
+            set { smallBlock1 = value; }
+        }
+        public Sprite SmallBlock2
+        {
+            get { return smallBlock2; }
+            set { smallBlock2 = value; }
+        }
+        public Sprite SmallBlock3
+        {
+            get { return smallBlock3; }
+            set { smallBlock3 = value; }
+        }
+        public Sprite SmallBlock4
+        {
+            get { return smallBlock4; }
+            set { smallBlock4 = value; }
+        }
         public enum eBlockType
         {
             QuestionBlock = 1,
@@ -37,7 +61,7 @@ namespace Sprint0.State
             SmallBrickBlock = 6,
         }
 
-        public BlockEntity(Game1 game, Vector2 position,MarioEntity mario) : base(game, position)
+        public BlockEntity(Game1 game, Vector2 position, MarioEntity mario) : base(game, position)
         {
             Mario = mario;
         }
@@ -53,8 +77,19 @@ namespace Sprint0.State
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+
+            if (breakBlockVisible)
+            {
+                base.Draw(spriteBatch);
+            }
             
-            base.Draw(spriteBatch);
+            if (smallBlockVisible)
+            {
+                SmallBlock1?.Draw(spriteBatch);
+                SmallBlock2?.Draw(spriteBatch);
+                SmallBlock3?.Draw(spriteBatch);
+                SmallBlock4?.Draw(spriteBatch);
+            }
             
         }
 
@@ -68,6 +103,12 @@ namespace Sprint0.State
             isVisible = true;
         }
 
+        public void BumpTransition()
+        {
+            CurrentState?.BumpTransition();
+        }
+
+
         public void BumpOrBreakTransition()
         {
             switch (Mario.currentPowerState)
@@ -79,7 +120,7 @@ namespace Sprint0.State
                     CurrentState?.BreakTransition();
                     break;
                 default:
-                    CurrentState?.BumpTransition();
+                    BumpTransition();
                     break;
             }
         }

@@ -27,7 +27,7 @@ namespace Sprint0.Sprites
         }
 
         public Vector2 Speed
-        {
+        {             
             get { return Sprite.Speed; }
             set { Sprite.Speed = value; }
         }
@@ -51,7 +51,10 @@ namespace Sprint0.Sprites
 
         public virtual void Update (GameTime gameTime)
         {
+            
+            
             Sprite.Update(gameTime);
+            
         }
         public virtual void Draw(SpriteBatch spriteBatch)
         {

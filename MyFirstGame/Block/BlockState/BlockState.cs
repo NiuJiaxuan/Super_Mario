@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.Command;
 using Sprint0.Mario.MarioMotionState;
@@ -39,6 +40,7 @@ namespace Sprint0.Block.BlockState
         public virtual void BumpTransition() { }
         public virtual void UsedTransition() { }
         public virtual void BreakTransition() { }
+        public virtual void EmptyTransition() { }
 
         public virtual void Update(GameTime gameTime) { }
 
