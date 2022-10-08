@@ -39,6 +39,8 @@ namespace Sprint0.Sprites
             set { Sprite.Speed = value; }
         }
 
+ 
+
         public Vector2 Accelation
         {
             get { return Sprite.Accelation; }
@@ -68,7 +70,7 @@ namespace Sprint0.Sprites
         // rewrite later
         public bool isTouchingLeft(Entity entity)
         {
-
+            
             return false;
         }
     }

@@ -14,6 +14,7 @@ using System.Diagnostics;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.Mario.MarioPowerState;
 using Sprint0.Sprites.factory;
+using Sprint0.Block;
 
 namespace Sprint0.Mario
 {
@@ -107,6 +108,20 @@ namespace Sprint0.Mario
 
         public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
         {
+            foreach ( Entity entity in entities)
+            {
+                switch (entity){
+                    case BrickBlockEntity:
+                        if (isTouchingLeft(entity) || isTouchingRight(entity))
+                        {
+                            currentMotionState?.IdleTransion();
+                            Speed = new Vector2(0, Speed.Y);
+                        }//           fix later
+                        break;
+                }
+            }
+
+
 
         }
 
