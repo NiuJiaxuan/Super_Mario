@@ -1,6 +1,8 @@
 ﻿using Sprint0;
+using Sprint0.Block;
 using Sprint0.Mario;
 using Sprint0.Sprites;
+using Sprint0.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,4 +129,27 @@ namespace Sprint0.Command
             receiver.WalkLeft();
         }
     }
+
+    public class BlockBumpOrBreak : BlockCommand
+    {
+        public BlockBumpOrBreak(BlockEntity receiver)
+            : base (receiver) { }
+        public override void Execute()
+        {
+            receiver.BumpOrBreakTransition();
+        }
+
+    }
+    public class ChangeToVisible : BlockCommand
+    {
+        public ChangeToVisible(BlockEntity receiver)
+            : base(receiver) { }
+        public override void Execute()
+        {
+            receiver.changeToVisible();
+            receiver.BumpOrBreakTransition();
+        }
+
+    }
+
 }

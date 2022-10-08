@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.Sprites
 {
     class GoombaSprite : Sprite
     {

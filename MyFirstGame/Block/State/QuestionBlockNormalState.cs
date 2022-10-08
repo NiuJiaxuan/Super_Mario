@@ -5,21 +5,18 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Mario.MarioPowerState;
-using Sprint0.Mario;
-using Sprint0.Sprites.factory;
 using Sprint0.Sprites;
+using Sprint0.Sprites.factory;
 
 namespace Sprint0.Block.State
 {
-    class BrickBlockNormalState : BlockStates
+    class QuestionBlockNormalState : BlockStates
     {
 
-        public BrickBlockNormalState(BlockEntity block)
+        public QuestionBlockNormalState(BlockEntity block)
             : base(block)
         {
         }
-        public MarioEntity Mario { get; set; }
 
         public override void Enter(IBlockState previousState)
         {
@@ -31,22 +28,16 @@ namespace Sprint0.Block.State
             {
                 Origion = Block.Position;
             }
-            
-            Block.Sprite = Block.BlockFactory.CreateBlock(Block.game, Block.Position, (int)BlockSpriteFactory.eBlockType.BrickBlock);
-            Block.BlockType = BlockEntity.eBlockType.BrickBlock;
+
+            Block.Sprite = Block.BlockFactory.CreateBlock(Block.game, Block.Position, (int)BlockSpriteFactory.eBlockType.QuestionBlock);
+            Block.BlockType = BlockEntity.eBlockType.QuestionBlock;
             Block.Position = Origion;
 
         }
         public override void BumpTransition()
         {
             CurrentState.Exit();
-            CurrentState = new BrickBlockBumpState(Block);
-            CurrentState.Enter(this);
-        }
-        public override void BreakTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new BrickBlockBreakState(Block);
+            CurrentState = new QuestionBlockBumpState(Block);
             CurrentState.Enter(this);
         }
     }

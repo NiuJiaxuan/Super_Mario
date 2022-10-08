@@ -19,7 +19,7 @@ namespace Sprint0.Sprites
     class QuestionBlockSprite : Sprite
     {
         public QuestionBlockSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("questionBlock"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(100, 31), true)
+            : base(game.Content.Load<Texture2D>("questionBlock"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(33, 31), true)
         {
 
         }
@@ -34,6 +34,7 @@ namespace Sprint0.Sprites
         }
     }
 
+
     class FloorBlockSprite : Sprite
     {
         public FloorBlockSprite(Game1 game, Vector2 position)
@@ -47,6 +48,14 @@ namespace Sprint0.Sprites
     {
         public StairBlockSprite(Game1 game, Vector2 position)
             : base(game.Content.Load<Texture2D>("stairBlock"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(30, 30), false)
+        {
+
+        }
+    }
+    class UsedBlockSprite : Sprite
+    {
+        public UsedBlockSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("usedBlock"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(30, 30), false)
         {
 
         }

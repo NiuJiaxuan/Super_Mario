@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Sprites;
 using Sprint0.interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using Sprint0.Sprites.Sprites;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.factory
 {
     //Abstract sprite factory class
     // to use, create a new facotry class inherient this class an add implement in create method
-    public abstract class MarioSpriteFactory 
+    public abstract class MarioSpriteFactory
     {
 
         public enum eMarioType
@@ -38,7 +38,7 @@ namespace Sprint0.Sprites
         protected MarioSpriteFactory()
         {
         }
-        public abstract ISprite CreateMario(Game1 game, Vector2 pos,  int type);
+        public abstract ISprite CreateMario(Game1 game, Vector2 pos, int type);
 
     }
 
@@ -53,7 +53,7 @@ namespace Sprint0.Sprites
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     instance = new MarioFactory();
                 }

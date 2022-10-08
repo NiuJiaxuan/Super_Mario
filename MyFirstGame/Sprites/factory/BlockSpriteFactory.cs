@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Sprites;
 using Sprint0.interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
-namespace Sprint0.Sprites
+namespace Sprint0.Sprites.factory
 {
     //Abstract sprite factory class
     // to use, create a new facotry class inherient this class an add implement in create method
@@ -22,7 +21,8 @@ namespace Sprint0.Sprites
             BrickBlock = 2,
             FloorBlock = 3,
             StairBlock = 4,
-            SmallBrickBlock = 5,
+            UsedBlock = 5,
+            SmallBrickBlock = 6,
         }
         protected BlockSpriteFactory()
         {
@@ -71,6 +71,9 @@ namespace Sprint0.Sprites
                     break;
                 case eBlockType.StairBlock:
                     sprite = new StairBlockSprite(game, pos);
+                    break;
+                case eBlockType.UsedBlock:
+                    sprite = new UsedBlockSprite(game, pos);
                     break;
             }
             return sprite;

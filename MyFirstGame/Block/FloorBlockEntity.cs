@@ -13,30 +13,24 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Block
 {
-    public class BrickBlockEntity : BlockEntity
+    public class FloorBlockEntity : BlockEntity
     {
-
-
-        public BrickBlockEntity(Game1 game, Vector2 position, MarioEntity mario)
+        public FloorBlockEntity(Game1 game, Vector2 position,MarioEntity mario)
             : base(game, position,mario)
         {
-            Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
-            BlockType = eBlockType.BrickBlock;
-            CurrentState = new BrickBlockNormalState(this);
+            Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.FloorBlock);
+            BlockType = eBlockType.FloorBlock;
+            CurrentState = new FloorBlockNormalState(this);
             CurrentState.Enter(null);
 
         }
-
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (isVisible)
-            {
-                base.Draw(spriteBatch);
-            }
+            base.Draw(spriteBatch);
         }
     }
 }

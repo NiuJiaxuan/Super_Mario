@@ -5,6 +5,7 @@ using Sprint0.Mario;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.Mario.MarioPowerState;
 using Sprint0.Sprites;
+using Sprint0.Sprites.factory;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,6 +25,7 @@ namespace Sprint0.State
 
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
+        public bool isVisible = true;
 
         public enum eBlockType
         {
@@ -31,12 +33,13 @@ namespace Sprint0.State
             BrickBlock = 2,
             FloorBlock = 3,
             StairBlock = 4,
-            SmallBrickBlock = 5,
+            UsedBlock = 5,
+            SmallBrickBlock = 6,
         }
 
-        public BlockEntity(Game1 game, Vector2 position) : base(game, position)
+        public BlockEntity(Game1 game, Vector2 position,MarioEntity mario) : base(game, position)
         {
-
+            Mario = mario;
         }
 
         public override void Update(GameTime gameTime)
@@ -50,28 +53,36 @@ namespace Sprint0.State
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            
             base.Draw(spriteBatch);
+            
         }
 
-        public void BumpTransition()
+        public void hideBrickBlock()
         {
-            CurrentState?.BumpTransition();
+            isVisible = false;
         }
 
-        public void BreakTransition()
+        public void changeToVisible()
+        {
+            isVisible = true;
+        }
+
+        public void BumpOrBreakTransition()
         {
             switch (Mario.currentPowerState)
             {
                 case SuperState:
-                    
+                    CurrentState?.BreakTransition();
                     break;
                 case FireState:
-
+                    CurrentState?.BreakTransition();
                     break;
                 default:
-
+                    CurrentState?.BumpTransition();
                     break;
             }
         }
+
     }
 }

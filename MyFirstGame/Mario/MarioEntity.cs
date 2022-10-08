@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.Mario.MarioPowerState;
+using Sprint0.Sprites.factory;
 
 namespace Sprint0.Mario
 {
@@ -101,12 +102,19 @@ namespace Sprint0.Mario
             Debug.WriteLine(currentPowerState.ToString());
             Debug.WriteLine(currentMotionState.ToString());
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
+
         }
 
+        public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
+        {
 
-        public override void Update(GameTime gameTime)
-        {            
-            base.Update(gameTime);
+        }
+
+        public override void Update(GameTime gameTime, List<Entity> entities)
+        {
+            CollisionDetection(Sprite, entities);
+
+            base.Update(gameTime, entities);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -141,13 +149,67 @@ namespace Sprint0.Mario
 
         public void WalkRight()
         {
-            Sprite.Orientation = SpriteEffects.None;
-            currentMotionState?.WalkTransion();
+            switch (currentMotionState)
+            {
+                case IdleState:
+                    if (Sprite.Orientation == SpriteEffects.None)
+                    {
+                        currentMotionState?.WalkTransion();
+                    }else
+                    {
+                        Sprite.Orientation = SpriteEffects.None;
+                    }
+                    break;
+                case WalkState:
+                    if(Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                    {
+                        currentMotionState?.IdleTransion();
+                    }
+                    break;
+                case JumpState:
+                    if (Sprite.Orientation == SpriteEffects.None)
+                    {
+                        currentMotionState?.WalkTransion();
+                    }
+                    else
+                    {
+                        Sprite.Orientation = SpriteEffects.None;
+                    }
+                    break;
+            }
+
         }
         public void WalkLeft()
         {
-            Sprite.Orientation = SpriteEffects.FlipHorizontally;
-            currentMotionState?.WalkTransion();
+            switch (currentMotionState)
+            {
+                case IdleState:
+                    if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                    {
+                        currentMotionState?.WalkTransion();
+                    }
+                    else
+                    {
+                        Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                    }
+                    break;
+                case WalkState:
+                    if (Sprite.Orientation == SpriteEffects.None)
+                    {
+                        currentMotionState?.IdleTransion();
+                    }
+                    break;
+                case JumpState:
+                    if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                    {
+                        currentMotionState?.WalkTransion();
+                    }
+                    else
+                    {
+                        Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                    }
+                    break;
+            }
         }
         public void Crouch()
         {
