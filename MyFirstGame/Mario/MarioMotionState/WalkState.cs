@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,14 @@ namespace Sprint0.Mario.MarioMotionState
 
         public override void Update(GameTime gameTime)
         {
+            if (Mario.Sprite.Orientation == SpriteEffects.None)
+            {
+                Mario.Speed = new Vector2(40, Mario.Speed.Y);
+            }
+            else if(Mario.Sprite.Orientation == SpriteEffects.FlipHorizontally)
+            {
+                Mario.Speed = new Vector2(-40, Mario.Speed.Y);
+            }
             base.Update(gameTime);
         }
     }

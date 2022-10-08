@@ -39,8 +39,14 @@ namespace Sprint0.Sprites
         }
 
 
-        public float Width { get; set; }
-        public float Height { get; set; }
+        public float Width
+        {
+             get { return texture.Width; }
+        }
+        public float Height
+        {
+            get { return texture.Height; }
+        }
 
 
 

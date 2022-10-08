@@ -66,26 +66,6 @@ namespace Sprint0.Command
             receiver.TakeDamage();
         }
     }
-    public class FaceRight : MarioCommand
-    {
-        public FaceRight(MarioEntity receiver)
-            : base(receiver) { }
-
-        public override void Execute()
-        {
-            receiver.FaceRight();
-        }
-    }
-    public class FaceLeft : MarioCommand
-    {
-        public FaceLeft(MarioEntity receiver)
-            : base(receiver) { }
-
-        public override void Execute()
-        {
-            receiver.FaceLeft();
-        }
-    }
 
     public class MarioJump : MarioCommand
     {

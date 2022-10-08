@@ -103,7 +103,6 @@ namespace Sprint0.Mario
             Debug.WriteLine(currentPowerState.ToString());
             Debug.WriteLine(currentMotionState.ToString());
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
-
         }
 
 /*         public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
@@ -143,6 +142,13 @@ namespace Sprint0.Mario
             base.Draw(batch);
         }
 
+//----------------------------------------Show Bound Box Command-----------------------------------
+        public void ShowBoundBox()
+        {
+            showBoundBox = !showBoundBox;
+        }
+
+
  //----------------------------------------Motion Command Method-----------------------------------
         public void Jump()
         {
@@ -162,6 +168,8 @@ namespace Sprint0.Mario
             currentMotionState?.IdleTransion();
         }
 
+        //the vertical and horizontal speed after state change will turn to zero
+        //need to fix this problem later
         public void WalkRight()
         {
             switch (currentMotionState)
@@ -189,6 +197,18 @@ namespace Sprint0.Mario
                     else
                     {
                         Sprite.Orientation = SpriteEffects.None;
+                        currentMotionState?.WalkTransion();
+                    }
+                    break;
+                case CrouchState:
+                    if (Sprite.Orientation == SpriteEffects.None)
+                    {
+                        currentMotionState?.IdleTransion();
+                    }
+                    else
+                    {
+                        Sprite.Orientation = SpriteEffects.None;
+                        currentMotionState?.IdleTransion();
                     }
                     break;
             }
@@ -222,6 +242,18 @@ namespace Sprint0.Mario
                     else
                     {
                         Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                        currentMotionState?.IdleTransion();
+                    }
+                    break;
+                case CrouchState:
+                    if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                    {
+                        currentMotionState?.WalkTransion();
+                    }
+                    else
+                    {
+                        Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                        currentMotionState?.IdleTransion();
                     }
                     break;
             }
@@ -238,16 +270,6 @@ namespace Sprint0.Mario
                         currentMotionState?.CrouchTransion();
                     break;
             }
-        }
-        public void FaceRight()
-        {
-            Sprite.Orientation = SpriteEffects.None;
-
-        }
-        public void FaceLeft()
-        {
-            Sprite.Orientation = SpriteEffects.FlipHorizontally;
-
         }
 
         //-------------------------------------------Power Command Method--------------------------------
