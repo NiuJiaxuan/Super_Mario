@@ -35,6 +35,8 @@ namespace Sprint0
         private BrickBlockEntity hiddenBrickBlock;
 
 
+        private List<Entity> entities;
+
         private ItemFactory itemFactory = null;
         private MarioFactory marioFactory = null;
         private BlockFactory blockFactory = null;
@@ -81,6 +83,8 @@ namespace Sprint0
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            entities = new List<Entity>();
 
             //-------------------------mario initial----------------------
             mario = new MarioEntity(this, new Vector2(150, 390));
@@ -187,7 +191,7 @@ namespace Sprint0
             {
                 entity.Update(gameTime);
             }
-
+            
             base.Update(gameTime);
         }
 

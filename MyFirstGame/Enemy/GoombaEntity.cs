@@ -21,9 +21,9 @@ namespace Sprint0.Enemy
 
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            base.Update(gameTime);
+            base.Update(gameTime,entities);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
