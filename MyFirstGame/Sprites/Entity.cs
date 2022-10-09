@@ -13,6 +13,7 @@ namespace Sprint0.Sprites
     {
         private Sprite _sprite;
         public Game1 game;
+        public GraphicsDevice graphics;
         public bool showBoundBox;
 
 
@@ -22,7 +23,12 @@ namespace Sprint0.Sprites
             set { _sprite = value; }
         }
 
-        public Rectangle Rectangle
+        public List<Entity> Entities
+        {
+            get; set;
+        }
+
+        public Rectangle GetRectangle
         {
             get { return new Rectangle((int)Position.X, (int)Position.Y, (int)Sprite.Width, (int)Sprite.Height); }
         }
@@ -30,34 +36,40 @@ namespace Sprint0.Sprites
         #region Colloision
         protected bool IsTouchingLeft(Entity entity)
         {
-            return this.Rectangle.Right + this.Speed.X > entity.Rectangle.Left &&
-              this.Rectangle.Left < entity.Rectangle.Left &&
-              this.Rectangle.Bottom > entity.Rectangle.Top &&
-              this.Rectangle.Top < entity.Rectangle.Bottom;
+            Rectangle intersectRectangule = Rectangle.Intersect(GetRectangle, entity.GetRectangle);
+            if (!intersectRectangule.IsEmpty)
+            {
+            }
+
+            return false;
+            //return this.GetRectangle.Right /*+ this.Speed.X */> entity.GetRectangle.Left &&
+            //  this.GetRectangle.Left < entity.GetRectangle.Left &&
+            //  this.GetRectangle.Bottom > entity.GetRectangle.Top &&
+            //  this.GetRectangle.Top < entity.GetRectangle.Bottom;
         }
 
         protected bool IsTouchingRight(Entity entity)
         {
-            return this.Rectangle.Left + this.Speed.X < entity.Rectangle.Right &&
-              this.Rectangle.Right > entity.Rectangle.Right &&
-              this.Rectangle.Bottom > entity.Rectangle.Top &&
-              this.Rectangle.Top < entity.Rectangle.Bottom;
+            return this.GetRectangle.Left + this.Speed.X < entity.GetRectangle.Right &&
+              this.GetRectangle.Right > entity.GetRectangle.Right &&
+              this.GetRectangle.Bottom > entity.GetRectangle.Top &&
+              this.GetRectangle.Top < entity.GetRectangle.Bottom;
         }
 
         protected bool IsTouchingTop(Entity entity)
         {
-            return this.Rectangle.Bottom + this.Speed.Y > entity.Rectangle.Top &&
-              this.Rectangle.Top < entity.Rectangle.Top &&
-              this.Rectangle.Right > entity.Rectangle.Left &&
-              this.Rectangle.Left < entity.Rectangle.Right;
+            return this.GetRectangle.Bottom /*+ this.Speed.Y */> entity.GetRectangle.Top &&
+              this.GetRectangle.Top < entity.GetRectangle.Top &&
+              this.GetRectangle.Right > entity.GetRectangle.Left &&
+              this.GetRectangle.Left < entity.GetRectangle.Right;
         }
 
         protected bool IsTouchingBottom(Entity entity)
         {
-            return this.Rectangle.Top + this.Speed.Y < entity.Rectangle.Bottom &&
-              this.Rectangle.Bottom > entity.Rectangle.Bottom &&
-              this.Rectangle.Right > entity.Rectangle.Left &&
-              this.Rectangle.Left < entity.Rectangle.Right;
+            return this.GetRectangle.Top/* + this.Speed.Y*/ < entity.GetRectangle.Bottom &&
+              this.GetRectangle.Bottom > entity.GetRectangle.Bottom &&
+              this.GetRectangle.Right > entity.GetRectangle.Left &&
+              this.GetRectangle.Left < entity.GetRectangle.Right;
         }
 
         #endregion
@@ -88,26 +100,23 @@ namespace Sprint0.Sprites
 
         public Entity (Game1 game, Vector2 position)
         {
-            this.game = game; 
+            this.game = game;
         }
 
-        public virtual void Update (GameTime gameTime/*, List<Entity> entities*/)
+        public virtual void Update (GameTime gameTime, List<Entity> entities)
         {
-            
-            
+
+            this.Entities = entities;
             Sprite.Update(gameTime);
             
         }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            Texture2D texture = new Texture2D(spriteBatch.GraphicsDevice, 1,1);
+            texture.SetData( new Color[] { Color.White });
+            spriteBatch.Draw(texture, Position, Color.White);
             Sprite.Draw(spriteBatch);
-        }
-
-        // rewrite later
-        public bool isTouchingLeft(Entity entity)
-        {
-            
-            return false;
         }
     }
 }

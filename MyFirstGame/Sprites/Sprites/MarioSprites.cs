@@ -20,7 +20,7 @@ namespace Sprint0.Sprites.Sprites
     class NormalMarioIdleSprite : Sprite
     {
         public NormalMarioIdleSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("small-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18, 24), false)
+            : base(game.Content.Load<Texture2D>("small-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(24, 33), false)
         {
 
         }
@@ -29,7 +29,7 @@ namespace Sprint0.Sprites.Sprites
     class NormalMarioJumpSprite : Sprite
     {
         public NormalMarioJumpSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("small-jumping-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18, 18), false)
+            : base(game.Content.Load<Texture2D>("small-jumping-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(33, 33), false)
         {
 
         }
@@ -38,7 +38,7 @@ namespace Sprint0.Sprites.Sprites
     class NormalMarioWalkSprite : Sprite
     {
         public NormalMarioWalkSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("small-walking-mario"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(24, 24), true)
+            : base(game.Content.Load<Texture2D>("small-walking-mario"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(33, 33), true)
         {
 
         }
@@ -47,7 +47,7 @@ namespace Sprint0.Sprites.Sprites
     class NormalMarioCrouchSprite : Sprite
     {
         public NormalMarioCrouchSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("small-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(18, 24), false)
+            : base(game.Content.Load<Texture2D>("small-standing-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(24, 33), false)
         {
 
         }
@@ -82,7 +82,7 @@ namespace Sprint0.Sprites.Sprites
     class FireMarioCrouchSprite : Sprite
     {
         public FireMarioCrouchSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("fire-crouching-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(17, 24), false)
+            : base(game.Content.Load<Texture2D>("fire-crouching-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 31), false)
         {
 
         }
@@ -116,7 +116,7 @@ namespace Sprint0.Sprites.Sprites
     class SuperMarioCrouchSprite : Sprite
     {
         public SuperMarioCrouchSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("large-crouching-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(17, 24), false)
+            : base(game.Content.Load<Texture2D>("large-crouching-mario"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 31), false)
         {
 
         }
