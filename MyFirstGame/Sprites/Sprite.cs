@@ -13,25 +13,23 @@ namespace Sprint0.Sprites
     {
         // Texture
         public Texture2D texture { get; set; }
-
+        public Tile Tile { get; set; }
         // Movement
         public Vector2 Position { get; set; }
         public Vector2 Speed { get; set; }
         public Vector2 Accelation { get; set; }
 
-        // Visible
-        public bool isVisible { get; set; }
+        public int DelayTime { get { return Tile.DelayTime; } set { Tile.DelayTime = value; } }
 
-        public Point FrameSize { get { return tile.frameSize; } }
+        public Point FrameSize { get { return Tile.frameSize; } }
 
         public SpriteEffects Orientation { get; set; }  
 
-        Tile tile;
 
         public Sprite(Texture2D texture, Vector2 position,Vector2 speed,
             Point frameOrigin,  Point sheetSize, Point frameSize, bool isAnimated)
         {
-            tile = new Tile(texture, frameOrigin, sheetSize, frameSize, isAnimated);
+            Tile = new Tile(texture, frameOrigin, sheetSize, frameSize, isAnimated);
             this.texture = texture;
             this.Position = position;
             this.Speed = speed;
@@ -52,13 +50,13 @@ namespace Sprint0.Sprites
 
         public void Update(GameTime gameTime)
         {
-            tile.Update(gameTime);
+            Tile.Update(gameTime);
         }
 
 
         public void Draw(SpriteBatch batch)
         {
-            tile.Draw(batch,Position, Orientation);
+            Tile.Draw(batch,Position, Orientation);
         }
 
 

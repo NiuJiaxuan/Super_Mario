@@ -26,8 +26,8 @@ namespace Sprint0.Block.State
             Block.SmallBlock2 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X + 15, Block.Position.Y), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
             Block.SmallBlock3 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X, Block.Position.Y - 15), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
             Block.SmallBlock4 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X + 15, Block.Position.Y - 15), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
-            Block.smallBlockVisible = true;
             Block.breakBlockVisible = false;
+            
             
         }
 

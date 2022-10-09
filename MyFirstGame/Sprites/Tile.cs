@@ -30,9 +30,9 @@ namespace Sprint0.Sprites
         public Point frameSize { get; set; }
 
 
-        public int timeSinceLastFrame = 0;
+        private int timeSinceLastFrame = 0;
 
-        public int delayTime = 400;
+        private int delayTime = 500 ;
         public int DelayTime
         {
             get { return delayTime;}
@@ -56,9 +56,9 @@ namespace Sprint0.Sprites
             if (isAnimated)
             {
                 timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
-                if (timeSinceLastFrame >= delayTime)
+                if (timeSinceLastFrame >= DelayTime)
                 {
-                    timeSinceLastFrame -= delayTime;
+                    timeSinceLastFrame -= DelayTime;
                     currentFrame.X++;
                     if (currentFrame.X >= sheetSize.X)
                     {
@@ -78,7 +78,7 @@ namespace Sprint0.Sprites
 
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects orientation)
         {
-            spriteBatch.Draw(Texture, new Vector2(position.X, position.Y-Texture.Height),
+            spriteBatch.Draw(Texture, new Vector2(position.X, position.Y-frameSize.Y),
                 new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
                 frameSize.X, frameSize.Y),
                 Color.White, 0, Vector2.Zero, 1, orientation, 0);

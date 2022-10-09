@@ -28,8 +28,7 @@ namespace Sprint0.State
 
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
-        public bool isVisible = true;
-        public bool smallBlockVisible = false;
+        public bool IsVisible = true;
         public bool breakBlockVisible = true;
         public Sprite SmallBlock1
         {
@@ -83,47 +82,21 @@ namespace Sprint0.State
                 base.Draw(spriteBatch);
             }
             
-            if (smallBlockVisible)
-            {
-                SmallBlock1?.Draw(spriteBatch);
-                SmallBlock2?.Draw(spriteBatch);
-                SmallBlock3?.Draw(spriteBatch);
-                SmallBlock4?.Draw(spriteBatch);
-            }
+            
+            SmallBlock1?.Draw(spriteBatch);
+            SmallBlock2?.Draw(spriteBatch);
+            SmallBlock3?.Draw(spriteBatch);
+            SmallBlock4?.Draw(spriteBatch);
+            
             
         }
 
-        public void hideBrickBlock()
-        {
-            isVisible = false;
-        }
-
-        public void changeToVisible()
-        {
-            isVisible = true;
-        }
 
         public void BumpTransition()
         {
             CurrentState?.BumpTransition();
         }
 
-
-        public void BumpOrBreakTransition()
-        {
-            switch (Mario.currentPowerState)
-            {
-                case SuperState:
-                    CurrentState?.BreakTransition();
-                    break;
-                case FireState:
-                    CurrentState?.BreakTransition();
-                    break;
-                default:
-                    BumpTransition();
-                    break;
-            }
-        }
 
     }
 }

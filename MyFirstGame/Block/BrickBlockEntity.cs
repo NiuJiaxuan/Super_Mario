@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.Mario;
+using Sprint0.Mario.MarioPowerState;
 using Sprint0.Sprites;
 using Sprint0.State;
 using System;
@@ -17,13 +18,14 @@ namespace Sprint0.Block
     {
 
 
-        public BrickBlockEntity(Game1 game, Vector2 position, MarioEntity mario)
+        public BrickBlockEntity(Game1 game, Vector2 position, MarioEntity mario, bool isVisible)
             : base(game, position,mario)
         {
             Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
             BlockType = eBlockType.BrickBlock;
             CurrentState = new BrickBlockNormalState(this);
             CurrentState.Enter(null);
+            IsVisible = isVisible;
 
         }
 
@@ -34,9 +36,29 @@ namespace Sprint0.Block
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (isVisible)
+            if (IsVisible)
             {
                 base.Draw(spriteBatch);
+            }
+        }
+        public void changeToVisible()
+        {
+            IsVisible = true;
+        }
+
+        public void BumpOrBreakTransition()
+        {
+            switch (Mario.currentPowerState)
+            {
+                case SuperState:
+                    CurrentState?.BreakTransition();
+                    break;
+                case FireState:
+                    CurrentState?.BreakTransition();
+                    break;
+                default:
+                    BumpTransition();
+                    break;
             }
         }
     }

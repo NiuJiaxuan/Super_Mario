@@ -12,6 +12,7 @@ using Sprint0.Enemy;
 using Sprint0.Sprites.factory;
 using Sprint0.Sprites;
 using System.Collections.Generic;
+using Sprint0.Item;
 
 namespace Sprint0
 {
@@ -22,28 +23,25 @@ namespace Sprint0
         private SpriteBatch _spriteBatch;
 
         
-        private Texture2D background;
+        //private Texture2D background;
 
         private IController keyboard;
         private IController gamepad;
 
         private MarioEntity mario;
 
-        private BlockEntity brickBlock;
+        private BrickBlockEntity brickBlock;
         private BlockEntity questionBlock;
-        private BlockEntity hiddenBrickBlock;
-        private BlockEntity floorBlock;
-        private BlockEntity stairBlock;
+        private BrickBlockEntity hiddenBrickBlock;
 
-        private GoombaEntity goomba;
-        private KoopaTroopaEntity koopaTroopa;
 
         private ItemFactory itemFactory = null;
         private MarioFactory marioFactory = null;
         private BlockFactory blockFactory = null;
         private EnemyFactory enemyFactory = null;
 
-        private List<BlockEntity> Floors = new List<BlockEntity>();
+        private List<Entity> Entities = new List<Entity>();
+
 
         public MarioFactory MarioFactory
         {
@@ -86,27 +84,42 @@ namespace Sprint0
 
             //-------------------------mario initial----------------------
             mario = new MarioEntity(this, new Vector2(150, 390));
+            Entities.Add(mario);
 
             //-------------------------enemy initial----------------------
-            goomba = new GoombaEntity(this, new Vector2(500, 100));
-            koopaTroopa = new KoopaTroopaEntity(this, new Vector2(600, 100));
+            Entities.Add(new GoombaEntity(this, new Vector2(500, 100)));
+            Entities.Add(new KoopaTroopaEntity(this, new Vector2(600, 100)));
 
             //-------------------------block initial----------------------
-            questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200),mario);
-            brickBlock = new BrickBlockEntity(this, new Vector2(200, 200),mario);
-            stairBlock = new StairBlockEntity(this, new Vector2(400, 200),mario);
-            hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300),mario);
-            hiddenBrickBlock.hideBrickBlock();
+            questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200), mario);
+            brickBlock = new BrickBlockEntity(this, new Vector2(200, 200), mario, true);
+            hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300), mario, false);
+            Entities.Add(questionBlock);
+            Entities.Add(brickBlock);
+            Entities.Add(hiddenBrickBlock);
 
             //-------------------------floor initial----------------------
             for (int i = 0; i < 100; i++)
             {
-                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 420), mario));
-                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 450), mario));
-                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 480), mario));
+                Entities.Add(new FloorBlockEntity(this, new Vector2(30 * i, 420), mario));
+                Entities.Add(new FloorBlockEntity(this, new Vector2(30 * i, 450), mario));
+                Entities.Add(new FloorBlockEntity(this, new Vector2(30 * i, 480), mario));
             }
 
+            //-------------------------stair initial----------------------
+            for (int i = 0; i < 4 ; i++)
+            {
+                for (int j =  4; j > i ; j--) {
+                    Entities.Add(new StairBlockEntity(this, new Vector2(650 + j * 30, 390 - i * 30), mario));
+                }
+            }
 
+            //-------------------------item initial----------------------
+            Entities.Add(new StarEntity(this, new Vector2(100, 300)));
+            Entities.Add(new FireFlowerEntity(this, new Vector2(200, 300)));
+            Entities.Add(new CoinEntity(this, new Vector2(300, 300)));
+            Entities.Add(new SuperMushroomEntity(this, new Vector2(400, 300)));
+            Entities.Add(new OneUpMushroomEntity(this, new Vector2(500, 300)));
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
@@ -147,7 +160,7 @@ namespace Sprint0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //non ani texture load
-            background = this.Content.Load<Texture2D>("sky");
+            //background = this.Content.Load<Texture2D>("sky");
   
 
             //--------------------------------load font---------------------------------------
@@ -165,16 +178,14 @@ namespace Sprint0
             keyboard.Update();
             gamepad.Update();
 
-            mario.Update(gameTime);       
-            goomba.Update(gameTime);
-            koopaTroopa.Update(gameTime);
+            mario.Update(gameTime);
             brickBlock.Update(gameTime);
             questionBlock.Update(gameTime);
-            stairBlock.Update(gameTime);
             hiddenBrickBlock.Update(gameTime);
-            foreach (FloorBlockEntity floor in Floors)
+
+            foreach (Entity entity in Entities)
             {
-                floor.Update(gameTime);
+                entity.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -188,21 +199,14 @@ namespace Sprint0
 
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
+            //_spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
             _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
 
-
-            mario.Draw(_spriteBatch);
-            goomba.Draw(_spriteBatch);
-            koopaTroopa.Draw(_spriteBatch);
-            brickBlock.Draw(_spriteBatch);
-            questionBlock.Draw(_spriteBatch);
-            hiddenBrickBlock.Draw(_spriteBatch);    
-            stairBlock.Draw(_spriteBatch);
-            foreach (FloorBlockEntity floor in Floors)
+            foreach (Entity entity in Entities)
             {
-                floor.Draw(_spriteBatch);
+                entity.Draw(_spriteBatch);
             }
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

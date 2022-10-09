@@ -13,7 +13,7 @@ namespace Sprint0.Sprites.Sprites
         public CoinSprite(Game1 game, Vector2 position)
            : base(game.Content.Load<Texture2D>("Coin"), position, Vector2.Zero, Point.Zero, new Point(6, 1), new Point(214 / 6, 30), true)
         {
-
+            DelayTime = 100;
         }
     }
 
@@ -22,7 +22,7 @@ namespace Sprint0.Sprites.Sprites
         public FireFlowerSprite(Game1 game, Vector2 position)
            : base(game.Content.Load<Texture2D>("FireFlower"), position, Vector2.Zero, Point.Zero, new Point(2, 1), new Point(58 / 2, 30), true)
         {
-
+            DelayTime = 300;
         }
     }
 
@@ -31,7 +31,7 @@ namespace Sprint0.Sprites.Sprites
         public StarSprite(Game1 game, Vector2 position)
            : base(game.Content.Load<Texture2D>("Star"), position, Vector2.Zero, Point.Zero, new Point(3, 2), new Point(91 / 3, 30), true)
         {
-
+            DelayTime = 150;
         }
     }
 
@@ -40,7 +40,7 @@ namespace Sprint0.Sprites.Sprites
         public SuperMushroomSprite(Game1 game, Vector2 position)
            : base(game.Content.Load<Texture2D>("SuperMushroom"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(30, 30), false)
         {
-
+            
         }
     }
 
@@ -49,7 +49,7 @@ namespace Sprint0.Sprites.Sprites
         public OneUpMushroomSprite(Game1 game, Vector2 position)
            : base(game.Content.Load<Texture2D>("1upMushroom"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(30, 30), false)
         {
-
+            
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Sprint0.Sprites
         public QuestionBlockSprite(Game1 game, Vector2 position)
             : base(game.Content.Load<Texture2D>("questionBlock"), position, Vector2.Zero, Point.Zero, new Point(3, 1), new Point(33, 31), true)
         {
-
+            DelayTime = 600;
         }
     }
 

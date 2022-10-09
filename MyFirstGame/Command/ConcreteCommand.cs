@@ -110,9 +110,9 @@ namespace Sprint0.Command
         }
     }
 
-    public class BlockBumpOrBreak : BlockCommand
+    public class BlockBumpOrBreak : BrickBlockCommand
     {
-        public BlockBumpOrBreak(BlockEntity receiver)
+        public BlockBumpOrBreak(BrickBlockEntity receiver)
             : base (receiver) { }
         public override void Execute()
         {
@@ -131,9 +131,9 @@ namespace Sprint0.Command
         }
 
     }
-    public class ChangeToVisible : BlockCommand
+    public class ChangeToVisible : BrickBlockCommand
     {
-        public ChangeToVisible(BlockEntity receiver)
+        public ChangeToVisible(BrickBlockEntity receiver)
             : base(receiver) { }
         public override void Execute()
         {
