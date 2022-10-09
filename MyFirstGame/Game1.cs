@@ -13,6 +13,7 @@ using Sprint0.Sprites.factory;
 using Sprint0.Sprites;
 using System.Collections.Generic;
 using Sprint0.Item;
+using System.Diagnostics;
 
 namespace Sprint0
 {
@@ -87,6 +88,7 @@ namespace Sprint0
             mario = new MarioEntity(this, new Vector2(150, 390));
             Entities.Add(mario);
 
+
             //-------------------------enemy initial----------------------
             Entities.Add(new GoombaEntity(this, new Vector2(500, 100)));
             Entities.Add(new KoopaTroopaEntity(this, new Vector2(600, 100)));
@@ -108,9 +110,10 @@ namespace Sprint0
             }
 
             //-------------------------stair initial----------------------
-            for (int i = 0; i < 4 ; i++)
+            for (int i = 0; i < 4; i++)
             {
-                for (int j =  4; j > i ; j--) {
+                for (int j = 4; j > i; j--)
+                {
                     Entities.Add(new StairBlockEntity(this, new Vector2(650 + j * 30, 390 - i * 30), mario));
                 }
             }
@@ -141,6 +144,8 @@ namespace Sprint0
 
             keyboard.Command((int)Keys.D, new MarioWalkRight(mario));
             keyboard.Command((int)Keys.Right, new MarioWalkRight(mario));
+
+            keyboard.Command((int)Keys.C, new ShowBoundBox(Entities));
 
             keyboard.Command((int)Keys.B, new BlockBumpOrBreak(brickBlock));
             keyboard.Command((int)Keys.OemQuestion, new BlockBump(questionBlock));

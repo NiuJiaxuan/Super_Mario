@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,7 +44,8 @@ namespace Sprint0.Sprites
         }
         public float Height
         {
-            get { return texture.Height; }
+            
+            get {return texture.Height; }
         }
 
 

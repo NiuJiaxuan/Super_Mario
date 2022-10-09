@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Sprint0.Sprites;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +16,27 @@ namespace Sprint0.CollisionDetection
             right,
             top,
             bottom,
+            none
         }
 
-        public CollisionDetection()
-        {
+        private Entity currentEntity;
 
+        public CollisionDetection(Entity currentEntity)
+        {
+            this.currentEntity = currentEntity;
         }
 
-        public Touching detectCollsion()
+        public Touching detectCollsion(List<Entity> entities)
         {
+            Touching touching = Touching.none;
+            Rectangle interactionRec;
+            foreach(Entity entity in entities)
+            {
+                interactionRec = Rectangle.Intersect(currentEntity.GetRectangle, entity.GetRectangle);
 
 
-
-            return Touching.top;
+            }
+            return touching;
         }
 
     }
