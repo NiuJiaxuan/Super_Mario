@@ -28,7 +28,7 @@ namespace Sprint0.State
 
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
-        public bool isVisible = false;
+        public bool isVisible = true;
         public bool smallBlockVisible = false;
         public bool breakBlockVisible = true;
         public Sprite SmallBlock1

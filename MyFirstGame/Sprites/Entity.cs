@@ -23,6 +23,11 @@ namespace Sprint0.Sprites
             set { _sprite = value; }
         }
 
+        public List<Entity> Entities
+        {
+            get; set;
+        }
+
         public Rectangle GetRectangle
         {
             get { return new Rectangle((int)Position.X, (int)Position.Y, (int)Sprite.Width, (int)Sprite.Height); }
@@ -100,15 +105,15 @@ namespace Sprint0.Sprites
 
         public virtual void Update (GameTime gameTime, List<Entity> entities)
         {
-            
-            
+
+            this.Entities = entities;
             Sprite.Update(gameTime);
             
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Texture2D texture = new Texture2D(spriteBatch.GraphicsDevice, 10,10);
+            Texture2D texture = new Texture2D(spriteBatch.GraphicsDevice, 1,1);
             texture.SetData( new Color[] { Color.White });
             spriteBatch.Draw(texture, Position, Color.White);
             Sprite.Draw(spriteBatch);

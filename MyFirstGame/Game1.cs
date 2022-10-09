@@ -103,19 +103,18 @@ namespace Sprint0
             entities.Add(mario);
             entities.Add(questionBlock);
             entities.Add(brickBlock);
-            entities.Add(floorBlock);
             entities.Add(stairBlock);
             entities.Add(hiddenBrickBlock);
 
             hiddenBrickBlock.hideBrickBlock();
 
             //-------------------------floor initial----------------------
-            for (int i = 0; i < 100; i++)
-            {
-                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 420), mario));
-                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 450), mario));
-                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 480), mario));
-            }
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 420), mario));
+            //    Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 450), mario));
+            //    Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 480), mario));
+            //}
 
 
 
@@ -176,17 +175,10 @@ namespace Sprint0
             keyboard.Update();
             gamepad.Update();
 
-            mario.Update(gameTime);       
-            goomba.Update(gameTime);
-            koopaTroopa.Update(gameTime);
-            brickBlock.Update(gameTime);
-            questionBlock.Update(gameTime);
-            stairBlock.Update(gameTime);
-            hiddenBrickBlock.Update(gameTime);
-            foreach (FloorBlockEntity floor in Floors)
-            {
-                floor.Update(gameTime);
-            }
+            //foreach (FloorBlockEntity floor in Floors)
+            //{
+            //    floor.Update(gameTime,entities);
+            //}
 
             foreach(Entity entity in entities)
             {
@@ -208,17 +200,22 @@ namespace Sprint0
             _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
 
 
-            mario.Draw(_spriteBatch);
+            //mario.Draw(_spriteBatch);
             goomba.Draw(_spriteBatch);
             koopaTroopa.Draw(_spriteBatch);
-            brickBlock.Draw(_spriteBatch);
-            questionBlock.Draw(_spriteBatch);
-            hiddenBrickBlock.Draw(_spriteBatch);    
-            stairBlock.Draw(_spriteBatch);
+            //brickBlock.Draw(_spriteBatch);
+            //questionBlock.Draw(_spriteBatch);
+            //hiddenBrickBlock.Draw(_spriteBatch);    
+            //stairBlock.Draw(_spriteBatch);
             foreach (FloorBlockEntity floor in Floors)
             {
                 floor.Draw(_spriteBatch);
             }
+            foreach (Entity entity in entities)
+            {
+                entity.Draw(_spriteBatch);
+            }
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
