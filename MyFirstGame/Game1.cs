@@ -38,8 +38,7 @@ namespace Sprint0
         private ItemFactory itemFactory = null;
         private MarioFactory marioFactory = null;
         private BlockFactory blockFactory = null;
-        private EnemyFactory goombaFactory = null;
-        private EnemyFactory koopaTroopaFactory = null;
+        private EnemyFactory enemyFactory = null;
 
         public MarioFactory MarioFactory
         {
@@ -56,17 +55,13 @@ namespace Sprint0
             get { return blockFactory ?? BlockFactory.Instance; }
             protected set { blockFactory = value; }
         }
-        public EnemyFactory GoombaFactory
-        {
-            get { return koopaTroopaFactory ?? EnemyFactory.Instance; }
-            protected set { koopaTroopaFactory = value; }
-        }
 
-        public EnemyFactory KoopaTroopaFactory
+        public EnemyFactory EnemyFactory
         {
-            get { return goombaFactory ?? EnemyFactory.Instance; }
-            protected set { goombaFactory = value; }
+            get { return enemyFactory ?? EnemyFactory.Instance; }
+            protected set { enemyFactory = value; }
         }
+       
 
 
         public Color fontColor { get; set; } = Color.White;
@@ -98,6 +93,7 @@ namespace Sprint0
             stairBlock = new StairBlockEntity(this, new Vector2(400, 200),mario);
             hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300),mario);
             hiddenBrickBlock.hideBrickBlock();
+
 
 
             //-------------------------keyboard control------------------

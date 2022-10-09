@@ -10,15 +10,14 @@ using Sprint0.Sprites.factory;
 
 namespace Sprint0.Enemy
 {
-    public class KoopaTroopaEntity : Entity
+    public class KoopaTroopaEntity : EnemyEntity
     {
-        public virtual EnemyFactory KoopaTroopaFactory => game.KoopaTroopaFactory;
+        //public virtual EnemyFactory KoopaTroopaFactory => game.KoopaTroopaFactory;
 
         public KoopaTroopaEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
-            Sprite = (Sprite)KoopaTroopaFactory.CreateKoopaTroopa(game, position);
-
+            Sprite = EnemyFactory.CreateEnemy(game, position, (int)eEnemyType.KoopaTroopa);
         }
 
         public override void Update(GameTime gameTime)
