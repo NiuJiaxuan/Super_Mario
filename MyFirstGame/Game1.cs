@@ -35,8 +35,6 @@ namespace Sprint0
         private BrickBlockEntity hiddenBrickBlock;
 
 
-        private List<Entity> entities;
-
         private ItemFactory itemFactory = null;
         private MarioFactory marioFactory = null;
         private BlockFactory blockFactory = null;
@@ -84,7 +82,6 @@ namespace Sprint0
         {
             // TODO: Add your initialization logic here
 
-            entities = new List<Entity>();
 
             //-------------------------mario initial----------------------
             mario = new MarioEntity(this, new Vector2(150, 390));
@@ -182,14 +179,10 @@ namespace Sprint0
             keyboard.Update();
             gamepad.Update();
 
-            mario.Update(gameTime);
-            brickBlock.Update(gameTime);
-            questionBlock.Update(gameTime);
-            hiddenBrickBlock.Update(gameTime);
 
             foreach (Entity entity in Entities)
             {
-                entity.Update(gameTime);
+                entity.Update(gameTime, Entities);
             }
             
             base.Update(gameTime);
