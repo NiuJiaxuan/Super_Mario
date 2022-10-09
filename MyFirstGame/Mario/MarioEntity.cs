@@ -15,6 +15,8 @@ using Sprint0.Mario.MarioMotionState;
 using Sprint0.Mario.MarioPowerState;
 using Sprint0.Sprites.factory;
 using Sprint0.Block;
+using Sprint0.State;
+using Sprint0.Enemy;
 
 namespace Sprint0.Mario
 {
@@ -107,16 +109,20 @@ namespace Sprint0.Mario
 
          public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
         {
-            foreach ( Entity entity in entities)
+            foreach (Entity entity in entities)
             {
-                switch (entity){
-                    case BrickBlockEntity:
-                        if (IsTouchingLeft(entity) || IsTouchingRight(entity) || IsTouchingTop(entity))
+                switch (entity) {
+                    case BlockEntity:
+                        if (IsTouchingLeft(entity) || IsTouchingRight(entity) || IsTouchingTop(entity) || IsTouchingBottom(entity))
                         {
-                            Speed = new Vector2(0, Speed.Y);
-                        }else if(IsTouchingBottom(entity))
+                            Idle();
+                        }
+                        break;
+                    case EnemyEntity:
+                        if (IsTouchingBottom(entity) || IsTouchingLeft(entity) || IsTouchingRight(entity))
                         {
-                            (BrickBlockEntity)entity
+                            TakeDamage();
+                            Idle();
                         }
                         break;
                 }
