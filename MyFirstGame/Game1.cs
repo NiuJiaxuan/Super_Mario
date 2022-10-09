@@ -161,7 +161,7 @@ namespace Sprint0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //non ani texture load
-            //background = this.Content.Load<Texture2D>("sky");
+            //background = this.Content.Load<Texture2D>("background");
   
 
             //--------------------------------load font---------------------------------------
