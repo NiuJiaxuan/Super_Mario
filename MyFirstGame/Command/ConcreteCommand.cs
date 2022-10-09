@@ -143,4 +143,20 @@ namespace Sprint0.Command
 
     }
 
+
+    public class ShowBoundBox : EntityCommand
+    {
+        public ShowBoundBox(List<Entity> receiver)
+            :base(receiver) { }
+
+        public override void Execute()
+        {
+            foreach (Entity entity in receiver)
+            {
+                entity?.ShowBoundBox();
+            }
+        }
+
+    }
+
 }
