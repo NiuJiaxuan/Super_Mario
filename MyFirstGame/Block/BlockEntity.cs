@@ -66,13 +66,13 @@ namespace Sprint0.State
             Mario = mario;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            base.Update(gameTime);
-
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            CurrentState?.Update(gameTime);
+            CurrentState?.Update(gameTime);            
+            
+            base.Update(gameTime,entities);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

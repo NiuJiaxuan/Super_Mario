@@ -105,17 +105,19 @@ namespace Sprint0.Mario
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
         }
 
-/*         public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
+         public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
         {
             foreach ( Entity entity in entities)
             {
                 switch (entity){
                     case BrickBlockEntity:
-                        if (isTouchingLeft(entity) || isTouchingRight(entity))
+                        if (IsTouchingLeft(entity) || IsTouchingRight(entity) || IsTouchingTop(entity))
                         {
-                            currentMotionState?.IdleTransion();
                             Speed = new Vector2(0, Speed.Y);
-                        }//           fix later
+                        }else if(IsTouchingBottom(entity))
+                        {
+                            (BrickBlockEntity)entity
+                        }
                         break;
                 }
             }
@@ -123,12 +125,12 @@ namespace Sprint0.Mario
 
 
         }
-*/
-        public override void Update(GameTime gameTime/*, List<Entity> entities*/)
-        {
- //           CollisionDetection(Sprite, entities);
 
-            base.Update(gameTime/*, entities*/);
+        public override void Update(GameTime gameTime, List<Entity> entities)
+        {
+            CollisionDetection(Sprite, entities);
+
+            base.Update(gameTime, entities);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
