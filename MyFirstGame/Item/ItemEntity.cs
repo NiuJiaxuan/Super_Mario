@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Block.State;
+using Sprint0.Item.State;
 using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
 using System;
@@ -15,6 +17,7 @@ namespace Sprint0.Item
     {
 
         public virtual ItemFactory ItemFactory => game.ItemFactory;
+        public bool isVisible = true;
         public enum eItemType
         {
             Coin = 0,
@@ -23,6 +26,7 @@ namespace Sprint0.Item
             OneUpMushroom = 3,
             Star = 4,
         }
+        public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }
 
         public ItemEntity(Game1 game, Vector2 position)
@@ -38,7 +42,19 @@ namespace Sprint0.Item
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (isVisible) {  
             base.Draw(spriteBatch);
+            }
+        }
+
+        public void changeToVisible()
+        {
+            isVisible = true;
+        }
+
+        public void BumpTransition()
+        {
+            CurrentState?.BumpTransition();
         }
     }
 }
