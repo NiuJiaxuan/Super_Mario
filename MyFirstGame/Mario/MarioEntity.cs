@@ -256,7 +256,7 @@ namespace Sprint0.Mario
                 case CrouchState:
                     if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
                     {
-                        currentMotionState?.WalkTransion();
+                        currentMotionState?.IdleTransion();
                     }
                     else
                     {

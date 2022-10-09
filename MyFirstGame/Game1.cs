@@ -11,6 +11,7 @@ using Sprint0.Block;
 using Sprint0.Enemy;
 using Sprint0.Sprites.factory;
 using Sprint0.Sprites;
+using System.Collections.Generic;
 
 namespace Sprint0
 {
@@ -34,6 +35,8 @@ namespace Sprint0
         private BlockEntity stairBlock;
         private GoombaEntity goomba;
         private KoopaTroopaEntity koopaTroopa;
+
+        private List<Entity> entities;
 
         private ItemFactory itemFactory = null;
         private MarioFactory marioFactory = null;
@@ -79,6 +82,8 @@ namespace Sprint0
         {
             // TODO: Add your initialization logic here
 
+            entities = new List<Entity>();
+
             //-------------------------mario initial----------------------
             mario = new MarioEntity(this, new Vector2(100, 100));
 
@@ -92,6 +97,13 @@ namespace Sprint0
             floorBlock = new FloorBlockEntity(this, new Vector2(300, 200),mario);
             stairBlock = new StairBlockEntity(this, new Vector2(400, 200),mario);
             hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300),mario);
+            entities.Add(mario);
+            entities.Add(questionBlock);
+            entities.Add(brickBlock);
+            entities.Add(floorBlock);
+            entities.Add(stairBlock);
+            entities.Add(hiddenBrickBlock);
+
             hiddenBrickBlock.hideBrickBlock();
 
 
@@ -153,15 +165,11 @@ namespace Sprint0
             keyboard.Update();
             gamepad.Update();
 
-            mario.Update(gameTime);       
-            goomba.Update(gameTime);
-            koopaTroopa.Update(gameTime);
-            brickBlock.Update(gameTime);
-            questionBlock.Update(gameTime);
-            stairBlock.Update(gameTime);
-            floorBlock.Update(gameTime);
-            hiddenBrickBlock.Update(gameTime);
-
+            foreach(Entity entity in entities)
+            {
+                entity.Update(gameTime, entities);
+            }
+            
             base.Update(gameTime);
         }
 
