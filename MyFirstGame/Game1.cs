@@ -28,11 +28,13 @@ namespace Sprint0
         private IController gamepad;
 
         private MarioEntity mario;
+
         private BlockEntity brickBlock;
         private BlockEntity questionBlock;
         private BlockEntity hiddenBrickBlock;
         private BlockEntity floorBlock;
         private BlockEntity stairBlock;
+
         private GoombaEntity goomba;
         private KoopaTroopaEntity koopaTroopa;
 
@@ -42,6 +44,8 @@ namespace Sprint0
         private MarioFactory marioFactory = null;
         private BlockFactory blockFactory = null;
         private EnemyFactory enemyFactory = null;
+
+        private List<BlockEntity> Floors = new List<BlockEntity>();
 
         public MarioFactory MarioFactory
         {
@@ -85,7 +89,7 @@ namespace Sprint0
             entities = new List<Entity>();
 
             //-------------------------mario initial----------------------
-            mario = new MarioEntity(this, new Vector2(100, 100));
+            mario = new MarioEntity(this, new Vector2(150, 390));
 
             //-------------------------enemy initial----------------------
             goomba = new GoombaEntity(this, new Vector2(500, 100));
@@ -94,7 +98,6 @@ namespace Sprint0
             //-------------------------block initial----------------------
             questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200),mario);
             brickBlock = new BrickBlockEntity(this, new Vector2(200, 200),mario);
-            floorBlock = new FloorBlockEntity(this, new Vector2(300, 200),mario);
             stairBlock = new StairBlockEntity(this, new Vector2(400, 200),mario);
             hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300),mario);
             entities.Add(mario);
@@ -105,6 +108,14 @@ namespace Sprint0
             entities.Add(hiddenBrickBlock);
 
             hiddenBrickBlock.hideBrickBlock();
+
+            //-------------------------floor initial----------------------
+            for (int i = 0; i < 100; i++)
+            {
+                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 420), mario));
+                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 450), mario));
+                Floors.Add(new FloorBlockEntity(this, new Vector2(30 * i, 480), mario));
+            }
 
 
 
@@ -165,6 +176,18 @@ namespace Sprint0
             keyboard.Update();
             gamepad.Update();
 
+            mario.Update(gameTime);       
+            goomba.Update(gameTime);
+            koopaTroopa.Update(gameTime);
+            brickBlock.Update(gameTime);
+            questionBlock.Update(gameTime);
+            stairBlock.Update(gameTime);
+            hiddenBrickBlock.Update(gameTime);
+            foreach (FloorBlockEntity floor in Floors)
+            {
+                floor.Update(gameTime);
+            }
+
             foreach(Entity entity in entities)
             {
                 entity.Update(gameTime, entities);
@@ -183,8 +206,7 @@ namespace Sprint0
 
             _spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
             _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
-            //_spriteBatch.Draw(earth, new Vector2(400,240),Color.White);
-            //_spriteBatch.Draw(shuttle, new Vector2(450, 240), Color.White);
+
 
             mario.Draw(_spriteBatch);
             goomba.Draw(_spriteBatch);
@@ -193,8 +215,10 @@ namespace Sprint0
             questionBlock.Draw(_spriteBatch);
             hiddenBrickBlock.Draw(_spriteBatch);    
             stairBlock.Draw(_spriteBatch);
-            floorBlock.Draw(_spriteBatch);
-
+            foreach (FloorBlockEntity floor in Floors)
+            {
+                floor.Draw(_spriteBatch);
+            }
             _spriteBatch.End();
 
             base.Draw(gameTime);
