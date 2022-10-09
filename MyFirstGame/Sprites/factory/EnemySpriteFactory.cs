@@ -13,12 +13,17 @@ namespace Sprint0.Sprites.factory
 {
     public abstract class EnemySpriteFactory
     {
+        public enum eEnemeyType
+        {
+            Goomba = 1,
+            KoopaTroopa = 2,
+        }
+
         protected EnemySpriteFactory()
         {
-
         }
-        public abstract ISprite CreateGoomba(Game1 game, Vector2 pos);
-        public abstract ISprite CreateKoopaTroopa(Game1 game, Vector2 pos);
+
+        public abstract ISprite CreateEnemy(Game1 game, Vector2 pos, int type);
 
     }
 
@@ -38,17 +43,18 @@ namespace Sprint0.Sprites.factory
             }
         }
 
-        public override ISprite CreateGoomba(Game1 game, Vector2 pos)
+        public override Sprite CreateEnemy(Game1 game, Vector2 pos, int type)
         {
             Sprite sprite = null;
-            sprite = new GoombaSprite(game, pos);
-            return sprite;
-        }
-
-        public override ISprite CreateKoopaTroopa(Game1 game, Vector2 pos)
-        {
-            Sprite sprite = null;
-            sprite = new KoopaTroopSprite(game, pos);
+            switch ((eEnemeyType)type)
+            {
+                case eEnemeyType.Goomba:
+                    sprite = new GoombaSprite(game, pos);
+                    break;
+                case eEnemeyType.KoopaTroopa:
+                    sprite = new KoopaTroopSprite(game, pos);
+                    break;
+            }
             return sprite;
         }
     }

@@ -10,15 +10,14 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Enemy
 {
-    public class GoombaEntity : Entity
+    public class GoombaEntity : EnemyEntity
     {
 
-        public virtual EnemyFactory GoombaFactory => game.GoombaFactory;
-
         public GoombaEntity(Game1 game, Vector2 position)
-            : base(game, position)
-        {
-            Sprite = (Sprite)GoombaFactory.CreateGoomba(game, position);
+            : base(game, position) 
+        { 
+            Sprite = EnemyFactory.CreateEnemy(game, position,(int)eEnemyType.Goomba);
+            EnemyType = eEnemyType.Goomba;
 
         }
 
