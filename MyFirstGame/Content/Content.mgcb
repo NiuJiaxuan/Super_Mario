@@ -212,6 +212,23 @@
 /processorParam:TextureFormat=Color
 /build:large-walking-mario.png
 
+#begin MarioLevel.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:MarioLevel.xml
+
+#begin Pipe.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Pipe.png
+
 #begin questionBlock.png
 /importer:TextureImporter
 /processor:TextureProcessor

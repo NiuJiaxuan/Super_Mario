@@ -60,9 +60,19 @@ namespace Sprint0.State
             SmallBrickBlock = 6,
         }
 
-        public BlockEntity(Game1 game, Vector2 position, MarioEntity mario) : base(game, position)
+        public enum BlockItemType
         {
-            Mario = mario;
+            Coin,
+            FireFlower,
+            OneUpMushroom,
+            Star,
+            SuperMushroom,
+            None
+        }
+
+
+        public BlockEntity(Game1 game, Vector2 position) : base(game, position)
+        {
         }
 
         public override void Update(GameTime gameTime, List<Entity> entities)
