@@ -17,6 +17,9 @@ using Sprint0.Sprites.factory;
 using Sprint0.Block;
 using Sprint0.State;
 using Sprint0.Enemy;
+using Microsoft.VisualBasic;
+using Sprint0.CollisionDetection;
+using Sprint0.Item;
 
 namespace Sprint0.Mario
 {
@@ -107,25 +110,45 @@ namespace Sprint0.Mario
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
         }
 
-         public void CollisionDetection (Sprite currentRectangular, List<Entity> entities)
+         public void CollisionDetection ( List<Entity> entities)
         {
             foreach (Entity entity in entities)
             {
+                Tuple<Collision.Touching, float, float> detected =  collisionDetection.detectCollsion(entities);
+
                 switch (entity) {
                     case BlockEntity:
-                        if (IsTouchingLeft(entity) || IsTouchingRight(entity) || IsTouchingTop(entity) || IsTouchingBottom(entity))
+                        if (detected.Item1 != Collision.Touching.none)
                         {
-                            Idle();
+                            Idle();                
+                            Position = new Vector2(detected.Item2, detected.Item3);
+
                         }
                         break;
                     case EnemyEntity:
-                        if (IsTouchingBottom(entity) || IsTouchingLeft(entity) || IsTouchingRight(entity))
-                        {
-                            TakeDamage();
+                        if (detected.Item1 != Collision.Touching.bottom && detected.Item1 != Collision.Touching.none)
+                        {                            
+                            Position = new Vector2(detected.Item2, detected.Item3);
                             Idle();
+                            TakeDamage();
                         }
                         break;
-                }
+                    case ItemEntity:
+                        if (detected.Item1 != Collision.Touching.none)
+                        {                        
+                            Debug.WriteLine("fire flower");
+                            switch (entity)
+                            {
+                                case FireFlowerEntity:
+                                    Fire();
+                                    break;
+                                case SuperMushroomEntity:
+                                    Super();
+                                    break;
+                            }
+                        }
+                        break;
+                }                      
             }
 
 
@@ -134,7 +157,7 @@ namespace Sprint0.Mario
 
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            //CollisionDetection(Sprite, entities);
+            CollisionDetection(entities);
 
             base.Update(gameTime, entities);
 
@@ -150,11 +173,7 @@ namespace Sprint0.Mario
             base.Draw(batch);
         }
 
-//----------------------------------------Show Bound Box Command-----------------------------------
-        public void ShowBoundBox()
-        {
-            showBoundBox = !showBoundBox;
-        }
+
 
 
  //----------------------------------------Motion Command Method-----------------------------------

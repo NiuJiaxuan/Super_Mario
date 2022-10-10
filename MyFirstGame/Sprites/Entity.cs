@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.interfaces;
+using Sprint0.CollisionDetection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,8 @@ namespace Sprint0.Sprites
         public Game1 game;
         public GraphicsDevice graphics;
         public bool showBoundBox;
+        public Texture2D texture;
+        public Collision collisionDetection;
 
 
         public Sprite Sprite
@@ -30,7 +34,13 @@ namespace Sprint0.Sprites
 
         public Rectangle GetRectangle
         {
-            get { return new Rectangle((int)Position.X, (int)Position.Y, (int)Sprite.Width, (int)Sprite.Height); }
+            get { return new Rectangle((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y), (int)Sprite.FrameSize.X, (int)Sprite.FrameSize.Y); }
+        }
+
+        public Collision Collision
+        {
+            get { return collisionDetection; }
+            set { this.collisionDetection = value; }
         }
 
         #region Colloision
@@ -101,6 +111,9 @@ namespace Sprint0.Sprites
         public Entity (Game1 game, Vector2 position)
         {
             this.game = game;
+            showBoundBox = false;            
+            Collision = new Collision(this);
+
         }
 
         public virtual void Update (GameTime gameTime, List<Entity> entities)
@@ -108,15 +121,21 @@ namespace Sprint0.Sprites
 
             this.Entities = entities;
             Sprite.Update(gameTime);
-            
+            //Debug.WriteLine(Sprite.Height, Sprite.FrameSize.Y.ToString());
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            //Texture2D texture = new Texture2D(spriteBatch.GraphicsDevice, 1,1);
-            //texture.SetData( new Color[] { Color.White });
-            //spriteBatch.Draw(texture, Position, Color.White);
+            if(showBoundBox)
+            RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
             Sprite.Draw(spriteBatch);
+        }
+
+//----------------------------------------Show Bound Box Command-----------------------------------
+
+        public virtual void ShowBoundBox()
+        {
+            showBoundBox = !showBoundBox;
         }
     }
 }

@@ -26,6 +26,19 @@ namespace Sprint0.Command
 
     }
 
+    public abstract class EntityCommand : ICommand
+    {
+        protected List<Entity> receiver;
+
+        protected EntityCommand(List<Entity> receiver)
+        {
+            this.receiver = receiver;
+        }
+
+        public abstract void Execute();
+
+    }
+
 
     public abstract class MarioCommand : ICommand
     {
