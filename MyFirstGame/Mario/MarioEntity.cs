@@ -134,7 +134,7 @@ namespace Sprint0.Mario
 
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            CollisionDetection(Sprite, entities);
+            //CollisionDetection(Sprite, entities);
 
             base.Update(gameTime, entities);
 

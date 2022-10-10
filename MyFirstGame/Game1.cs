@@ -204,6 +204,7 @@ namespace Sprint0
                 entity.Draw(_spriteBatch);
             }
 
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

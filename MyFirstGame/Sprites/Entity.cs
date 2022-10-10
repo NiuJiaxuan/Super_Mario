@@ -113,9 +113,9 @@ namespace Sprint0.Sprites
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Texture2D texture = new Texture2D(spriteBatch.GraphicsDevice, 1,1);
-            texture.SetData( new Color[] { Color.White });
-            spriteBatch.Draw(texture, Position, Color.White);
+            //Texture2D texture = new Texture2D(spriteBatch.GraphicsDevice, 1,1);
+            //texture.SetData( new Color[] { Color.White });
+            //spriteBatch.Draw(texture, Position, Color.White);
             Sprite.Draw(spriteBatch);
         }
     }
