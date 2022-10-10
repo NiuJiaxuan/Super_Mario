@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.interfaces;
+using Sprint0.CollisionDetection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +18,7 @@ namespace Sprint0.Sprites
         public GraphicsDevice graphics;
         public bool showBoundBox;
         public Texture2D texture;
+        public Collision collisionDetection;
 
 
         public Sprite Sprite
@@ -33,6 +35,12 @@ namespace Sprint0.Sprites
         public Rectangle GetRectangle
         {
             get { return new Rectangle((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y), (int)Sprite.FrameSize.X, (int)Sprite.FrameSize.Y); }
+        }
+
+        public Collision Collision
+        {
+            get { return collisionDetection; }
+            set { this.collisionDetection = value; }
         }
 
         #region Colloision
@@ -103,7 +111,9 @@ namespace Sprint0.Sprites
         public Entity (Game1 game, Vector2 position)
         {
             this.game = game;
-            showBoundBox = false;
+            showBoundBox = false;            
+            Collision = new Collision(this);
+
         }
 
         public virtual void Update (GameTime gameTime, List<Entity> entities)
@@ -121,7 +131,7 @@ namespace Sprint0.Sprites
             Sprite.Draw(spriteBatch);
         }
 
-
+//----------------------------------------Show Bound Box Command-----------------------------------
 
         public virtual void ShowBoundBox()
         {

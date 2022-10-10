@@ -85,9 +85,7 @@ namespace Sprint0
 
 
             //-------------------------mario initial----------------------
-            mario = new MarioEntity(this, new Vector2(150, 390));
-            Entities.Add(mario);
-
+            mario = new MarioEntity(this, new Vector2(150, 380));
 
             //-------------------------enemy initial----------------------
             Entities.Add(new GoombaEntity(this, new Vector2(500, 100)));
@@ -147,6 +145,7 @@ namespace Sprint0
 
             keyboard.Command((int)Keys.C, new ShowBoundBox(Entities));
 
+
             keyboard.Command((int)Keys.B, new BlockBumpOrBreak(brickBlock));
             keyboard.Command((int)Keys.OemQuestion, new BlockBump(questionBlock));
             keyboard.Command((int)Keys.H, new ChangeToVisible(hiddenBrickBlock));
@@ -184,7 +183,7 @@ namespace Sprint0
             keyboard.Update();
             gamepad.Update();
 
-
+            mario.Update(gameTime,Entities);
             foreach (Entity entity in Entities)
             {
                 entity.Update(gameTime, Entities);
@@ -204,6 +203,7 @@ namespace Sprint0
             //_spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
             _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
 
+            mario.Draw(_spriteBatch);
             foreach (Entity entity in Entities)
             {
                 entity.Draw(_spriteBatch);
