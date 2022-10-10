@@ -20,7 +20,7 @@ namespace Sprint0.CollisionDetection
             none
         }
 
-        private Entity currentEntity;
+        public Entity currentEntity;
 
         public Collision(Entity currentEntity)
         {
@@ -44,25 +44,25 @@ namespace Sprint0.CollisionDetection
                     {
                         if(currentEntity.GetRectangle.Y > entity.GetRectangle.Y)
                         {
-                            touching = Touching.top;
+                            touching = Touching.bottom;
                             y += interactionRec.Height;
                         }
                         else
                         {
-                            touching = Touching.bottom;
+                            touching = Touching.top;
                             y -= interactionRec.Height;
                         }
                     }
                     else
                     {
-                        if(currentEntity.GetRectangle.X< entity.GetRectangle.X)
+                        if(currentEntity.GetRectangle.X < entity.GetRectangle.X)
                         {
-                            touching = Touching.right;
+                            touching = Touching.left;
                             x-= interactionRec.Width;
                         }
                         else
                         {
-                            touching = Touching.left;
+                            touching = Touching.right;
                             x+= interactionRec.Width;
                         }
                     }

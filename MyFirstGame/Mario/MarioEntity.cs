@@ -110,49 +110,53 @@ namespace Sprint0.Mario
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
         }
 
-         public void CollisionDetection ( List<Entity> entities)
-        {
+         public void CollisionDetection (List<Entity> entities)
+         {
+            Tuple<Collision.Touching, float, float> detected =  collisionDetection.detectCollsion(entities);
+            Rectangle interactionRec;
+            Entity collide = null;
+
             foreach (Entity entity in entities)
             {
-                Tuple<Collision.Touching, float, float> detected =  collisionDetection.detectCollsion(entities);
-
-                switch (entity) {
-                    case BlockEntity:
-                        if (detected.Item1 != Collision.Touching.none)
-                        {
-                            Idle();                
-                            Position = new Vector2(detected.Item2, detected.Item3);
-
-                        }
-                        break;
-                    case EnemyEntity:
-                        if (detected.Item1 != Collision.Touching.bottom && detected.Item1 != Collision.Touching.none)
-                        {                            
-                            Position = new Vector2(detected.Item2, detected.Item3);
-                            Idle();
-                            TakeDamage();
-                        }
-                        break;
-                    case ItemEntity:
-                        if (detected.Item1 != Collision.Touching.none)
-                        {                        
-                            Debug.WriteLine("fire flower");
-                            switch (entity)
-                            {
-                                case FireFlowerEntity:
-                                    Fire();
-                                    break;
-                                case SuperMushroomEntity:
-                                    Super();
-                                    break;
-                            }
-                        }
-                        break;
-                }                      
+                interactionRec = Rectangle.Intersect(collisionDetection.currentEntity.GetRectangle, entity.GetRectangle);
+                if (!interactionRec.IsEmpty)
+                {
+                     collide = entity;
+                }
             }
 
-
-
+            switch (collide) {
+                case BlockEntity:
+                    if (detected.Item1 != Collision.Touching.none)
+                    {
+                        Idle();                
+                        Position = new Vector2(detected.Item2, detected.Item3);
+                    }
+                    break;
+                case EnemyEntity:
+                    if (detected.Item1 != Collision.Touching.bottom && detected.Item1 != Collision.Touching.none)
+                    {
+                        Position = new Vector2(detected.Item2, detected.Item3);
+                        Idle();
+                        TakeDamage();
+                    }
+                    break;
+                case ItemEntity:
+                    if (detected.Item1 != Collision.Touching.none)
+                    {
+                        switch (collide)
+                        {
+                            case FireFlowerEntity:
+                                Fire();
+                                break;
+                            case SuperMushroomEntity:
+                                Super();
+                                break;
+                        }
+                        
+                    }
+                    break;
+            }            
         }
 
         public override void Update(GameTime gameTime, List<Entity> entities)
