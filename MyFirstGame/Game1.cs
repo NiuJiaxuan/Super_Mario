@@ -24,11 +24,6 @@ namespace Sprint0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private MarioEntity mario;
-
-        private BrickBlockEntity brickBlock;
-        private BlockEntity questionBlock;
-        private BrickBlockEntity hiddenBrickBlock;
 
         private Texture2D background;
 
@@ -42,8 +37,6 @@ namespace Sprint0
         private MarioFactory marioFactory = null;
         private BlockFactory blockFactory = null;
         private EnemyFactory enemyFactory = null;
-
-        private List<Entity> Entities = new List<Entity>();
 
         private LevelBuilder levelBuilder;
 
@@ -91,15 +84,7 @@ namespace Sprint0
             levelData = levelBuilder.LevelData;
 
 
-            mario = new MarioEntity(this, new Vector2(150, 380));
-
-
-
             background = Content.Load<Texture2D>("background");
-            //-------------------------block initial----------------------
-            questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200), true);
-            brickBlock = new BrickBlockEntity(this, new Vector2(200, 200), true);
-            hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300), false);
 
 
 

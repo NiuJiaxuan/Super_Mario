@@ -21,7 +21,7 @@ namespace Sprint0.Item.State
             this.previousState = previousState;
             Origion = Item.Position;
 
-            Item.Speed = new Vector2(0, -40);
+            Item.Speed = new Vector2(0, -60);
         }
         public override void Exit()
         {
@@ -38,9 +38,7 @@ namespace Sprint0.Item.State
 
         public override void Update(GameTime gameTime)
         {
-            if (Math.Abs(Item.Position.Y - Origion.Y) > 10)
-                Item.Speed = new Vector2(0, Item.Speed.Y * -1);
-            else if (Math.Abs(Item.Position.Y - Origion.Y) == 0)
+            if (Math.Abs(Item.Position.Y - Origion.Y) >= 30)
                 NormalTransition();
         }
 

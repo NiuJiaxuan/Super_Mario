@@ -20,6 +20,7 @@ namespace Sprint0.Sprites.factory
             OneUpMushroom = 3,
             Star = 4,
             Pipe = 5,
+            None = 6,
         }
         protected ItemSpriteFactory()
         {

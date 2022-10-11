@@ -70,6 +70,11 @@
 		<ObjectName>Pipe</ObjectName>
 		<Position>600 200</Position>
 	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>SuperMushroom</ObjectName>
+		<Position>100 300</Position>
+	</Item>
 	<!-- Enemies -->
 	<Item>
 		<ObjectType>Enemies</ObjectType>

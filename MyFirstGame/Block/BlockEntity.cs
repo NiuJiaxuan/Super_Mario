@@ -22,13 +22,14 @@ namespace Sprint0.State
         private Sprite smallBlock2;
         private Sprite smallBlock3;
         private Sprite smallBlock4;
+
         public IBlockState CurrentState { get; set; }
         public eBlockType BlockType { get; set; }
 
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
-        public bool IsVisible = true;
         public bool breakBlockVisible = true;
+
         public Sprite SmallBlock1
         {
             get { return smallBlock1; }
@@ -61,12 +62,13 @@ namespace Sprint0.State
 
         public enum BlockItemType
         {
-            Coin,
-            FireFlower,
-            OneUpMushroom,
-            Star,
-            SuperMushroom,
-            None
+            Coin = 0,
+            SuperMushroom = 1,
+            FireFlower = 2,
+            OneUpMushroom = 3,
+            Star = 4,
+            Pipe = 5,
+            None = 6,
         }
 
 
@@ -99,7 +101,6 @@ namespace Sprint0.State
             
             
         }
-
 
         public void BumpTransition()
         {

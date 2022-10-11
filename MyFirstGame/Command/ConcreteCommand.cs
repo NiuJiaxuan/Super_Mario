@@ -137,7 +137,7 @@ namespace Sprint0.Command
             : base(receiver) { }
         public override void Execute()
         {
-            receiver.changeToVisible();
+            receiver.ChangeToVisible();
             receiver.BumpOrBreakTransition();
         }
 
