@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
 using System;
@@ -21,9 +22,9 @@ namespace Sprint0.Enemy
 
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities)
+        public override void Update(GameTime gameTime,MarioEntity mario, List<Entity> blockEntities)
         {
-            base.Update(gameTime,entities);
+            base.Update(gameTime,mario, blockEntities);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;

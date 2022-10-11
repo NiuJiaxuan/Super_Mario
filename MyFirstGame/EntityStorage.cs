@@ -23,9 +23,13 @@ namespace Sprint0
         public List<Entity> BlockEntityList { get; set; }
         public List<Entity> ItemEntityList { get; set; }
         public List<Entity> EnemyEntityList { get; set; }
+
         public List<Entity> EntityList { get; set; }
+
+        public List<Entity> PlayerList { get; set; }
+
         public static EntityStorage Instance { get; } = new EntityStorage();
-        public MarioEntity Mario { get; set; } 
+        public Entity Mario { get; set; } 
 
         public  EntityStorage()
         {
@@ -36,9 +40,9 @@ namespace Sprint0
         {
             EntityList = value;
         }
-        public void SetMarioEntity (MarioEntity mario)
+        public void SetPlayerList (List<Entity> value)
         {
-            Mario = mario; 
+            PlayerList = value; 
         }
 
         private static Entity CreateEntity(LevelObject levelObject, Game1 game)
@@ -126,30 +130,59 @@ namespace Sprint0
             BlockEntityList = new List<Entity>();
             ItemEntityList = new List<Entity>();
             EnemyEntityList = new List<Entity>();
+
             SetEntityList(new List<Entity>());
+            SetPlayerList(new List<Entity>());
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {
-                if (!levelObject.ObjectType.Equals("Mario"))
+                Entity entity = CreateEntity(levelObject, game);
+                EntityList.Add(entity);
+                switch (levelObject.ObjectType)
                 {
-                    Entity entity = CreateEntity(levelObject, game);
-                    EntityList.Add(entity);
+                    case "Mario":
+                        Mario = entity;
+                        EntityList.Remove(Mario); 
+                        break;
+                    case "Block":
+                        BlockEntityList.Add(entity);
+                        break;
+                    case "Item":
+                        ItemEntityList.Add(entity); ;
+                        break;
+                    case "Enemy":
+                        EnemyEntityList.Add(entity);
+                        break;
                 }
-                else
-                {
 
-                    SetMarioEntity(new MarioEntity(game,levelObject.Position));
-                }
+                //if (!levelObject.ObjectType.Equals("Mario"))
+                //{
+                //    Entity entity = CreateEntity(levelObject, game);
+                //    EntityList.Add(entity);
+                //}
+                //else
+                //{
+                //    Mario = CreateEntity(levelObject, game);
+                //    PlayerList.Add(Mario);
+                //}
             }
         }
 
         public void Update(GameTime gameTime)
         {
 
-            Mario.Update(gameTime, EntityList, Mario);
-            foreach (Entity entity in EntityList)
+            Mario.Update(gameTime,EntityList,ItemEntityList,EnemyEntityList);
+            foreach (Entity entity in BlockEntityList)
             {
-                entity.Update(gameTime, EntityList,Mario);
+                entity.Update(gameTime, (MarioEntity)Mario, EnemyEntityList);
+            }
+            foreach (Entity entity1 in ItemEntityList)
+            {
+                entity1.Update(gameTime);
+            }
+            foreach (Entity entity2 in EnemyEntityList)
+            {
+                entity2.Update(gameTime, (MarioEntity)Mario, BlockEntityList);
             }
         }
         public void Draw(SpriteBatch batch)

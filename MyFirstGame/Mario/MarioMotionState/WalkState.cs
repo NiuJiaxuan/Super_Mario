@@ -64,6 +64,7 @@ namespace Sprint0.Mario.MarioMotionState
             {
                 Mario.Speed = new Vector2(-40, Mario.Speed.Y);
             }
+            //Debug.WriteLine(Mario.Speed);
             base.Update(gameTime);
         }
     }

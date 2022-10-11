@@ -74,13 +74,13 @@ namespace Sprint0.State
         {
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
+        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities)
         {
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             CurrentState?.Update(gameTime);            
             
-            base.Update(gameTime,entities, mario);
+            base.Update(gameTime, mario, enemyEntities);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -105,6 +105,7 @@ namespace Sprint0.State
         {
             CurrentState?.BumpTransition();
         }
+
 
 
     }

@@ -24,9 +24,9 @@ namespace Sprint0.Block
             CurrentState.Enter(null);
 
         }
-        public override void Update(GameTime gameTime, List<Entity> entities)
+        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities)
         {
-            base.Update(gameTime, entities);
+            base.Update(gameTime, mario, enemyEntities);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

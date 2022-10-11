@@ -28,11 +28,9 @@ namespace Sprint0.Block
             IsVisible = isVisible;
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
+        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities)
         {
-            Mario = mario;
-            base.Update(gameTime,entities, mario);
-
+            base.Update(gameTime, mario, enemyEntities);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

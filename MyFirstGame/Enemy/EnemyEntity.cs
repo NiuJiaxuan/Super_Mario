@@ -27,9 +27,9 @@ namespace Sprint0.Enemy
             KoopaTroopa = 2,
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
+        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> blockEntity)
         {
-            base.Update(gameTime,entities, mario);
+            base.Update(gameTime,mario,blockEntity);
 
         }
 

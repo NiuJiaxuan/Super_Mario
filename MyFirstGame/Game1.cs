@@ -126,7 +126,6 @@ namespace Sprint0
 
             keyboard.Command((int)Keys.C, new ShowBoundBox(levelBuilder.EntityStorage.EntityList));
 
-
             
 
 

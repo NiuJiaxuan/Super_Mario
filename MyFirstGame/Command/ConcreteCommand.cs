@@ -25,19 +25,19 @@ namespace Sprint0.Command
 
     public class ChangeToFireMario : MarioCommand
     {
-        public ChangeToFireMario(MarioEntity receiver)
-            :base(receiver) { }
+        public ChangeToFireMario(Entity receiver)
+            :base((MarioEntity)receiver) { }
 
         public override void Execute()
         {
-            receiver.Fire();
+           receiver.Fire();
         }
     }
 
     public class ChangeToSuperMario : MarioCommand
     {
-        public ChangeToSuperMario(MarioEntity receiver)
-            : base(receiver) { }
+        public ChangeToSuperMario(Entity receiver)
+            : base((MarioEntity)receiver) { }
 
         public override void Execute()
         {
@@ -47,8 +47,8 @@ namespace Sprint0.Command
 
     public class ChangeToNormalMario : MarioCommand
     {
-        public ChangeToNormalMario(MarioEntity receiver)
-            : base(receiver) { }
+        public ChangeToNormalMario(Entity receiver)
+            : base((MarioEntity)receiver) { }
 
         public override void Execute()
         {
@@ -58,8 +58,8 @@ namespace Sprint0.Command
 
     public class MarioTakeDamege : MarioCommand
     {
-        public MarioTakeDamege(MarioEntity receiver)
-            : base(receiver) { }
+        public MarioTakeDamege(Entity receiver)
+            : base((MarioEntity)receiver) { }
 
         public override void Execute()
         {
@@ -69,8 +69,8 @@ namespace Sprint0.Command
 
     public class MarioJump : MarioCommand
     {
-        public MarioJump(MarioEntity receiver)
-            : base(receiver) { }
+        public MarioJump(Entity receiver)
+            : base((MarioEntity)receiver) { }
 
         public override void Execute()
         {
@@ -80,8 +80,8 @@ namespace Sprint0.Command
 
     public class MarioCrouch : MarioCommand
     {
-        public MarioCrouch(MarioEntity receiver)
-            : base(receiver) { }
+        public MarioCrouch(Entity receiver)
+            : base((MarioEntity)receiver) { }
 
         public override void Execute()
         {
@@ -91,8 +91,8 @@ namespace Sprint0.Command
 
     public class MarioWalkRight : MarioCommand
     {
-        public MarioWalkRight(MarioEntity receiver)
-            : base(receiver) { }
+        public MarioWalkRight(Entity receiver)
+            : base((MarioEntity)receiver) { }
 
         public override void Execute()
         {
@@ -101,8 +101,8 @@ namespace Sprint0.Command
     }
     public class MarioWalkLeft : MarioCommand
     {
-        public MarioWalkLeft(MarioEntity receiver)
-            : base(receiver) { }
+        public MarioWalkLeft(Entity receiver)
+            : base((MarioEntity)receiver) { }
 
         public override void Execute()
         {

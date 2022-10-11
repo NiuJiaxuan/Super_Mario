@@ -32,9 +32,9 @@ namespace Sprint0.Item
         {
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime,entities, mario);
+            base.Update(gameTime);
 
         }
 

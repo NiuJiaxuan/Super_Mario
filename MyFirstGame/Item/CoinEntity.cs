@@ -20,9 +20,9 @@ namespace Sprint0.Item
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime,entities);
+            base.Update(gameTime);
 
         }
 

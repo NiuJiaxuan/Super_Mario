@@ -105,8 +105,8 @@ namespace Sprint0.Mario
         {
             currentMotionState = new IdleState(this);
             currentPowerState = new NormalState(this);
-            Debug.WriteLine(currentPowerState.ToString());
-            Debug.WriteLine(currentMotionState.ToString());
+            //Debug.WriteLine(currentPowerState.ToString());
+            //Debug.WriteLine(currentMotionState.ToString());
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
         }
 
@@ -160,6 +160,7 @@ namespace Sprint0.Mario
                             case SuperMushroomEntity:
                                 if (currentPowerState.GetType() == typeof(NormalState))
                                     Super();
+                                entities.Remove(collide);
                                 break;
                         }
                         
@@ -168,15 +169,16 @@ namespace Sprint0.Mario
             }            
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
+        public override void Update(GameTime gameTime, List<Entity> entities, List<Entity> itemEntities, List<Entity> enemyEntities)
         {
             CollisionDetection(entities);
 
-            base.Update(gameTime, entities, mario);
+            base.Update(gameTime, entities,itemEntities,enemyEntities);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            //Debug.WriteLine("speed is " + Speed);
             currentPowerState?.Update(gameTime);
             currentMotionState?.Update(gameTime);
         }
@@ -306,7 +308,7 @@ namespace Sprint0.Mario
                     currentMotionState?.IdleTransion();
                     break;
                 default:
-                    if(currentPowerState.GetType() != typeof(NormalState))
+                   // if(currentPowerState.GetType() != typeof(NormalState))
                         currentMotionState?.CrouchTransion();
                     break;
             }

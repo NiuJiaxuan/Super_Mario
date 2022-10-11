@@ -33,6 +33,10 @@ namespace Sprint0.Sprites
             get; set;
         }
 
+        public List<Entity> BlockEntities { get; set; }
+        public List<Entity> ItemEntities { get; set; }
+        public List<Entity> EnemyEntities { get; set; }
+
         public Rectangle GetRectangle
         {
             get { return new Rectangle((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y), (int)Sprite.FrameSize.X, (int)Sprite.FrameSize.Y); }
@@ -44,46 +48,6 @@ namespace Sprint0.Sprites
             set { this.collisionDetection = value; }
         }
 
-        #region Colloision
-        protected bool IsTouchingLeft(Entity entity)
-        {
-            Rectangle intersectRectangule = Rectangle.Intersect(GetRectangle, entity.GetRectangle);
-            if (!intersectRectangule.IsEmpty)
-            {
-            }
-
-            return false;
-            //return this.GetRectangle.Right /*+ this.Speed.X */> entity.GetRectangle.Left &&
-            //  this.GetRectangle.Left < entity.GetRectangle.Left &&
-            //  this.GetRectangle.Bottom > entity.GetRectangle.Top &&
-            //  this.GetRectangle.Top < entity.GetRectangle.Bottom;
-        }
-
-        protected bool IsTouchingRight(Entity entity)
-        {
-            return this.GetRectangle.Left + this.Speed.X < entity.GetRectangle.Right &&
-              this.GetRectangle.Right > entity.GetRectangle.Right &&
-              this.GetRectangle.Bottom > entity.GetRectangle.Top &&
-              this.GetRectangle.Top < entity.GetRectangle.Bottom;
-        }
-
-        protected bool IsTouchingTop(Entity entity)
-        {
-            return this.GetRectangle.Bottom /*+ this.Speed.Y */> entity.GetRectangle.Top &&
-              this.GetRectangle.Top < entity.GetRectangle.Top &&
-              this.GetRectangle.Right > entity.GetRectangle.Left &&
-              this.GetRectangle.Left < entity.GetRectangle.Right;
-        }
-
-        protected bool IsTouchingBottom(Entity entity)
-        {
-            return this.GetRectangle.Top/* + this.Speed.Y*/ < entity.GetRectangle.Bottom &&
-              this.GetRectangle.Bottom > entity.GetRectangle.Bottom &&
-              this.GetRectangle.Right > entity.GetRectangle.Left &&
-              this.GetRectangle.Left < entity.GetRectangle.Right;
-        }
-
-        #endregion
 
         public virtual SpriteEffects Orientation
         {
@@ -117,21 +81,37 @@ namespace Sprint0.Sprites
 
         }
 
-        public virtual void Update (GameTime gameTime, List<Entity> entities, MarioEntity mario)
+        //for mario
+        public virtual void Update (GameTime gameTime, List<Entity> blockEntities, List<Entity> itemEntities, List<Entity> enemyEntities)
         {
 
-            this.Entities = entities;
+            this.Entities = blockEntities;
+            Sprite.Update(gameTime);
+        }
+
+        // for block and enemy entity 
+        public virtual void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyBlockEntities)
+        {
+
+            this.EnemyEntities = enemyBlockEntities;
+            this.BlockEntities = enemyBlockEntities;
             Mario = mario;
             Sprite.Update(gameTime);
-            //Debug.WriteLine(Sprite.Height, Sprite.FrameSize.Y.ToString());
         }
-        public virtual void Update(GameTime gameTime, List<Entity> entities)
-        {
 
-            this.Entities = entities;
+        // for item entity
+        public virtual void Update(GameTime gameTime)
+        {
             Sprite.Update(gameTime);
-            //Debug.WriteLine(Sprite.Height, Sprite.FrameSize.Y.ToString());
         }
+
+        //public virtual void Update(GameTime gameTime, List<Entity> entities)
+        //{
+
+        //    this.Entities = entities;
+        //    Sprite.Update(gameTime);
+        //    //Debug.WriteLine(Sprite.Height, Sprite.FrameSize.Y.ToString());
+        //}
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
