@@ -13,7 +13,7 @@ namespace Sprint0.Sprites
         public LevelData LevelData { get; private set; }
         public void LodeLevel (Game1 game)
         {
-            using (XmlReader levelFile = XmlReader.Create("MarioLevel.xml"))
+            using (XmlReader levelFile = XmlReader.Create("../../../../MyFirstGame/Level/MarioLevel1.xml"))
             {
                 LevelData = new LevelData();
                 levelFile.ReadToFollowing("ObjectData");

@@ -71,7 +71,7 @@ namespace Sprint0
 
 
         public Color fontColor { get; set; } = Color.White;
-        private SpriteFont HUDFont;
+        //private SpriteFont HUDFont;
 
 
         public Game1()
@@ -141,7 +141,7 @@ namespace Sprint0
   
 
             //--------------------------------load font---------------------------------------
-            HUDFont = Content.Load<SpriteFont>("File");
+           // HUDFont = Content.Load<SpriteFont>("File");
 
 
 
@@ -168,7 +168,7 @@ namespace Sprint0
             _spriteBatch.Begin();
 
             //_spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
-            _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
+            //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
 
 
             EntityStorage.Instance.Draw(_spriteBatch);
