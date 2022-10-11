@@ -10,6 +10,13 @@ namespace Sprint0.Sprites
 {
     public class LevelBuilder
     {
+        public EntityStorage EntityStorage { get; set; }
+
+        public LevelBuilder()
+        {
+            EntityStorage = new EntityStorage();
+        }
+
         public LevelData LevelData { get; private set; }
         public void LodeLevel (Game1 game)
         {
@@ -47,7 +54,7 @@ namespace Sprint0.Sprites
                 
             }
 
-            EntityStorage.Instance.Add(LevelData, game);
+            EntityStorage.Add(LevelData, game);
         }
     }
 }

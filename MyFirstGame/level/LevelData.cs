@@ -13,13 +13,16 @@ namespace Sprint0.level
         public List<LevelObject> ObjectData { get; private set; }
         public int LevelHeight { get; private set; }
         public int LevelWidth { get; private set; }
-        public void SetObjectData(List<LevelObject> value)
-        {
-            ObjectData = value;
-        }
+
+        //public EntityStorage entityStorage;
+
+        //public void SetObjectData(List<LevelObject> value)
+        //{
+        //    ObjectData = value;
+        //}
         public LevelData()
         {
-            SetObjectData(new List<LevelObject>());
+            ObjectData = new List<LevelObject>();
         }
 
 

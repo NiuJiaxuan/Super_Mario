@@ -45,6 +45,8 @@ namespace Sprint0
 
         private List<Entity> Entities = new List<Entity>();
 
+        private LevelBuilder levelBuilder;
+
 
         public MarioFactory MarioFactory
         {
@@ -83,6 +85,12 @@ namespace Sprint0
 
         protected override void Initialize()
         {
+
+            levelBuilder = new LevelBuilder();
+            levelBuilder.LodeLevel(this);
+            levelData = levelBuilder.LevelData;
+
+
             mario = new MarioEntity(this, new Vector2(150, 380));
 
 
@@ -97,24 +105,24 @@ namespace Sprint0
             
             keyboard = new KeyboardController();
             keyboard.Command((int)Keys.Q, new ExitCommand(this));
-            keyboard.Command((int)Keys.I, new ChangeToFireMario(mario));
-            keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario));
-            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario));
-            keyboard.Command((int)Keys.O, new MarioTakeDamege(mario));
+            keyboard.Command((int)Keys.I, new ChangeToFireMario(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.U, new ChangeToSuperMario(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.O, new MarioTakeDamege(levelBuilder.EntityStorage.Mario));
 
-            keyboard.Command((int)Keys.W, new MarioJump(mario));
-            keyboard.Command((int)Keys.Up, new MarioJump(mario));
+            keyboard.Command((int)Keys.W, new MarioJump(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.Up, new MarioJump(levelBuilder.EntityStorage.Mario));
 
-            keyboard.Command((int)Keys.S, new MarioCrouch(mario));
-            keyboard.Command((int)Keys.Down, new MarioCrouch(mario));
+            keyboard.Command((int)Keys.S, new MarioCrouch(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.Down, new MarioCrouch(levelBuilder.EntityStorage.Mario));
 
-            keyboard.Command((int)Keys.A, new MarioWalkLeft(mario));
-            keyboard.Command((int)Keys.Left, new MarioWalkLeft(mario));
+            keyboard.Command((int)Keys.A, new MarioWalkLeft(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.Left, new MarioWalkLeft(levelBuilder.EntityStorage.Mario));
 
-            keyboard.Command((int)Keys.D, new MarioWalkRight(mario));
-            keyboard.Command((int)Keys.Right, new MarioWalkRight(mario));
+            keyboard.Command((int)Keys.D, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.Right, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
 
-            keyboard.Command((int)Keys.C, new ShowBoundBox(Entities));
+            keyboard.Command((int)Keys.C, new ShowBoundBox(levelBuilder.EntityStorage.EntityList));
 
 
             
@@ -132,9 +140,7 @@ namespace Sprint0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            LevelBuilder levelBuilder = new LevelBuilder();
-            levelBuilder.LodeLevel(this);
-            levelData = levelBuilder.LevelData;
+
   
 
             //--------------------------------load font---------------------------------------
@@ -151,7 +157,7 @@ namespace Sprint0
 
             keyboard.Update();
             gamepad.Update();
-            EntityStorage.Instance.Update(gameTime);
+            levelBuilder.EntityStorage.Update(gameTime);
             
             base.Update(gameTime);
         }
@@ -168,7 +174,7 @@ namespace Sprint0
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
 
 
-            EntityStorage.Instance.Draw(_spriteBatch);
+            levelBuilder.EntityStorage.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

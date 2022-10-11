@@ -17,7 +17,7 @@ using static Sprint0.level.LevelData;
 
 namespace Sprint0
 {
-    public sealed class EntityStorage
+    public class EntityStorage
     {
         public List<Entity> BackgroundEntityList { get; set; }
         public List<Entity> BlockEntityList { get; set; }
@@ -26,7 +26,12 @@ namespace Sprint0
         public List<Entity> EntityList { get; set; }
         public static EntityStorage Instance { get; } = new EntityStorage();
         public MarioEntity Mario { get; set; } 
-        private EntityStorage() { }
+
+        public  EntityStorage()
+        {
+
+        }
+
         public void SetEntityList(List<Entity> value)
         {
             EntityList = value;
@@ -137,8 +142,10 @@ namespace Sprint0
                 }
             }
         }
+
         public void Update(GameTime gameTime)
         {
+
             Mario.Update(gameTime, EntityList, Mario);
             foreach (Entity entity in EntityList)
             {

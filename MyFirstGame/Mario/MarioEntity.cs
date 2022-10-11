@@ -147,10 +147,19 @@ namespace Sprint0.Mario
                         switch (collide)
                         {
                             case FireFlowerEntity:
-                                Fire();
+                                if(currentPowerState.GetType() == typeof(SuperState))
+                                {
+                                    Fire();
+                                }
+                                if(currentPowerState.GetType() == typeof(NormalState))
+                                {
+                                    Super();
+                                }
+                                entities.Remove(collide);
                                 break;
                             case SuperMushroomEntity:
-                                Super();
+                                if (currentPowerState.GetType() == typeof(NormalState))
+                                    Super();
                                 break;
                         }
                         
