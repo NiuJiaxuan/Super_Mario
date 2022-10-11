@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:..\..\MarioData\bin\Debug\MarioData.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -211,11 +212,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:large-walking-mario.png
-
-#begin MarioLevel.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:MarioLevel.xml
 
 #begin Pipe.png
 /importer:TextureImporter

@@ -17,10 +17,8 @@ namespace Sprint0.level
         {
             ObjectData = value;
         }
-        public LevelData(int levelHeight, int levelWidth)
+        public LevelData()
         {
-            LevelHeight = levelHeight;
-            LevelWidth = levelWidth;
             SetObjectData(new List<LevelObject>());
         }
 

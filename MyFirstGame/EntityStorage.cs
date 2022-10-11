@@ -23,7 +23,7 @@ namespace Sprint0
         public List<Entity> BlockEntityList { get; set; }
         public List<Entity> ItemEntityList { get; set; }
         public List<Entity> EnemyEntityList { get; set; }
-        public List<Entity> EntityList { get; set; }  
+        public List<Entity> EntityList = new List<Entity>();
         public static EntityStorage Instance { get; } = new EntityStorage();
         private EntityStorage() { }
         public void SetEntityList(List<Entity> value)
@@ -112,7 +112,6 @@ namespace Sprint0
             BlockEntityList = new List<Entity>();
             ItemEntityList = new List<Entity>();
             EnemyEntityList = new List<Entity>();
-            EntityList = new List<Entity>();
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {

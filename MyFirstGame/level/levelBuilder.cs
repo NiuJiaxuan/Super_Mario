@@ -1,14 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Sprint0.interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Reflection.Metadata.Ecma335;
 using Sprint0.level;
 using System.Xml;
 using static Sprint0.level.LevelData;
@@ -22,23 +13,18 @@ namespace Sprint0.Sprites
         public LevelData LevelData { get; private set; }
         public void LodeLevel (Game1 game)
         {
-            using (XmlReader levelFile = XmlReader.Create("Content/MarioLevel.xml"))
+            using (XmlReader levelFile = XmlReader.Create("MarioLevel.xml"))
             {
-                levelFile.ReadToFollowing("LevelHeight");
-                int levelHeight = levelFile.ReadElementContentAsInt();
-                levelFile.ReadToNextSibling("LevelWidth");
-                int levelWidth = levelFile.ReadElementContentAsInt();
-                LevelData = new LevelData(levelHeight, levelWidth);
+                LevelData = new LevelData();
                 levelFile.ReadToFollowing("ObjectData");
                 while (!levelFile.EOF)
                 {
                     LevelObject levelObject = new LevelObject();
                     levelFile.ReadToDescendant("ObjectType");
                     levelObject.ObjectType = levelFile.ReadElementContentAsString();
-                    Debug.WriteLine(levelObject.ObjectType);
-                    levelFile.ReadToDescendant("ObjectName");
+                    levelFile.ReadToNextSibling("ObjectName");
                     levelObject.ObjectName = levelFile.ReadElementContentAsString();
-                    levelFile.ReadToDescendant("Position");
+                    levelFile.ReadToNextSibling("Position");
                     string location = levelFile.ReadElementContentAsString();
                     int i = location.IndexOf(' ');
                     int xPos = int.Parse(location.Substring(0, i));

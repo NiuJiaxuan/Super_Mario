@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ObjectData>
+	<LevelArea>
+		<LevelHeight>256</LevelHeight>
+		<LevelWidth>3600</LevelWidth>
+	</LevelArea>
+	<!-- Mario -->
+	<Item>
+		<ObjectType>Mario</ObjectType>
+		<ObjectName>MarioEntity</ObjectName>
+		<Position>400 350</Position>
+	</Item>
+
+	<!-- Blocks-->
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>100 200</Position>
+		<BlockItemType>Coin</BlockItemType>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>QuestionBlock</ObjectName>
+		<Position>200 200</Position>
+		<BlockItemType>SuperMushroom</BlockItemType>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>HiddenBlock</ObjectName>
+		<Position>300 200</Position>
+		<BlockItemType>Star</BlockItemType>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>400 200</Position>
+		<BlockItemType>None</BlockItemType>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>500 200</Position>
+		<BlockItemType>None</BlockItemType>
+	</Item>
+
+	<!-- Items -->
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>100 100</Position>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Star</ObjectName>
+		<Position>200 100</Position>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>FireFlower</ObjectName>
+		<Position>300 100</Position>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>OneUpMushroom</ObjectName>
+		<Position>400 100</Position>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Pipe</ObjectName>
+		<Position>600 200</Position>
+	</Item>
+
+	<!-- Enemies -->
+	<Item>
+		<ObjectType>Enemies</ObjectType>
+		<ObjectName>Goomba</ObjectName>
+		<Position>500 100</Position>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>KoopaTroopa</ObjectName>
+		<Position>600 100</Position>
+	</Item>
+
+</ObjectData>
