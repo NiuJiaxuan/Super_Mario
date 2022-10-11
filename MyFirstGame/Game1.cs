@@ -30,7 +30,7 @@ namespace Sprint0
         private BlockEntity questionBlock;
         private BrickBlockEntity hiddenBrickBlock;
 
-        //private Texture2D background;
+        private Texture2D background;
 
         private IController keyboard;
         private IController gamepad;
@@ -94,6 +94,8 @@ namespace Sprint0
             mario = new MarioEntity(this, new Vector2(150, 380));
 
 
+
+            background = Content.Load<Texture2D>("background");
             //-------------------------block initial----------------------
             questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200), true);
             brickBlock = new BrickBlockEntity(this, new Vector2(200, 200), true);
@@ -170,7 +172,7 @@ namespace Sprint0
 
             _spriteBatch.Begin();
 
-            //_spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
+            _spriteBatch.Draw(background, new Rectangle(0, 0, 1600, 480), Color.White);
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
 
 
