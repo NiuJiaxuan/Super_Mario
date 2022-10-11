@@ -52,4 +52,12 @@ namespace Sprint0.Sprites.Sprites
             
         }
     }
+    class PipeSprite : Sprite
+    {
+        public PipeSprite(Game1 game, Vector2 position)
+           : base(game.Content.Load<Texture2D>("Pipe"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(60, 60), false)
+        {
+
+        }
+    }
 }

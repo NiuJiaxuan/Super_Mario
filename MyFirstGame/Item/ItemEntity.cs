@@ -2,14 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.Item.State;
+using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Sprint0.Item
 {
@@ -25,6 +22,7 @@ namespace Sprint0.Item
             FireFlower = 2,
             OneUpMushroom = 3,
             Star = 4,
+            Pipe = 5,
         }
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }
@@ -34,9 +32,9 @@ namespace Sprint0.Item
         {
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities)
+        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
         {
-            base.Update(gameTime,entities);
+            base.Update(gameTime,entities, mario);
 
         }
 

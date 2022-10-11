@@ -15,8 +15,8 @@ namespace Sprint0.Block
 {
     public class StairBlockEntity : BlockEntity
     {
-        public StairBlockEntity(Game1 game, Vector2 position, MarioEntity mario)
-            : base(game, position,mario)
+        public StairBlockEntity(Game1 game, Vector2 position)
+            : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.StairBlock);
             BlockType = eBlockType.StairBlock;

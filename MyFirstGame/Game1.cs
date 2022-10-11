@@ -14,6 +14,7 @@ using Sprint0.Sprites;
 using System.Collections.Generic;
 using Sprint0.Item;
 using System.Diagnostics;
+using Sprint0.level;
 
 namespace Sprint0
 {
@@ -23,17 +24,18 @@ namespace Sprint0
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        
-        //private Texture2D background;
-
-        private IController keyboard;
-        private IController gamepad;
-
         private MarioEntity mario;
 
         private BrickBlockEntity brickBlock;
         private BlockEntity questionBlock;
         private BrickBlockEntity hiddenBrickBlock;
+
+        //private Texture2D background;
+
+        private IController keyboard;
+        private IController gamepad;
+
+        public static LevelData levelData { get; set; }
 
 
         private ItemFactory itemFactory = null;
@@ -69,7 +71,7 @@ namespace Sprint0
 
 
         public Color fontColor { get; set; } = Color.White;
-        private SpriteFont HUDFont;
+        //private SpriteFont HUDFont;
 
 
         public Game1()
@@ -81,49 +83,18 @@ namespace Sprint0
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
-
-            //-------------------------mario initial----------------------
             mario = new MarioEntity(this, new Vector2(150, 380));
 
-            //-------------------------enemy initial----------------------
-            Entities.Add(new GoombaEntity(this, new Vector2(500, 100)));
-            Entities.Add(new KoopaTroopaEntity(this, new Vector2(600, 100)));
 
             //-------------------------block initial----------------------
-            questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200), mario);
-            brickBlock = new BrickBlockEntity(this, new Vector2(200, 200), mario, true);
-            hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300), mario, false);
-            Entities.Add(questionBlock);
-            Entities.Add(brickBlock);
-            Entities.Add(hiddenBrickBlock);
+            questionBlock = new QuestionBlockEntity(this, new Vector2(100, 200), true);
+            brickBlock = new BrickBlockEntity(this, new Vector2(200, 200), true);
+            hiddenBrickBlock = new BrickBlockEntity(this, new Vector2(100, 300), false);
 
-            //-------------------------floor initial----------------------
-            for (int i = 0; i < 100; i++)
-            {
-                Entities.Add(new FloorBlockEntity(this, new Vector2(30 * i, 420), mario));
-                Entities.Add(new FloorBlockEntity(this, new Vector2(30 * i, 450), mario));
-                Entities.Add(new FloorBlockEntity(this, new Vector2(30 * i, 480), mario));
-            }
 
-            //-------------------------stair initial----------------------
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 4; j > i; j--)
-                {
-                    Entities.Add(new StairBlockEntity(this, new Vector2(650 + j * 30, 390 - i * 30), mario));
-                }
-            }
-
-            //-------------------------item initial----------------------
-            Entities.Add(new StarEntity(this, new Vector2(100, 300)));
-            Entities.Add(new FireFlowerEntity(this, new Vector2(200, 300)));
-            Entities.Add(new CoinEntity(this, new Vector2(300, 300)));
-            Entities.Add(new SuperMushroomEntity(this, new Vector2(400, 300)));
-            Entities.Add(new OneUpMushroomEntity(this, new Vector2(500, 300)));
 
             //-------------------------keyboard control------------------
+            
             keyboard = new KeyboardController();
             keyboard.Command((int)Keys.Q, new ExitCommand(this));
             keyboard.Command((int)Keys.I, new ChangeToFireMario(mario));
@@ -146,10 +117,7 @@ namespace Sprint0
             keyboard.Command((int)Keys.C, new ShowBoundBox(Entities));
 
 
-            keyboard.Command((int)Keys.B, new BlockBumpOrBreak(brickBlock));
-            keyboard.Command((int)Keys.OemQuestion, new BlockBump(questionBlock));
-            keyboard.Command((int)Keys.H, new ChangeToVisible(hiddenBrickBlock));
-
+            
 
 
             // -------------------------gamepad control----------------
@@ -164,12 +132,13 @@ namespace Sprint0
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //non ani texture load
-            //background = this.Content.Load<Texture2D>("background");
+            LevelBuilder levelBuilder = new LevelBuilder();
+            levelBuilder.LodeLevel(this);
+            levelData = levelBuilder.LevelData;
   
 
             //--------------------------------load font---------------------------------------
-            HUDFont = Content.Load<SpriteFont>("File");
+           // HUDFont = Content.Load<SpriteFont>("File");
 
 
 
@@ -182,12 +151,7 @@ namespace Sprint0
 
             keyboard.Update();
             gamepad.Update();
-
-            mario.Update(gameTime,Entities);
-            foreach (Entity entity in Entities)
-            {
-                entity.Update(gameTime, Entities);
-            }
+            EntityStorage.Instance.Update(gameTime);
             
             base.Update(gameTime);
         }
@@ -201,14 +165,10 @@ namespace Sprint0
             _spriteBatch.Begin();
 
             //_spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
-            _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
+            //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
 
-            mario.Draw(_spriteBatch);
-            foreach (Entity entity in Entities)
-            {
-                entity.Draw(_spriteBatch);
-            }
 
+            EntityStorage.Instance.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

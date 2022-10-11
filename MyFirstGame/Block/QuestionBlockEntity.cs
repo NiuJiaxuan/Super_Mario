@@ -15,13 +15,14 @@ namespace Sprint0.Block
 {
     public class QuestionBlockEntity : BlockEntity
     {
-        public QuestionBlockEntity(Game1 game, Vector2 position, MarioEntity mario)
-            : base(game, position,mario)
+        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible)
+            : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.QuestionBlock);
             BlockType = eBlockType.QuestionBlock;
             CurrentState = new QuestionBlockNormalState(this);
             CurrentState.Enter(null);
+            IsVisible = isVisible;
 
         }
         public override void Update(GameTime gameTime, List<Entity> entities)
@@ -30,7 +31,10 @@ namespace Sprint0.Block
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            if (IsVisible)
+            {
+                base.Draw(spriteBatch);
+            }
         }
     }
 }
