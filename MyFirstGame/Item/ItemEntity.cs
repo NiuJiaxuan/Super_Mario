@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.Item.State;
+using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
 using System;
@@ -31,9 +32,9 @@ namespace Sprint0.Item
         {
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities)
+        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
         {
-            base.Update(gameTime,entities);
+            base.Update(gameTime,entities, mario);
 
         }
 

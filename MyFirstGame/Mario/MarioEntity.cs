@@ -155,11 +155,11 @@ namespace Sprint0.Mario
 
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities)
+        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
         {
-            //CollisionDetection(entities);
+            CollisionDetection(entities);
 
-            base.Update(gameTime, entities);
+            base.Update(gameTime, entities, mario);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;

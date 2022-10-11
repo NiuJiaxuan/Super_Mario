@@ -117,9 +117,6 @@ namespace Sprint0
             keyboard.Command((int)Keys.C, new ShowBoundBox(Entities));
 
 
-            keyboard.Command((int)Keys.B, new BlockBumpOrBreak(brickBlock));
-            keyboard.Command((int)Keys.OemQuestion, new BlockBump(questionBlock));
-            keyboard.Command((int)Keys.H, new ChangeToVisible(hiddenBrickBlock));
             
 
 

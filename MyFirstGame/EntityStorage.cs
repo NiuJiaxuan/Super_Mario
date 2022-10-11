@@ -132,16 +132,17 @@ namespace Sprint0
                 }
                 else
                 {
-                   SetMarioEntity(new MarioEntity(game,levelObject.Position));
+
+                    SetMarioEntity(new MarioEntity(game,levelObject.Position));
                 }
             }
         }
         public void Update(GameTime gameTime)
         {
-            Mario.Update(gameTime, EntityList);
+            Mario.Update(gameTime, EntityList, Mario);
             foreach (Entity entity in EntityList)
             {
-                entity.Update(gameTime, EntityList);
+                entity.Update(gameTime, EntityList,Mario);
             }
         }
         public void Draw(SpriteBatch batch)

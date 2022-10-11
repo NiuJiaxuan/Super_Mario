@@ -24,7 +24,6 @@ namespace Sprint0.State
         private Sprite smallBlock4;
         public IBlockState CurrentState { get; set; }
         public eBlockType BlockType { get; set; }
-        public MarioEntity Mario { get; set; }
 
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
@@ -75,13 +74,13 @@ namespace Sprint0.State
         {
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities)
+        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
         {
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             CurrentState?.Update(gameTime);            
             
-            base.Update(gameTime,entities);
+            base.Update(gameTime,entities, mario);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
