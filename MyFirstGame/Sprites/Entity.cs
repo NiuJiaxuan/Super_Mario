@@ -21,6 +21,7 @@ namespace Sprint0.Sprites
         public Texture2D texture;
         public Collision collisionDetection;
         public MarioEntity Mario;
+        public bool IsVisible = true;
 
         public Sprite Sprite
         {
@@ -137,6 +138,7 @@ namespace Sprint0.Sprites
         {
             if(showBoundBox)
             RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
+            if(IsVisible)
             Sprite.Draw(spriteBatch);
         }
 

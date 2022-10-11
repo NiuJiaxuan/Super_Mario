@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Sprites;
+using static Sprint0.State.BlockEntity;
 
 namespace Sprint0.Item
 {

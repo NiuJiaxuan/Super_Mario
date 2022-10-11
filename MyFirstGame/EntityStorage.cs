@@ -48,19 +48,19 @@ namespace Sprint0
             if (objectType.Equals("Blocks"))
             {
                 if (objectName.Equals("BrickBlock")){
-                    return new BrickBlockEntity(game, levelObject.Position, true);
+                    return new BrickBlockEntity(game, levelObject.Position, true, levelObject.BlockItemType);
                 }
                 else if (objectName.Equals("QuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position,true);
+                    return new QuestionBlockEntity(game, levelObject.Position,true, levelObject.BlockItemType);
                 }
                 else if (objectName.Equals("HiddenBrickBlock"))
                 {
-                    return new BrickBlockEntity(game, levelObject.Position, false);
+                    return new BrickBlockEntity(game, levelObject.Position, false, levelObject.BlockItemType);
                 }
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position, false);
+                    return new QuestionBlockEntity(game, levelObject.Position, false, levelObject.BlockItemType);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {

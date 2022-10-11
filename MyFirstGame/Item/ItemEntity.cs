@@ -7,6 +7,7 @@ using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
 using System;
 using System.Collections.Generic;
+using static Sprint0.State.BlockEntity;
 
 namespace Sprint0.Item
 {
@@ -14,7 +15,6 @@ namespace Sprint0.Item
     {
 
         public virtual ItemFactory ItemFactory => game.ItemFactory;
-        public bool isVisible = true;
         public enum eItemType
         {
             Coin = 0,
@@ -23,9 +23,18 @@ namespace Sprint0.Item
             OneUpMushroom = 3,
             Star = 4,
             Pipe = 5,
+            None = 6,
         }
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }
+
+        public ItemEntity(Game1 game, Vector2 position, bool isVisible, BlockItemType itemType)
+            : base(game, position)
+        {
+            Sprite = ItemFactory.CreateItem(game, position, (int)itemType);
+            Sprite.Speed = new Vector2(0, -60);
+            IsVisible = isVisible;
+        }
 
         public ItemEntity(Game1 game, Vector2 position)
             : base(game, position)
@@ -40,14 +49,14 @@ namespace Sprint0.Item
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (isVisible) {  
-            base.Draw(spriteBatch);
+            if (IsVisible) {  
+                base.Draw(spriteBatch);
             }
         }
 
         public void changeToVisible()
         {
-            isVisible = true;
+            IsVisible = true;
         }
 
         public void BumpTransition()

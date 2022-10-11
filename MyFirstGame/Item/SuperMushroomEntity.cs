@@ -16,6 +16,7 @@ namespace Sprint0.Item
         {
             ItemType = eItemType.SuperMushroom;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
+
         }
 
         public override void Update(GameTime gameTime, List<Entity> entities)
