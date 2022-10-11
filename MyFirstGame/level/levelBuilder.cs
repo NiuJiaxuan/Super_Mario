@@ -30,7 +30,7 @@ namespace Sprint0.Sprites
                     int xPos = int.Parse(location.Substring(0, i));
                     int yPos = int.Parse(location.Substring(i));
                     levelObject.Position = new Vector2(xPos, yPos);
-                    if (levelObject.ObjectType == "Blocks")
+                    if (levelObject.ObjectType.Equals("Blocks"))
                     {
                         levelFile.ReadToNextSibling("BlockItemType");
                         levelObject.BlockItemType = (BlockItemType)Enum.Parse(typeof(BlockItemType), levelFile.ReadElementContentAsString());

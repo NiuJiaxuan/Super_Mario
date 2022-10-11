@@ -6,10 +6,6 @@ using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Sprint0.Item
 {
@@ -25,6 +21,7 @@ namespace Sprint0.Item
             FireFlower = 2,
             OneUpMushroom = 3,
             Star = 4,
+            Pipe = 5,
         }
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }

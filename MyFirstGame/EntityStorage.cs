@@ -23,12 +23,17 @@ namespace Sprint0
         public List<Entity> BlockEntityList { get; set; }
         public List<Entity> ItemEntityList { get; set; }
         public List<Entity> EnemyEntityList { get; set; }
-        public List<Entity> EntityList = new List<Entity>();
+        public List<Entity> EntityList { get; set; }
         public static EntityStorage Instance { get; } = new EntityStorage();
+        public MarioEntity Mario { get; set; } 
         private EntityStorage() { }
         public void SetEntityList(List<Entity> value)
         {
             EntityList = value;
+        }
+        public void SetMarioEntity (MarioEntity mario)
+        {
+            Mario = mario; 
         }
 
         private static Entity CreateEntity(LevelObject levelObject, Game1 game)
@@ -83,9 +88,13 @@ namespace Sprint0
                 {
                     return new OneUpMushroomEntity(game, levelObject.Position);
                 }
+                else if (objectName.Equals("FireFlower"))
+                {
+                    return new FireFlowerEntity(game, levelObject.Position);
+                }
                 else if (objectName.Equals("Pipe"))
                 {
-                    return new UsedBlockEntity(game, levelObject.Position);
+                    return new PipeEntity(game, levelObject.Position);
                 }
             }
             else if (objectType.Equals("Enemies"))
@@ -112,15 +121,24 @@ namespace Sprint0
             BlockEntityList = new List<Entity>();
             ItemEntityList = new List<Entity>();
             EnemyEntityList = new List<Entity>();
+            SetEntityList(new List<Entity>());
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {
-                Entity entity = CreateEntity(levelObject, game);
-                EntityList.Add(entity);
+                if (!levelObject.ObjectType.Equals("Mario"))
+                {
+                    Entity entity = CreateEntity(levelObject, game);
+                    EntityList.Add(entity);
+                }
+                else
+                {
+                   SetMarioEntity(new MarioEntity(game,levelObject.Position));
+                }
             }
         }
         public void Update(GameTime gameTime)
         {
+            Mario.Update(gameTime, EntityList);
             foreach (Entity entity in EntityList)
             {
                 entity.Update(gameTime, EntityList);
@@ -128,6 +146,7 @@ namespace Sprint0
         }
         public void Draw(SpriteBatch batch)
         {
+            Mario.Draw(batch);
             foreach (Entity entity in EntityList)
             {
                 entity.Draw(batch);
