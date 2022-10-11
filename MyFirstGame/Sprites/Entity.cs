@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sprint0.Mario;
 
 namespace Sprint0.Sprites
 {
@@ -19,7 +20,7 @@ namespace Sprint0.Sprites
         public bool showBoundBox;
         public Texture2D texture;
         public Collision collisionDetection;
-
+        public MarioEntity Mario;
 
         public Sprite Sprite
         {
@@ -116,7 +117,15 @@ namespace Sprint0.Sprites
 
         }
 
-        public virtual void Update (GameTime gameTime, List<Entity> entities)
+        public virtual void Update (GameTime gameTime, List<Entity> entities, MarioEntity mario)
+        {
+
+            this.Entities = entities;
+            Mario = mario;
+            Sprite.Update(gameTime);
+            //Debug.WriteLine(Sprite.Height, Sprite.FrameSize.Y.ToString());
+        }
+        public virtual void Update(GameTime gameTime, List<Entity> entities)
         {
 
             this.Entities = entities;

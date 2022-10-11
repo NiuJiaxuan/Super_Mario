@@ -18,20 +18,20 @@ namespace Sprint0.Block
     {
 
 
-        public BrickBlockEntity(Game1 game, Vector2 position, MarioEntity mario, bool isVisible)
-            : base(game, position,mario)
+        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible)
+            : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
             BlockType = eBlockType.BrickBlock;
             CurrentState = new BrickBlockNormalState(this);
             CurrentState.Enter(null);
             IsVisible = isVisible;
-
         }
 
-        public override void Update(GameTime gameTime, List<Entity> entities)
+        public override void Update(GameTime gameTime, List<Entity> entities, MarioEntity mario)
         {
-            base.Update(gameTime,entities);
+            Mario = mario;
+            base.Update(gameTime,entities, mario);
 
         }
         public override void Draw(SpriteBatch spriteBatch)

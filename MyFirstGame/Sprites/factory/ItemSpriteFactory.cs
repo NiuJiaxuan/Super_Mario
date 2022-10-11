@@ -19,7 +19,7 @@ namespace Sprint0.Sprites.factory
             FireFlower = 2,
             OneUpMushroom = 3,
             Star = 4,
-
+            Pipe = 5,
         }
         protected ItemSpriteFactory()
         {
@@ -63,6 +63,9 @@ namespace Sprint0.Sprites.factory
                     break;
                 case eItemType.Star:
                     sprite = new StarSprite(game, pos);
+                    break;
+                case eItemType.Pipe:
+                    sprite = new PipeSprite(game, pos);
                     break;
             }
             return sprite;
