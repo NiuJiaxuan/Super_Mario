@@ -27,29 +27,33 @@ namespace Sprint0.CollisionDetection
             this.currentEntity = currentEntity;
         }
 
-        public Tuple<Touching, float , float > detectCollsion(List<Entity> entities)
+        public Tuple< Touching, float , float, Entity > detectCollsion(List<Entity> entities)
         {
             Touching touching = Touching.none;
             Rectangle interactionRec;
             float x = currentEntity.Position.X , y = currentEntity.Position.Y;
+            Entity collide = null;
 
-            Tuple<Touching, float, float> result;
+            Tuple< Touching, float, float,Entity> result;
             foreach(Entity entity in entities)
             {
                 interactionRec = Rectangle.Intersect(currentEntity.GetRectangle, entity.GetRectangle);
                 if (!interactionRec.IsEmpty)
                 {
+                    collide = entity;
+
                     Debug.WriteLine(currentEntity + " collied with " + entity);
+
                     if(interactionRec.Width >= interactionRec.Height)
                     {
                         if(currentEntity.GetRectangle.Y > entity.GetRectangle.Y)
                         {
-                            touching = Touching.bottom;
+                            touching = Touching.top;
                             y += interactionRec.Height;
                         }
                         else
                         {
-                            touching = Touching.top;
+                            touching = Touching.bottom;
                             y -= interactionRec.Height;
                         }
                     }
@@ -57,19 +61,21 @@ namespace Sprint0.CollisionDetection
                     {
                         if(currentEntity.GetRectangle.X < entity.GetRectangle.X)
                         {
-                            touching = Touching.left;
+                            touching = Touching.right;
                             x-= interactionRec.Width;
                         }
                         else
                         {
-                            touching = Touching.right;
+                            touching = Touching.left;
                             x+= interactionRec.Width;
                         }
                     }
+                    Debug.WriteLine(touching);
+
                 }
 
             }
-            result = new Tuple<Touching, float, float>(touching, x, y);
+            result = new Tuple<Touching, float, float,Entity>(touching, x, y,collide);
             return result;
         }
 

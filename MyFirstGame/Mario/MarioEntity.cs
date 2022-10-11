@@ -110,22 +110,22 @@ namespace Sprint0.Mario
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
         }
 
-         public void CollisionDetection (List<Entity> entities)
+         public void BlockCollisionDetection (List<Entity> entities)
          {
-            Tuple<Collision.Touching, float, float> detected =  collisionDetection.detectCollsion(entities);
-            Rectangle interactionRec;
-            Entity collide = null;
+            Tuple< Collision.Touching, float, float,Entity> detected =  collisionDetection.detectCollsion(entities);
+            //Rectangle interactionRec;
+            //Entity collide = null;
 
-            foreach (Entity entity in entities)
-            {
-                interactionRec = Rectangle.Intersect(collisionDetection.currentEntity.GetRectangle, entity.GetRectangle);
-                if (!interactionRec.IsEmpty)
-                {
-                     collide = entity;
-                }
-            }
+            //foreach (Entity entity in entities)
+            //{
+            //    interactionRec = Rectangle.Intersect(collisionDetection.currentEntity.GetRectangle, entity.GetRectangle);
+            //    if (!interactionRec.IsEmpty)
+            //    {
+            //         collide = entity;
+            //    }
+            //}
 
-            switch (collide) {
+            switch (detected.Item4) {
                 case BlockEntity:
                     if (detected.Item1 != Collision.Touching.none)
                     {
@@ -144,7 +144,7 @@ namespace Sprint0.Mario
                 case ItemEntity:
                     if (detected.Item1 != Collision.Touching.none)
                     {
-                        switch (collide)
+                        switch (detected.Item4)
                         {
                             case FireFlowerEntity:
                                 if(currentPowerState.GetType() == typeof(SuperState))
@@ -155,12 +155,12 @@ namespace Sprint0.Mario
                                 {
                                     Super();
                                 }
-                                entities.Remove(collide);
+                                entities.Remove(detected.Item4);
                                 break;
                             case SuperMushroomEntity:
                                 if (currentPowerState.GetType() == typeof(NormalState))
                                     Super();
-                                entities.Remove(collide);
+                                entities.Remove(detected.Item4);
                                 break;
                         }
                         
@@ -171,7 +171,7 @@ namespace Sprint0.Mario
 
         public override void Update(GameTime gameTime, List<Entity> entities, List<Entity> itemEntities, List<Entity> enemyEntities)
         {
-            CollisionDetection(entities);
+            BlockCollisionDetection(entities);
 
             base.Update(gameTime, entities,itemEntities,enemyEntities);
 

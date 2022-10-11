@@ -6,10 +6,12 @@ using Sprint0.Item;
 using Sprint0.level;
 using Sprint0.Mario;
 using Sprint0.Sprites;
+using Sprint0.State;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,19 +140,18 @@ namespace Sprint0
             {
                 Entity entity = CreateEntity(levelObject, game);
                 EntityList.Add(entity);
-                switch (levelObject.ObjectType)
+                switch (entity)
                 {
-                    case "Mario":
+                    case MarioEntity:
                         Mario = entity;
-                        EntityList.Remove(Mario); 
                         break;
-                    case "Block":
+                    case BlockEntity:
                         BlockEntityList.Add(entity);
                         break;
-                    case "Item":
+                    case ItemEntity:
                         ItemEntityList.Add(entity); ;
                         break;
-                    case "Enemy":
+                    case EnemyEntity:
                         EnemyEntityList.Add(entity);
                         break;
                 }
@@ -166,12 +167,14 @@ namespace Sprint0
                 //    PlayerList.Add(Mario);
                 //}
             }
+            //foreach(Entity entity in BlockEntityList)
+            //    Debug.WriteLine(entity);
         }
 
         public void Update(GameTime gameTime)
         {
 
-            Mario.Update(gameTime,EntityList,ItemEntityList,EnemyEntityList);
+            Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
             foreach (Entity entity in BlockEntityList)
             {
                 entity.Update(gameTime, (MarioEntity)Mario, EnemyEntityList);
