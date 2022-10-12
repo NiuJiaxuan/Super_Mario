@@ -38,6 +38,7 @@ namespace Sprint0.Sprites
         public List<Entity> ItemEntities { get; set; }
         public List<Entity> EnemyEntities { get; set; }
 
+
         public Rectangle GetRectangle
         {
             get { return new Rectangle((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y), (int)Sprite.FrameSize.X, (int)Sprite.FrameSize.Y); }

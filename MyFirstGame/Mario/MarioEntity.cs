@@ -216,7 +216,7 @@ namespace Sprint0.Mario
             {
                 Debug.WriteLine("touch from top");
                 Position = new Vector2(detected.Item2, detected.Item3);
-                Idle();
+                Idle(); 
             }
         }
         
