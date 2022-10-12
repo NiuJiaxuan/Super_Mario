@@ -113,6 +113,14 @@ namespace Sprint0.Mario
          public void BlockCollisionDetection (List<Entity> entities)
          {
             Tuple< Collision.Touching, float, float,Entity> detected =  collisionDetection.detectCollsion(entities);
+
+            Vector2 collisonPosition = new Vector2(detected.Item2, detected.Item3);
+
+            if (detected.Item1 != Collision.Touching.none)
+            {
+                Idle();
+                Position = collisonPosition;
+            }
             //Rectangle interactionRec;
             //Entity collide = null;
 
@@ -125,53 +133,100 @@ namespace Sprint0.Mario
             //    }
             //}
 
-            switch (detected.Item4) {
-                case BlockEntity:
-                    if (detected.Item1 != Collision.Touching.none)
-                    {
-                        Idle();                
-                        Position = new Vector2(detected.Item2, detected.Item3);
-                    }
-                    break;
-                case EnemyEntity:
-                    if (detected.Item1 != Collision.Touching.bottom && detected.Item1 != Collision.Touching.none)
-                    {
-                        Position = new Vector2(detected.Item2, detected.Item3);
-                        Idle();
-                        TakeDamage();
-                    }
-                    break;
-                case ItemEntity:
-                    if (detected.Item1 != Collision.Touching.none)
-                    {
-                        switch (detected.Item4)
+            //switch (detected.Item4) {
+            //    case BlockEntity:
+            //        if (detected.Item1 != Collision.Touching.none)
+            //        {
+            //            Idle();                
+            //            Position = new Vector2(detected.Item2, detected.Item3);
+            //        }
+            //        break;
+            //    case EnemyEntity:
+            //        if (detected.Item1 != Collision.Touching.bottom && detected.Item1 != Collision.Touching.none)
+            //        {
+            //            Position = new Vector2(detected.Item2, detected.Item3);
+            //            Idle();
+            //            TakeDamage();
+            //        }
+            //        break;
+            //    case ItemEntity:
+            //        if (detected.Item1 != Collision.Touching.none)
+            //        {
+            //            switch (detected.Item4)
+            //            {
+            //                case FireFlowerEntity:
+            //                    if(currentPowerState.GetType() == typeof(SuperState))
+            //                    {
+            //                        Fire();
+            //                    }
+            //                    if(currentPowerState.GetType() == typeof(NormalState))
+            //                    {
+            //                        Super();
+            //                    }
+            //                    entities.Remove(detected.Item4);
+            //                    break;
+            //                case SuperMushroomEntity:
+            //                    if (currentPowerState.GetType() == typeof(NormalState))
+            //                        Super();
+            //                    entities.Remove(detected.Item4);
+            //                    break;
+            //            }
+
+            //        }
+            //        break;
+            //}            
+        }
+
+        public void ItemCollisionDetection(List<Entity> entities)
+        {
+            Tuple<Collision.Touching, float, float, Entity> detected = collisionDetection.detectCollsion(entities);
+            if (detected.Item1 != Collision.Touching.none)
+            {
+                switch (detected.Item4)
+                {
+                    case FireFlowerEntity:
+                        if (currentPowerState.GetType() == typeof(SuperState))
                         {
-                            case FireFlowerEntity:
-                                if(currentPowerState.GetType() == typeof(SuperState))
-                                {
-                                    Fire();
-                                }
-                                if(currentPowerState.GetType() == typeof(NormalState))
-                                {
-                                    Super();
-                                }
-                                entities.Remove(detected.Item4);
-                                break;
-                            case SuperMushroomEntity:
-                                if (currentPowerState.GetType() == typeof(NormalState))
-                                    Super();
-                                entities.Remove(detected.Item4);
-                                break;
+                            Fire();
                         }
-                        
-                    }
-                    break;
-            }            
+                        if (currentPowerState.GetType() == typeof(NormalState))
+                        {
+                            Super();
+                        }
+                        entities.Remove(detected.Item4);
+                        break;
+                    case SuperMushroomEntity:
+                        if (currentPowerState.GetType() == typeof(NormalState))
+                            Super();
+                        entities.Remove(detected.Item4);
+                        break;
+                }
+            }
+        }
+
+        public void EnemyCollisionDetection(List<Entity> entities)
+        {
+            Tuple<Collision.Touching, float, float, Entity> detected = collisionDetection.detectCollsion(entities);
+
+            if (detected.Item1 != Collision.Touching.bottom && detected.Item1 != Collision.Touching.none)
+            {
+                Position = new Vector2(detected.Item2, detected.Item3);
+                Idle();
+                TakeDamage();
+            }
+            else if(detected.Item1 == Collision.Touching.bottom)
+            {
+                Debug.WriteLine("touch from top");
+                Position = new Vector2(detected.Item2, detected.Item3);
+                Idle();
+            }
         }
 
         public override void Update(GameTime gameTime, List<Entity> entities, List<Entity> itemEntities, List<Entity> enemyEntities)
         {
             BlockCollisionDetection(entities);
+            ItemCollisionDetection(itemEntities);
+            EnemyCollisionDetection(enemyEntities);
 
             base.Update(gameTime, entities,itemEntities,enemyEntities);
 

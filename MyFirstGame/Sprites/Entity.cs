@@ -114,10 +114,16 @@ namespace Sprint0.Sprites
         //    //Debug.WriteLine(Sprite.Height, Sprite.FrameSize.Y.ToString());
         //}
 
+        protected Color BoxColor { get; set; }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            if(BoxColor != Color.Red)
+            {
+                BoxColor = Color.Green;
+            }
             if(showBoundBox)
-            RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
+            RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, BoxColor, 2);
             if(IsVisible)
             Sprite.Draw(spriteBatch);
         }

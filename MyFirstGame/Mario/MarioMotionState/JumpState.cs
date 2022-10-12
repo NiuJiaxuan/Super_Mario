@@ -56,7 +56,7 @@ namespace Sprint0.Mario.MarioMotionState
 
         public override void Update(GameTime gameTime)
         {
-            Mario.Speed = new Vector2(Mario.Speed.X, -40);
+            Mario.Speed = new Vector2(Mario.Speed.X, -70);
             base.Update(gameTime);
         }
     }

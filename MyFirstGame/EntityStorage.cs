@@ -191,9 +191,17 @@ namespace Sprint0
         public void Draw(SpriteBatch batch)
         {
             Mario.Draw(batch);
-            foreach (Entity entity in EntityList)
+            foreach (Entity entity in BlockEntityList)
             {
                 entity.Draw(batch);
+            }
+            foreach (Entity entity1 in ItemEntityList)
+            {
+                entity1.Draw(batch);
+            }
+            foreach (Entity entity2 in EnemyEntityList)
+            {
+                entity2.Draw(batch);
             }
         }
     }
