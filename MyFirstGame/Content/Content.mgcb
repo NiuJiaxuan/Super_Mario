@@ -177,6 +177,18 @@
 /processorParam:TextureFormat=Color
 /build:goomba-standing.png
 
+#begin Goomba-Walking.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Goomba-Walking.png
+
 #begin koopaTroopa-Standing.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -188,6 +200,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:koopaTroopa-Standing.png
+
+#begin KoopaTroopa-Walking.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:KoopaTroopa-Walking.png
 
 #begin large-crouching-mario.png
 /importer:TextureImporter

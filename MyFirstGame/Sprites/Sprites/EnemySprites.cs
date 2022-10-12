@@ -10,8 +10,10 @@ namespace Sprint0.Sprites.Sprites
 {
     class GoombaSprite : Sprite
     {
+        //           : base(game.Content.Load<Texture2D>("FireFlower"), position, Vector2.Zero, Point.Zero, new Point(2, 1), new Point(58 / 2, 30), true)
+
         public GoombaSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("goomba-standing"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(25, 33), true)
+            : base(game.Content.Load<Texture2D>("Goomba-Walking"), position, Vector2.Zero, Point.Zero, new Point(2, 1), new Point(50 / 2, 25), true)
         {
 
         }
@@ -29,7 +31,7 @@ namespace Sprint0.Sprites.Sprites
     class KoopaTroopSprite : Sprite
     {
         public KoopaTroopSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("koopaTroopa-standing"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(22, 33), true)
+            : base(game.Content.Load<Texture2D>("KoopaTroopa-Walking"), position, Vector2.Zero, Point.Zero, new Point(2, 1), new Point(50 / 2, 25), true)
         {
 
         }

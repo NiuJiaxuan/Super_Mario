@@ -98,8 +98,6 @@ namespace Sprint0.Mario
 
 
 
-
-
         public MarioEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -221,6 +219,7 @@ namespace Sprint0.Mario
                 Idle();
             }
         }
+        
 
         public override void Update(GameTime gameTime, List<Entity> entities, List<Entity> itemEntities, List<Entity> enemyEntities)
         {

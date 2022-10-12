@@ -25,7 +25,6 @@ namespace Sprint0
         public List<Entity> BlockEntityList { get; set; }
         public List<Entity> ItemEntityList { get; set; }
         public List<Entity> EnemyEntityList { get; set; }
-
         public List<Entity> EntityList { get; set; }
 
         public List<Entity> PlayerList { get; set; }
