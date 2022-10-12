@@ -78,6 +78,8 @@ namespace Sprint0.State
 
         public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities)
         {
+
+
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             CurrentState?.Update(gameTime);            
