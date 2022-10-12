@@ -33,7 +33,7 @@ namespace Sprint0.Block
 
         }
 
-        public void marioCollsionDetection(MarioEntity mario, List<Entity> blockEntities)
+        public void marioCollsionDetection(MarioEntity mario)
         {
             List<Entity> entities = new List<Entity>();
             entities.Add(mario);
@@ -41,16 +41,23 @@ namespace Sprint0.Block
 
             if (detected.Item1 == Collision.Touching.bottom)
             {
-                Debug.WriteLine("touch bottom");
-                ChangeToVisible();
-                BumpTransition();
+                if (!IsVisible)
+                {
+                    ChangeToVisible();
+
+                }
+                else
+                {
+                    BumpTransition();
+
+                }
             }
 
         }
 
         public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
         {
-            marioCollsionDetection(mario, blockEntities);
+            marioCollsionDetection(mario);
             base.Update(gameTime, mario, enemyEntities, blockEntities);
         }
         public override void Draw(SpriteBatch spriteBatch)

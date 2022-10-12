@@ -112,7 +112,6 @@ namespace Sprint0.Mario
          {
             Tuple< Collision.Touching, float, float,Entity> detected =  collisionDetection.detectCollsion(entities);
 
-
             if (detected.Item1 != Collision.Touching.none)
             {
                 Idle();

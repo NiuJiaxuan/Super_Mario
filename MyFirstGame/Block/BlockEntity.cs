@@ -119,18 +119,27 @@ namespace Sprint0.State
 
         public void BumpOrBreakTransition()
         {
-            switch (Mario.currentPowerState)
+            if (!IsVisible)
             {
-                case SuperState:
-                    CurrentState?.BreakTransition();
-                    break;
-                case FireState:
-                    CurrentState?.BreakTransition();
-                    break;
-                default:
-                    BumpTransition();
-                    break;
+                ChangeToVisible();
+                BumpTransition();
             }
+            else
+            {
+                switch (Mario.currentPowerState)
+                {
+                    case SuperState:
+                        CurrentState?.BreakTransition();
+                        break;
+                    case FireState:
+                        CurrentState?.BreakTransition();
+                        break;
+                    default:
+                        BumpTransition();
+                        break;
+                }
+            }
+
         }
 
     }
