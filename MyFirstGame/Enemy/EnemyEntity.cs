@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Interfaces;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
@@ -13,6 +14,8 @@ namespace Sprint0.Enemy
 {
     public class EnemyEntity : Entity
     {
+        public IEnemyState currentState { get; set; }
+
         public virtual EnemyFactory EnemyFactory => game.EnemyFactory;
         public eEnemyType EnemyType { get; set; }
 
