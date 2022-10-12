@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Mario;
+using System.Threading;
 
 namespace Sprint0.Sprites
 {
@@ -79,7 +80,6 @@ namespace Sprint0.Sprites
             this.game = game;
             showBoundBox = false;            
             Collision = new Collision(this);
-
         }
 
         //for mario
@@ -103,27 +103,19 @@ namespace Sprint0.Sprites
         // for item entity
         public virtual void Update(GameTime gameTime)
         {
+      
             Sprite.Update(gameTime);
         }
 
-        //public virtual void Update(GameTime gameTime, List<Entity> entities)
-        //{
 
-        //    this.Entities = entities;
-        //    Sprite.Update(gameTime);
-        //    //Debug.WriteLine(Sprite.Height, Sprite.FrameSize.Y.ToString());
-        //}
-
-        protected Color BoxColor { get; set; }
+        public Color BoxColor { get; set; }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            if(BoxColor != Color.Red)
-            {
-                BoxColor = Color.Green;
-            }
+
             if(showBoundBox)
-            RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, BoxColor, 2);
+            RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
+
             if(IsVisible)
             Sprite.Draw(spriteBatch);
         }
