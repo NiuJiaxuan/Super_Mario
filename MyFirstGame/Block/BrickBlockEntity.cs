@@ -33,11 +33,11 @@ namespace Sprint0.Block
             IsVisible = isVisible;
         }
 
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities)
+        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
         {
             Mario = mario;
             item.Update(gameTime);
-            base.Update(gameTime, mario,enemyEntities);
+            base.Update(gameTime, mario,enemyEntities,blockEntities);
 
         }
         public override void Draw(SpriteBatch spriteBatch)
@@ -46,25 +46,6 @@ namespace Sprint0.Block
              base.Draw(spriteBatch);
             
         }
-        public void ChangeToVisible()
-        {
-            IsVisible = true;
-        }
 
-        public void BumpOrBreakTransition()
-        {
-            switch (Mario.currentPowerState)
-            {
-                case SuperState:
-                    CurrentState?.BreakTransition();
-                    break;
-                case FireState:
-                    CurrentState?.BreakTransition();
-                    break;
-                default:
-                    BumpTransition();
-                    break;
-            }
-        }
     }
 }

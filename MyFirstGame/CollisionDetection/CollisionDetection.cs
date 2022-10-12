@@ -42,7 +42,7 @@ namespace Sprint0.CollisionDetection
                 {
                     collide = entity;
 
-                    Debug.WriteLine(currentEntity + " collied with " + entity);
+                    //Debug.WriteLine(currentEntity + " collied with " + entity);
 
                     if(interactionRec.Width >= interactionRec.Height)
                     {
@@ -70,7 +70,7 @@ namespace Sprint0.CollisionDetection
                             x+= interactionRec.Width;
                         }
                     }
-                    Debug.WriteLine(touching);
+                    //Debug.WriteLine(touching);
 
                 }
 

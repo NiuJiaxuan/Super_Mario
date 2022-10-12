@@ -176,7 +176,7 @@ namespace Sprint0
             Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
             foreach (Entity entity in BlockEntityList)
             {
-                entity.Update(gameTime, (MarioEntity)Mario, EnemyEntityList);
+                entity.Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
             }
             foreach (Entity entity1 in ItemEntityList)
             {
@@ -184,7 +184,7 @@ namespace Sprint0
             }
             foreach (Entity entity2 in EnemyEntityList)
             {
-                entity2.Update(gameTime, (MarioEntity)Mario, BlockEntityList);
+                entity2.Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
             }
         }
         public void Draw(SpriteBatch batch)

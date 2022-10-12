@@ -118,6 +118,7 @@ namespace Sprint0.Mario
             {
                 Idle();
                 Position = collisonPosition;
+                //if((detected.Item1 == Collision.Touching.top) && ())
             }
             //Rectangle interactionRec;
             //Entity collide = null;

@@ -91,11 +91,11 @@ namespace Sprint0.Sprites
         }
 
         // for block and enemy entity 
-        public virtual void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyBlockEntities)
+        public virtual void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
         {
 
-            this.EnemyEntities = enemyBlockEntities;
-            this.BlockEntities = enemyBlockEntities;
+            this.EnemyEntities = enemyEntities;
+            this.BlockEntities = blockEntities;
             Mario = mario;
             Sprite.Update(gameTime);
         }
