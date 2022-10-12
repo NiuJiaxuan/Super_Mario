@@ -78,31 +78,11 @@ namespace Sprint0.State
         {
         }
 
-        public void marioCollsionDetection(MarioEntity mario, List<Entity> blockEntities)
-        {
-            List<Entity> entities = new List<Entity>();
-            entities.Add(mario);
-            Tuple<Collision.Touching, float, float, Entity> detected = collisionDetection.detectCollsion(entities);
-
-            if(detected.Item1 == Collision.Touching.bottom)
-            {
-                Debug.WriteLine("touch bottom");
-                ChangeToVisible();
-                BumpOrBreakTransition();
-                //switch (this)
-                //{
-                //    case BrickBlockEntity:
-                //        BumpOrBreakTransition();
-                //        break;
-                //}
-            }
-
-        }
 
         public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
         {
 
-            marioCollsionDetection(mario, blockEntities); 
+            
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             CurrentState?.Update(gameTime);            
