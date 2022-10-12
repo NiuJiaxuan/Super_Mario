@@ -174,17 +174,20 @@ namespace Sprint0
         {
 
             Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
-            foreach (Entity entity in BlockEntityList)
+
+            for(int i = 0; i < BlockEntityList.Count; i++)
             {
-                entity.Update(gameTime, (MarioEntity)Mario, EnemyEntityList);
+                BlockEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
             }
+
             foreach (Entity entity1 in ItemEntityList)
             {
                 entity1.Update(gameTime);
             }
-            foreach (Entity entity2 in EnemyEntityList)
+
+            for(int i = 0; i < EnemyEntityList.Count; i++)
             {
-                entity2.Update(gameTime, (MarioEntity)Mario, BlockEntityList);
+                EnemyEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
             }
         }
         public void Draw(SpriteBatch batch)

@@ -23,9 +23,9 @@ namespace Sprint0.Block.State
             CurrentState = this;
             this.previousState = previousState;
             Block.SmallBlock1 = Block.BlockFactory.CreateBlock(Block.game, Block.Position, (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
-            Block.SmallBlock2 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X + 15, Block.Position.Y), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
-            Block.SmallBlock3 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X, Block.Position.Y - 15), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
-            Block.SmallBlock4 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X + 15, Block.Position.Y - 15), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
+            Block.SmallBlock2 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X + 25 ,Block.Position.Y), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
+            Block.SmallBlock3 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X, Block.Position.Y - 25), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
+            Block.SmallBlock4 = Block.BlockFactory.CreateBlock(Block.game, new Vector2(Block.Position.X + 25, Block.Position.Y - 25), (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
             Block.breakBlockVisible = false;
             
             
@@ -35,10 +35,15 @@ namespace Sprint0.Block.State
 
         public override void Update(GameTime gameTime)
         {
-            Block.SmallBlock1.Position = new Vector2(Block.SmallBlock1.Position.X - 10, Block.SmallBlock1.Position.Y + 10);
-            Block.SmallBlock2.Position = new Vector2(Block.SmallBlock2.Position.X + 10, Block.SmallBlock2.Position.Y + 10);
-            Block.SmallBlock3.Position = new Vector2(Block.SmallBlock3.Position.X - 10, Block.SmallBlock3.Position.Y - 10);
-            Block.SmallBlock4.Position = new Vector2(Block.SmallBlock4.Position.X + 10, Block.SmallBlock4.Position.Y - 10);
+            Block.SmallBlock1.Position = new Vector2(Block.SmallBlock1.Position.X , Block.SmallBlock1.Position.Y +10);
+            Block.SmallBlock2.Position = new Vector2(Block.SmallBlock2.Position.X , Block.SmallBlock2.Position.Y +10);
+            Block.SmallBlock3.Position = new Vector2(Block.SmallBlock3.Position.X, Block.SmallBlock3.Position.Y + 10);
+            Block.SmallBlock4.Position = new Vector2(Block.SmallBlock4.Position.X , Block.SmallBlock4.Position.Y + 10);
+
+            if (Block.SmallBlock2.Position.Y > 500)
+            {
+                Block.BlockEntities.Remove(Block);
+            }
 
         }
     }

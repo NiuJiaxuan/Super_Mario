@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
+using Sprint0.CollisionDetection;
 using Sprint0.Item;
 using Sprint0.Mario;
 using Sprint0.Sprites;
@@ -31,9 +32,33 @@ namespace Sprint0.Block
             IsVisible = isVisible;
 
         }
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities)
+
+        public void marioCollsionDetection(MarioEntity mario)
         {
-            base.Update(gameTime, mario, enemyEntities);
+            List<Entity> entities = new List<Entity>();
+            entities.Add(mario);
+            Tuple<Collision.Touching, float, float, Entity> detected = collisionDetection.detectCollsion(entities);
+
+            if (detected.Item1 == Collision.Touching.bottom)
+            {
+                if (!IsVisible)
+                {
+                    ChangeToVisible();
+
+                }
+                else
+                {
+                    BumpTransition();
+
+                }
+            }
+
+        }
+
+        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
+        {
+            marioCollsionDetection(mario);
+            base.Update(gameTime, mario, enemyEntities, blockEntities);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

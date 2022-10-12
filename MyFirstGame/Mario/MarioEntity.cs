@@ -91,7 +91,7 @@ namespace Sprint0.Mario
                     type = 0;
                     break;
             }
-            Debug.WriteLine(type);
+            //Debug.WriteLine(type);
 
             return type;
         }
@@ -112,68 +112,14 @@ namespace Sprint0.Mario
          {
             Tuple< Collision.Touching, float, float,Entity> detected =  collisionDetection.detectCollsion(entities);
 
-            Vector2 collisonPosition = new Vector2(detected.Item2, detected.Item3);
-
             if (detected.Item1 != Collision.Touching.none)
             {
                 Idle();
-                Position = collisonPosition;
+                Position = new Vector2(detected.Item2, detected.Item3);
+                //if((detected.Item1 == Collision.Touching.top) && ())
             }
-            //Rectangle interactionRec;
-            //Entity collide = null;
+         }
 
-            //foreach (Entity entity in entities)
-            //{
-            //    interactionRec = Rectangle.Intersect(collisionDetection.currentEntity.GetRectangle, entity.GetRectangle);
-            //    if (!interactionRec.IsEmpty)
-            //    {
-            //         collide = entity;
-            //    }
-            //}
-
-            //switch (detected.Item4) {
-            //    case BlockEntity:
-            //        if (detected.Item1 != Collision.Touching.none)
-            //        {
-            //            Idle();                
-            //            Position = new Vector2(detected.Item2, detected.Item3);
-            //        }
-            //        break;
-            //    case EnemyEntity:
-            //        if (detected.Item1 != Collision.Touching.bottom && detected.Item1 != Collision.Touching.none)
-            //        {
-            //            Position = new Vector2(detected.Item2, detected.Item3);
-            //            Idle();
-            //            TakeDamage();
-            //        }
-            //        break;
-            //    case ItemEntity:
-            //        if (detected.Item1 != Collision.Touching.none)
-            //        {
-            //            switch (detected.Item4)
-            //            {
-            //                case FireFlowerEntity:
-            //                    if(currentPowerState.GetType() == typeof(SuperState))
-            //                    {
-            //                        Fire();
-            //                    }
-            //                    if(currentPowerState.GetType() == typeof(NormalState))
-            //                    {
-            //                        Super();
-            //                    }
-            //                    entities.Remove(detected.Item4);
-            //                    break;
-            //                case SuperMushroomEntity:
-            //                    if (currentPowerState.GetType() == typeof(NormalState))
-            //                        Super();
-            //                    entities.Remove(detected.Item4);
-            //                    break;
-            //            }
-
-            //        }
-            //        break;
-            //}            
-        }
 
         public void ItemCollisionDetection(List<Entity> entities)
         {
@@ -198,6 +144,13 @@ namespace Sprint0.Mario
                             Super();
                         entities.Remove(detected.Item4);
                         break;
+                    case PipeEntity:
+                        if (detected.Item1 != Collision.Touching.none)
+                        {
+                            Idle();
+                            Position = new Vector2(detected.Item2, detected.Item3);
+                        }
+                        break;
                 }
             }
         }
@@ -214,7 +167,7 @@ namespace Sprint0.Mario
             }
             else if(detected.Item1 == Collision.Touching.bottom)
             {
-                Debug.WriteLine("touch from top");
+                //Debug.WriteLine("touch from top");
                 Position = new Vector2(detected.Item2, detected.Item3);
                 Idle(); 
             }
@@ -293,7 +246,7 @@ namespace Sprint0.Mario
                     else
                     {
                         Sprite.Orientation = SpriteEffects.None;
-                        currentMotionState?.WalkTransion();
+                        currentMotionState?.IdleTransion();
                     }
                     break;
                 case CrouchState:

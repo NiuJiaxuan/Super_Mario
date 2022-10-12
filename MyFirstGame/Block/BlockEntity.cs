@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Block;
 using Sprint0.Block.State;
+using Sprint0.CollisionDetection;
 using Sprint0.Mario;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.Mario.MarioPowerState;
@@ -76,15 +78,16 @@ namespace Sprint0.State
         {
         }
 
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities)
+
+        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
         {
 
-
+            
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             CurrentState?.Update(gameTime);            
             
-            base.Update(gameTime, mario, enemyEntities);
+            base.Update(gameTime, mario, enemyEntities, blockEntities);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -109,7 +112,35 @@ namespace Sprint0.State
             CurrentState?.BumpTransition();
         }
 
+        public void ChangeToVisible()
+        {
+            IsVisible = true;
+        }
 
+        public void BumpOrBreakTransition()
+        {
+            if (!IsVisible)
+            {
+                ChangeToVisible();
+                BumpTransition();
+            }
+            else
+            {
+                switch (Mario.currentPowerState)
+                {
+                    case SuperState:
+                        CurrentState?.BreakTransition();
+                        break;
+                    case FireState:
+                        CurrentState?.BreakTransition();
+                        break;
+                    default:
+                        BumpTransition();
+                        break;
+                }
+            }
+
+        }
 
     }
 }
