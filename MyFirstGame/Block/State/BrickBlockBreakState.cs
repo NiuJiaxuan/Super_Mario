@@ -40,6 +40,11 @@ namespace Sprint0.Block.State
             Block.SmallBlock3.Position = new Vector2(Block.SmallBlock3.Position.X - 10, Block.SmallBlock3.Position.Y - 10);
             Block.SmallBlock4.Position = new Vector2(Block.SmallBlock4.Position.X + 10, Block.SmallBlock4.Position.Y - 10);
 
+            if (Block.SmallBlock2.Position.Y > 500)
+            {
+                Block.BlockEntities.Remove(Block);
+            }
+
         }
     }
 }
