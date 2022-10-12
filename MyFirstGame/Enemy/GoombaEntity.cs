@@ -37,11 +37,12 @@ namespace Sprint0.Enemy
             }
         }
 
-        public override void Update(GameTime gameTime,MarioEntity mario, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
         {
             Mario = mario;
             goombaCollisionDetection(mario);
-            base.Update(gameTime,mario, blockEntities);
+            base.Update(gameTime, mario, enemyEntities, blockEntities);
+
         }
 
         public override void Draw(SpriteBatch batch)
