@@ -86,7 +86,7 @@ namespace Sprint0
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
             camera = new Camera(GraphicsDevice.Viewport);
-            camera.Limits= new Rectangle(0,0,6000,500);
+            camera.Limits= new Rectangle(0,0,6000,450);
 
             background = Content.Load<Texture2D>("background");
 
