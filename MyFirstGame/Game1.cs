@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Sprint0.Item;
 using System.Diagnostics;
 using Sprint0.level;
+using System.Reflection.PortableExecutable;
 
 namespace Sprint0
 {
@@ -29,7 +30,9 @@ namespace Sprint0
 
         private IController keyboard;
         private IController gamepad;
+        Vector2 parallax = new Vector2(0.5f);
 
+        Camera camera;
         public static LevelData levelData { get; set; }
 
 
@@ -82,7 +85,8 @@ namespace Sprint0
             levelBuilder = new LevelBuilder();
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
-
+            camera = new Camera(GraphicsDevice.Viewport);
+            camera.Limits= new Rectangle(0,0,6000,500);
 
             background = Content.Load<Texture2D>("background");
 
@@ -145,10 +149,11 @@ namespace Sprint0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
             keyboard.Update();
             gamepad.Update();
             levelBuilder.EntityStorage.Update(gameTime);
-            
+
             base.Update(gameTime);
         }
 
@@ -158,7 +163,9 @@ namespace Sprint0
 
             // TODO: Add your drawing code here
 
-            _spriteBatch.Begin();
+            //_spriteBatch.Begin();
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
 
             _spriteBatch.Draw(background, new Rectangle(0, 0, 1600, 480), Color.White);
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
