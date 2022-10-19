@@ -32,7 +32,7 @@ namespace Sprint0.Mario
 
 
 
-        public virtual  MarioFactory MarioFactory => game.MarioFactory;
+        public  MarioFactory MarioFactory = MarioFactory.Instance;
 
 
 

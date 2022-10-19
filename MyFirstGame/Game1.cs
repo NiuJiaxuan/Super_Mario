@@ -122,6 +122,10 @@ namespace Sprint0
             gamepad = new GamepadController(PlayerIndex.One);
             gamepad.Command((int)Buttons.Start, new ExitCommand(this));
 
+            gamepad.Command((int)Buttons.DPadUp, new MarioJump(levelBuilder.EntityStorage.Mario));
+            gamepad.Command((int)Buttons.DPadDown, new MarioCrouch(levelBuilder.EntityStorage.Mario));
+            gamepad.Command((int)Buttons.DPadLeft, new MarioWalkLeft(levelBuilder.EntityStorage.Mario));
+            gamepad.Command((int)Buttons.DPadRight, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
 
             base.Initialize();
         }
