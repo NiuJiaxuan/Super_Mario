@@ -28,8 +28,6 @@ namespace Sprint0
         public List<Entity> EntityList { get; set; }
 
         public List<Entity> PlayerList { get; set; }
-
-        Camera camera;
         public static EntityStorage Instance { get; } = new EntityStorage();
         public Entity Mario { get; set; } 
 
@@ -51,9 +49,9 @@ namespace Sprint0
         {
             string objectType = levelObject.ObjectType;
             string objectName = levelObject.ObjectName;
-            Entity itemInBlock = CreateItemEntityInBlock(levelObject, game);
             if (objectType.Equals("Blocks"))
             {
+                List<Entity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
                 if (objectName.Equals("BrickBlock")){
                     return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock);
                 }
@@ -127,29 +125,30 @@ namespace Sprint0
             return null;
         }
 
-        private static Entity CreateItemEntityInBlock(LevelObject levelObject, Game1 game)
+        private static List<Entity> CreateItemEntityInBlock(LevelObject levelObject, Game1 game)
         {
-            if ((int)levelObject.BlockItemType == 0)
+            List<Entity> temp = new List<Entity>();
+            if (levelObject.BlockItem != null)
+            foreach (string item in levelObject.BlockItem)
             {
-                return new CoinEntity (game, levelObject.Position);
+                if (item.Equals("Coin"))
+                {
+                    temp.Add(new CoinEntity(game, levelObject.Position));
+                }
+                else if (item.Equals("Star"))
+                {
+                    temp.Add(new StarEntity(game, levelObject.Position));
+                }
+                else if (item.Equals("FireFlower"))
+                {
+                    temp.Add(new FireFlowerEntity(game, levelObject.Position));
+                }
+                else if (item.Equals("OnUpMushroom"))
+                {
+                    temp.Add(new OneUpMushroomEntity(game, levelObject.Position));
+                }
             }
-            else if ((int)levelObject.BlockItemType == 1)
-            {
-                return new SuperMushroomEntity(game, levelObject.Position);
-            }
-            else if ((int)levelObject.BlockItemType == 2)
-            {
-                return new FireFlowerEntity(game, levelObject.Position);
-            }
-            else if ((int)levelObject.BlockItemType == 3)
-            {
-                return new OneUpMushroomEntity(game, levelObject.Position);
-            }
-            else if ((int)levelObject.BlockItemType == 4)
-            {
-                return new StarEntity(game, levelObject.Position);
-            }
-            return null;
+            return temp;
         }
 
         public void  Add (LevelData levelData, Game1 game)
@@ -166,6 +165,15 @@ namespace Sprint0
             {
                 Entity entity = CreateEntity(levelObject, game);
                 EntityList.Add(entity);
+/*                if (levelObject.ObjectType.Equals("Blocks"))
+                {
+                    foreach (string item in levelObject.BlockItem)
+                    {
+                        Entity temp = CreateItemEntityInBlock(item, levelObject.Position, game);
+                        EntityList.Add(temp);
+                        ItemEntityList.Add(temp);
+                    }
+                }*/
                 switch (entity)
                 {
                     case MarioEntity:

@@ -19,7 +19,7 @@ namespace Sprint0.Block
     public class QuestionBlockEntity : BlockEntity
     {
 
-        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, Entity item)
+        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, List<Entity> item)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.QuestionBlock);

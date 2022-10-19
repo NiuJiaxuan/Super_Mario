@@ -21,7 +21,7 @@ namespace Sprint0.Block
     {
 
 
-        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, Entity item)
+        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, List<Entity> item)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);

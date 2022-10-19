@@ -40,8 +40,13 @@ namespace Sprint0.level
                     levelObject.Position = new Vector2(xPos, yPos);
                     if (levelObject.ObjectType.Equals("Blocks"))
                     {
-                        levelFile.ReadToNextSibling("BlockItemType");
-                        levelObject.BlockItemType = (BlockItemType)Enum.Parse(typeof(BlockItemType), levelFile.ReadElementContentAsString());
+                        levelFile.ReadToNextSibling("BlockItem");
+                        string temp = levelFile.ReadElementContentAsString();
+                        string[] items = temp.Split(' ');
+                        foreach (string item in items)
+                        {
+                            levelObject.BlockItem?.Add(item);
+                        }
                     }
                     if (levelObject.ObjectType.Equals("Mario"))
                     {
