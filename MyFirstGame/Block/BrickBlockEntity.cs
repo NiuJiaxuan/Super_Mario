@@ -49,7 +49,6 @@ namespace Sprint0.Block
         {
             Mario = mario;
             marioCollsionDetection(mario);
-            item.Update(gameTime);
             base.Update(gameTime, mario,enemyEntities,blockEntities);
 
         }
