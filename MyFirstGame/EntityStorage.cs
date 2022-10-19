@@ -45,27 +45,27 @@ namespace Sprint0
             PlayerList = value; 
         }
 
-        private static Entity CreateEntity(LevelObject levelObject, Game1 game)
+        private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> itemEntityList)
         {
             string objectType = levelObject.ObjectType;
             string objectName = levelObject.ObjectName;
             if (objectType.Equals("Blocks"))
             {
-                List<Entity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
+                List<ItemEntity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
                 if (objectName.Equals("BrickBlock")){
-                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock);
+                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, itemEntityList);
                 }
                 else if (objectName.Equals("QuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock);
+                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock, itemEntityList);
                 }
                 else if (objectName.Equals("HiddenBrickBlock"))
                 {
-                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock);
+                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
                 }
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock);
+                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
@@ -125,9 +125,9 @@ namespace Sprint0
             return null;
         }
 
-        private static List<Entity> CreateItemEntityInBlock(LevelObject levelObject, Game1 game)
+        private static List<ItemEntity> CreateItemEntityInBlock(LevelObject levelObject, Game1 game)
         {
-            List<Entity> temp = new List<Entity>();
+            List<ItemEntity> temp = new List<ItemEntity>();
             if (levelObject.BlockItem != null)
             foreach (string item in levelObject.BlockItem)
             {
@@ -163,7 +163,7 @@ namespace Sprint0
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {
-                Entity entity = CreateEntity(levelObject, game);
+                Entity entity = CreateEntity(levelObject, game, ItemEntityList);
                 EntityList.Add(entity);
 /*                if (levelObject.ObjectType.Equals("Blocks"))
                 {

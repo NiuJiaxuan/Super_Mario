@@ -19,9 +19,10 @@ namespace Sprint0.Block
 {
     public class BrickBlockEntity : BlockEntity
     {
+        public List<ItemEntity> BlockItemList;
+        public List<Entity> ItemEntityList;
 
-
-        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, List<Entity> item)
+        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> itemEntityList)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
@@ -29,6 +30,9 @@ namespace Sprint0.Block
             CurrentState = new BrickBlockNormalState(this);
             CurrentState.Enter(null);
             IsVisible = isVisible;
+
+            BlockItemList = blockItemList;
+            ItemEntityList = itemEntityList;
         }
 
         public void marioCollsionDetection(MarioEntity mario)
@@ -39,7 +43,14 @@ namespace Sprint0.Block
 
             if (detected.Item1 == Collision.Touching.bottom)
             {
-                    BumpOrBreakTransition();
+                BumpOrBreakTransition();
+                if (BlockItemList != null)
+                {
+                    ItemEntity temp = BlockItemList[0];
+                    ItemEntityList.Add(temp);
+                    temp.BumpTransition();
+                    //BlockItemList.RemoveAt(0);
+                }
             }
 
         }

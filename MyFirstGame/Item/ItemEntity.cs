@@ -29,11 +29,6 @@ namespace Sprint0.Item
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }
 
-        public ItemEntity(Game1 game, Vector2 position, bool isVisible, BlockItemType itemType)
-            : base(game, position)
-        {
-        }
-
         public ItemEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -63,7 +58,7 @@ namespace Sprint0.Item
 
         public void BumpTransition()
         {
-            Speed = new Vector2(0, 60);
+            CurrentState?.BumpTransition();
         }
     }
 }

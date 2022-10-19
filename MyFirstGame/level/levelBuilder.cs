@@ -43,10 +43,7 @@ namespace Sprint0.level
                         levelFile.ReadToNextSibling("BlockItem");
                         string temp = levelFile.ReadElementContentAsString();
                         string[] items = temp.Split(' ');
-                        foreach (string item in items)
-                        {
-                            levelObject.BlockItem?.Add(item);
-                        }
+                        levelObject.BlockItem = items;
                     }
                     if (levelObject.ObjectType.Equals("Mario"))
                     {
