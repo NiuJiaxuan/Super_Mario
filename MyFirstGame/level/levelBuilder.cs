@@ -6,7 +6,7 @@ using static Sprint0.level.LevelData;
 using static Sprint0.State.BlockEntity;
 using System.Diagnostics;
 
-namespace Sprint0.Sprites
+namespace Sprint0.level
 {
     public class LevelBuilder
     {
@@ -18,6 +18,7 @@ namespace Sprint0.Sprites
         }
 
         public LevelData LevelData { get; private set; }
+
         public void LodeLevel (Game1 game)
         {
             using (XmlReader levelFile = XmlReader.Create("MarioLevel1.xml"))

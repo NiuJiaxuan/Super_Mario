@@ -32,7 +32,7 @@ namespace Sprint0.Mario
 
 
 
-        public virtual  MarioFactory MarioFactory => game.MarioFactory;
+        public  MarioFactory MarioFactory = MarioFactory.Instance;
 
 
 
@@ -112,7 +112,6 @@ namespace Sprint0.Mario
          {
             Tuple< Collision.Touching, float, float,Entity> detected =  collisionDetection.detectCollsion(entities);
 
-
             if (detected.Item1 != Collision.Touching.none)
             {
                 Idle();
@@ -170,7 +169,7 @@ namespace Sprint0.Mario
             {
                 //Debug.WriteLine("touch from top");
                 Position = new Vector2(detected.Item2, detected.Item3);
-                Idle();
+                Idle(); 
             }
         }
         

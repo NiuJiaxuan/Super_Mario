@@ -29,12 +29,13 @@ namespace Sprint0
 
         public List<Entity> PlayerList { get; set; }
 
+        Camera camera;
         public static EntityStorage Instance { get; } = new EntityStorage();
         public Entity Mario { get; set; } 
 
         public  EntityStorage()
         {
-
+           
         }
 
         public void SetEntityList(List<Entity> value)
@@ -198,10 +199,9 @@ namespace Sprint0
 
         public void Update(GameTime gameTime)
         {
-
             Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
 
-            for(int i = 0; i < BlockEntityList.Count; i++)
+            for (int i = 0; i < BlockEntityList.Count; i++)
             {
                 BlockEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
             }

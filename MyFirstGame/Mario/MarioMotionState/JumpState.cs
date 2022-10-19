@@ -58,10 +58,11 @@ namespace Sprint0.Mario.MarioMotionState
         {
             Mario.Speed = new Vector2(Mario.Speed.X, -70);
             base.Update(gameTime);
-            if (Mario.Sprite.Position.Y <= 32)
+
+            if (Mario.Sprite.Position.Y-Mario.Sprite.FrameSize.Y <0)
             {
                 Mario.Speed = new Vector2(Mario.Speed.X, 0);
-                Mario.Position = new Vector2(Mario.Position.X, 33);
+                Mario.Position = new Vector2(Mario.Position.X, Mario.Sprite.FrameSize.Y);
             }
 
         }
