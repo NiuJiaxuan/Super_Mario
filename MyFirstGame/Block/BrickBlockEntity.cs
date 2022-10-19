@@ -20,14 +20,11 @@ namespace Sprint0.Block
     public class BrickBlockEntity : BlockEntity
     {
 
-        public ItemEntity item;
 
-        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, BlockItemType blockItemType)
+        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, Entity item)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
-            if ((int)blockItemType != 6)
-                item = new ItemEntity(game, position,false, blockItemType);
             BlockType = eBlockType.BrickBlock;
             CurrentState = new BrickBlockNormalState(this);
             CurrentState.Enter(null);
@@ -54,14 +51,12 @@ namespace Sprint0.Block
         {
             Mario = mario;
             marioCollsionDetection(mario, blockEntities);
-            item.Update(gameTime);
             base.Update(gameTime, mario,enemyEntities,blockEntities);
 
         }
         public override void Draw(SpriteBatch spriteBatch)
         {        
-            item.Draw(spriteBatch);
-             base.Draw(spriteBatch);
+            base.Draw(spriteBatch);
             
         }
 

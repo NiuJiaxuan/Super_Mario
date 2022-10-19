@@ -18,14 +18,11 @@ namespace Sprint0.Block
 {
     public class QuestionBlockEntity : BlockEntity
     {
-        public ItemEntity item;
 
-        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, BlockItemType blockItemType)
+        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, Entity item)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.QuestionBlock);
-            if ((int)blockItemType != 6)
-                item = new ItemEntity(game, position,false, blockItemType);
             BlockType = eBlockType.QuestionBlock;
             CurrentState = new QuestionBlockNormalState(this);
             CurrentState.Enter(null);

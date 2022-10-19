@@ -50,22 +50,23 @@ namespace Sprint0
         {
             string objectType = levelObject.ObjectType;
             string objectName = levelObject.ObjectName;
+            Entity itemInBlock = CreateItemEntityInBlock(levelObject, game);
             if (objectType.Equals("Blocks"))
             {
                 if (objectName.Equals("BrickBlock")){
-                    return new BrickBlockEntity(game, levelObject.Position, true, levelObject.BlockItemType);
+                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock);
                 }
                 else if (objectName.Equals("QuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position,true, levelObject.BlockItemType);
+                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock);
                 }
                 else if (objectName.Equals("HiddenBrickBlock"))
                 {
-                    return new BrickBlockEntity(game, levelObject.Position, false, levelObject.BlockItemType);
+                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock);
                 }
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position, false, levelObject.BlockItemType);
+                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
@@ -121,6 +122,31 @@ namespace Sprint0
             else
             {
                 return new MarioEntity(game, levelObject.Position);
+            }
+            return null;
+        }
+
+        private static Entity CreateItemEntityInBlock(LevelObject levelObject, Game1 game)
+        {
+            if ((int)levelObject.BlockItemType == 0)
+            {
+                return new CoinEntity (game, levelObject.Position);
+            }
+            else if ((int)levelObject.BlockItemType == 1)
+            {
+                return new SuperMushroomEntity(game, levelObject.Position);
+            }
+            else if ((int)levelObject.BlockItemType == 2)
+            {
+                return new FireFlowerEntity(game, levelObject.Position);
+            }
+            else if ((int)levelObject.BlockItemType == 3)
+            {
+                return new OneUpMushroomEntity(game, levelObject.Position);
+            }
+            else if ((int)levelObject.BlockItemType == 4)
+            {
+                return new StarEntity(game, levelObject.Position);
             }
             return null;
         }

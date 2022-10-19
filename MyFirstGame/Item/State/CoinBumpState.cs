@@ -23,7 +23,7 @@ namespace Sprint0.Item.State
             this.previousState = previousState;
             Origion = Item.Position;
 
-            Item.Speed = new Vector2(0, -40);
+            Item.Speed = new Vector2(0, -60);
         }
 
         public override void Exit()
