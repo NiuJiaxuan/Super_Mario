@@ -18,19 +18,21 @@ namespace Sprint0.Block
 {
     public class QuestionBlockEntity : BlockEntity
     {
-        public ItemEntity item;
 
-        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, BlockItemType blockItemType)
+        public List<ItemEntity> BlockItemList;
+        public List<Entity> ItemEntityList;
+
+        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> itemEntityList)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.QuestionBlock);
-            if ((int)blockItemType != 6)
-                item = new ItemEntity(game, position,false, blockItemType);
             BlockType = eBlockType.QuestionBlock;
             CurrentState = new QuestionBlockNormalState(this);
             CurrentState.Enter(null);
             IsVisible = isVisible;
 
+            BlockItemList = blockItemList;
+            ItemEntityList = itemEntityList;
         }
 
         public void marioCollsionDetection(MarioEntity mario)
@@ -49,6 +51,13 @@ namespace Sprint0.Block
                 else
                 {
                     BumpTransition();
+                    if (BlockItemList != null)
+                    {
+                        ItemEntity temp = BlockItemList[0];
+                        ItemEntityList.Add(temp);
+                        temp.BumpTransition();
+                        //BlockItemList.RemoveAt(0);
+                    }
 
                 }
             }

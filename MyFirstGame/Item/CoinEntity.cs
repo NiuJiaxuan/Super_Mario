@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using static Sprint0.State.BlockEntity;
+using Sprint0.Item.State;
 
 namespace Sprint0.Item
 {
@@ -19,6 +20,8 @@ namespace Sprint0.Item
         {
             ItemType = eItemType.Coin;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
+            CurrentState = new CoinNormalState(this);
+            CurrentState.Enter(null);
         }
 
         public override void Update(GameTime gameTime)

@@ -35,7 +35,7 @@ namespace Sprint0.Block.BlockState
             this.previousState = previousState;
         }
 
-        public virtual  void Exit() { }
+        public virtual void Exit() { }
         public virtual void NormalTransition() { }
         public virtual void BumpTransition() { }
         public virtual void UsedTransition() { }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Win32.SafeHandles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.Item.State;
@@ -28,14 +29,6 @@ namespace Sprint0.Item
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }
 
-        public ItemEntity(Game1 game, Vector2 position, bool isVisible, BlockItemType itemType)
-            : base(game, position)
-        {
-            Sprite = ItemFactory.CreateItem(game, position, (int)itemType);
-            Sprite.Speed = new Vector2(0, -60);
-            IsVisible = isVisible;
-        }
-
         public ItemEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -43,6 +36,10 @@ namespace Sprint0.Item
 
         public override void Update(GameTime gameTime)
         {
+            Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            CurrentState?.Update(gameTime); 
+
             base.Update(gameTime);
 
         }

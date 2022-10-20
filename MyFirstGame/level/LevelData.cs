@@ -25,7 +25,7 @@ namespace Sprint0.level
             public String ObjectType { get; set; }
             public String ObjectName { get; set; }
             public Vector2 Position { get; set; } 
-            public BlockItemType  BlockItemType { get; set; }
+            public string[]  BlockItem { get; set; }
             public int Lives { get; set; }
             
 
