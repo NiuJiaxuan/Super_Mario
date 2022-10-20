@@ -135,7 +135,6 @@ namespace Sprint0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-  
 
             //--------------------------------load font---------------------------------------
            // HUDFont = Content.Load<SpriteFont>("File");
