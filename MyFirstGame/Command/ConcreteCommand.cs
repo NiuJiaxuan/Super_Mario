@@ -159,4 +159,15 @@ namespace Sprint0.Command
 
     }
 
+    public class ResetCommand : GameCommand
+    {
+        public ResetCommand(Game1 receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.ResetCommand();
+        }
+    }
+
 }
