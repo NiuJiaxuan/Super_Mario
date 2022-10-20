@@ -53,7 +53,7 @@ namespace Sprint0.Block
                     if (BlockItemList.Count != 0)
                     {
                         BumpTransition();
-                        ItemEntity temp = BlockItemList.First();
+                        ItemEntity temp = BlockItemList[0];
                         ItemEntityList.Add(temp);
                         temp.BumpTransition();
                         BlockItemList.RemoveAt(0);

@@ -50,13 +50,17 @@ namespace Sprint0.Block
                         foreach (ItemEntity item in BlockItemList)
                         {
                             ItemEntityList.Add(item);
+                            item.BumpTransition();
                         }
+                        BlockItemList.Clear();
                         break;
                     case FireState:
                         foreach (ItemEntity item in BlockItemList)
                         {
                             ItemEntityList.Add(item);
+                            item.BumpTransition();
                         }
+                        BlockItemList.Clear();
                         break;
                     default:
                         if(BlockItemList.Count != 0)
