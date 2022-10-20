@@ -27,7 +27,6 @@ namespace Sprint0.Item.State
 
         public override void Exit()
         {
-            Item.Position = Origion;
             Item.Speed = new Vector2(0, 0);
         }
 
