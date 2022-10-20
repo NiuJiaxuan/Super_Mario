@@ -147,6 +147,10 @@ namespace Sprint0
                 {
                     temp.Add(new OneUpMushroomEntity(game, levelObject.Position));
                 }
+                else if (item.Equals("SuperMushroom"))
+                {
+                    temp.Add(new SuperMushroomEntity(game, levelObject.Position));
+                }
             }
             return temp;
         }
