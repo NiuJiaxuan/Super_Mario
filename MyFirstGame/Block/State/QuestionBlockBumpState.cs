@@ -33,7 +33,7 @@ namespace Sprint0.Block.State
         public override void NormalTransition()
         {
             CurrentState.Exit();
-            CurrentState = new UsedBlockNormalState(Block);
+            CurrentState = new QuestionBlockNormalState(Block);
             CurrentState.Enter(this);
         }
         public override void Update(GameTime gameTime)

@@ -50,13 +50,17 @@ namespace Sprint0.Block
                 }
                 else
                 {
-                    BumpTransition();
-                    if (BlockItemList != null)
+                    if (BlockItemList.Count != 0)
                     {
+                        BumpTransition();
                         ItemEntity temp = BlockItemList.First();
                         ItemEntityList.Add(temp);
                         temp.BumpTransition();
-                        //BlockItemList.RemoveAt(0);
+                        BlockItemList.RemoveAt(0);
+                    }
+                    else
+                    {
+                        Sprite = BlockFactory.CreateBlock(game, Position, (int)eBlockType.UsedBlock);
                     }
 
                 }

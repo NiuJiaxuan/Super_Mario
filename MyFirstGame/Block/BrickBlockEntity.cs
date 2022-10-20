@@ -44,12 +44,30 @@ namespace Sprint0.Block
             if (detected.Item1 == Collision.Touching.bottom)
             {
                 BumpOrBreakTransition();
-                if (BlockItemList != null)
+                switch (Mario.currentPowerState)
                 {
-                    ItemEntity temp = BlockItemList[0];
-                    ItemEntityList.Add(temp);
-                    temp.BumpTransition();
-                    //BlockItemList.RemoveAt(0);
+                    case SuperState:
+                        foreach (ItemEntity item in BlockItemList)
+                        {
+                            ItemEntityList.Add(item);
+                        }
+                        break;
+                    case FireState:
+                        foreach (ItemEntity item in BlockItemList)
+                        {
+                            ItemEntityList.Add(item);
+                        }
+                        break;
+                    default:
+                        if(BlockItemList.Count != 0)
+                        {
+                            ItemEntity temp = BlockItemList.First();
+                            ItemEntityList.Add(temp);
+                            temp.BumpTransition();
+                            BlockItemList.Remove(temp);
+
+                        }
+                        break;
                 }
             }
 
