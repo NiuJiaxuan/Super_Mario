@@ -29,8 +29,8 @@ namespace Sprint0.Enemy
         {
             List<Entity> entities = new List<Entity>();
             entities.Add(mario);
-            Tuple<Collision.Touching, float, float, Entity> detected = collisionDetection.detectCollsion(entities);
-            if (detected.Item1 == Collision.Touching.top)
+            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
+            if (detected.Item1 == CollisionDetector.Touching.top)
             {
                 currentState = new GoombaDeathState(this);
                 currentState?.Enter();

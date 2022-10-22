@@ -110,9 +110,9 @@ namespace Sprint0.Mario
 
          public void BlockCollisionDetection (List<Entity> entities)
          {
-            Tuple< Collision.Touching, float, float,Entity> detected =  collisionDetection.detectCollsion(entities);
+            Tuple< CollisionDetector.Touching, float, float,Entity> detected =  collisionDetection.Collsion(entities);
 
-            if (detected.Item1 != Collision.Touching.none)
+            if (detected.Item1 != CollisionDetector.Touching.none)
             {
                 Idle();
                 Position = new Vector2(detected.Item2, detected.Item3);
@@ -123,8 +123,8 @@ namespace Sprint0.Mario
 
         public void ItemCollisionDetection(List<Entity> entities)
         {
-            Tuple<Collision.Touching, float, float, Entity> detected = collisionDetection.detectCollsion(entities);
-            if (detected.Item1 != Collision.Touching.none)
+            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
+            if (detected.Item1 != CollisionDetector.Touching.none)
             {
                 switch (detected.Item4)
                 {
@@ -145,7 +145,7 @@ namespace Sprint0.Mario
                         entities.Remove(detected.Item4);
                         break;
                     case PipeEntity:
-                        if (detected.Item1 != Collision.Touching.none)
+                        if (detected.Item1 != CollisionDetector.Touching.none)
                         {
                             Idle();
                             Position = new Vector2(detected.Item2, detected.Item3);
@@ -157,15 +157,15 @@ namespace Sprint0.Mario
 
         public void EnemyCollisionDetection(List<Entity> entities)
         {
-            Tuple<Collision.Touching, float, float, Entity> detected = collisionDetection.detectCollsion(entities);
+            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
 
-            if (detected.Item1 != Collision.Touching.bottom && detected.Item1 != Collision.Touching.none)
+            if (detected.Item1 != CollisionDetector.Touching.bottom && detected.Item1 != CollisionDetector.Touching.none)
             {
                 Position = new Vector2(detected.Item2, detected.Item3);
                 Idle();
                 TakeDamage();
             }
-            else if(detected.Item1 == Collision.Touching.bottom)
+            else if(detected.Item1 == CollisionDetector.Touching.bottom)
             {
                 //Debug.WriteLine("touch from top");
                 Position = new Vector2(detected.Item2, detected.Item3);

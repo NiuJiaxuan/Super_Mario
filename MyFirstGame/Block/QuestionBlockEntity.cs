@@ -37,9 +37,9 @@ namespace Sprint0.Block
         {
             List<Entity> entities = new List<Entity>();
             entities.Add(mario);
-            Tuple<Collision.Touching, float, float, Entity> detected = collisionDetection.detectCollsion(entities);
+            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
 
-            if (detected.Item1 == Collision.Touching.bottom)
+            if (detected.Item1 == CollisionDetector.Touching.bottom)
             {
                 if (!IsVisible)
                 {

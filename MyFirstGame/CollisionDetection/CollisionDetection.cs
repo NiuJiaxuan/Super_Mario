@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.CollisionDetection
 {
-    public class Collision
+    public class CollisionDetector
     {
         public enum Touching
         {
@@ -20,14 +20,31 @@ namespace Sprint0.CollisionDetection
             none
         }
 
-        public Entity currentEntity;
-
-        public Collision(Entity currentEntity)
+        private static CollisionDetector instance;
+        public static CollisionDetector Instance
         {
-            this.currentEntity = currentEntity;
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new CollisionDetector();
+                }
+                return instance;
+            }
         }
 
-        public Tuple< Touching, float , float, Entity > detectCollsion(List<Entity> entities)
+        public Entity currentEntity;
+        private EntityStorage storage;
+
+        public CollisionDetector()
+        {
+            SetupGrids();
+        }
+
+
+
+
+        public Tuple< Touching, float , float, Entity > Collsion(List<Entity> entities)
         {
             Touching touching = Touching.none;
             Rectangle interactionRec;
@@ -77,6 +94,31 @@ namespace Sprint0.CollisionDetection
             }
             result = new Tuple<Touching, float, float,Entity>(touching, x, y,collide);
             return result;
+        }
+
+        public void SetupGrids()
+        {
+            Entity[,] grids;
+
+
+        }
+
+        public List<Grid> getSurroundingGrids(Entity entity)
+        {
+            List<Grid> surroundingGrids = new List<Grid>();
+            foreach
+        }
+
+        public void DectectCollision(List<Entity> entities)
+        {
+            List<Entity> collidables = new List<Entity>();
+            collidables.AddRange(entities);
+            foreach(Entity collidable in collidables)
+            {
+                collidables.Remove(collidable);
+
+                
+            }
         }
 
     }

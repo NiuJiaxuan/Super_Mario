@@ -20,9 +20,10 @@ namespace Sprint0.Sprites
         public GraphicsDevice graphics;
         public bool showBoundBox;
         public Texture2D texture;
-        public Collision collisionDetection;
+        public CollisionDetector collisionDetection;
         public MarioEntity Mario;
         public bool IsVisible = true;
+
 
         public Sprite Sprite
         {
@@ -45,7 +46,7 @@ namespace Sprint0.Sprites
             get { return new Rectangle((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y), (int)Sprite.FrameSize.X, (int)Sprite.FrameSize.Y); }
         }
 
-        public Collision Collision
+        public CollisionDetector Collision
         {
             get { return collisionDetection; }
             set { this.collisionDetection = value; }
@@ -80,7 +81,6 @@ namespace Sprint0.Sprites
         {
             this.game = game;
             showBoundBox = false;            
-            Collision = new Collision(this);
         }
 
         //for mario
