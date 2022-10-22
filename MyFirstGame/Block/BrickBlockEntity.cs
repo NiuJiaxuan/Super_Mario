@@ -19,19 +19,20 @@ namespace Sprint0.Block
 {
     public class BrickBlockEntity : BlockEntity
     {
+        public List<ItemEntity> BlockItemList;
+        public List<Entity> ItemEntityList;
 
-        public ItemEntity item;
-
-        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, BlockItemType blockItemType)
+        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> itemEntityList)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
-            if ((int)blockItemType != 6)
-                item = new ItemEntity(game, position,false, blockItemType);
             BlockType = eBlockType.BrickBlock;
             CurrentState = new BrickBlockNormalState(this);
             CurrentState.Enter(null);
             IsVisible = isVisible;
+
+            BlockItemList = blockItemList;
+            ItemEntityList = itemEntityList;
         }
 
         public void marioCollsionDetection(MarioEntity mario)
@@ -42,7 +43,36 @@ namespace Sprint0.Block
 
             if (detected.Item1 == CollisionDetector.Touching.bottom)
             {
-                    BumpOrBreakTransition();
+                BumpOrBreakTransition();
+                switch (Mario.currentPowerState)
+                {
+                    case SuperState:
+                        foreach (ItemEntity item in BlockItemList)
+                        {
+                            ItemEntityList.Add(item);
+                            item.BumpTransition();
+                        }
+                        BlockItemList.Clear();
+                        break;
+                    case FireState:
+                        foreach (ItemEntity item in BlockItemList)
+                        {
+                            ItemEntityList.Add(item);
+                            item.BumpTransition();
+                        }
+                        BlockItemList.Clear();
+                        break;
+                    default:
+                        if(BlockItemList.Count != 0)
+                        {
+                            ItemEntity temp = BlockItemList.First();
+                            ItemEntityList.Add(temp);
+                            temp.BumpTransition();
+                            BlockItemList.Remove(temp);
+
+                        }
+                        break;
+                }
             }
 
         }
@@ -52,14 +82,12 @@ namespace Sprint0.Block
         {
             Mario = mario;
             marioCollsionDetection(mario);
-            item.Update(gameTime);
             base.Update(gameTime, mario,enemyEntities,blockEntities);
 
         }
         public override void Draw(SpriteBatch spriteBatch)
         {        
-            item.Draw(spriteBatch);
-             base.Draw(spriteBatch);
+            base.Draw(spriteBatch);
             
         }
 

@@ -28,8 +28,6 @@ namespace Sprint0
         public List<Entity> EntityList { get; set; }
 
         public List<Entity> PlayerList { get; set; }
-
-        Camera camera;
         public static EntityStorage Instance { get; } = new EntityStorage();
         public Entity Mario { get; set; } 
 
@@ -47,26 +45,27 @@ namespace Sprint0
             PlayerList = value; 
         }
 
-        private static Entity CreateEntity(LevelObject levelObject, Game1 game)
+        private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> itemEntityList)
         {
             string objectType = levelObject.ObjectType;
             string objectName = levelObject.ObjectName;
             if (objectType.Equals("Blocks"))
             {
+                List<ItemEntity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
                 if (objectName.Equals("BrickBlock")){
-                    return new BrickBlockEntity(game, levelObject.Position, true, levelObject.BlockItemType);
+                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, itemEntityList);
                 }
                 else if (objectName.Equals("QuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position,true, levelObject.BlockItemType);
+                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock, itemEntityList);
                 }
                 else if (objectName.Equals("HiddenBrickBlock"))
                 {
-                    return new BrickBlockEntity(game, levelObject.Position, false, levelObject.BlockItemType);
+                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
                 }
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position, false, levelObject.BlockItemType);
+                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
@@ -126,6 +125,36 @@ namespace Sprint0
             return null;
         }
 
+        private static List<ItemEntity> CreateItemEntityInBlock(LevelObject levelObject, Game1 game)
+        {
+            List<ItemEntity> temp = new List<ItemEntity>();
+            if (levelObject.BlockItem != null)
+            foreach (string item in levelObject.BlockItem)
+            {
+                if (item.Equals("Coin"))
+                {
+                    temp.Add(new CoinEntity(game, levelObject.Position));
+                }
+                else if (item.Equals("Star"))
+                {
+                    temp.Add(new StarEntity(game, levelObject.Position));
+                }
+                else if (item.Equals("FireFlower"))
+                {
+                    temp.Add(new FireFlowerEntity(game, levelObject.Position));
+                }
+                else if (item.Equals("OnUpMushroom"))
+                {
+                    temp.Add(new OneUpMushroomEntity(game, levelObject.Position));
+                }
+                else if (item.Equals("SuperMushroom"))
+                {
+                    temp.Add(new SuperMushroomEntity(game, levelObject.Position));
+                }
+            }
+            return temp;
+        }
+
         public void  Add (LevelData levelData, Game1 game)
         {
             BackgroundEntityList = new List<Entity>();
@@ -138,8 +167,17 @@ namespace Sprint0
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {
-                Entity entity = CreateEntity(levelObject, game);
+                Entity entity = CreateEntity(levelObject, game, ItemEntityList);
                 EntityList.Add(entity);
+/*                if (levelObject.ObjectType.Equals("Blocks"))
+                {
+                    foreach (string item in levelObject.BlockItem)
+                    {
+                        Entity temp = CreateItemEntityInBlock(item, levelObject.Position, game);
+                        EntityList.Add(temp);
+                        ItemEntityList.Add(temp);
+                    }
+                }*/
                 switch (entity)
                 {
                     case MarioEntity:

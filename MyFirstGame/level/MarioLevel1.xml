@@ -11,38 +11,38 @@
 		<ObjectType>Blocks</ObjectType>
 		<ObjectName>BrickBlock</ObjectName>
 		<Position>100 200</Position>
-		<BlockItemType>Coin</BlockItemType>
+		<BlockItem>Coin</BlockItem>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
 		<ObjectName>QuestionBlock</ObjectName>
 		<Position>200 200</Position>
-		<BlockItemType>SuperMushroom</BlockItemType>
+		<BlockItem>SuperMushroom</BlockItem>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
 		<ObjectName>HiddenBrickBlock</ObjectName>
 		<Position>300 200</Position>
-		<BlockItemType>Star</BlockItemType>
+		<BlockItem>Star</BlockItem>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
 		<ObjectName>FloorBlock</ObjectName>
 		<Position>400 200</Position>
-		<BlockItemType>None</BlockItemType>
+		<BlockItem>None</BlockItem>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
 		<ObjectName>StairBlock</ObjectName>
 		<Position>500 200</Position>
-		<BlockItemType>None</BlockItemType>
-	</Item>
+		<BlockItem>None</BlockItem>	
+</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
 		<ObjectName>HiddenQuestionBlock</ObjectName>
 		<Position>700 200</Position>
-		<BlockItemType>Star</BlockItemType>
-	</Item>
+		<BlockItem>Coin Coin Coin</BlockItem>	
+</Item>
 
 	<!-- Items -->
 	<Item>

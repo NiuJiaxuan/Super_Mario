@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Sprites;
 using static Sprint0.State.BlockEntity;
+using Sprint0.Item.State;
 
 namespace Sprint0.Item
 {
@@ -17,6 +18,8 @@ namespace Sprint0.Item
         {
             ItemType = eItemType.OneUpMushroom;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
+            CurrentState = new OneUpMushroomNormalState(this);
+            CurrentState.Enter(null);
         }
 
         public override void Update(GameTime gameTime)

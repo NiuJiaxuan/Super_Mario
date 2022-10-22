@@ -12,6 +12,7 @@ using System.Transactions;
 using Sprint0.Block.State;
 using Sprint0.State;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Item;
 
 namespace Sprint0.State
 {
@@ -19,6 +20,7 @@ namespace Sprint0.State
     {
         protected IBlockState previousState;
         public BlockEntity Block { get; protected set; }
+        public ItemEntity Item { get; protected set; }
         protected IBlockState CurrentState { get { return Block.CurrentState; } set { Block.CurrentState = value; } }
         IBlockState IBlockState.PreviousState { get { return previousState; } }
 

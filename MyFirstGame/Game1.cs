@@ -86,7 +86,7 @@ namespace Sprint0
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
             camera = new Camera(GraphicsDevice.Viewport);
-            camera.Limits= new Rectangle(0,0,6000,500);
+            camera.Limits= new Rectangle(0,0,6000,450);
 
             background = Content.Load<Texture2D>("background");
 
@@ -96,6 +96,7 @@ namespace Sprint0
             
             keyboard = new KeyboardController();
             keyboard.Command((int)Keys.Q, new ExitCommand(this));
+            keyboard.Command((int)Keys.R, new ResetCommand(this));
             keyboard.Command((int)Keys.I, new ChangeToFireMario(levelBuilder.EntityStorage.Mario));
             keyboard.Command((int)Keys.U, new ChangeToSuperMario(levelBuilder.EntityStorage.Mario));
             keyboard.Command((int)Keys.Y, new ChangeToNormalMario(levelBuilder.EntityStorage.Mario));
@@ -133,15 +134,8 @@ namespace Sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-
-  
-
             //--------------------------------load font---------------------------------------
            // HUDFont = Content.Load<SpriteFont>("File");
-
-
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -178,6 +172,12 @@ namespace Sprint0
             base.Draw(gameTime);
         }
 
+
+        public void ResetCommand()
+        {
+            Initialize();
+            
+        }
         public void ExitCommnad()
         {
             Exit();

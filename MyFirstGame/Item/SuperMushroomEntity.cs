@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Sprites;
+using Sprint0.Item.State;
 
 namespace Sprint0.Item
 {
@@ -16,6 +17,8 @@ namespace Sprint0.Item
         {
             ItemType = eItemType.SuperMushroom;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
+            CurrentState = new SuperMushroomNormalState(this);
+            CurrentState.Enter(null);
 
         }
 
