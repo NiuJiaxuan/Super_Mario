@@ -110,14 +110,15 @@ namespace Sprint0.Mario
         {
             switch (entity)
             {
-                case BlockEntity:
-                    if(touching == CollisionDetector.Touching.top)
+                case BlockEntity block:
+                    if (block.IsVisible)
                     {
                         Idle();
                         this.Position = position;
-                    }else if(touching != CollisionDetector.Touching.none)
+                    }
+                    else
                     {
-                        if (entity.IsVisible)
+                        if (touching == CollisionDetector.Touching.top)
                         {
                             Idle();
                             this.Position = position;
