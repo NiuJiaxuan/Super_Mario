@@ -34,6 +34,24 @@ namespace Sprint0.State
 
         public bool breakBlockVisible = true;
 
+        public override Rectangle GetRectangle
+        {
+            get
+            {
+                if (!IsVisible)
+                {
+                    if (EntityStorage.Instance.Mario.Position.Y < this.Position.Y + EntityStorage.Instance.Mario.Sprite.FrameSize.Y)
+                        return new Rectangle();
+                    else
+                        return base.GetRectangle;
+                }
+                else
+                {
+                    return base.GetRectangle;
+                }
+            }
+        }
+
         public Sprite SmallBlock1
         {
             get { return smallBlock1; }

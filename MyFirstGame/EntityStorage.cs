@@ -74,7 +74,7 @@ namespace Sprint0
             //Debug.WriteLine(AllGrids[0, 0].Position);
         }
 
-        private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> itemEntityList)
+        private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> entityList)
         {
             string objectType = levelObject.ObjectType;
             string objectName = levelObject.ObjectName;

@@ -19,11 +19,7 @@ namespace Sprint0.Sprites
     {
         private Sprite _sprite;
         public Game1 game;
-        public GraphicsDevice graphics;
         public bool showBoundBox;
-        public Texture2D texture;
-        public CollisionDetector collisionDetection;
-        public MarioEntity Mario;
         public bool IsVisible = true;
 
 
@@ -43,15 +39,9 @@ namespace Sprint0.Sprites
             get { return Grid.getSurroundingGrids(this); }
         }
 
-        public Rectangle GetRectangle
+        public virtual Rectangle GetRectangle
         {
             get { return new Rectangle((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y), (int)Sprite.FrameSize.X, (int)Sprite.FrameSize.Y); }
-        }
-
-        public CollisionDetector Collision
-        {
-            get { return collisionDetection; }
-            set { this.collisionDetection = value; }
         }
 
 
