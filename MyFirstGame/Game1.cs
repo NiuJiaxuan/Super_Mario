@@ -92,7 +92,6 @@ namespace Sprint0
 
             background = Content.Load<Texture2D>("background");
 
-            Debug.WriteLine(EntityStorage.Instance.Mario is IMovableEntity);
 
             EntityStorage.Instance.SetupGrids(_graphics);
 

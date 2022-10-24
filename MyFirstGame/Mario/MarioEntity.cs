@@ -109,19 +109,22 @@ namespace Sprint0.Mario
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
+            //Debug.WriteLine("mario response");
+            this.Position = position;
             switch (entity)
             {
                 case BlockEntity block:
                     if (block.IsVisible)
                     {
                         Idle();
-                    }else if(touching != CollisionDetector.Touching.none)
-                    {
-                        if (touching == CollisionDetector.Touching.top)
-                        {
-                            Idle();
-                        }
                     }
+                    //else if(touching != CollisionDetector.Touching.none)
+                    //{
+                    //    if (touching == CollisionDetector.Touching.top)
+                    //    {
+                    //        Idle();
+                    //    }
+                    //}
                     break;
                 case ItemEntity:
                     switch (entity)
@@ -168,7 +171,6 @@ namespace Sprint0.Mario
                     }
                     break;
             }
-            this.Position = position;
         }
 
 
