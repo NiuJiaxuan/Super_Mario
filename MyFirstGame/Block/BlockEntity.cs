@@ -83,10 +83,6 @@ namespace Sprint0.State
         {
             base.Update(gameTime, entities);
 
-            
-            Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             CurrentState?.Update(gameTime);            
             
         }

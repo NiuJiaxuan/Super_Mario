@@ -93,8 +93,12 @@ namespace Sprint0.Sprites
         public virtual void Update (GameTime gameTime, List<Entity> entities)
         {
 
+
             this.Entities = entities;
-            Sprite.Update(gameTime);
+            Sprite.Update(gameTime);           
+            
+            Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
 

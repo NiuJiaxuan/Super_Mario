@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sprint0.CollisionDetection;
 using Sprint0.Sprites;
 using System;
@@ -36,6 +37,7 @@ namespace Sprint0.CollisionDetection
 
         private GraphicsDeviceManager graphicsDevice { get; set; }
         private Grid[,] AllGrids { get; set; }
+
 
         public CollisionDetector(GraphicsDeviceManager graphics)
         {
@@ -92,6 +94,7 @@ namespace Sprint0.CollisionDetection
         //this entity list only contains entities with in the same grids with target moving entities. 
         public void DectectCollision(List<Entity> entities)
         {            
+            
             // create a new list to test collision
             List<Entity> collidables = new List<Entity>();
             collidables.AddRange(entities);
@@ -99,8 +102,9 @@ namespace Sprint0.CollisionDetection
             //list of collision pairs (entity1, entity2, time, position)
             List<(Entity,Entity, float, Vector2, Touching)> currentCollisions = new List<(Entity,Entity,float, Vector2, Touching)>();
 
-            foreach (Entity collidable in collidables)
-            {
+            for(int i =0; i< collidables.Count(); i++)
+            { 
+                Entity collidable = collidables[i];
                 //only test moving objects
                 if(collidable.Speed != Vector2.Zero || collidable.Accelation != Vector2.Zero)
                 {
@@ -114,6 +118,7 @@ namespace Sprint0.CollisionDetection
 
                         //step 2: find collisions
                         currentCollisions = Collsion(collidable, surroundings);
+                        
                         //step 7: if not collisions, quit
                         if(currentCollisions.Count == 0)
                         {
@@ -193,6 +198,9 @@ namespace Sprint0.CollisionDetection
             {
                 if (!responsedEntities.Contains(currentCollisions[i].Item1))
                 {
+                    Debug.WriteLine(currentCollisions[i].Item1);
+                    Debug.WriteLine(currentCollisions[i].Item2);
+
                     responsedEntities.Add(currentCollisions[i].Item1);
                     currentCollisions[i].Item1.CollisionResponse(currentCollisions[i].Item2, currentCollisions[i].Item4, currentCollisions[i].Item5);
                     currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item4, currentCollisions[i].Item5);

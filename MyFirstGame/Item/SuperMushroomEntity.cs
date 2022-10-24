@@ -22,9 +22,9 @@ namespace Sprint0.Item
 
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            base.Update(gameTime);
+            base.Update(gameTime,entities);
 
         }
 

@@ -10,11 +10,13 @@ namespace Sprint0.level
 {
     public class LevelBuilder
     {
-        public EntityStorage EntityStorage { get; set; }
+        public EntityStorage EntityStorage
+        {
+            get { return  EntityStorage.Instance; }
+        }
 
         public LevelBuilder()
         {
-            EntityStorage = new EntityStorage();
         }
 
         public LevelData LevelData { get; private set; }

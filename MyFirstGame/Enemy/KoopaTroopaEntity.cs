@@ -21,12 +21,9 @@ namespace Sprint0.Enemy
             Sprite = EnemyFactory.CreateEnemy(game, position, (int)eEnemyType.KoopaTroopa);
         }
 
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
-            base.Update(gameTime, mario, enemyEntities, blockEntities);
-
-            Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            base.Update(gameTime, blockEntities);
         }
 
         public override void Draw(SpriteBatch batch)

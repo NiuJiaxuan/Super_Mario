@@ -35,38 +35,38 @@ namespace Sprint0.Block
             ItemEntityList = itemEntityList;
         }
 
-        public void marioCollsionDetection(MarioEntity mario)
-        {
-            List<Entity> entities = new List<Entity>();
-            entities.Add(mario);
-            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
+        //public void marioCollsionDetection(MarioEntity mario)
+        //{
+        //    List<Entity> entities = new List<Entity>();
+        //    entities.Add(mario);
+        //    Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
 
-            if (detected.Item1 == CollisionDetector.Touching.bottom)
-            {
-                if (!IsVisible)
-                {
-                    ChangeToVisible();
+        //    if (detected.Item1 == CollisionDetector.Touching.bottom)
+        //    {
+        //        if (!IsVisible)
+        //        {
+        //            ChangeToVisible();
 
-                }
-                else
-                {
-                    if (BlockItemList.Count != 0)
-                    {
-                        BumpTransition();
-                        ItemEntity temp = BlockItemList[0];
-                        ItemEntityList.Add(temp);
-                        temp.BumpTransition();
-                        BlockItemList.RemoveAt(0);
-                    }
-                    else
-                    {
-                        Sprite = BlockFactory.CreateBlock(game, Position, (int)eBlockType.UsedBlock);
-                    }
+        //        }
+        //        else
+        //        {
+        //            if (BlockItemList.Count != 0)
+        //            {
+        //                BumpTransition();
+        //                ItemEntity temp = BlockItemList[0];
+        //                ItemEntityList.Add(temp);
+        //                temp.BumpTransition();
+        //                BlockItemList.RemoveAt(0);
+        //            }
+        //            else
+        //            {
+        //                Sprite = BlockFactory.CreateBlock(game, Position, (int)eBlockType.UsedBlock);
+        //            }
 
-                }
-            }
+        //        }
+        //    }
 
-        }
+        //}
 
         public override void Update(GameTime gameTime,  List<Entity> blockEntities)
         {
