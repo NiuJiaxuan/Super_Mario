@@ -38,7 +38,7 @@ namespace Sprint0.Item
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            Debug.WriteLine("item response");
+            //Debug.WriteLine("item response");
             EntityStorage.Instance.EntityList.Remove(this);
         }
 

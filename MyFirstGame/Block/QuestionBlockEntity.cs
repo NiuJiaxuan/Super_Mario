@@ -59,12 +59,11 @@ namespace Sprint0.Block
                                 temp.BumpTransition();
                                 BlockItemList.RemoveAt(0);
                             }
-
                         }
                     }
                     break;
                 case EnemyEntity:
-                    Position = position;
+                    
                     break;
                 case ItemEntity:
                     Position = position;

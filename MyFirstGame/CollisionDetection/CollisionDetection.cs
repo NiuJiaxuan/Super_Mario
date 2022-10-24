@@ -56,8 +56,11 @@ namespace Sprint0.CollisionDetection
             {
                 foreach(Entity entity in entities)
                 {
-                    if(entity.GetRectangle.Intersects(grid.Rectangle))
+                    if (entity.GetRectangle.Intersects(grid.Rectangle) && !surroundingEntities.Contains(entity))
+                    {
                         surroundingEntities.Add(entity);
+                        //Debug.WriteLine(entity);
+                    }
                 }
             }
 
@@ -76,43 +79,43 @@ namespace Sprint0.CollisionDetection
 
             //list of collision pairs (entity1, entity2, time, position)
             List<(Entity,Entity, float, Vector2, Touching,Touching)> currentCollisions = new List<(Entity,Entity,float, Vector2, Touching, Touching)>();
-
-            for(int i =0; i< movables.Count(); i++)
-            { 
-                Entity movable = movables[i];
-                //only test moving objects
-                if(movable.Speed != Vector2.Zero || movable.Accelation != Vector2.Zero)
-                {
-                    //Debug.WriteLine("current moving entity: " + collidable);
-
-                    //step 6: go back to step 1 for collided objects
-                    while (true)
+            //step 6: go back to step 1 for collided objects
+            while (true)
+            {
+                for(int i =0; i< movables.Count(); i++)
+                { 
+                    Entity movable = movables[i];
+                    //only test moving objects
+                    if(movable.Speed != Vector2.Zero || movable.Accelation != Vector2.Zero)
                     {
-                        //step 1: get the surrounding entity list
-                        collidables.Remove(movable);
+                        //Debug.WriteLine("current moving entity: " + collidable);
 
-                        List<Entity> surroundings = getSurroundingEntities(movable.SurroundingGrids, collidables);
+                   
+                            //step 1: get the surrounding entity list
+                            collidables.Remove(movable);
 
-                        //Debug.WriteLine(surroundings.Count);
+                            List<Entity> surroundings = getSurroundingEntities(movable.SurroundingGrids, collidables);
 
-                        surroundings.Remove(movable);
+                            //Debug.WriteLine(surroundings.Count);
 
-                        //step 2: find collisions
-                        currentCollisions = Collsion(movable, surroundings);
-                        
-                        //Debug.WriteLine("total collisions: "+ currentCollisions.Count);
+                            surroundings.Remove(movable);
 
-                        //step 7: if not collisions, quit
-                        if(currentCollisions.Count == 0)
-                        {
-                            break;
-                        }
-                        //step 3: sort collisions based on time
-                        currentCollisions.Sort(new TimeComparer());
-                        //step 4 & 5: update position and speed
-                        CollsionResponse(currentCollisions);
+                            //step 2: find collisions
+                            currentCollisions.AddRange(Collsion(movable, surroundings));
                     }
                 }
+                //step 7: if not collisions, quit
+                if(currentCollisions.Count == 0)
+                {
+                    break;
+                }
+                Debug.WriteLine("total collisions: "+ currentCollisions.Count);
+
+                //step 3: sort collisions based on time
+                currentCollisions.Sort(new TimeComparer());
+                        //step 4 & 5: update position and speed
+                CollsionResponse(currentCollisions);
+                currentCollisions.Clear();
             }
         }
 
@@ -132,6 +135,7 @@ namespace Sprint0.CollisionDetection
             foreach (Entity entity in entities)
             {
                 interactionRec = Rectangle.Intersect(collidable.GetRectangle, entity.GetRectangle);
+                //Debug.WriteLine(interactionRec);
                 if (!interactionRec.IsEmpty)
                 {
                     collide = entity;
