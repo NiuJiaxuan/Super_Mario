@@ -55,8 +55,8 @@ namespace Sprint0
 
         public void SetupGrids(GraphicsDeviceManager graphicsDevice)
         {
-            double y = graphicsDevice.PreferredBackBufferHeight;
-            double x = graphicsDevice.PreferredBackBufferWidth;
+            double y = 450;
+            double x = 6000;
 
             int colunms =(int)Math.Ceiling(x / 33);
             int rows = (int)Math.Ceiling(y / 33);
