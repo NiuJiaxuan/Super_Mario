@@ -38,6 +38,7 @@ namespace Sprint0.Block.BlockState
         public virtual void Exit() { }
         public virtual void NormalTransition() { }
         public virtual void BumpTransition() { }
+        public virtual void BumpTransition(int count) { }
         public virtual void UsedTransition() { }
         public virtual void BreakTransition() { }
         public virtual void EmptyTransition() { }

@@ -34,6 +34,7 @@ namespace Sprint0.Block
 
             BlockItemList = blockItemList;
             EntityList = entityList;
+            
         }
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
@@ -52,15 +53,11 @@ namespace Sprint0.Block
                         {
                             if (BlockItemList.Count != 0)
                             {
-                                BumpTransition();
+                                BumpTransition(BlockItemList.Count - 1);
                                 ItemEntity temp = BlockItemList[0];
                                 EntityList.Add(temp);
                                 temp.BumpTransition();
                                 BlockItemList.RemoveAt(0);
-                            }
-                            else
-                            {
-                                Sprite = BlockFactory.CreateBlock(game, Position, (int)eBlockType.UsedBlock);
                             }
 
                         }
