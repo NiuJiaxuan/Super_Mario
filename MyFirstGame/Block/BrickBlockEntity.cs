@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
 using Sprint0.Item;
 using Sprint0.Mario;
 using Sprint0.Mario.MarioPowerState;
@@ -35,48 +36,50 @@ namespace Sprint0.Block
             ItemEntityList = itemEntityList;
         }
 
-        //public void marioCollsionDetection(MarioEntity mario)
-        //{
-        //    List<Entity> entities = new List<Entity>();
-        //    entities.Add(mario);
-        //    Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        {
+            switch (entity)
+            {
+                case MarioEntity:
+                    if (touching == CollisionDetector.Touching.bottom)
+                    {
+                        BumpOrBreakTransition();
+                        switch (Mario.currentPowerState)
+                        {
+                            case SuperState:
+                                foreach (ItemEntity item in BlockItemList)
+                                {
+                                    ItemEntityList.Add(item);
+                                    item.BumpTransition();
+                                }
+                                BlockItemList.Clear();
+                                break;
+                            case FireState:
+                                foreach (ItemEntity item in BlockItemList)
+                                {
+                                    ItemEntityList.Add(item);
+                                    item.BumpTransition();
+                                }
+                                BlockItemList.Clear();
+                                break;
+                            default:
+                                if (BlockItemList.Count != 0)
+                                {
+                                    ItemEntity temp = BlockItemList.First();
+                                    ItemEntityList.Add(temp);
+                                    temp.BumpTransition();
+                                    BlockItemList.Remove(temp);
 
-        //    if (detected.Item1 == CollisionDetector.Touching.bottom)
-        //    {
-        //        BumpOrBreakTransition();
-        //        switch (Mario.currentPowerState)
-        //        {
-        //            case SuperState:
-        //                foreach (ItemEntity item in BlockItemList)
-        //                {
-        //                    ItemEntityList.Add(item);
-        //                    item.BumpTransition();
-        //                }
-        //                BlockItemList.Clear();
-        //                break;
-        //            case FireState:
-        //                foreach (ItemEntity item in BlockItemList)
-        //                {
-        //                    ItemEntityList.Add(item);
-        //                    item.BumpTransition();
-        //                }
-        //                BlockItemList.Clear();
-        //                break;
-        //            default:
-        //                if(BlockItemList.Count != 0)
-        //                {
-        //                    ItemEntity temp = BlockItemList.First();
-        //                    ItemEntityList.Add(temp);
-        //                    temp.BumpTransition();
-        //                    BlockItemList.Remove(temp);
-
-        //                }
-        //                break;
-        //        }
-        //    }
-
-        //}
-
+                                }
+                                break;
+                        }
+                    }
+                    break;
+                case EnemyEntity:
+                    Position = position;
+                    break;
+            }
+        }
 
         public override void Update(GameTime gameTime,List<Entity> entities)
         {

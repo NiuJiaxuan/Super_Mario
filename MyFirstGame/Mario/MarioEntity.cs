@@ -103,75 +103,8 @@ namespace Sprint0.Mario
         {
             currentMotionState = new IdleState(this);
             currentPowerState = new NormalState(this);
-            //Debug.WriteLine(currentPowerState.ToString());
-            //Debug.WriteLine(currentMotionState.ToString());
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
         }
-
-        //public void blockcollisiondetection(list<entity> entities)
-        //{
-        //    tuple<collisiondetector.touching, float, float, entity> detected = collisiondetection.collsion(entities);
-
-        //    if (detected.item1 != collisiondetector.touching.none)
-        //    {
-        //        idle();
-        //        position = new vector2(detected.item2, detected.item3);
-        //        //if((detected.item1 == collision.touching.top) && ())
-        //    }
-        //}
-
-
-        //public void itemcollisiondetection(list<entity> entities)
-        //{
-        //    tuple<collisiondetector.touching, float, float, entity> detected = collisiondetection.collsion(entities);
-        //    if (detected.item1 != collisiondetector.touching.none)
-        //    {
-        //        switch (detected.item4)
-        //        {
-        //            case fireflowerentity:
-        //                if (currentpowerstate.gettype() == typeof(superstate))
-        //                {
-        //                    fire();
-        //                }
-        //                if (currentpowerstate.gettype() == typeof(normalstate))
-        //                {
-        //                    super();
-        //                }
-        //                entities.remove(detected.item4);
-        //                break;
-        //            case supermushroomentity:
-        //                if (currentpowerstate.gettype() == typeof(normalstate))
-        //                    super();
-        //                entities.remove(detected.item4);
-        //                break;
-        //            case pipeentity:
-        //                if (detected.item1 != collisiondetector.touching.none)
-        //                {
-        //                    idle();
-        //                    position = new vector2(detected.item2, detected.item3);
-        //                }
-        //                break;
-        //        }
-        //    }
-        //}
-
-        //public void enemycollisiondetection(list<entity> entities)
-        //{
-        //    tuple<collisiondetector.touching, float, float, entity> detected = collisiondetection.collsion(entities);
-
-        //    if (detected.item1 != collisiondetector.touching.bottom && detected.item1 != collisiondetector.touching.none)
-        //    {
-        //        position = new vector2(detected.item2, detected.item3);
-        //        idle();
-        //        takedamage();
-        //    }
-        //    else if (detected.item1 == collisiondetector.touching.bottom)
-        //    {
-        //        //debug.writeline("touch from top");
-        //        position = new vector2(detected.item2, detected.item3);
-        //        idle();
-        //    }
-        //}
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {

@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
+using Sprint0.Item;
 using Sprint0.Mario;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.Mario.MarioPowerState;
@@ -72,7 +74,6 @@ namespace Sprint0.State
             Pipe = 5,
             None = 6,
         }
-
 
         public BlockEntity(Game1 game, Vector2 position) : base(game, position)
         {

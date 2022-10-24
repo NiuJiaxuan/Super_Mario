@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
+using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.State;
