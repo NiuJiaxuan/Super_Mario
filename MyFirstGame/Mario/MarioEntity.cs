@@ -178,9 +178,6 @@ namespace Sprint0.Mario
 
             base.Update(gameTime, entities);
 
-            Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             //Debug.WriteLine("speed is " + Speed);
             currentPowerState?.Update(gameTime);
             currentMotionState?.Update(gameTime);

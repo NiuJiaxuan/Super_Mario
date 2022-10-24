@@ -175,6 +175,8 @@ namespace Sprint0
             {
                 Entity entity = CreateEntity(levelObject, game, EntityList);
                 EntityList.Add(entity);
+                if (entity.GetType() == typeof(MarioEntity))
+                    Mario = entity;
 /*                if (levelObject.ObjectType.Equals("Blocks"))
                 {
                     foreach (string item in levelObject.BlockItem)
@@ -215,7 +217,7 @@ namespace Sprint0
             //    Debug.WriteLine(entity);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
             //Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
 
@@ -233,23 +235,20 @@ namespace Sprint0
             //{
             //    EnemyEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
             //}
+            foreach(Entity entity in EntityList)
+            {
+                entity.Update(gameTime, EntityList);
+            }
+
+            CollisionDetector.Instance(graphics).DectectCollision(EntityList);
 
         }
         public void Draw(SpriteBatch batch)
         {
-            Mario.Draw(batch);
-            foreach (Entity entity in BlockEntityList)
+            foreach(Entity entity in EntityList)
             {
                 entity.Draw(batch);
-            }
-            foreach (Entity entity1 in ItemEntityList)
-            {
-                entity1.Draw(batch);
-            }
-            foreach (Entity entity2 in EnemyEntityList)
-            {
-                entity2.Draw(batch);
-            }
+            }           
         }
     }
 }

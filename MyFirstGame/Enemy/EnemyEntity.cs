@@ -31,9 +31,9 @@ namespace Sprint0.Enemy
         }
 
         
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntity, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
-            base.Update(gameTime,mario,enemyEntity, blockEntities);
+            base.Update(gameTime, blockEntities);
 
         }
 

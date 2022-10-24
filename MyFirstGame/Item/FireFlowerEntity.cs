@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Sprint0.Sprites;
 using static Sprint0.State.BlockEntity;
 using Sprint0.Item.State;
+using Sprint0.CollisionDetection;
 
 namespace Sprint0.Item
 {
@@ -22,9 +23,14 @@ namespace Sprint0.Item
             CurrentState.Enter(null);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            base.Update(gameTime);
+            base.CollisionResponse(entity, position, touching);
+        }
+
+        public override void Update(GameTime gameTime, List<Entity> entities)
+        {
+            base.Update(gameTime, entities);
 
         }
 

@@ -25,23 +25,22 @@ namespace Sprint0.Enemy
 
         }
 
-        public void goombaCollisionDetection(MarioEntity mario)
-        {
-            List<Entity> entities = new List<Entity>();
-            entities.Add(mario);
-            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
-            if (detected.Item1 == CollisionDetector.Touching.top)
-            {
-                currentState = new GoombaDeathState(this);
-                currentState?.Enter();
-            }
-        }
+        //public void goombaCollisionDetection(MarioEntity mario)
+        //{
+        //    List<Entity> entities = new List<Entity>();
+        //    entities.Add(mario);
+        //    Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
+        //    if (detected.Item1 == CollisionDetector.Touching.top)
+        //    {
+        //        currentState = new GoombaDeathState(this);
+        //        currentState?.Enter();
+        //    }
+        //}
 
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
-            Mario = mario;
-            goombaCollisionDetection(mario);
-            base.Update(gameTime, mario, enemyEntities, blockEntities);
+ 
+            base.Update(gameTime, blockEntities);
 
         }
 
