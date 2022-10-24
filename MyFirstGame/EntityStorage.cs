@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block;
+using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
 using Sprint0.Item;
 using Sprint0.level;
@@ -21,29 +22,35 @@ namespace Sprint0
 {
     public class EntityStorage
     {
-        public List<Entity> BackgroundEntityList { get; set; }
-        public List<Entity> BlockEntityList { get; set; }
-        public List<Entity> ItemEntityList { get; set; }
-        public List<Entity> EnemyEntityList { get; set; }
+        //public List<Entity> BackgroundEntityList { get; set; }
+        //public List<Entity> BlockEntityList { get; set; }
+        //public List<Entity> ItemEntityList { get; set; }
+        //public List<Entity> EnemyEntityList { get; set; }
         public List<Entity> EntityList { get; set; }
 
-        public List<Entity> PlayerList { get; set; }
-        public static EntityStorage Instance { get; } = new EntityStorage();
-        public Entity Mario { get; set; } 
+        //public List<Entity> PlayerList { get; set; }
+        public Entity Mario { get; set; }
+
+        private static EntityStorage instance;
+        public static EntityStorage Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new EntityStorage();
+                }
+                return instance;
+            }
+        }
+
+
 
         public  EntityStorage()
         {
            
         }
 
-        public void SetEntityList(List<Entity> value)
-        {
-            EntityList = value;
-        }
-        public void SetPlayerList (List<Entity> value)
-        {
-            PlayerList = value; 
-        }
 
         private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> itemEntityList)
         {
@@ -157,17 +164,16 @@ namespace Sprint0
 
         public void  Add (LevelData levelData, Game1 game)
         {
-            BackgroundEntityList = new List<Entity>();
-            BlockEntityList = new List<Entity>();
-            ItemEntityList = new List<Entity>();
-            EnemyEntityList = new List<Entity>();
+            //BackgroundEntityList = new List<Entity>();
+            //BlockEntityList = new List<Entity>();
+            //ItemEntityList = new List<Entity>();
+            //EnemyEntityList = new List<Entity>();
 
-            SetEntityList(new List<Entity>());
-            SetPlayerList(new List<Entity>());
+            EntityList = new List<Entity>();
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {
-                Entity entity = CreateEntity(levelObject, game, ItemEntityList);
+                Entity entity = CreateEntity(levelObject, game, EntityList);
                 EntityList.Add(entity);
 /*                if (levelObject.ObjectType.Equals("Blocks"))
                 {
@@ -178,21 +184,21 @@ namespace Sprint0
                         ItemEntityList.Add(temp);
                     }
                 }*/
-                switch (entity)
-                {
-                    case MarioEntity:
-                        Mario = entity;
-                        break;
-                    case BlockEntity:
-                        BlockEntityList.Add(entity);
-                        break;
-                    case ItemEntity:
-                        ItemEntityList.Add(entity); ;
-                        break;
-                    case EnemyEntity:
-                        EnemyEntityList.Add(entity);
-                        break;
-                }
+                //switch (entity)
+                //{
+                //    case MarioEntity:
+                //        Mario = entity;
+                //        break;
+                //    case BlockEntity:
+                //        BlockEntityList.Add(entity);
+                //        break;
+                //    case ItemEntity:
+                //        ItemEntityList.Add(entity); ;
+                //        break;
+                //    case EnemyEntity:
+                //        EnemyEntityList.Add(entity);
+                //        break;
+                //}
 
                 //if (!levelObject.ObjectType.Equals("Mario"))
                 //{
@@ -211,22 +217,23 @@ namespace Sprint0
 
         public void Update(GameTime gameTime)
         {
-            Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
+            //Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
 
-            for (int i = 0; i < BlockEntityList.Count; i++)
-            {
-                BlockEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
-            }
+            //for (int i = 0; i < BlockEntityList.Count; i++)
+            //{
+            //    BlockEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
+            //}
 
-            foreach (Entity entity1 in ItemEntityList)
-            {
-                entity1.Update(gameTime);
-            }
+            //foreach (Entity entity1 in ItemEntityList)
+            //{
+            //    entity1.Update(gameTime);
+            //}
 
-            for(int i = 0; i < EnemyEntityList.Count; i++)
-            {
-                EnemyEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
-            }
+            //for(int i = 0; i < EnemyEntityList.Count; i++)
+            //{
+            //    EnemyEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
+            //}
+
         }
         public void Draw(SpriteBatch batch)
         {

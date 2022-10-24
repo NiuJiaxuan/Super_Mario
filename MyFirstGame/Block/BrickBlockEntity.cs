@@ -78,11 +78,10 @@ namespace Sprint0.Block
         }
 
 
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime,List<Entity> entities)
         {
-            Mario = mario;
-            marioCollsionDetection(mario);
-            base.Update(gameTime, mario,enemyEntities,blockEntities);
+
+            base.Update(gameTime, entities);
 
         }
         public override void Draw(SpriteBatch spriteBatch)

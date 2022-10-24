@@ -14,7 +14,7 @@ namespace Sprint0.CollisionDetection
         Vector2 Min;
         Vector2 Max;
         Vector2 GridSize;
-        Rectangle Rectangle { get; set; }
+        public Rectangle Rectangle { get; set; }
 
         public Grid(Vector2 gridSize, Vector2 position)
         {

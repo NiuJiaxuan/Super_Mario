@@ -108,79 +108,141 @@ namespace Sprint0.Mario
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
         }
 
-         public void BlockCollisionDetection (List<Entity> entities)
-         {
-            Tuple< CollisionDetector.Touching, float, float,Entity> detected =  collisionDetection.Collsion(entities);
+        //public void blockcollisiondetection(list<entity> entities)
+        //{
+        //    tuple<collisiondetector.touching, float, float, entity> detected = collisiondetection.collsion(entities);
 
-            if (detected.Item1 != CollisionDetector.Touching.none)
-            {
-                Idle();
-                Position = new Vector2(detected.Item2, detected.Item3);
-                //if((detected.Item1 == Collision.Touching.top) && ())
-            }
-         }
+        //    if (detected.item1 != collisiondetector.touching.none)
+        //    {
+        //        idle();
+        //        position = new vector2(detected.item2, detected.item3);
+        //        //if((detected.item1 == collision.touching.top) && ())
+        //    }
+        //}
 
 
-        public void ItemCollisionDetection(List<Entity> entities)
+        //public void itemcollisiondetection(list<entity> entities)
+        //{
+        //    tuple<collisiondetector.touching, float, float, entity> detected = collisiondetection.collsion(entities);
+        //    if (detected.item1 != collisiondetector.touching.none)
+        //    {
+        //        switch (detected.item4)
+        //        {
+        //            case fireflowerentity:
+        //                if (currentpowerstate.gettype() == typeof(superstate))
+        //                {
+        //                    fire();
+        //                }
+        //                if (currentpowerstate.gettype() == typeof(normalstate))
+        //                {
+        //                    super();
+        //                }
+        //                entities.remove(detected.item4);
+        //                break;
+        //            case supermushroomentity:
+        //                if (currentpowerstate.gettype() == typeof(normalstate))
+        //                    super();
+        //                entities.remove(detected.item4);
+        //                break;
+        //            case pipeentity:
+        //                if (detected.item1 != collisiondetector.touching.none)
+        //                {
+        //                    idle();
+        //                    position = new vector2(detected.item2, detected.item3);
+        //                }
+        //                break;
+        //        }
+        //    }
+        //}
+
+        //public void enemycollisiondetection(list<entity> entities)
+        //{
+        //    tuple<collisiondetector.touching, float, float, entity> detected = collisiondetection.collsion(entities);
+
+        //    if (detected.item1 != collisiondetector.touching.bottom && detected.item1 != collisiondetector.touching.none)
+        //    {
+        //        position = new vector2(detected.item2, detected.item3);
+        //        idle();
+        //        takedamage();
+        //    }
+        //    else if (detected.item1 == collisiondetector.touching.bottom)
+        //    {
+        //        //debug.writeline("touch from top");
+        //        position = new vector2(detected.item2, detected.item3);
+        //        idle();
+        //    }
+        //}
+
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
-            if (detected.Item1 != CollisionDetector.Touching.none)
+            switch (entity)
             {
-                switch (detected.Item4)
-                {
-                    case FireFlowerEntity:
-                        if (currentPowerState.GetType() == typeof(SuperState))
-                        {
-                            Fire();
-                        }
-                        if (currentPowerState.GetType() == typeof(NormalState))
-                        {
-                            Super();
-                        }
-                        entities.Remove(detected.Item4);
-                        break;
-                    case SuperMushroomEntity:
-                        if (currentPowerState.GetType() == typeof(NormalState))
-                            Super();
-                        entities.Remove(detected.Item4);
-                        break;
-                    case PipeEntity:
-                        if (detected.Item1 != CollisionDetector.Touching.none)
+                case BlockEntity:
+                    if(touching == CollisionDetector.Touching.top)
+                    {
+                        Idle();
+                        this.Position = position;
+                    }else if(touching != CollisionDetector.Touching.none)
+                    {
+                        if (entity.IsVisible)
                         {
                             Idle();
-                            Position = new Vector2(detected.Item2, detected.Item3);
+                            this.Position = position;
                         }
-                        break;
-                }
+                    }
+                    break;
+                case ItemEntity:
+                    switch (entity)
+                    {
+                        case FireFlowerEntity:
+                            if (currentPowerState.GetType() == typeof(SuperState))
+                            {
+                                Fire();
+                            }
+                            if (currentPowerState.GetType() == typeof(NormalState))
+                            {
+                                Super();
+                            }
+                            break;
+                        case OneUpMushroomEntity:
+
+                            break;
+                        case CoinEntity:
+
+                            break;
+                        case SuperMushroomEntity:
+                            if (currentPowerState.GetType() == typeof(NormalState))
+                                Super();
+                            break;
+                        case StarEntity:
+                            //turn to star mario 
+                            break;
+                    }
+                    break;
+                case EnemyEntity:
+                    switch (entity)
+                    {
+                        case GoombaEntity:
+                            if(touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
+                            {
+                                Position = position;
+                                Idle();
+                                TakeDamage();
+                            }
+                            break;
+                        case KoopaTroopaEntity:
+
+                            break;
+                    }
+                    break;
             }
         }
 
-        public void EnemyCollisionDetection(List<Entity> entities)
+
+        public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
 
-            if (detected.Item1 != CollisionDetector.Touching.bottom && detected.Item1 != CollisionDetector.Touching.none)
-            {
-                Position = new Vector2(detected.Item2, detected.Item3);
-                Idle();
-                TakeDamage();
-            }
-            else if(detected.Item1 == CollisionDetector.Touching.bottom)
-            {
-                //Debug.WriteLine("touch from top");
-                Position = new Vector2(detected.Item2, detected.Item3);
-                Idle(); 
-            }
-        }
-        
-
-        public override void Update(GameTime gameTime, List<Entity> entities, List<Entity> itemEntities, List<Entity> enemyEntities)
-        {
-            BlockCollisionDetection(entities);
-            ItemCollisionDetection(itemEntities);
-            EnemyCollisionDetection(enemyEntities);
-
-            base.Update(gameTime, entities,itemEntities,enemyEntities);
+            base.Update(gameTime, entities);
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;

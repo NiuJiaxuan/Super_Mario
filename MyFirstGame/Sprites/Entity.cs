@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Mario;
 using System.Threading;
+using Microsoft.VisualBasic.FileIO;
 
 namespace Sprint0.Sprites
 {
@@ -36,10 +37,11 @@ namespace Sprint0.Sprites
             get; set;
         }
 
-        public List<Entity> BlockEntities { get; set; }
-        public List<Entity> ItemEntities { get; set; }
-        public List<Entity> EnemyEntities { get; set; }
-
+        public struct BoundBox
+        {
+            public Point min;
+            public Point max;
+        }
 
         public Rectangle GetRectangle
         {
@@ -83,30 +85,18 @@ namespace Sprint0.Sprites
             showBoundBox = false;            
         }
 
-        //for mario
-        public virtual void Update (GameTime gameTime, List<Entity> blockEntities, List<Entity> itemEntities, List<Entity> enemyEntities)
+
+        public virtual void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching) { }
+
+
+
+        public virtual void Update (GameTime gameTime, List<Entity> entities)
         {
 
-            this.Entities = blockEntities;
+            this.Entities = entities;
             Sprite.Update(gameTime);
         }
 
-        // for block and enemy entity 
-        public virtual void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
-        {
-
-            this.EnemyEntities = enemyEntities;
-            this.BlockEntities = blockEntities;
-            Mario = mario;
-            Sprite.Update(gameTime);
-        }
-
-        // for item entity
-        public virtual void Update(GameTime gameTime)
-        {
-      
-            Sprite.Update(gameTime);
-        }
 
 
         public Color BoxColor { get; set; }
