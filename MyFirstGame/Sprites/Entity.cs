@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Sprint0.Mario;
 using System.Threading;
 using Microsoft.VisualBasic.FileIO;
+using Sprint0.Interfaces;
 
 namespace Sprint0.Sprites
 {
@@ -37,10 +38,9 @@ namespace Sprint0.Sprites
             get; set;
         }
 
-        public struct BoundBox
+        public List<Grid> SurroundingGrids
         {
-            public Point min;
-            public Point max;
+            get { return Grid.getSurroundingGrids(this); }
         }
 
         public Rectangle GetRectangle
@@ -108,8 +108,17 @@ namespace Sprint0.Sprites
         public virtual void Draw(SpriteBatch spriteBatch)
         {
 
-            if(showBoundBox)
-            RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
+            if (showBoundBox)
+            {
+                RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
+                if (this is IMovableEntity)
+                {
+                    foreach (Grid grid in SurroundingGrids)
+                    {
+                        grid.Draw(spriteBatch);
+                    }
+                }
+            }
 
             if(IsVisible)
             Sprite.Draw(spriteBatch);

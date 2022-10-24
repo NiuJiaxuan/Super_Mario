@@ -110,16 +110,7 @@ namespace Sprint0.Command
         }
     }
 
-    public class BlockBumpOrBreak : BrickBlockCommand
-    {
-        public BlockBumpOrBreak(BrickBlockEntity receiver)
-            : base (receiver) { }
-        public override void Execute()
-        {
-            receiver.BumpOrBreakTransition();
-        }
-
-    }
+ 
 
     public class BlockBump : BlockCommand
     {
@@ -131,17 +122,7 @@ namespace Sprint0.Command
         }
 
     }
-    public class ChangeToVisible : BrickBlockCommand
-    {
-        public ChangeToVisible(BrickBlockEntity receiver)
-            : base(receiver) { }
-        public override void Execute()
-        {
-            receiver.ChangeToVisible();
-            receiver.BumpOrBreakTransition();
-        }
 
-    }
 
 
     public class ShowBoundBox : EntityCommand

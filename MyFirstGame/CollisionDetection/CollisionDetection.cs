@@ -24,57 +24,30 @@ namespace Sprint0.CollisionDetection
         }
 
         private static CollisionDetector instance;
-        public static CollisionDetector Instance(GraphicsDeviceManager graphics)
+        public static CollisionDetector Instance
         {
-
-                if (instance == null)
+            get
+            {
+                if(instance == null)
                 {
-                    instance = new CollisionDetector(graphics);
+                    instance = new CollisionDetector();
                 }
                 return instance;
+            }
         }
 
 
         private GraphicsDeviceManager graphicsDevice { get; set; }
-        private Grid[,] AllGrids { get; set; }
+        private List<Grid> surroundingGrids { get; set; }
 
 
-        public CollisionDetector(GraphicsDeviceManager graphics)
+        public CollisionDetector()
         {
-            graphicsDevice = graphics;
-            SetupGrids();
         }
 
 
-        public void SetupGrids()
-        {
-            int x = graphicsDevice.PreferredBackBufferHeight;
-            int y = graphicsDevice.PreferredBackBufferWidth;
 
-            AllGrids = new Grid[x/33,y/33];
-            for(int i = 0; i < x/33; i++)
-            {
-                for(int j = 0; j < y/33; j++)
-                {
-                    AllGrids[i, j] = new Grid(new Vector2(33 * i, 33 * j), new Vector2(33, 33));
-                }
-            }
 
-        }
-
-        public List<Grid> getSurroundingGrids(Entity entity)
-        {
-            List<Grid> surroundingGrids = new List<Grid>();
-            foreach (Grid grid in AllGrids)
-            {
-                if (grid.Rectangle.Intersects(entity.GetRectangle))
-                {
-                    surroundingGrids.Add(grid);
-                }
-            }
-
-            return surroundingGrids;
-        }
 
         public List<Entity> getSurroundingEntities(List<Grid> grids, List<Entity> entities)
         {
@@ -92,33 +65,43 @@ namespace Sprint0.CollisionDetection
         }
 
         //this entity list only contains entities with in the same grids with target moving entities. 
-        public void DectectCollision(List<Entity> entities)
+        public void DectectCollision()
         {            
             
             // create a new list to test collision
             List<Entity> collidables = new List<Entity>();
-            collidables.AddRange(entities);
+            collidables.AddRange(EntityStorage.Instance.EntityList);
+
+            List<Entity> movables = EntityStorage.Instance.MovableEntities;
 
             //list of collision pairs (entity1, entity2, time, position)
-            List<(Entity,Entity, float, Vector2, Touching)> currentCollisions = new List<(Entity,Entity,float, Vector2, Touching)>();
+            List<(Entity,Entity, float, Vector2, Touching,Touching)> currentCollisions = new List<(Entity,Entity,float, Vector2, Touching, Touching)>();
 
-            for(int i =0; i< collidables.Count(); i++)
+            for(int i =0; i< movables.Count(); i++)
             { 
-                Entity collidable = collidables[i];
+                Entity movable = movables[i];
                 //only test moving objects
-                if(collidable.Speed != Vector2.Zero || collidable.Accelation != Vector2.Zero)
+                if(movable.Speed != Vector2.Zero || movable.Accelation != Vector2.Zero)
                 {
+                    //Debug.WriteLine("current moving entity: " + collidable);
+
                     //step 6: go back to step 1 for collided objects
                     while (true)
                     {
                         //step 1: get the surrounding entity list
-                        collidables.Remove(collidable);
-                        List<Entity> surroundings = getSurroundingEntities(getSurroundingGrids(collidable), collidables);
-                        surroundings.Remove(collidable);
+                        collidables.Remove(movable);
+
+                        List<Entity> surroundings = getSurroundingEntities(movable.SurroundingGrids, collidables);
+
+                        //Debug.WriteLine(surroundings.Count);
+
+                        surroundings.Remove(movable);
 
                         //step 2: find collisions
-                        currentCollisions = Collsion(collidable, surroundings);
+                        currentCollisions = Collsion(movable, surroundings);
                         
+                        //Debug.WriteLine("total collisions: "+ currentCollisions.Count);
+
                         //step 7: if not collisions, quit
                         if(currentCollisions.Count == 0)
                         {
@@ -135,14 +118,15 @@ namespace Sprint0.CollisionDetection
 
 
 
-        public List<(Entity, Entity, float, Vector2, Touching)> Collsion(Entity collidable, List<Entity> entities)
+        public List<(Entity, Entity, float, Vector2, Touching, Touching)> Collsion(Entity collidable, List<Entity> entities)
         {
-            Touching touching = Touching.none;
+            Touching e1touching = Touching.none;
+            Touching e2touching = Touching.none;
             Rectangle interactionRec;
             float x = collidable.Position.X, y = collidable.Position.Y;
             Entity collide;
 
-            List<(Entity, Entity, float, Vector2, Touching)> result = new List<(Entity, Entity, float, Vector2, Touching)>();
+            List<(Entity, Entity, float, Vector2, Touching, Touching)> result = new List<(Entity, Entity, float, Vector2, Touching, Touching)>();
             float timePercent ;
 
             foreach (Entity entity in entities)
@@ -158,12 +142,14 @@ namespace Sprint0.CollisionDetection
                     {
                         if (collidable.GetRectangle.Y > entity.GetRectangle.Y)
                         {
-                            touching = Touching.top;
+                            e1touching = Touching.top;
+                            e2touching = Touching.bottom;
                             y += interactionRec.Height;
                         }
                         else
                         {
-                            touching = Touching.bottom;
+                            e1touching = Touching.bottom;
+                            e2touching = Touching.top;
                             y -= interactionRec.Height;
                         }
                         timePercent = interactionRec.Height / Math.Abs(collidable.Speed.Y);
@@ -172,18 +158,21 @@ namespace Sprint0.CollisionDetection
                     {
                         if (collidable.GetRectangle.X < entity.GetRectangle.X)
                         {
-                            touching = Touching.right;
+                            e1touching = Touching.right;
+                            e1touching = Touching.left;
                             x -= interactionRec.Width;
                         }
                         else
                         {
-                            touching = Touching.left;
+                            e1touching = Touching.left;
+                            e2touching = Touching.right;
                             x += interactionRec.Width;
                         }
                         timePercent = interactionRec.Width / Math.Abs(collidable.Speed.X);
                     }
                     //Debug.WriteLine(touching);
-                    result.Add((collidable, entity, timePercent, new Vector2(x, y),touching));
+                    //Debug.WriteLine("collide with "+ entity);
+                    result.Add((collidable, entity, timePercent, new Vector2(x, y),e1touching, e2touching));
                 }
 
             }
@@ -191,19 +180,19 @@ namespace Sprint0.CollisionDetection
         }
 
 
-        public void CollsionResponse(List<(Entity, Entity, float, Vector2, Touching)> currentCollisions)
+        public void CollsionResponse(List<(Entity, Entity, float, Vector2, Touching,Touching)> currentCollisions)
         {
             List<Entity> responsedEntities = new List<Entity>();
             for(int i = 0; i < currentCollisions.Count; i++)
             {
                 if (!responsedEntities.Contains(currentCollisions[i].Item1))
                 {
-                    Debug.WriteLine(currentCollisions[i].Item1);
-                    Debug.WriteLine(currentCollisions[i].Item2);
+                    //Debug.WriteLine(currentCollisions[i].Item1);
+                    //Debug.WriteLine(currentCollisions[i].Item2);
 
                     responsedEntities.Add(currentCollisions[i].Item1);
+                    currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item4, currentCollisions[i].Item6);
                     currentCollisions[i].Item1.CollisionResponse(currentCollisions[i].Item2, currentCollisions[i].Item4, currentCollisions[i].Item5);
-                    currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item4, currentCollisions[i].Item5);
                 }
             }
         }
@@ -215,16 +204,16 @@ namespace Sprint0.CollisionDetection
 
         }
 
-        public void draw()
+        public void Draw(SpriteBatch batch)
         {
 
         }
     }
 }
 
-public class TimeComparer : IComparer<(Entity, Entity, float,Vector2, CollisionDetector.Touching)>
+public class TimeComparer : IComparer<(Entity, Entity, float,Vector2, CollisionDetector.Touching, CollisionDetector.Touching)>
 {
-    public int Compare((Entity, Entity, float, Vector2, CollisionDetector.Touching) e1, (Entity, Entity, float, Vector2, CollisionDetector.Touching) e2)
+    public int Compare((Entity, Entity, float, Vector2, CollisionDetector.Touching, CollisionDetector.Touching) e1, (Entity, Entity, float, Vector2, CollisionDetector.Touching, CollisionDetector.Touching) e2)
     {
         return e1.Item3.CompareTo(e2.Item3);
     }

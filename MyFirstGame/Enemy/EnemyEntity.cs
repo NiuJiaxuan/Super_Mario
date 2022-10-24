@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Enemy
 {
-    public class EnemyEntity : Entity
+    public class EnemyEntity : Entity, IMovableEntity
     {
         public IEnemyState currentState { get; set; }
 

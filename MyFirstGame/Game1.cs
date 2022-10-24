@@ -17,6 +17,7 @@ using System.Diagnostics;
 using Sprint0.level;
 using System.Reflection.PortableExecutable;
 using Sprint0.CollisionDetection;
+using Sprint0.Interfaces;
 
 namespace Sprint0
 {
@@ -91,6 +92,9 @@ namespace Sprint0
 
             background = Content.Load<Texture2D>("background");
 
+            Debug.WriteLine(EntityStorage.Instance.Mario is IMovableEntity);
+
+            EntityStorage.Instance.SetupGrids(_graphics);
 
 
             //-------------------------keyboard control------------------

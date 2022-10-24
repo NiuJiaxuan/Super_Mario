@@ -38,13 +38,16 @@ namespace Sprint0.Block
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
+            Debug.WriteLine("mario touching bottom");
+
             switch (entity)
             {
                 case MarioEntity:
+                    MarioEntity mario = (MarioEntity)entity;
                     if (touching == CollisionDetector.Touching.bottom)
                     {
-                        BumpOrBreakTransition();
-                        switch (Mario.currentPowerState)
+                        BumpOrBreakTransition(mario);
+                        switch (mario.currentPowerState)
                         {
                             case SuperState:
                                 foreach (ItemEntity item in BlockItemList)

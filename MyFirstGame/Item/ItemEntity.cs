@@ -9,6 +9,7 @@ using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using static Sprint0.State.BlockEntity;
 
 namespace Sprint0.Item
@@ -37,7 +38,7 @@ namespace Sprint0.Item
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-
+            Debug.WriteLine("item response");
             EntityStorage.Instance.EntityList.Remove(this);
         }
 

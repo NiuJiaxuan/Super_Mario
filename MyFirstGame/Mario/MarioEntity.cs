@@ -20,10 +20,11 @@ using Sprint0.Enemy;
 using Microsoft.VisualBasic;
 using Sprint0.CollisionDetection;
 using Sprint0.Item;
+using Sprint0.Interfaces;
 
 namespace Sprint0.Mario
 {
-    public class MarioEntity   : Entity
+    public class MarioEntity   : Entity, IMovableEntity
     {
 
         public IMarioPowerState currentPowerState { get; set; }
@@ -114,13 +115,11 @@ namespace Sprint0.Mario
                     if(touching == CollisionDetector.Touching.top)
                     {
                         Idle();
-                        this.Position = position;
                     }else if(touching != CollisionDetector.Touching.none)
                     {
                         if (entity.IsVisible)
                         {
                             Idle();
-                            this.Position = position;
                         }
                     }
                     break;
@@ -169,6 +168,7 @@ namespace Sprint0.Mario
                     }
                     break;
             }
+            this.Position = position;
         }
 
 

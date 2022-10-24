@@ -115,7 +115,7 @@ namespace Sprint0.State
             IsVisible = true;
         }
 
-        public void BumpOrBreakTransition()
+        public void BumpOrBreakTransition(MarioEntity mario)
         {
             if (!IsVisible)
             {
@@ -124,7 +124,7 @@ namespace Sprint0.State
             }
             else
             {
-                switch (Mario.currentPowerState)
+                switch (mario.currentPowerState)
                 {
                     case SuperState:
                         CurrentState?.BreakTransition();
