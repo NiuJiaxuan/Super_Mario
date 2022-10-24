@@ -22,13 +22,7 @@ namespace Sprint0
 {
     public class EntityStorage
     {
-        //public List<Entity> BackgroundEntityList { get; set; }
-        //public List<Entity> BlockEntityList { get; set; }
-        //public List<Entity> ItemEntityList { get; set; }
-        //public List<Entity> EnemyEntityList { get; set; }
         public List<Entity> EntityList { get; set; }
-
-        //public List<Entity> PlayerList { get; set; }
         public Entity Mario { get; set; }
 
         private static EntityStorage instance;
@@ -52,7 +46,7 @@ namespace Sprint0
         }
 
 
-        private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> itemEntityList)
+        private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> entityList)
         {
             string objectType = levelObject.ObjectType;
             string objectName = levelObject.ObjectName;
@@ -60,19 +54,19 @@ namespace Sprint0
             {
                 List<ItemEntity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
                 if (objectName.Equals("BrickBlock")){
-                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, itemEntityList);
+                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("QuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock, itemEntityList);
+                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("HiddenBrickBlock"))
                 {
-                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
+                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
+                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
@@ -164,11 +158,6 @@ namespace Sprint0
 
         public void  Add (LevelData levelData, Game1 game)
         {
-            //BackgroundEntityList = new List<Entity>();
-            //BlockEntityList = new List<Entity>();
-            //ItemEntityList = new List<Entity>();
-            //EnemyEntityList = new List<Entity>();
-
             EntityList = new List<Entity>();
 
             foreach (LevelObject levelObject in levelData.ObjectData)
@@ -177,64 +166,12 @@ namespace Sprint0
                 EntityList.Add(entity);
                 if (entity.GetType() == typeof(MarioEntity))
                     Mario = entity;
-/*                if (levelObject.ObjectType.Equals("Blocks"))
-                {
-                    foreach (string item in levelObject.BlockItem)
-                    {
-                        Entity temp = CreateItemEntityInBlock(item, levelObject.Position, game);
-                        EntityList.Add(temp);
-                        ItemEntityList.Add(temp);
-                    }
-                }*/
-                //switch (entity)
-                //{
-                //    case MarioEntity:
-                //        Mario = entity;
-                //        break;
-                //    case BlockEntity:
-                //        BlockEntityList.Add(entity);
-                //        break;
-                //    case ItemEntity:
-                //        ItemEntityList.Add(entity); ;
-                //        break;
-                //    case EnemyEntity:
-                //        EnemyEntityList.Add(entity);
-                //        break;
-                //}
-
-                //if (!levelObject.ObjectType.Equals("Mario"))
-                //{
-                //    Entity entity = CreateEntity(levelObject, game);
-                //    EntityList.Add(entity);
-                //}
-                //else
-                //{
-                //    Mario = CreateEntity(levelObject, game);
-                //    PlayerList.Add(Mario);
-                //}
             }
-            //foreach(Entity entity in BlockEntityList)
-            //    Debug.WriteLine(entity);
+
         }
 
         public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
-            //Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
-
-            //for (int i = 0; i < BlockEntityList.Count; i++)
-            //{
-            //    BlockEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
-            //}
-
-            //foreach (Entity entity1 in ItemEntityList)
-            //{
-            //    entity1.Update(gameTime);
-            //}
-
-            //for(int i = 0; i < EnemyEntityList.Count; i++)
-            //{
-            //    EnemyEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
-            //}
             foreach(Entity entity in EntityList)
             {
                 entity.Update(gameTime, EntityList);
