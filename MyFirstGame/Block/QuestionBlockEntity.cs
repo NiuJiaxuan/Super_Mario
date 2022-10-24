@@ -21,9 +21,9 @@ namespace Sprint0.Block
     {
 
         public List<ItemEntity> BlockItemList;
-        public List<Entity> ItemEntityList;
+        public List<Entity> EntityList;
 
-        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> itemEntityList)
+        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> entityList)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.QuestionBlock);
@@ -33,7 +33,7 @@ namespace Sprint0.Block
             IsVisible = isVisible;
 
             BlockItemList = blockItemList;
-            ItemEntityList = itemEntityList;
+            EntityList = entityList;
         }
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
@@ -54,7 +54,7 @@ namespace Sprint0.Block
                             {
                                 BumpTransition();
                                 ItemEntity temp = BlockItemList[0];
-                                ItemEntityList.Add(temp);
+                                EntityList.Add(temp);
                                 temp.BumpTransition();
                                 BlockItemList.RemoveAt(0);
                             }

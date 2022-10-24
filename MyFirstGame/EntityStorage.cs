@@ -23,10 +23,6 @@ namespace Sprint0
 {
     public class EntityStorage
     {
-        //public List<Entity> BackgroundEntityList { get; set; }
-        //public List<Entity> BlockEntityList { get; set; }
-        //public List<Entity> ItemEntityList { get; set; }
-        //public List<Entity> EnemyEntityList { get; set; }
         public List<Entity> EntityList { get; set; }
         public List<Entity> MovableEntities { get; set; }
 
@@ -86,19 +82,19 @@ namespace Sprint0
             {
                 List<ItemEntity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
                 if (objectName.Equals("BrickBlock")){
-                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, itemEntityList);
+                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("QuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock, itemEntityList);
+                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("HiddenBrickBlock"))
                 {
-                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
+                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
+                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {

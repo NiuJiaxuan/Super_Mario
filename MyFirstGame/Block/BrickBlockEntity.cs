@@ -21,9 +21,9 @@ namespace Sprint0.Block
     public class BrickBlockEntity : BlockEntity
     {
         public List<ItemEntity> BlockItemList;
-        public List<Entity> ItemEntityList;
+        public List<Entity> EntityList;
 
-        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> itemEntityList)
+        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> entityList)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
@@ -33,7 +33,7 @@ namespace Sprint0.Block
             IsVisible = isVisible;
 
             BlockItemList = blockItemList;
-            ItemEntityList = itemEntityList;
+            EntityList = entityList;
         }
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
@@ -52,7 +52,7 @@ namespace Sprint0.Block
                             case SuperState:
                                 foreach (ItemEntity item in BlockItemList)
                                 {
-                                    ItemEntityList.Add(item);
+                                    EntityList.Add(item);
                                     item.BumpTransition();
                                 }
                                 BlockItemList.Clear();
@@ -60,7 +60,7 @@ namespace Sprint0.Block
                             case FireState:
                                 foreach (ItemEntity item in BlockItemList)
                                 {
-                                    ItemEntityList.Add(item);
+                                    EntityList.Add(item);
                                     item.BumpTransition();
                                 }
                                 BlockItemList.Clear();
@@ -69,7 +69,7 @@ namespace Sprint0.Block
                                 if (BlockItemList.Count != 0)
                                 {
                                     ItemEntity temp = BlockItemList.First();
-                                    ItemEntityList.Add(temp);
+                                    EntityList.Add(temp);
                                     temp.BumpTransition();
                                     BlockItemList.Remove(temp);
 
