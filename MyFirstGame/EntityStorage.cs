@@ -25,6 +25,7 @@ namespace Sprint0
     {
         public List<Entity> EntityList { get; set; }
         public List<Entity> MovableEntities { get; set; }
+        public List<Entity> ColliableEntites { get; set; }
 
         //public List<Entity> PlayerList { get; set; }
         public Entity Mario { get; set; }
@@ -51,6 +52,7 @@ namespace Sprint0
         {
             EntityList = new List<Entity>();
             MovableEntities = new List<Entity>();
+            ColliableEntites = new List<Entity>();
         }
 
         public void SetupGrids(GraphicsDeviceManager graphicsDevice)
@@ -192,6 +194,7 @@ namespace Sprint0
             {
                 Entity entity = CreateEntity(levelObject, game, EntityList);
                 EntityList.Add(entity);
+                ColliableEntites.Add(entity);
                 if (entity.GetType() == typeof(MarioEntity))
                 {
                     Mario = entity;
@@ -217,6 +220,7 @@ namespace Sprint0
         {
             EntityList.Clear();
             MovableEntities.Clear();
+            ColliableEntites.Clear();
             Mario = null;
         }
         public void Draw(SpriteBatch batch)

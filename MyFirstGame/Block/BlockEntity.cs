@@ -35,24 +35,27 @@ namespace Sprint0.State
         public bool breakBlockVisible = true;
         public bool isBumping = false;
 
-        public override Rectangle GetRectangle
-        {
-            get
-            {
-                if (!IsVisible)
-                {
-                    if ( (EntityStorage.Instance.Mario.Position.Y- EntityStorage.Instance.Mario.Sprite.FrameSize.Y + 1)< this.Position.Y  
-                        || EntityStorage.Instance.Mario.Speed.Y>=0)
-                        return new Rectangle();
-                    else
-                        return base.GetRectangle;
-                }
-                else
-                {
-                    return base.GetRectangle;
-                }
-            }
-        }
+        //public override Rectangle GetRectangle
+        //{
+        //    get
+        //    {
+        //        if (!IsVisible)
+        //        {
+        //            if (EntityStorage.Instance.Mario.Min.Y -5 > this.Max.Y
+        //                && EntityStorage.Instance.Mario.Speed.Y<= 0)
+        //            {
+
+        //                return base.GetRectangle;
+        //            }
+        //            else 
+        //                return new Rectangle();
+        //        }
+        //        else
+        //        {
+        //            return base.GetRectangle;
+        //        }
+        //    }
+        //}
 
         public Sprite SmallBlock1
         {
@@ -103,6 +106,11 @@ namespace Sprint0.State
         public override void Update(GameTime gameTime,List<Entity> entities)
         {
             base.Update(gameTime, entities);
+            if (!this.GetRectangle.Intersects(EntityStorage.Instance.Mario.GetRectangle)
+                && !EntityStorage.Instance.ColliableEntites.Contains(this))
+            {
+                EntityStorage.Instance.ColliableEntites.Add(this);
+            }
 
             CurrentState?.Update(gameTime);            
             

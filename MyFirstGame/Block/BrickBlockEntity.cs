@@ -77,6 +77,13 @@ namespace Sprint0.Block
                                 break;
                         }
                     }
+                    else
+                    {
+                        if (!IsVisible)
+                        {
+                            EntityStorage.Instance.ColliableEntites.Remove(this);
+                        }
+                    }
                     break;
                 case EnemyEntity:
                     Position = position;
