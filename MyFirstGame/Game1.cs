@@ -179,6 +179,7 @@ namespace Sprint0
 
         public void ResetCommand()
         {
+            levelBuilder.EntityStorage.clear();
             Initialize();
             
         }
