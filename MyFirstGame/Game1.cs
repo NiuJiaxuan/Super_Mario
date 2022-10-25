@@ -29,10 +29,12 @@ namespace Sprint0
 
 
         private Texture2D background;
+        private Texture2D bush;
+        private Texture2D cloud;
 
         private IController keyboard;
         private IController gamepad;
-        Vector2 parallax = new Vector2(1f);
+
 
         Camera camera;
         public static LevelData levelData { get; set; }
@@ -88,10 +90,11 @@ namespace Sprint0
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
             camera = new Camera(GraphicsDevice.Viewport);
-            camera.Limits= new Rectangle(0,0,6000,450);
+            camera.Limits= new Rectangle(0,0,6300,480);
 
             background = Content.Load<Texture2D>("background");
-
+            cloud = Content.Load<Texture2D>("cloud");
+            bush= Content.Load<Texture2D>("bush");
 
             EntityStorage.Instance.SetupGrids(_graphics);
 
@@ -138,8 +141,7 @@ namespace Sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //--------------------------------load font---------------------------------------
-           // HUDFont = Content.Load<SpriteFont>("File");
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -159,16 +161,14 @@ namespace Sprint0
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
+            _spriteBatch.Draw(background, new Rectangle((int)(-camera.Position.X*0.5f), (int)(camera.Position.Y*0.5f), 1600, 430), Color.White);
+            _spriteBatch.Draw(cloud, new Vector2(0, 50), new Rectangle((int)(-camera.Position.X * 1f), (int)(camera.Position.Y * 0.5f), 1300, 120), Color.White);
+            _spriteBatch.Draw(bush, new Vector2(0,330),new Rectangle((int)(-camera.Position.X * 0.7f), (int)(camera.Position.Y * 0.5f), 1300, 100), Color.White);
+            _spriteBatch.End();
 
-            //_spriteBatch.Begin();
-
-            _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
-
-            _spriteBatch.Draw(background, new Rectangle(0, 0, 1600, 480), Color.White);
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(new Vector2(1f)));
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
-
-
             levelBuilder.EntityStorage.Draw(_spriteBatch);
 
             _spriteBatch.End();

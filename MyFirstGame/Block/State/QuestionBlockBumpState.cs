@@ -14,10 +14,12 @@ namespace Sprint0.Block.State
         Vector2 Origion;
         int Count;
 
+
         public QuestionBlockBumpState(BlockEntity block, int count)
             : base(block)
         {
             Count = count;
+            Block.isBumping = true;
         }
 
         public override void Enter(IBlockState previousState)
@@ -31,6 +33,7 @@ namespace Sprint0.Block.State
         public override void Exit()
         {
             Block.Position = Origion;
+            Block.isBumping = false;
             Block.Speed = new Vector2(0, 0);
         }
         public override void NormalTransition()

@@ -36,6 +36,7 @@ namespace Sprint0.Item.ItemState
         public virtual void Exit() { }
         public virtual void NormalTransition() { }
         public virtual void BumpTransition() { }
+        public virtual void MovingTransition() { }
 
       
 
