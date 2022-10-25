@@ -8,6 +8,7 @@ using static System.Formats.Asn1.AsnWriter;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
+using Sprint0.CollisionDetection;
 
 namespace Sprint0.Item
 {
@@ -19,7 +20,10 @@ namespace Sprint0.Item
             ItemType = eItemType.Pipe;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
         }
-
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        {
+            
+        }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
             base.Update(gameTime,entities);

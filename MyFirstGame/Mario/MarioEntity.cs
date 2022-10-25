@@ -163,6 +163,14 @@ namespace Sprint0.Mario
                         case StarEntity:
                             //turn to star mario 
                             break;
+                        case PipeEntity:
+                            if (touching is CollisionDetector.Touching.bottom)
+                            {
+                                onGround = true;
+                                Fall();
+                            }
+                            break;
+
                     }
                     break;
                 case EnemyEntity:

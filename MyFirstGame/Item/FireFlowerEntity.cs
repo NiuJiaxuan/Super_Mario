@@ -28,6 +28,7 @@ namespace Sprint0.Item
             base.CollisionResponse(entity, position, touching);
         }
 
+
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
             base.Update(gameTime, entities);
