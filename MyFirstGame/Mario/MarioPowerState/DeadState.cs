@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Sprint0.Mario.MarioMotionState;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,12 @@ namespace Sprint0.Mario.MarioPowerState
             CurrentState = this;
             this.previousState = powerState;
             anchor.X += Mario.Sprite.FrameSize.X;
+
+            EntityStorage.Instance.MovableEntities.Remove(Mario);
+            anchor = Mario.Position;
+            Mario.onGround = false;
+            //Mario.Speed = new Vector2(0, -200);
+
 
             int type = Mario.generateType(CurrentMotionState, CurrentState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
@@ -48,7 +55,16 @@ namespace Sprint0.Mario.MarioPowerState
 
         public override void Exit()
         {
+            EntityStorage.Instance.MovableEntities.Add(Mario);
             base.Exit();
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //if((anchor.X - Mario.Position.X) > 50)
+            //{
+            //    Mario.Speed = -Mario.Speed;
+            //}
         }
     }
 }

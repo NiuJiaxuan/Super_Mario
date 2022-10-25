@@ -20,6 +20,7 @@ namespace Sprint0.Mario.MarioMotionState
         void WalkTransion();
         void IdleTransion();
         void CrouchTransion();
+        void FallTransion();
         void Update(GameTime gameTime);
         
        

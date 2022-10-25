@@ -54,14 +54,7 @@ namespace Sprint0.Mario.MarioMotionState
 
         public override void Update(GameTime gameTime)
         {
-            Mario.Speed = new Vector2(Mario.Speed.X, 70);
             base.Update(gameTime);
-
-            if (Mario.Sprite.Position.Y > 480)
-            {
-               Mario.Speed = new Vector2(Mario.Speed.X, 0);
-                Mario.Position = new Vector2(Mario.Position.X, 480);
-            }
         }
     }
 }

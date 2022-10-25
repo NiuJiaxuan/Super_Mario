@@ -41,7 +41,8 @@ namespace Sprint0.State
             {
                 if (!IsVisible)
                 {
-                    if (EntityStorage.Instance.Mario.Position.Y < this.Position.Y+EntityStorage.Instance.Mario.Sprite.FrameSize.Y  && EntityStorage.Instance.Mario.Speed.Y>=0)
+                    if ( (EntityStorage.Instance.Mario.Position.Y- EntityStorage.Instance.Mario.Sprite.FrameSize.Y + 1)< this.Position.Y  
+                        || EntityStorage.Instance.Mario.Speed.Y>=0)
                         return new Rectangle();
                     else
                         return base.GetRectangle;

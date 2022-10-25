@@ -29,7 +29,7 @@ namespace Sprint0.Mario.MarioMotionState
             Mario.Sprite.Orientation = facing;
             Mario.marioType = type;
 
-            Debug.WriteLine(Mario.Speed);
+            //Debug.WriteLine(Mario.Speed);
         }
 
         public override void IdleTransion()

@@ -214,7 +214,9 @@ namespace Sprint0
         }
         public void clear()
         {
-            EntityList = new List<Entity>();
+            EntityList.Clear();
+            MovableEntities.Clear();
+            Mario = null;
         }
         public void Draw(SpriteBatch batch)
         {

@@ -34,15 +34,13 @@ namespace Sprint0.Enemy
                 case MarioEntity:
                     MarioEntity mario = (MarioEntity)entity;
                     if(touching == CollisionDetector.Touching.top)
-                    {
+                    {                        
+                        if (currentState is GoombaDeathState)
+                            EntityStorage.Instance.EntityList.Remove(this);
                         Debug.WriteLine("TOP");
                         KillTransition();
-                    }
-                    else
-                    {
-                        mario.TakeDamage();
-                    }
 
+                    }
                     break;
             }
         }
