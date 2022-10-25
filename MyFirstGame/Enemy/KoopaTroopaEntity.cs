@@ -35,6 +35,10 @@ namespace Sprint0.Enemy
                     {
                         ShellTransition();
                     }
+                    else
+                    {
+                        mario.TakeDamage();
+                    }
 
                     break;
             }

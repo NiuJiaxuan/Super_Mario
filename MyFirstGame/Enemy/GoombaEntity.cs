@@ -38,6 +38,10 @@ namespace Sprint0.Enemy
                         Debug.WriteLine("TOP");
                         KillTransition();
                     }
+                    else
+                    {
+                        mario.TakeDamage();
+                    }
 
                     break;
             }
