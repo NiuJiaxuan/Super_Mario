@@ -22,20 +22,26 @@ namespace Sprint0.Enemy
             //currentState = new IdleState(this);
             Sprite = EnemyFactory.CreateEnemy(game, position,(int)eEnemyType.Goomba);
             EnemyType = eEnemyType.Goomba;
+            currentState = new GoombaNormalState(this);
+            currentState.Enter(null);
 
         }
 
-        //public void goombaCollisionDetection(MarioEntity mario)
-        //{
-        //    List<Entity> entities = new List<Entity>();
-        //    entities.Add(mario);
-        //    Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
-        //    if (detected.Item1 == CollisionDetector.Touching.top)
-        //    {
-        //        currentState = new GoombaDeathState(this);
-        //        currentState?.Enter();
-        //    }
-        //}
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        {
+            switch (entity)
+            {
+                case MarioEntity:
+                    MarioEntity mario = (MarioEntity)entity;
+                    if(touching == CollisionDetector.Touching.top)
+                    {
+                        Debug.WriteLine("TOP");
+                        KillTransition();
+                    }
+
+                    break;
+            }
+        }
 
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {

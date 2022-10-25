@@ -10,6 +10,9 @@ namespace Sprint0.Enemy.EnemyState
 {
     public class EnemyState : IEnemyState
     {
+        protected IEnemyState previousState;
+        IEnemyState IEnemyState.PreviousState { get { return previousState; } }
+        protected IEnemyState CurrentState { get { return Enemy.currentState; } set { Enemy.currentState = value; } }
 
         public EnemyEntity Enemy;
         protected EnemyState(EnemyEntity enemy)
@@ -17,11 +20,19 @@ namespace Sprint0.Enemy.EnemyState
             Enemy = enemy;
         }
 
-        protected IEnemyState CurrentState { get { return Enemy.currentState; } set { Enemy.currentState = value; } }
 
         public virtual void Update(GameTime gameTime) { }
         public virtual void DeadTransition(bool isBump) { }
-        public virtual void Enter() { }
+        public virtual void Enter(IEnemyState previousState)
+        {
+            CurrentState = this;
+            this.previousState = previousState;
+        }
+        public virtual void Exit() { }
+        public virtual void KillTransition() { }
+        public virtual void NormalTransition() { }
+        public virtual void ShellTransition() { }
+
 
     }
 }

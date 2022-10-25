@@ -27,6 +27,14 @@ namespace Sprint0.Sprites.Sprites
 
         }
     }
+    class IdleKoopaTroopaInjuredSprite : Sprite
+    {
+        public IdleKoopaTroopaInjuredSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("idle-koopa-shell"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(25, 25), false)
+        {
+
+        }
+    }
 
     class KoopaTroopSprite : Sprite
     {
