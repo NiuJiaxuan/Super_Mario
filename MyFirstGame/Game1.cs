@@ -88,7 +88,7 @@ namespace Sprint0
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
             camera = new Camera(GraphicsDevice.Viewport);
-            camera.Limits= new Rectangle(0,0,6000,450);
+            camera.Limits= new Rectangle(0,0,6300,480);
 
             background = Content.Load<Texture2D>("background");
 
@@ -138,8 +138,7 @@ namespace Sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //--------------------------------load font---------------------------------------
-           // HUDFont = Content.Load<SpriteFont>("File");
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -159,15 +158,10 @@ namespace Sprint0
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
-            //_spriteBatch.Begin();
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
 
             _spriteBatch.Draw(background, new Rectangle(0, 0, 1600, 480), Color.White);
-            //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
-
 
             levelBuilder.EntityStorage.Draw(_spriteBatch);
 
