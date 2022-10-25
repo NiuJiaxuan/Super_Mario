@@ -27,6 +27,7 @@ namespace Sprint0.Enemy.EnemyState
             this.previousState = previousState;
             Origin = Enemy.Position;
 
+            Debug.WriteLine("ENTER DEBUG :" + direction);
             if (direction == "left")
             {
                 Enemy.Speed = new Vector2(-40, 0);
@@ -46,10 +47,10 @@ namespace Sprint0.Enemy.EnemyState
             Enemy.Speed = new Vector2(0, 0);
         }
 
-        public override void NormalTransition()
+        public override void NormalTransition(string dir)
         {
             CurrentState.Exit();
-            CurrentState = new KoopaTroopaNormalState(Enemy);
+            CurrentState = new KoopaTroopaNormalState(Enemy, dir);
             CurrentState.Enter(this);
         }
         public override void ShellBump(string dir)
@@ -62,8 +63,9 @@ namespace Sprint0.Enemy.EnemyState
 
         //public override void Update(GameTime gameTime)
         //{
-        //    if (Math.Abs(Enemy.Position.X - Origin.X) > 10)
-        //        Enemy.Speed = new Vector2(Enemy.Speed.X * -1, 0);
+        //    //if (Math.Abs(Enemy.Position.X - Origin.X) > 10)
+        //    //    Enemy.Speed = new Vector2(Enemy.Speed.X * -1, 0);
+        //    base.Update(gameTime);
         //}
     }
-    }
+}

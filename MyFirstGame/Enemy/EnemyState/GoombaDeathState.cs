@@ -2,6 +2,7 @@
 using Sprint0.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +13,16 @@ namespace Sprint0.Enemy.EnemyState
     {
         private static readonly TimeSpan intervalBetweenAlive = TimeSpan.FromMilliseconds(4000);
         private TimeSpan lastTimeAlive;
+        EnemyEntity goomba;
         public GoombaDeathState(EnemyEntity enemy)
               : base(enemy)
         {
-
+            goomba = enemy;
         }
-        public override void NormalTransition()
+        public override void NormalTransition(string dir)
         {
             CurrentState.Exit();
-            CurrentState = new GoombaNormalState(Enemy);
+            CurrentState = new GoombaNormalState(Enemy, dir);
             CurrentState.Enter(this);
         }
         public override void Enter(IEnemyState previousState)

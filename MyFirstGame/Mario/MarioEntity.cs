@@ -177,7 +177,7 @@ namespace Sprint0.Mario
                     switch (entity)
                     {
                         case GoombaEntity:
-                            if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
+                            if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left)
                             {
                                 Position = position;
                                 Idle();
@@ -190,17 +190,32 @@ namespace Sprint0.Mario
                             break;
                         case KoopaTroopaEntity:
                             KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
-                            if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
+                            if(koopa.currentState is KoopaTroopaDeathState)
                             {
-                                Position = position;
-                                Idle();
-                                if(!(koopa.currentState is KoopaTroopaDeathState))
-                                    TakeDamage();
+                                if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
+                                {
+                                    Position = position;
+                                    Idle();
+                                }
+                                else
+                                {
+                                    Fall();
+                                }
                             }
                             else
                             {
-                                Fall();
+                                if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
+                                {
+                                    Position = position;
+                                    Idle();
+                                    TakeDamage();
+                                }
+                                else
+                                {
+                                    Fall();
+                                }
                             }
+                            
                             break;
                     }
                     break;
