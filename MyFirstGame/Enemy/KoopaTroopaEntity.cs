@@ -81,10 +81,6 @@ namespace Sprint0.Enemy
                                     ShellBump(dir);
                                     EnemyType = eEnemyType.IdleDeadKoopaTroopa;
                                 }
-                                else
-                                {
-                                    mario.TakeDamage();
-                                }
                             }
                             break;
                     }

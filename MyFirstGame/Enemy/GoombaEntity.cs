@@ -37,12 +37,10 @@ namespace Sprint0.Enemy
                     {
                         if (touching == CollisionDetector.Touching.top)
                         {
+                            if (currentState is GoombaDeathState)
+                                EntityStorage.Instance.EntityList.Remove(this);
                             KillTransition();
                             EnemyType = eEnemyType.DeadGooma;
-                        }
-                        else
-                        {
-                            mario.TakeDamage();
                         }
                     }
                 break;
@@ -59,14 +57,9 @@ namespace Sprint0.Enemy
                                 //EnemyType = eEnemyType.DeadGooma;
                             }
                             break;
-                    }
-                    if(touching == CollisionDetector.Touching.top)
-                    {                        
-                        if (currentState is GoombaDeathState)
-                            EntityStorage.Instance.EntityList.Remove(this);
-                        Debug.WriteLine("TOP");
-                        KillTransition();
+                        case KoopaTroopaWalkingState:
 
+                            break;
                     }
                     break;
             }

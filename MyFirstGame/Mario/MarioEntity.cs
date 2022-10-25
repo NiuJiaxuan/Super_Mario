@@ -22,6 +22,8 @@ using Sprint0.CollisionDetection;
 using Sprint0.Item;
 using Sprint0.Interfaces;
 using System.Security.Cryptography;
+using System.ComponentModel.Design.Serialization;
+using Sprint0.Enemy.EnemyState;
 
 namespace Sprint0.Mario
 {
@@ -124,6 +126,10 @@ namespace Sprint0.Mario
                             onGround = true;
                             Fall();
                         }
+                        else if(touching is CollisionDetector.Touching.top)
+                        {
+                            Speed = new Vector2(Speed.X, -Speed.Y);
+                        }
                         else
                         {
                             Idle();
@@ -176,11 +182,13 @@ namespace Sprint0.Mario
                             }
                             break;
                         case KoopaTroopaEntity:
+                            KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
                             if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
                             {
                                 Position = position;
                                 Idle();
-                                TakeDamage();
+                                if(!(koopa.currentState is KoopaTroopaDeathState))
+                                    TakeDamage();
                             }
                             else
                             {
@@ -264,7 +272,7 @@ namespace Sprint0.Mario
                     case JumpState:
                         if (Sprite.Orientation == SpriteEffects.None)
                         {
-                            currentMotionState?.WalkTransion();
+                            Speed += new Vector2(40, 0);
                         }
                         else
                         {
@@ -311,15 +319,15 @@ namespace Sprint0.Mario
                         }
                         break;
                     case JumpState:
-                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                        {
-                            currentMotionState?.WalkTransion();
-                        }
-                        else
-                        {
-                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
-                            currentMotionState?.IdleTransion();
-                        }
+                        //if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        //{
+                        //    currentMotionState?.WalkTransion();
+                        //}
+                        //else
+                        //{
+                        //    Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                        //    currentMotionState?.IdleTransion();
+                        //}
                         break;
                     case CrouchState:
                         if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
@@ -342,6 +350,9 @@ namespace Sprint0.Mario
                 switch (currentMotionState)
                 {
                     case JumpState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    case WalkState:
                         currentMotionState?.IdleTransion();
                         break;
                     default:

@@ -35,6 +35,16 @@ namespace Sprint0.Sprites
             get; set;
         }
 
+        public Point Min
+        {
+            get { return new Point((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y)); }
+        }
+
+        public Point Max
+        {
+            get { return new Point((int)(Position.X + Sprite.FrameSize.X), (int)Position.Y); }
+        }
+
         public List<Grid> SurroundingGrids
         {
             get { return Grid.getSurroundingGrids(this); }
@@ -90,7 +100,7 @@ namespace Sprint0.Sprites
             {
                 if (!onGround)
                 {
-                    Accelation = new Vector2(0, 100);
+                    Accelation = new Vector2(0, 500);
                 }
                 else
                 {

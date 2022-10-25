@@ -21,6 +21,8 @@ namespace Sprint0.Mario.MarioMotionState
             CurrentState = this;
             this.previousState = state;
 
+            Mario.Speed = new Vector2(Mario.Speed.X, 300);
+
             SpriteEffects facing = Mario.Sprite.Orientation;
             int type = Mario.generateType(CurrentState, PowerState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);

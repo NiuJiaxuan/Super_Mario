@@ -67,9 +67,21 @@ namespace Sprint0.CollisionDetection
             return surroundingEntities;
         }
 
-        public void CheckGrounded()
+        private void CheckGrounded(Entity entity, List<Entity> surroundings)
         {
-
+            List<Entity> below = new List<Entity>();
+            foreach(Entity surround in surroundings)
+            {
+                if(( surround.Max.X > entity.Min.X || surround.Min.X< entity.Max.X)
+                    && (surround.Min.Y- entity.Max.Y<2))
+                {
+                    below.Add(surround);
+                }
+            }
+            if(below.Count == 0)
+            {
+                entity.onGround = false;
+            }
         }
 
 
@@ -101,6 +113,7 @@ namespace Sprint0.CollisionDetection
 
                             List<Entity> surroundings = getSurroundingEntities(movable.SurroundingGrids, collidables);
 
+                    CheckGrounded(movable, surroundings);
 
                             //Debug.WriteLine(surroundings.Count);
 
@@ -198,8 +211,8 @@ namespace Sprint0.CollisionDetection
             {
                 if (!responsedEntities.Contains(currentCollisions[i].Item1))
                 {
-                    Debug.WriteLine(currentCollisions[i].Item1);
-                    Debug.WriteLine(currentCollisions[i].Item2);
+                    //Debug.WriteLine(currentCollisions[i].Item1);
+                    //Debug.WriteLine(currentCollisions[i].Item2);
 
                     responsedEntities.Add(currentCollisions[i].Item1);
                     currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item4, currentCollisions[i].Item6);

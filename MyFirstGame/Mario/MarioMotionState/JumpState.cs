@@ -23,7 +23,7 @@ namespace Sprint0.Mario.MarioMotionState
             this.previousState = state;
 
             Mario.onGround = false;
-            Mario.Speed = new Vector2(Mario.Speed.X, -140);
+            Mario.Speed = new Vector2(Mario.Speed.X, -400);
 
             SpriteEffects facing = Mario.Sprite.Orientation;
             int type = Mario.generateType(CurrentState,PowerState);
