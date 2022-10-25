@@ -209,7 +209,6 @@ namespace Sprint0
                     EntityList[i].Update(gameTime, EntityList);
             }
 
-
             CollisionDetector.Instance.DectectCollision();
 
         }

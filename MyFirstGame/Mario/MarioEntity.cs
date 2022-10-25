@@ -92,8 +92,6 @@ namespace Sprint0.Mario
                     type = 0;
                     break;
             }
-            //Debug.WriteLine(type);
-
             return type;
         }
 
@@ -155,20 +153,34 @@ namespace Sprint0.Mario
                     }
                     break;
                 case EnemyEntity:
-                    switch (entity)
-                    {
-                        case GoombaEntity:
-                            if(touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
-                            {
-                                Position = position;
-                                Idle();
-                                TakeDamage();
-                            }
-                            break;
-                        case KoopaTroopaEntity:
-
-                            break;
-                    }
+                    Idle();
+                    //switch (entity)
+                    //{
+                        //case GoombaEntity:
+                        //    if(touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
+                        //    {
+                        //        Position = position;
+                        //        Idle();
+                        //        TakeDamage();
+                        //    }
+                        //    else
+                        //    {
+                        //        Idle();
+                        //    }
+                        //    break;
+                        //case KoopaTroopaEntity:
+                        //    if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
+                        //    {
+                        //        Position = position;
+                        //        Idle();
+                        //        TakeDamage();
+                        //    }
+                        //    else
+                        //    {
+                        //        Idle();
+                        //    }
+                        //    break;
+                    //}
                     break;
             }
         }
