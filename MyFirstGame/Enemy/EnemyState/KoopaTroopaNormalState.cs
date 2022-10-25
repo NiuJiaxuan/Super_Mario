@@ -1,4 +1,5 @@
-﻿using Sprint0.Interfaces;
+﻿using Microsoft.Xna.Framework;
+using Sprint0.Interfaces;
 using Sprint0.Mario;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Sprint0.Enemy.EnemyState
         public KoopaTroopaNormalState(EnemyEntity enemy)
             : base(enemy)
         {
-
+            Enemy.Speed = new Vector2(-40, 0);
         }
 
         public MarioEntity Mario { get; set; }
@@ -24,11 +25,13 @@ namespace Sprint0.Enemy.EnemyState
             this.previousState = previousState;
 
         }
+
         public override void ShellTransition()
         {
             CurrentState.Exit();
             CurrentState = new KoopaTroopaDeathState(Enemy);
             CurrentState.Enter(this);
         }
+
     }
 }

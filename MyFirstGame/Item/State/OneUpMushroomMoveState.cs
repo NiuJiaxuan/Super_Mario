@@ -7,18 +7,22 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Item.State
 {
-    class StarBumpState : ItemStates
+    public class OneUpMushroomMoveState : ItemStates
     {
+
         Vector2 Origion;
 
-        public StarBumpState(ItemEntity item)
+        public OneUpMushroomMoveState(ItemEntity item)
             : base(item)
         {
         }
+
+
         public override void Enter(IItemState previousState)
         {
             CurrentState = this;
             this.previousState = previousState;
+
             Origion = Item.Position;
 
             Item.Speed = new Vector2(0, -40);
@@ -28,27 +32,27 @@ namespace Sprint0.Item.State
         {
             Item.Speed = new Vector2(0, 0);
         }
-
+        public override void BumpTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new OneUpMushroomBumpState(Item);
+            CurrentState.Enter(this);
+        }
         public override void NormalTransition()
         {
             CurrentState.Exit();
-            CurrentState = new StarNormalState(Item);
-            CurrentState.Enter(this);
-        }
-        public override void MovingTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new StarMoveState(Item);
+            CurrentState = new OneUpMushroomNormalState(Item);
             CurrentState.Enter(this);
         }
         public override void Update(GameTime gameTime)
         {
-            if (Math.Abs(Item.Position.Y - Origion.Y) > 30) { 
-                Item.Speed = new Vector2(0, 0);
-                MovingTransition();
+            if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X)> 0)
+            {
+                Item.Speed = new Vector2(40,0);
+            }else if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X) < 0)
+            {
+                Item.Speed = new Vector2(-40, 0);
             }
-            //CurrentState = new StarMoveState(Item);
-
         }
     }
 }

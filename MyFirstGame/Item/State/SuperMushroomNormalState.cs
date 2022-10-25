@@ -37,5 +37,12 @@ namespace Sprint0.Item.State
             CurrentState = new SuperMushroomBumpState(Item);
             CurrentState.Enter(this);
         }
+
+        public override void MovingTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new SuperMushroomMoveState(Item);
+            CurrentState.Enter(this);
+        }
     }
 }

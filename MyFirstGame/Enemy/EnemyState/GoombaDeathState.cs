@@ -10,6 +10,8 @@ namespace Sprint0.Enemy.EnemyState
 {
     public class GoombaDeathState : EnemyState
     {
+        private static readonly TimeSpan intervalBetweenAlive = TimeSpan.FromMilliseconds(4000);
+        private TimeSpan lastTimeAlive;
         public GoombaDeathState(EnemyEntity enemy)
               : base(enemy)
         {
@@ -27,9 +29,14 @@ namespace Sprint0.Enemy.EnemyState
             this.previousState = previousState;
             Enemy.Sprite = Enemy.EnemyFactory.CreateEnemy(Enemy.game, Enemy.Position, 3);
         }
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
+        //public override void Update(GameTime gameTime)
+        //{
+        //    Enemy.Speed = new Vector2(0, 0);
+        //    if (lastTimeAlive + intervalBetweenAlive < gameTime.TotalGameTime)
+        //    {
+        //        Death();
+        //        lastTimeAlive = gameTime.TotalGameTime;
+        //    }
+        //}
     }
 }

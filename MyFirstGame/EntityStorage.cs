@@ -66,12 +66,9 @@ namespace Sprint0
             {
                 for (int j = 0; j <rows; j++)
                 {
-                    //Debug.WriteLine(new Vector2(33 * i, 33 * j));
                     AllGrids[i, j] = new Grid(new Vector2(33 * i, 33 * j), new Vector2(33, 33));
-                    //Debug.WriteLine(AllGrids[i,j].Position + " " + AllGrids[i, j].Rectangle.X + " " + AllGrids[i, j].Rectangle.Y);
                 }
             }
-            //Debug.WriteLine(AllGrids[0, 0].Position);
         }
 
         private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> entityList)
@@ -226,11 +223,7 @@ namespace Sprint0
             }
 
             CollisionDetector.Instance.Draw(batch);
-            //List<Grid> surroundinggrids =  CollisionDetector.Instance.getSurroundingGrids(Mario);
-            //foreach(Grid grid in surroundinggrids)
-            //{
-            //    grid.Draw(batch);
-            //}
+
         }
     }
 }

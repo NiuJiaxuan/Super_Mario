@@ -1,0 +1,1 @@
+﻿The movement state for all StarMoveState, SuperMushroomMoveState,OneUpMushroomMoveState need to have Mario in there, but I have not figure out yet,and I will fix them accordingly, thye should not affect code run.

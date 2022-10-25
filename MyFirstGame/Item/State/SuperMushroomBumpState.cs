@@ -36,11 +36,17 @@ namespace Sprint0.Item.State
             CurrentState = new SuperMushroomNormalState(Item);
             CurrentState.Enter(this);
         }
+        public override void MovingTransition()
+        {
+            CurrentState.Exit();
+            CurrentState = new SuperMushroomMoveState(Item);
+            CurrentState.Enter(this);
+        }
 
         public override void Update(GameTime gameTime)
         {
             if (Math.Abs(Item.Position.Y - Origion.Y) >= 30)
-                NormalTransition();
+                MovingTransition();
         }
     }
 }

@@ -90,7 +90,7 @@ namespace Sprint0
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
             camera = new Camera(GraphicsDevice.Viewport);
-            camera.Limits= new Rectangle(0,0,6000,450);
+            camera.Limits= new Rectangle(0,0,6300,480);
 
             background = Content.Load<Texture2D>("background");
             cloud = Content.Load<Texture2D>("cloud");
@@ -141,8 +141,7 @@ namespace Sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            //--------------------------------load font---------------------------------------
-           // HUDFont = Content.Load<SpriteFont>("File");
+            
         }
 
         protected override void Update(GameTime gameTime)

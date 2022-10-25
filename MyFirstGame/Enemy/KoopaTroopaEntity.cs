@@ -10,13 +10,16 @@ using Sprint0.Sprites.factory;
 using Sprint0.Mario;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy.EnemyState;
+using System.Diagnostics;
+using Sprint0.Mario.MarioPowerState;
+using Sprint0.State;
 
 namespace Sprint0.Enemy
 {
     public class KoopaTroopaEntity : EnemyEntity
     {
         //public virtual EnemyFactory KoopaTroopaFactory => game.KoopaTroopaFactory;
-
+        string dir;
         public KoopaTroopaEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -27,19 +30,118 @@ namespace Sprint0.Enemy
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
+
             switch (entity)
             {
                 case MarioEntity:
                     MarioEntity mario = (MarioEntity)entity;
-                    if (touching == CollisionDetector.Touching.top)
+                    switch (mario.currentPowerState)
                     {
-                        ShellTransition();
+                        case DeadState:
+                                break;
+                        default:
+                            if (EnemyType.Equals(eEnemyType.KoopaTroopa))
+                            {
+                                if (touching == CollisionDetector.Touching.top)
+                                {
+                                    ShellTransition();
+                                    EnemyType = eEnemyType.IdleDeadKoopaTroopa;
+                                }
+                                else
+                                {
+                                    mario.TakeDamage();
+                                }
+                            }
+                            else if (EnemyType.Equals(eEnemyType.IdleDeadKoopaTroopa))
+                            {
+                                Debug.WriteLine("Bump:" + touching.ToString());
+                                //ERROR: CollisionDetector is not detecting the right collision!
+                                if (touching == CollisionDetector.Touching.left)
+                                {
+                                    dir = "right";
+                                    ShellBump(dir);
+                                    EnemyType = eEnemyType.MovingDeadKoopaTroopa;
+                                }
+                                else if ( touching == CollisionDetector.Touching.right)
+                                {
+                                    dir = "left";
+                                    ShellBump(dir);
+                                    EnemyType = eEnemyType.MovingDeadKoopaTroopa;
+                                }
+                                else if (touching == CollisionDetector.Touching.top)
+                                {
+                                    //Kills the troopa
+                                }
+                            }
+                            else if (EnemyType.Equals(eEnemyType.MovingDeadKoopaTroopa))
+                            {
+                                if (touching == CollisionDetector.Touching.top)
+                                {
+                                    dir = "top";
+                                    ShellBump(dir);
+                                    EnemyType = eEnemyType.IdleDeadKoopaTroopa;
+                                }
+                                else
+                                {
+                                    mario.TakeDamage();
+                                }
+                            }
+                            break;
                     }
-                    else
+                    break;
+                case BlockEntity:
+                    if (EnemyType.Equals(eEnemyType.KoopaTroopa))
                     {
-                        mario.TakeDamage();
+                        if (touching == CollisionDetector.Touching.left)
+                        {
+                            //switch direction to the right
+                            dir = "right";
+                        }
+                        else if (touching == CollisionDetector.Touching.right)
+                        {
+                            //switch direction to the left
+                            dir = "left";
+                        }
                     }
-
+                    else if (EnemyType.Equals(eEnemyType.MovingDeadKoopaTroopa))
+                    {
+                        if(touching != CollisionDetector.Touching.left)
+                        {
+                            //switch direction to the right
+                            dir = "right";
+                            ShellBump(dir);
+                        }
+                        else if (touching == CollisionDetector.Touching.right)
+                        {
+                            //switch direction to the left
+                            dir = "left";
+                            ShellBump(dir);
+                        }
+                    }
+                    break;
+                case EnemyEntity:
+                    EnemyEntity enemy = (EnemyEntity)entity;
+                    switch (enemy.EnemyType)
+                    {
+                        case eEnemyType.Goomba:
+                            if (EnemyType.Equals(eEnemyType.MovingDeadKoopaTroopa))
+                            {
+                                if (touching == CollisionDetector.Touching.left)
+                                {
+                                    //switch direction to the right
+                                    dir = "right";
+                                    Debug.WriteLine("GO RIGHT");
+                                    ShellBump(dir);
+                                }
+                                else if (touching == CollisionDetector.Touching.right)
+                                {
+                                    //switch direction to the left
+                                    dir = "left"; 
+                                    ShellBump(dir);
+                                }
+                            }
+                            break;
+                    }
                     break;
             }
         }

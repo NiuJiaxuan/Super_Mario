@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Sprint0.Block.State
 {
