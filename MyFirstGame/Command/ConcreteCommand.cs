@@ -151,4 +151,15 @@ namespace Sprint0.Command
         }
     }
 
+    public class ShootingFireballCommand : MarioCommand
+    {
+        public ShootingFireballCommand(Entity receiver)
+            : base((MarioEntity)receiver) { }
+
+        public override void Execute()
+        {
+            receiver.ShootingFireball();
+        }
+    }
+
 }

@@ -60,6 +60,14 @@ namespace Sprint0.Sprites.Sprites
 
         }
     }
+    class FireballSprite : Sprite
+    {
+        public FireballSprite(Game1 game, Vector2 position)
+           : base(game.Content.Load<Texture2D>("fireball"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(12, 10), false)
+        {
+
+        }
+    }
     class CastleSprite : Sprite
     {
         public CastleSprite(Game1 game, Vector2 position)

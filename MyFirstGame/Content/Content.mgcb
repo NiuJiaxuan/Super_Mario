@@ -165,7 +165,7 @@
 /processorParam:TextureFormat=Color
 /build:fire-walking-mario.png
 
-#begin FireBalls.png
+#begin fireball.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -175,7 +175,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:FireBalls.png
+/build:fireball.jpg
 
 #begin FireFlower.png
 /importer:TextureImporter

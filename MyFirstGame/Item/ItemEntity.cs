@@ -29,6 +29,7 @@ namespace Sprint0.Item
             Pipe = 5,
             None = 6,
             Castle = 7,
+            Fireball = 8,
         }
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }
