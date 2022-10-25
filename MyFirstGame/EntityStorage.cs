@@ -212,6 +212,10 @@ namespace Sprint0
             CollisionDetector.Instance.DectectCollision();
 
         }
+        public void clear()
+        {
+            EntityList = new List<Entity>();
+        }
         public void Draw(SpriteBatch batch)
         {
             foreach(Entity entity in EntityList)
