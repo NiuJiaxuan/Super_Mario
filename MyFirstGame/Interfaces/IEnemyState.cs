@@ -16,7 +16,7 @@ namespace Sprint0.Interfaces
         void KillTransition();
         void NormalTransition();
         void ShellTransition();
-
-
+        void ShellBump(string dir);
+        //void StopShell();
     }
 }

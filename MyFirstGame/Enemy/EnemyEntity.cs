@@ -30,16 +30,14 @@ namespace Sprint0.Enemy
         {
             Goomba = 1,
             KoopaTroopa = 2,
+            DeadGooma = 3,
+            IdleDeadKoopaTroopa = 4,
+            MovingDeadKoopaTroopa = 5,
         }
-        //public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
-        //{
-        //    EntityStorage.Instance.EntityList.Remove(this);
-        //}
-
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
             base.Update(gameTime, blockEntities);
-
+            currentState?.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -54,6 +52,10 @@ namespace Sprint0.Enemy
         public void ShellTransition()
         {
             currentState?.ShellTransition();
+        }
+        public void ShellBump(string dir)
+        {
+            currentState?.ShellBump(dir);
         }
     }
 }

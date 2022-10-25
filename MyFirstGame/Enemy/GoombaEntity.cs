@@ -33,16 +33,33 @@ namespace Sprint0.Enemy
             {
                 case MarioEntity:
                     MarioEntity mario = (MarioEntity)entity;
-                    if(touching == CollisionDetector.Touching.top)
+                    if (EnemyType.Equals(eEnemyType.Goomba))
                     {
-                        Debug.WriteLine("TOP");
-                        KillTransition();
+                        if (touching == CollisionDetector.Touching.top)
+                        {
+                            KillTransition();
+                            EnemyType = eEnemyType.DeadGooma;
+                        }
+                        else
+                        {
+                            mario.TakeDamage();
+                        }
                     }
-                    else
+                break;
+                case EnemyEntity:
+                    EnemyEntity enemy = (EnemyEntity)entity;
+                    switch(enemy.currentState)
                     {
-                        mario.TakeDamage();
+                        case KoopaTroopaMovingShellState:
+                            if (touching == CollisionDetector.Touching.right) 
+                            {
+                                Debug.WriteLine("Kill");
+                                Position = position;
+                                //KillTransition();
+                                //EnemyType = eEnemyType.DeadGooma;
+                            }
+                            break;
                     }
-
                     break;
             }
         }

@@ -1,4 +1,5 @@
-﻿using Sprint0.Interfaces;
+﻿using Microsoft.Xna.Framework;
+using Sprint0.Interfaces;
 using Sprint0.Mario;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace Sprint0.Enemy.EnemyState
 {
     class GoombaNormalState : EnemyState
     {
+        string direction;
         public GoombaNormalState(EnemyEntity enemy)
             : base(enemy)
         {
@@ -22,7 +24,14 @@ namespace Sprint0.Enemy.EnemyState
         {
             CurrentState = this;
             this.previousState = previousState;
-
+            if (direction == "left")
+            {
+                Enemy.Speed = new Vector2(-40, 0);
+            }
+            else if (direction == "right")
+            {
+                Enemy.Speed = new Vector2(40, 0);
+            }
         }
 
         public override void KillTransition()

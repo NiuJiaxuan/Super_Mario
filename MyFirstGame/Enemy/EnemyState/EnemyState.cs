@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Sprint0.CollisionDetection;
 using Sprint0.Interfaces;
+using Sprint0.Sprites;
 
 namespace Sprint0.Enemy.EnemyState
 {
@@ -13,6 +15,7 @@ namespace Sprint0.Enemy.EnemyState
         protected IEnemyState previousState;
         IEnemyState IEnemyState.PreviousState { get { return previousState; } }
         protected IEnemyState CurrentState { get { return Enemy.currentState; } set { Enemy.currentState = value; } }
+        public bool isRemoved = false; 
 
         public EnemyEntity Enemy;
         protected EnemyState(EnemyEntity enemy)
@@ -32,7 +35,7 @@ namespace Sprint0.Enemy.EnemyState
         public virtual void KillTransition() { }
         public virtual void NormalTransition() { }
         public virtual void ShellTransition() { }
-
+        public virtual void ShellBump(string dir) { }
 
     }
 }
