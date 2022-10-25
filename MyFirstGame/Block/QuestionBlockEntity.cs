@@ -51,7 +51,7 @@ namespace Sprint0.Block
                         }
                         else
                         {
-                            if (BlockItemList.Count != 0)
+                            if (BlockItemList.Count != 0 && !isBumping)
                             {
                                 BumpTransition(BlockItemList.Count - 1);
                                 ItemEntity temp = BlockItemList[0];
