@@ -319,15 +319,15 @@ namespace Sprint0.Mario
                         }
                         break;
                     case JumpState:
-                        //if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                        //{
-                        //    currentMotionState?.WalkTransion();
-                        //}
-                        //else
-                        //{
-                        //    Sprite.Orientation = SpriteEffects.FlipHorizontally;
-                        //    currentMotionState?.IdleTransion();
-                        //}
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            Speed += new Vector2(-40, 0);
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                            currentMotionState?.IdleTransion();
+                        }
                         break;
                     case CrouchState:
                         if (Sprite.Orientation == SpriteEffects.FlipHorizontally)

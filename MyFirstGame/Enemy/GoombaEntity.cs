@@ -40,10 +40,7 @@ namespace Sprint0.Enemy
                             KillTransition();
                             EnemyType = eEnemyType.DeadGooma;
                         }
-                        else
-                        {
-                            mario.TakeDamage();
-                        }
+
                     }
                 break;
                 //case EnemyEntity:

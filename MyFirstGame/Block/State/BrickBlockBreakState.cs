@@ -42,7 +42,7 @@ namespace Sprint0.Block.State
 
             if (Block.SmallBlock2.Position.Y > 500)
             {
-                Block.Entities.Remove(Block);
+                EntityStorage.Instance.EntityList.Remove(Block);
             }
 
         }

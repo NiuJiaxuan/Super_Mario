@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
 using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
@@ -183,7 +184,7 @@ namespace Sprint0.CollisionDetection
                         if (collidable.GetRectangle.X < entity.GetRectangle.X)
                         {
                             e1touching = Touching.right;
-                            e1touching = Touching.left;
+                            e2touching = Touching.left;
                             x -= interactionRec.Width;
                         }
                         else
@@ -215,6 +216,8 @@ namespace Sprint0.CollisionDetection
                     //Debug.WriteLine(currentCollisions[i].Item2);
 
                     responsedEntities.Add(currentCollisions[i].Item1);
+                    //if (currentCollisions[i].Item2 is KoopaTroopaEntity)
+                    //    Debug.WriteLine("mario touch koopa with " + currentCollisions[i].Item6);
                     currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item4, currentCollisions[i].Item6);
                     currentCollisions[i].Item1.CollisionResponse(currentCollisions[i].Item2, currentCollisions[i].Item4, currentCollisions[i].Item5);
                 }

@@ -49,12 +49,12 @@ namespace Sprint0.Enemy
                                 }
                                 else
                                 {
-                                    mario.TakeDamage();
+                                   // mario.TakeDamage();
                                 }
                             }
                             else if (EnemyType.Equals(eEnemyType.IdleDeadKoopaTroopa))
                             {
-                                //ERROR: CollisionDetector is not detecting the right collision!
+                                //Debug.WriteLine("mario collide iwth koopa " + touching);
                                 if (touching == CollisionDetector.Touching.left)
                                 {
                                     dir = "right";
