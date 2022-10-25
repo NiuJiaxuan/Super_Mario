@@ -46,21 +46,20 @@ namespace Sprint0.Enemy
                         }
                     }
                 break;
-                case EnemyEntity:
-                    EnemyEntity enemy = (EnemyEntity)entity;
-                    switch(enemy.currentState)
-                    {
-                        case KoopaTroopaMovingShellState:
-                            if (touching == CollisionDetector.Touching.right) 
-                            {
-                                Debug.WriteLine("Kill");
-                                Position = position;
-                                //KillTransition();
-                                //EnemyType = eEnemyType.DeadGooma;
-                            }
-                            break;
-                    }
-                    break;
+                //case EnemyEntity:
+                //    EnemyEntity enemy = (EnemyEntity)entity;
+                //    switch(enemy.currentState)
+                //    {
+                //        case KoopaTroopaMovingShellState:
+                //            if (touching == CollisionDetector.Touching.right) 
+                //            {
+                //                Debug.WriteLine("Kill");
+                //                //KillTransition();
+                //                //EnemyType = eEnemyType.DeadGooma;
+                //            }
+                //            break;
+                //    }
+                //    break;
             }
         }
 

@@ -54,7 +54,6 @@ namespace Sprint0.Enemy
                             }
                             else if (EnemyType.Equals(eEnemyType.IdleDeadKoopaTroopa))
                             {
-                                Debug.WriteLine("Bump:" + touching.ToString());
                                 //ERROR: CollisionDetector is not detecting the right collision!
                                 if (touching == CollisionDetector.Touching.left)
                                 {
@@ -130,11 +129,11 @@ namespace Sprint0.Enemy
                                 {
                                     //switch direction to the right
                                     dir = "right";
-                                    Debug.WriteLine("GO RIGHT");
                                     ShellBump(dir);
                                 }
                                 else if (touching == CollisionDetector.Touching.right)
                                 {
+                                    Debug.WriteLine("Right");
                                     //switch direction to the left
                                     dir = "left"; 
                                     ShellBump(dir);
