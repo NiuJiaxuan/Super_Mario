@@ -50,7 +50,7 @@
 /processorParam:TextureFormat=Color
 /build:brickblock.png
 
-#begin castle.png
+#begin bush.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -60,7 +60,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:castle.png
+/build:bush.png
+
+#begin cloud.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:cloud.png
 
 #begin Coin.png
 /importer:TextureImporter
@@ -249,7 +261,7 @@
 /processorParam:TextureFormat=Color
 /build:large-crouching-mario.png
 
-#begin large-jumping-mario.png
+#begin large-jumping-mario1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -259,7 +271,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:large-jumping-mario.png
+/build:large-jumping-mario1.png
 
 #begin large-walking-mario.png
 /importer:TextureImporter
@@ -272,6 +284,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:large-walking-mario.png
+
+#begin mario.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:mario.png
 
 #begin Pipe.png
 /importer:TextureImporter

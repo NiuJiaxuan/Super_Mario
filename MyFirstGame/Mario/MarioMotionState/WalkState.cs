@@ -24,10 +24,12 @@ namespace Sprint0.Mario.MarioMotionState
 
             SpriteEffects facing = Mario.Sprite.Orientation;
             int type = Mario.generateType(CurrentState, PowerState);
+
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game,Mario.Position, type);
             Mario.Sprite.Orientation = facing;
             Mario.marioType = type;
 
+            Debug.WriteLine(Mario.Speed);
         }
 
         public override void IdleTransion()

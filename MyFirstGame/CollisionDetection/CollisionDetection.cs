@@ -86,8 +86,8 @@ namespace Sprint0.CollisionDetection
                 { 
                     Entity movable = movables[i];
                     //only test moving objects
-                    if(movable.Speed != Vector2.Zero || movable.Accelation != Vector2.Zero)
-                    {
+                    //if(movable.Speed != Vector2.Zero || movable.Accelation != Vector2.Zero)
+                    //{
                         //Debug.WriteLine("current moving entity: " + collidable);
 
                    
@@ -102,18 +102,18 @@ namespace Sprint0.CollisionDetection
 
                             //step 2: find collisions
                             currentCollisions.AddRange(Collsion(movable, surroundings));
-                    }
+                    //}
                 }
                 //step 7: if not collisions, quit
                 if(currentCollisions.Count == 0)
                 {
                     break;
                 }
-                Debug.WriteLine("total collisions: "+ currentCollisions.Count);
+                //Debug.WriteLine("total collisions: "+ currentCollisions.Count);
 
                 //step 3: sort collisions based on time
                 currentCollisions.Sort(new TimeComparer());
-                        //step 4 & 5: update position and speed
+                //step 4 & 5: update position and speed
                 CollsionResponse(currentCollisions);
                 currentCollisions.Clear();
             }
@@ -135,9 +135,11 @@ namespace Sprint0.CollisionDetection
             foreach (Entity entity in entities)
             {
                 interactionRec = Rectangle.Intersect(collidable.GetRectangle, entity.GetRectangle);
-                //Debug.WriteLine(interactionRec);
                 if (!interactionRec.IsEmpty)
-                {
+                {                
+                    //Debug.WriteLine(interactionRec);
+                    //Debug.WriteLine("entity position: "+ entity.Position);
+
                     collide = entity;
 
                     //Debug.WriteLine(currentEntity + " collied with " + entity);

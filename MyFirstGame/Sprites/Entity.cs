@@ -52,15 +52,13 @@ namespace Sprint0.Sprites
         }
 
         public Vector2 Speed
-        {             
-            get { return Sprite.Speed; }
-            set { Sprite.Speed = value; }
+        {
+            get;set;
         }
 
         public Vector2 Accelation
         {
-            get { return Sprite.Accelation; }
-            set { Sprite.Accelation = value; }
+            get;set;
         }
 
         public Vector2 Position

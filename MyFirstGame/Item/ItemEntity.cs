@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
+using Sprint0.Interfaces;
 using Sprint0.Item.State;
 using Sprint0.Mario;
 using Sprint0.Sprites;
@@ -14,7 +15,7 @@ using static Sprint0.State.BlockEntity;
 
 namespace Sprint0.Item
 {
-    public class ItemEntity : Entity
+    public class ItemEntity : Entity, IMovableEntity
     {
 
         public virtual ItemFactory ItemFactory => game.ItemFactory;
