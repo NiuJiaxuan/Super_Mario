@@ -34,6 +34,7 @@ namespace Sprint0
         private IController gamepad;
         Vector2 parallax = new Vector2(1f);
 
+
         Camera camera;
         public static LevelData levelData { get; set; }
 

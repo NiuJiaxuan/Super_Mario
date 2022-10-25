@@ -29,6 +29,8 @@ namespace Sprint0.Mario.MarioMotionState
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
             Mario.Sprite.Orientation = facing;
             Mario.marioType = type;
+
+            Mario.Speed = Vector2.Zero;
         }
 
         public override void WalkTransion()

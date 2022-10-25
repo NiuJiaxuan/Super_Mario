@@ -21,6 +21,7 @@ using Microsoft.VisualBasic;
 using Sprint0.CollisionDetection;
 using Sprint0.Item;
 using Sprint0.Interfaces;
+using System.Security.Cryptography;
 
 namespace Sprint0.Mario
 {
@@ -109,8 +110,11 @@ namespace Sprint0.Mario
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            //Debug.WriteLine("mario response");
+            //Debug.WriteLine("mario position top left: " + (Position.Y - Sprite.FrameSize.Y));
+            //Debug.WriteLine("before update position: " + this.Position);
+
             this.Position = position;
+            //Debug.WriteLine("after update position: " + this.Position);
             switch (entity)
             {
                 case BlockEntity block:
