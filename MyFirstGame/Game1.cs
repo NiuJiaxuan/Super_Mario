@@ -30,9 +30,9 @@ namespace Sprint0
 
         private Texture2D background;
 
+
         private IController keyboard;
         private IController gamepad;
-        Vector2 parallax = new Vector2(1f);
 
         Camera camera;
         public static LevelData levelData { get; set; }
@@ -163,9 +163,12 @@ namespace Sprint0
 
             //_spriteBatch.Begin();
 
-            _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(parallax));
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
+            _spriteBatch.Draw(background, new Rectangle((int)(-camera.Position.X*0.3f), (int)(camera.Position.Y*0.5f), 1600, 430), Color.White);
+            _spriteBatch.End();
 
-            _spriteBatch.Draw(background, new Rectangle(0, 0, 1600, 480), Color.White);
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(new Vector2(1f)));
+
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
 
 
