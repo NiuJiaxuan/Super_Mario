@@ -15,6 +15,7 @@ namespace Sprint0.Item.State
         void Update(GameTime gameTime);
         void NormalTransition();
         void BumpTransition();
+        void MovingTransition();
 
     }
 }

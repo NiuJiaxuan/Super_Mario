@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Sprint0.Mario;
+using Sprint0.Sprites;
+using Sprint0.Sprites.factory;
 
 namespace Sprint0.Item.State
 {
@@ -33,6 +36,7 @@ namespace Sprint0.Item.State
         public virtual void Exit() { }
         public virtual void NormalTransition() { }
         public virtual void BumpTransition() { }
+        public virtual void MovingTransition() { }
 
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(SpriteBatch batch) { }
