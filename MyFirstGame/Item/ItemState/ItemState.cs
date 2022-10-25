@@ -37,8 +37,10 @@ namespace Sprint0.Item.ItemState
         public virtual void NormalTransition() { }
         public virtual void BumpTransition() { }
         public virtual void MovingTransition() { }
+        public virtual void BouncingTransition() { }
 
-      
+
+
 
         public virtual void Update(GameTime gameTime) { }
 

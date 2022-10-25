@@ -16,6 +16,7 @@ namespace Sprint0.Item.State
         void NormalTransition();
         void BumpTransition();
         void MovingTransition();
+        void BouncingTransition();
 
     }
 }
