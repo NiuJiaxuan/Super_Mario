@@ -22,6 +22,7 @@ namespace Sprint0.Sprites
         public bool showBoundBox;
         public bool IsVisible = true;
 
+        public bool onGround { get; set; }
 
         public Sprite Sprite
         {
@@ -32,6 +33,16 @@ namespace Sprint0.Sprites
         public List<Entity> Entities
         {
             get; set;
+        }
+
+        public Point Min
+        {
+            get { return new Point((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y)); }
+        }
+
+        public Point Max
+        {
+            get { return new Point((int)(Position.X + Sprite.FrameSize.X), (int)Position.Y); }
         }
 
         public List<Grid> SurroundingGrids
@@ -67,10 +78,11 @@ namespace Sprint0.Sprites
             set { Sprite.Position = value; }
         }
 
-        public Entity (Game1 game, Vector2 position)
+        public Entity(Game1 game, Vector2 position)
         {
             this.game = game;
-            showBoundBox = false;            
+            showBoundBox = false;      
+            onGround = true;
         }
 
 
@@ -83,7 +95,20 @@ namespace Sprint0.Sprites
 
 
             this.Entities = entities;
-            Sprite.Update(gameTime);           
+            Sprite.Update(gameTime);
+            if(EntityStorage.Instance.MovableEntities.Contains(this))
+            {
+                if (!onGround)
+                {
+                    Accelation = new Vector2(0, 500);
+                }
+                else
+                {
+                    Speed = new Vector2(Speed.X, 0);
+                    Accelation = Vector2.Zero;
+                }
+            }
+
             
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;

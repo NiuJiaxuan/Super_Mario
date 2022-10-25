@@ -40,6 +40,7 @@ namespace Sprint0.Mario.MarioMotionState
         public virtual void WalkTransion() { }
         public virtual void IdleTransion() { }
         public virtual void CrouchTransion() { }
+        public virtual void FallTransion() { }
 
         public virtual void Update(GameTime gameTime) { }
 

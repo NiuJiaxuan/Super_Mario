@@ -15,7 +15,7 @@ using static Sprint0.State.BlockEntity;
 
 namespace Sprint0.Item
 {
-    public class ItemEntity : Entity, IMovableEntity
+    public class ItemEntity : Entity//, IMovableEntity
     {
 
         public virtual ItemFactory ItemFactory => game.ItemFactory;

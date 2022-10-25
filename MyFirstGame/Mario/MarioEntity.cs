@@ -22,6 +22,8 @@ using Sprint0.CollisionDetection;
 using Sprint0.Item;
 using Sprint0.Interfaces;
 using System.Security.Cryptography;
+using System.ComponentModel.Design.Serialization;
+using Sprint0.Enemy.EnemyState;
 
 namespace Sprint0.Mario
 {
@@ -104,6 +106,7 @@ namespace Sprint0.Mario
             currentMotionState = new IdleState(this);
             currentPowerState = new NormalState(this);
             Sprite = MarioFactory.CreateMario(game, position, generateType(currentMotionState, currentPowerState));
+            onGround = false;
         }
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
@@ -118,15 +121,22 @@ namespace Sprint0.Mario
                 case BlockEntity block:
                     if (block.IsVisible)
                     {
-                        Idle();
+                        if (touching is CollisionDetector.Touching.bottom)
+                        {
+                            onGround = true;
+                            Fall();
+                        }
+                        else if(touching is CollisionDetector.Touching.top)
+                        {
+                            Speed = new Vector2(Speed.X, -Speed.Y);
+                        }
+                        else
+                        {
+                            Idle();
+                        }
+
                     }
-                    //else if(touching != CollisionDetector.Touching.none)
-                    //{
-                    //    if (touching == CollisionDetector.Touching.top)
-                    //    {
-                    //        Idle();
-                    //    }
-                    //}
+
                     break;
                 case ItemEntity:
                     switch (entity)
@@ -157,34 +167,35 @@ namespace Sprint0.Mario
                     }
                     break;
                 case EnemyEntity:
-                    Idle();
-                    //switch (entity)
-                    //{
-                        //case GoombaEntity:
-                        //    if(touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
-                        //    {
-                        //        Position = position;
-                        //        Idle();
-                        //        TakeDamage();
-                        //    }
-                        //    else
-                        //    {
-                        //        Idle();
-                        //    }
-                        //    break;
-                        //case KoopaTroopaEntity:
-                        //    if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
-                        //    {
-                        //        Position = position;
-                        //        Idle();
-                        //        TakeDamage();
-                        //    }
-                        //    else
-                        //    {
-                        //        Idle();
-                        //    }
-                        //    break;
-                    //}
+                    switch (entity)
+                    {
+                        case GoombaEntity:
+                            if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
+                            {
+                                Position = position;
+                                Idle();
+                                TakeDamage();
+                            }
+                            else
+                            {
+                                Fall();
+                            }
+                            break;
+                        case KoopaTroopaEntity:
+                            KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
+                            if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none)
+                            {
+                                Position = position;
+                                Idle();
+                                if(!(koopa.currentState is KoopaTroopaDeathState))
+                                    TakeDamage();
+                            }
+                            else
+                            {
+                                Fall();
+                            }
+                            break;
+                    }
                     break;
             }
         }
@@ -196,8 +207,8 @@ namespace Sprint0.Mario
             base.Update(gameTime, entities);
 
             //Debug.WriteLine("speed is " + Speed);
+            currentMotionState?.Update(gameTime);       
             currentPowerState?.Update(gameTime);
-            currentMotionState?.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch batch)
@@ -211,14 +222,17 @@ namespace Sprint0.Mario
  //----------------------------------------Motion Command Method-----------------------------------
         public void Jump()
         {
-            switch (currentMotionState)
+            if( !(currentPowerState is DeadState))
             {
-                case CrouchState:
-                    currentMotionState?.IdleTransion();
-                    break;
-                default:
-                    currentMotionState?.JumpTransion();
-                    break;
+                switch (currentMotionState)
+                {
+                    case CrouchState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    default:
+                        currentMotionState?.JumpTransion();
+                        break;
+                }
             }
         }
 
@@ -227,108 +241,127 @@ namespace Sprint0.Mario
             currentMotionState?.IdleTransion();
         }
 
+        public void Fall()
+        {
+            currentMotionState?.FallTransion();
+        }
         //the vertical and horizontal speed after state change will turn to zero
         //need to fix this problem later
         public void WalkRight()
         {
-            switch (currentMotionState)
+            if(!(currentPowerState is DeadState))
             {
-                case IdleState:
-                    if (Sprite.Orientation == SpriteEffects.None)
-                    {
-                        currentMotionState?.WalkTransion();
-                    }else
-                    {
-                        Sprite.Orientation = SpriteEffects.None;
-                    }
-                    break;
-                case WalkState:
-                    if(Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                    {
-                        currentMotionState?.IdleTransion();
-                    }
-                    break;
-                case JumpState:
-                    if (Sprite.Orientation == SpriteEffects.None)
-                    {
-                        currentMotionState?.WalkTransion();
-                    }
-                    else
-                    {
-                        Sprite.Orientation = SpriteEffects.None;
-                        currentMotionState?.IdleTransion();
-                    }
-                    break;
-                case CrouchState:
-                    if (Sprite.Orientation == SpriteEffects.None)
-                    {
-                        currentMotionState?.IdleTransion();
-                    }
-                    else
-                    {
-                        Sprite.Orientation = SpriteEffects.None;
-                        currentMotionState?.IdleTransion();
-                    }
-                    break;
+                switch (currentMotionState)
+                {
+                    case IdleState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.WalkTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                        }
+                        break;
+                    case WalkState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case JumpState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            Speed += new Vector2(40, 0);
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case CrouchState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                }
             }
+            
 
         }
         public void WalkLeft()
         {
-            switch (currentMotionState)
+            if(!(currentPowerState is DeadState))
             {
-                case IdleState:
-                    if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                    {
-                        currentMotionState?.WalkTransion();
-                    }
-                    else
-                    {
-                        Sprite.Orientation = SpriteEffects.FlipHorizontally;
-                    }
-                    break;
-                case WalkState:
-                    if (Sprite.Orientation == SpriteEffects.None)
-                    {
-                        currentMotionState?.IdleTransion();
-                    }
-                    break;
-                case JumpState:
-                    if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                    {
-                        currentMotionState?.WalkTransion();
-                    }
-                    else
-                    {
-                        Sprite.Orientation = SpriteEffects.FlipHorizontally;
-                        currentMotionState?.IdleTransion();
-                    }
-                    break;
-                case CrouchState:
-                    if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                    {
-                        currentMotionState?.IdleTransion();
-                    }
-                    else
-                    {
-                        Sprite.Orientation = SpriteEffects.FlipHorizontally;
-                        currentMotionState?.IdleTransion();
-                    }
-                    break;
+                switch (currentMotionState)
+                {
+                    case IdleState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.WalkTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                        }
+                        break;
+                    case WalkState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case JumpState:
+                        //if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        //{
+                        //    currentMotionState?.WalkTransion();
+                        //}
+                        //else
+                        //{
+                        //    Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                        //    currentMotionState?.IdleTransion();
+                        //}
+                        break;
+                    case CrouchState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                }
             }
         }
         public void Crouch()
         {
-            switch (currentMotionState)
+            if(!(currentPowerState is DeadState))
             {
-                case JumpState:
-                    currentMotionState?.IdleTransion();
-                    break;
-                default:
-                   // if(currentPowerState.GetType() != typeof(NormalState))
+                switch (currentMotionState)
+                {
+                    case JumpState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    case WalkState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    default:
+                        // if(currentPowerState.GetType() != typeof(NormalState))
                         currentMotionState?.CrouchTransion();
-                    break;
+                        break;
+                }
             }
+
         }
 
         //-------------------------------------------Power Command Method--------------------------------

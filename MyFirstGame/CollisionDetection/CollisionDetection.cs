@@ -67,10 +67,27 @@ namespace Sprint0.CollisionDetection
             return surroundingEntities;
         }
 
+        private void CheckGrounded(Entity entity, List<Entity> surroundings)
+        {
+            List<Entity> below = new List<Entity>();
+            foreach(Entity surround in surroundings)
+            {
+                if(( surround.Max.X > entity.Min.X || surround.Min.X< entity.Max.X)
+                    && (surround.Min.Y- entity.Max.Y<2))
+                {
+                    below.Add(surround);
+                }
+            }
+            if(below.Count == 0)
+            {
+                entity.onGround = false;
+            }
+        }
+
+
         //this entity list only contains entities with in the same grids with target moving entities. 
         public void DectectCollision()
-        {            
-            
+        {      
             // create a new list to test collision
             List<Entity> collidables = new List<Entity>();
             collidables.AddRange(EntityStorage.Instance.EntityList);
@@ -95,6 +112,8 @@ namespace Sprint0.CollisionDetection
                             collidables.Remove(movable);
 
                             List<Entity> surroundings = getSurroundingEntities(movable.SurroundingGrids, collidables);
+
+                    CheckGrounded(movable, surroundings);
 
                             //Debug.WriteLine(surroundings.Count);
 
@@ -127,20 +146,19 @@ namespace Sprint0.CollisionDetection
             Touching e2touching = Touching.none;
             Rectangle interactionRec;
             float x = collidable.Position.X, y = collidable.Position.Y;
-            Entity collide;
 
             List<(Entity, Entity, float, Vector2, Touching, Touching)> result = new List<(Entity, Entity, float, Vector2, Touching, Touching)>();
-            float timePercent ;
+            float timePercent;
+
 
             foreach (Entity entity in entities)
             {
+
                 interactionRec = Rectangle.Intersect(collidable.GetRectangle, entity.GetRectangle);
                 if (!interactionRec.IsEmpty)
-                {                
+                {
                     //Debug.WriteLine(interactionRec);
                     //Debug.WriteLine("entity position: "+ entity.Position);
-
-                    collide = entity;
 
                     //Debug.WriteLine(currentEntity + " collied with " + entity);
 

@@ -22,6 +22,9 @@ namespace Sprint0.Mario.MarioMotionState
             CurrentState = this;
             this.previousState = state;
 
+            Mario.onGround = false;
+            Mario.Speed = new Vector2(Mario.Speed.X, -400);
+
             SpriteEffects facing = Mario.Sprite.Orientation;
             int type = Mario.generateType(CurrentState,PowerState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game,Mario.Position,type);
@@ -40,8 +43,16 @@ namespace Sprint0.Mario.MarioMotionState
         {
             CurrentState.Exit();
             CurrentState = new WalkState(Mario);
-            Debug.WriteLine("walk transion " + Mario.Speed);
+            //Debug.WriteLine("walk transion " + Mario.Speed);
 
+            CurrentState.Enter(this);
+        }
+
+        public override void FallTransion()
+        {
+            CurrentState.Exit();
+            CurrentState = previousState;
+            Mario.Speed = new Vector2(Mario.Speed.X, 0);
             CurrentState.Enter(this);
         }
 
@@ -59,7 +70,6 @@ namespace Sprint0.Mario.MarioMotionState
 
         public override void Update(GameTime gameTime)
         {
-            Mario.Speed = new Vector2(Mario.Speed.X, -70);
             base.Update(gameTime);
 
             if (Mario.Sprite.Position.Y-Mario.Sprite.FrameSize.Y <0)
