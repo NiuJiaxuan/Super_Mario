@@ -33,6 +33,7 @@ namespace Sprint0.State
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
         public bool breakBlockVisible = true;
+        public bool isBumping = false;
 
         public override Rectangle GetRectangle
         {
