@@ -25,6 +25,7 @@ namespace Sprint0
     {
         public List<Entity> EntityList { get; set; }
         public List<Entity> MovableEntities { get; set; }
+        public List<Entity> ColliableEntites { get; set; }
 
         //public List<Entity> PlayerList { get; set; }
         public Entity Mario { get; set; }
@@ -51,6 +52,7 @@ namespace Sprint0
         {
             EntityList = new List<Entity>();
             MovableEntities = new List<Entity>();
+            ColliableEntites = new List<Entity>();
         }
 
         public void SetupGrids(GraphicsDeviceManager graphicsDevice)
@@ -132,6 +134,10 @@ namespace Sprint0
                 {
                     return new PipeEntity(game, levelObject.Position);
                 }
+                else if (objectName.Equals("Castle"))
+                {
+                    return new CastleEntity(game, levelObject.Position);
+                }
             }
             else if (objectType.Equals("Enemies"))
             {
@@ -188,6 +194,7 @@ namespace Sprint0
             {
                 Entity entity = CreateEntity(levelObject, game, EntityList);
                 EntityList.Add(entity);
+                ColliableEntites.Add(entity);
                 if (entity.GetType() == typeof(MarioEntity))
                 {
                     Mario = entity;
@@ -200,6 +207,14 @@ namespace Sprint0
 
         public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
+            //synchronize entity list
+            foreach(Entity entity in ColliableEntites)
+            {
+                if (!EntityList.Contains(entity))
+                {
+                    EntityList.Add(entity);
+                }
+            }
           
             for(int i = 0; i< EntityList.Count; i++)
             {
@@ -213,6 +228,7 @@ namespace Sprint0
         {
             EntityList.Clear();
             MovableEntities.Clear();
+            ColliableEntites.Clear();
             Mario = null;
         }
         public void Draw(SpriteBatch batch)

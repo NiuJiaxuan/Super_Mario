@@ -38,8 +38,6 @@ namespace Sprint0.Block
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            
-           
             switch (entity)
             {
                 case MarioEntity:
@@ -75,6 +73,13 @@ namespace Sprint0.Block
 
                                 }
                                 break;
+                        }
+                    }
+                    else
+                    {
+                        if (!IsVisible)
+                        {
+                            EntityStorage.Instance.ColliableEntites.Remove(this);
                         }
                     }
                     break;

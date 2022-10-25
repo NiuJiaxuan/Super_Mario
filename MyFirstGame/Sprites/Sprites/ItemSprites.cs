@@ -68,4 +68,12 @@ namespace Sprint0.Sprites.Sprites
 
         }
     }
+    class CastleSprite : Sprite
+    {
+        public CastleSprite(Game1 game, Vector2 position)
+           : base(game.Content.Load<Texture2D>("castle"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(200, 236), false)
+        {
+
+        }
+    }
 }

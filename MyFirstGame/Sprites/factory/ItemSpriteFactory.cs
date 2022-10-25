@@ -70,6 +70,9 @@ namespace Sprint0.Sprites.factory
                 case eItemType.Pipe:
                     sprite = new PipeSprite(game, pos);
                     break;
+                case eItemType.Castle:
+                    sprite = new CastleSprite(game, pos);
+                    break;
                 case eItemType.Fireball:
                     sprite = new FireballSprite(game, pos);
                     break;
