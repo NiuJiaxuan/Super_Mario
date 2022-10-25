@@ -132,6 +132,10 @@ namespace Sprint0
                 {
                     return new PipeEntity(game, levelObject.Position);
                 }
+                else if (objectName.Equals("Castle"))
+                {
+                    return new CastleEntity(game, levelObject.Position);
+                }
             }
             else if (objectType.Equals("Enemies"))
             {

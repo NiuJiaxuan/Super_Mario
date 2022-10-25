@@ -21,6 +21,7 @@ namespace Sprint0.Sprites.factory
             Star = 4,
             Pipe = 5,
             None = 6,
+            Castle = 7,
         }
         protected ItemSpriteFactory()
         {
@@ -67,6 +68,9 @@ namespace Sprint0.Sprites.factory
                     break;
                 case eItemType.Pipe:
                     sprite = new PipeSprite(game, pos);
+                    break;
+                case eItemType.Castle:
+                    sprite = new CastleSprite(game, pos);
                     break;
             }
             return sprite;
