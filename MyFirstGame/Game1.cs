@@ -159,19 +159,12 @@ namespace Sprint0
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-
-            //_spriteBatch.Begin();
-
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
-            _spriteBatch.Draw(background, new Rectangle((int)(-camera.Position.X*0.3f), (int)(camera.Position.Y*0.5f), 1600, 430), Color.White);
+            _spriteBatch.Draw(background, new Rectangle((int)(-camera.Position.X*0.5f), (int)(camera.Position.Y*0.5f), 1600, 430), Color.White);
             _spriteBatch.End();
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(new Vector2(1f)));
-
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
-
-
             levelBuilder.EntityStorage.Draw(_spriteBatch);
 
             _spriteBatch.End();
