@@ -46,13 +46,25 @@ namespace Sprint0.Item.State
         }
         public override void Update(GameTime gameTime)
         {
-            /*if ((Item.Position.X - Mario.Position.X)> 0)
+            if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X)> 0)
             {
-                Item.Speed = new Vector2(70, -40);
-            }else if ((Item.Position.X - Mario.Position.X) < 0)
+                Item.Speed = new Vector2(40, -10);
+                this.Origion = Item.Position;
+                if (Math.Abs(Item.Position.Y - Origion.Y) > 10)
+                {
+                    Item.Speed = new Vector2(0, -Item.Speed.Y);
+                }
+            }
+            else if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X) < 0)
             {
-                Item.Speed = new Vector2(-70, -40);
-            }*/
+                Item.Speed = new Vector2(-40, -10);
+                this.Origion = Item.Position;
+                if (Math.Abs(Item.Position.Y - Origion.Y) > 10)
+                {
+                    Item.Speed = new Vector2(0, -Item.Speed.Y);
+                }
+            }
+            
         }
     }
 }
