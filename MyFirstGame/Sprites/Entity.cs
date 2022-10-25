@@ -96,6 +96,7 @@ namespace Sprint0.Sprites
 
             this.Entities = entities;
             Sprite.Update(gameTime);
+
             if(EntityStorage.Instance.MovableEntities.Contains(this))
             {
                 if (!onGround)

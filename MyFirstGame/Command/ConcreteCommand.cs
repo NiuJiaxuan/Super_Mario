@@ -151,4 +151,15 @@ namespace Sprint0.Command
         }
     }
 
+    public class ShootingFireballCommand : GameCommand
+    {
+        public ShootingFireballCommand(Game1 receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.ShootingFireBallCommand();
+        }
+    }
+
 }

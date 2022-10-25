@@ -28,6 +28,8 @@ namespace Sprint0.Item
             Star = 4,
             Pipe = 5,
             None = 6,
+            Castle = 7,
+            Fireball = 8,
         }
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }

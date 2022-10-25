@@ -18,6 +18,7 @@ using Sprint0.level;
 using System.Reflection.PortableExecutable;
 using Sprint0.CollisionDetection;
 using Sprint0.Interfaces;
+using System;
 
 namespace Sprint0
 {
@@ -31,6 +32,9 @@ namespace Sprint0
         private Texture2D background;
         private Texture2D bush;
         private Texture2D cloud;
+        private Texture2D fireball;
+
+        Boolean canShoot = false;
 
         private IController keyboard;
         private IController gamepad;
@@ -98,13 +102,13 @@ namespace Sprint0
 
             EntityStorage.Instance.SetupGrids(_graphics);
 
-
             //-------------------------keyboard control------------------
-            
+
             keyboard = new KeyboardController();
             keyboard.Command((int)Keys.Q, new ExitCommand(this));
             keyboard.Command((int)Keys.R, new ResetCommand(this));
             keyboard.Command((int)Keys.I, new ChangeToFireMario(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.T, new ShootingFireballCommand(this));
             keyboard.Command((int)Keys.U, new ChangeToSuperMario(levelBuilder.EntityStorage.Mario));
             keyboard.Command((int)Keys.Y, new ChangeToNormalMario(levelBuilder.EntityStorage.Mario));
             keyboard.Command((int)Keys.O, new MarioTakeDamege(levelBuilder.EntityStorage.Mario));
@@ -162,7 +166,7 @@ namespace Sprint0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
-            _spriteBatch.Draw(background, new Rectangle((int)(-camera.Position.X*0.5f), (int)(camera.Position.Y*0.5f), 1600, 430), Color.White);
+            _spriteBatch.Draw(background, new Rectangle((int)(-camera.Position.X*0.5f), (int)(camera.Position.Y*0.5f), 3500, 430), Color.White);
             _spriteBatch.Draw(cloud, new Vector2(0, 50), new Rectangle((int)(camera.Position.X * 2f), (int)(camera.Position.Y * 0.5f), 1300, 120), Color.White);
             _spriteBatch.Draw(bush, new Vector2(0,330),new Rectangle((int)(camera.Position.X * 1.5f), (int)(camera.Position.Y * 0.5f), 1300, 100), Color.White);
             _spriteBatch.End();
@@ -171,6 +175,10 @@ namespace Sprint0
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
             levelBuilder.EntityStorage.Draw(_spriteBatch);
 
+            if (canShoot)
+            {
+                _spriteBatch.Draw(fireball, new Vector2(levelBuilder.EntityStorage.Mario.Position.X+10, levelBuilder.EntityStorage.Mario.Position.Y-25),Color.White);
+            }
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -183,7 +191,12 @@ namespace Sprint0
             Initialize();
             
         }
-        public void ExitCommnad()
+        public void ShootingFireBallCommand()
+        {
+            canShoot = true;
+            fireball = Content.Load<Texture2D>("fireball");
+        }
+            public void ExitCommnad()
         {
             Exit();
         }
