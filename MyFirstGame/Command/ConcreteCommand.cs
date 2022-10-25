@@ -151,14 +151,14 @@ namespace Sprint0.Command
         }
     }
 
-    public class ShootingFireballCommand : GameCommand
+    public class ShootingFireballCommand : MarioCommand
     {
-        public ShootingFireballCommand(Game1 receiver)
-            : base(receiver) { }
+        public ShootingFireballCommand(Entity receiver)
+            : base((MarioEntity)receiver) { }
 
         public override void Execute()
         {
-            receiver.ShootingFireBallCommand();
+            receiver.ShootingFireball();
         }
     }
 

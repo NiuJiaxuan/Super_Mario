@@ -376,6 +376,11 @@ namespace Sprint0.Mario
             }
 
         }
+        public void ShootingFireball()
+        {
+            FireballEntity fireball = new FireballEntity(game, Position, Entities);
+            EntityStorage.Instance.movableAdd(fireball);
+        }
 
         //-------------------------------------------Power Command Method--------------------------------
 

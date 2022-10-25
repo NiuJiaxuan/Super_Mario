@@ -187,6 +187,20 @@ namespace Sprint0
             return temp;
         }
 
+        public void movableAdd(Entity entity)
+        {
+            EntityList.Add(entity);
+            MovableEntities.Add(entity);
+            ColliableEntites.Add(entity);
+        }
+
+        public void movableRemove(Entity entity)
+        {
+            EntityList.Remove(entity);
+            MovableEntities.Remove(entity);
+            ColliableEntites.Remove(entity);
+        }
+
         public void  Add (LevelData levelData, Game1 game)
         {
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Sprint0.Sprites.factory;
 
@@ -22,21 +23,19 @@ namespace Sprint0.Item.State
             CurrentState = this;
             this.previousState = previousState;
 
-            Vector2 Origion = Vector2.Zero;
-            if (Item.Sprite != null)
-            {
-                Origion = Item.Position;
-            }
+            Item.Sprite = Item.ItemFactory.CreateItem(Item.game, Item.Position, (int)ItemSpriteFactory.eItemType.Fireball);
+            Item.ItemType = ItemEntity.eItemType.Fireball;
 
-            Item.Sprite = Item.ItemFactory.CreateItem(Item.game, Item.Position, (int)ItemSpriteFactory.eItemType.Coin);
-            Item.ItemType = ItemEntity.eItemType.Coin;
-            Item.Position = Origion;
+            if(EntityStorage.Instance.Mario.Orientation == SpriteEffects.None)
+                Item.Speed = new Vector2(140, 0);
+            else
+                Item.Speed = new Vector2(-140,0);
         }
 
-        public override void BumpTransition()
+        public override void BouncingTransition()
         {
             CurrentState.Exit();
-            CurrentState = new CoinBumpState(Item);
+            CurrentState = new FireballBouncingState(Item);
             CurrentState.Enter(this);
         }
     }

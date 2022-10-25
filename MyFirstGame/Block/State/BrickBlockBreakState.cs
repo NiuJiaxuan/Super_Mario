@@ -43,6 +43,7 @@ namespace Sprint0.Block.State
             if (Block.SmallBlock2.Position.Y > 500)
             {
                 EntityStorage.Instance.EntityList.Remove(Block);
+                EntityStorage.Instance.ColliableEntites.Remove(Block);
             }
 
         }

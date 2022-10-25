@@ -21,25 +21,9 @@ namespace Sprint0.Item.State
             this.previousState = previousState;
             Origion = Item.Position;
 
-            Item.Speed = new Vector2(0, -40);
-        }
-        public override void Exit()
-        {
-            Item.Speed = new Vector2(0, 0);
+            Item.Speed = new Vector2(140, -50);
         }
 
-        public override void NormalTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new FireFlowerNormalState(Item);
-            CurrentState.Enter(this);
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            if (Math.Abs(Item.Position.Y - Origion.Y) >= 30)
-                NormalTransition();
-        }
 
     }
 }
