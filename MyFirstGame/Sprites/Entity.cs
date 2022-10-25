@@ -97,18 +97,18 @@ namespace Sprint0.Sprites
             this.Entities = entities;
             Sprite.Update(gameTime);
 
-            if (EntityStorage.Instance.MovableEntities.Contains(this))
-            {
-                if (!onGround)
-                {
-                    Accelation = new Vector2(0, 500);
-                }
-                else
-                {
-                    Speed = new Vector2(Speed.X, 0);
-                    Accelation = Vector2.Zero;
-                }
-            }
+            //if (EntityStorage.Instance.MovableEntities.Contains(this))
+            //{
+            //    if (!onGround)
+            //    {
+            //        Accelation = new Vector2(0, 500);
+            //    }
+            //    else
+            //    {
+            //        Speed = new Vector2(Speed.X, 0);
+            //        Accelation = Vector2.Zero;
+            //    }
+            //}
 
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;

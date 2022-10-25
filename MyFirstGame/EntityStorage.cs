@@ -203,6 +203,14 @@ namespace Sprint0
 
         public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
+            //synchronize entity list
+            foreach(Entity entity in ColliableEntites)
+            {
+                if (!EntityList.Contains(entity))
+                {
+                    EntityList.Add(entity);
+                }
+            }
           
             for(int i = 0; i< EntityList.Count; i++)
             {
