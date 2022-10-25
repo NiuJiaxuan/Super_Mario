@@ -41,6 +41,7 @@ namespace Sprint0.Item
         {
             //Debug.WriteLine("item response");
             EntityStorage.Instance.EntityList.Remove(this);
+            EntityStorage.Instance.ColliableEntites.Remove(this);
         }
 
         public override void Update(GameTime gameTime, List<Entity> entities)

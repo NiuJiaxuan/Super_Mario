@@ -61,6 +61,13 @@ namespace Sprint0.Block
                             }
                         }
                     }
+                    else
+                    {
+                        if (!IsVisible)
+                        {
+                            EntityStorage.Instance.ColliableEntites.Remove(this);
+                        }
+                    }
                     break;
                 case EnemyEntity:
                     

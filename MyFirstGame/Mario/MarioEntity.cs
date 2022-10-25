@@ -136,7 +136,6 @@ namespace Sprint0.Mario
                         }
 
                     }
-
                     break;
                 case ItemEntity:
                     switch (entity)
@@ -209,6 +208,12 @@ namespace Sprint0.Mario
             //Debug.WriteLine("speed is " + Speed);
             currentMotionState?.Update(gameTime);       
             currentPowerState?.Update(gameTime);
+
+            if(Position.Y> 480)
+            {
+                TakeDamage();
+                Speed = Vector2.Zero;
+            }
         }
 
         public override void Draw(SpriteBatch batch)

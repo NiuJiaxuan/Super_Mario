@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -74,7 +75,7 @@ namespace Sprint0.CollisionDetection
             foreach(Entity surround in surroundings)
             {
                 if(( surround.Max.X > entity.Min.X || surround.Min.X< entity.Max.X)
-                    && (surround.Min.Y- entity.Max.Y<2))
+                    && (Math.Abs(surround.Min.Y- entity.Max.Y)<2))
                 {
                     below.Add(surround);
                 }
@@ -91,7 +92,7 @@ namespace Sprint0.CollisionDetection
         {      
             // create a new list to test collision
             List<Entity> collidables = new List<Entity>();
-            collidables.AddRange(EntityStorage.Instance.EntityList);
+            collidables.AddRange(EntityStorage.Instance.ColliableEntites);
 
             List<Entity> movables = EntityStorage.Instance.MovableEntities;
 
