@@ -62,6 +62,18 @@
 /processorParam:TextureFormat=Color
 /build:bush.png
 
+#begin castle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:castle.png
+
 #begin cloud.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -152,6 +164,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:fire-walking-mario.png
+
+#begin FireBalls.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:FireBalls.png
 
 #begin FireFlower.png
 /importer:TextureImporter
