@@ -207,6 +207,7 @@ namespace Sprint0
 
         public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
+
             //synchronize entity list
             foreach(Entity entity in ColliableEntites)
             {
