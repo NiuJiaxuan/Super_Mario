@@ -34,10 +34,10 @@ namespace Sprint0.Block.State
             Block.Position = Origion;
 
         }
-        public override void BumpTransition()
+        public override void BumpTransition(int count)
         {
             CurrentState.Exit();
-            CurrentState = new QuestionBlockBumpState(Block);
+            CurrentState = new QuestionBlockBumpState(Block, count);
             CurrentState.Enter(this);
         }
     }

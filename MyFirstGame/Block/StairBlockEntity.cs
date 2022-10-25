@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
+using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.State;
@@ -24,9 +26,9 @@ namespace Sprint0.Block
             CurrentState.Enter(null);
 
         }
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
-            base.Update(gameTime, mario, enemyEntities, blockEntities);
+            base.Update(gameTime,blockEntities);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

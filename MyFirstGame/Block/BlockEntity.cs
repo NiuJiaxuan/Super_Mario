@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
+using Sprint0.Item;
 using Sprint0.Mario;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.Mario.MarioPowerState;
@@ -31,6 +33,25 @@ namespace Sprint0.State
         public virtual BlockFactory BlockFactory => game.BlockFactory;
 
         public bool breakBlockVisible = true;
+        public bool isBumping = false;
+
+        public override Rectangle GetRectangle
+        {
+            get
+            {
+                if (!IsVisible)
+                {
+                    if (EntityStorage.Instance.Mario.Position.Y < this.Position.Y+EntityStorage.Instance.Mario.Sprite.FrameSize.Y  && EntityStorage.Instance.Mario.Speed.Y>=0)
+                        return new Rectangle();
+                    else
+                        return base.GetRectangle;
+                }
+                else
+                {
+                    return base.GetRectangle;
+                }
+            }
+        }
 
         public Sprite SmallBlock1
         {
@@ -73,21 +94,17 @@ namespace Sprint0.State
             None = 6,
         }
 
-
         public BlockEntity(Game1 game, Vector2 position) : base(game, position)
         {
         }
 
 
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime,List<Entity> entities)
         {
+            base.Update(gameTime, entities);
 
-            
-            Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             CurrentState?.Update(gameTime);            
             
-            base.Update(gameTime, mario, enemyEntities, blockEntities);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -106,10 +123,14 @@ namespace Sprint0.State
             
             
         }
-
         public void BumpTransition()
         {
             CurrentState?.BumpTransition();
+        }
+
+        public void BumpTransition(int count)
+        {
+            CurrentState?.BumpTransition(count);
         }
 
         public void ChangeToVisible()
@@ -117,7 +138,7 @@ namespace Sprint0.State
             IsVisible = true;
         }
 
-        public void BumpOrBreakTransition()
+        public void BumpOrBreakTransition(MarioEntity mario)
         {
             if (!IsVisible)
             {
@@ -126,7 +147,7 @@ namespace Sprint0.State
             }
             else
             {
-                switch (Mario.currentPowerState)
+                switch (mario.currentPowerState)
                 {
                     case SuperState:
                         CurrentState?.BreakTransition();

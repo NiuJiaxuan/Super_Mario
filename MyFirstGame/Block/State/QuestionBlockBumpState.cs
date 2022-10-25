@@ -11,10 +11,14 @@ namespace Sprint0.Block.State
     class QuestionBlockBumpState : BlockStates
     {
         Vector2 Origion;
+        int Count;
 
-        public QuestionBlockBumpState(BlockEntity block)
+
+        public QuestionBlockBumpState(BlockEntity block, int count)
             : base(block)
         {
+            Count = count;
+            Block.isBumping = true;
         }
 
         public override void Enter(IBlockState previousState)
@@ -28,12 +32,20 @@ namespace Sprint0.Block.State
         public override void Exit()
         {
             Block.Position = Origion;
+            Block.isBumping = false;
             Block.Speed = new Vector2(0, 0);
         }
         public override void NormalTransition()
         {
             CurrentState.Exit();
-            CurrentState = new QuestionBlockNormalState(Block);
+            if (Count != 0)
+            {
+                CurrentState = new QuestionBlockNormalState(Block);
+            }
+            else
+            {
+                CurrentState = new UsedBlockNormalState(Block);
+            }
             CurrentState.Enter(this);
         }
         public override void Update(GameTime gameTime)

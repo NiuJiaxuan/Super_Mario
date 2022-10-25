@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
 using Sprint0.Item;
 using Sprint0.Mario;
 using Sprint0.Mario.MarioPowerState;
@@ -20,9 +21,9 @@ namespace Sprint0.Block
     public class BrickBlockEntity : BlockEntity
     {
         public List<ItemEntity> BlockItemList;
-        public List<Entity> ItemEntityList;
+        public List<Entity> EntityList;
 
-        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> itemEntityList)
+        public BrickBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> entityList)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game,position, (int)eBlockType.BrickBlock);
@@ -32,57 +33,61 @@ namespace Sprint0.Block
             IsVisible = isVisible;
 
             BlockItemList = blockItemList;
-            ItemEntityList = itemEntityList;
+            EntityList = entityList;
         }
 
-        public void marioCollsionDetection(MarioEntity mario)
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            List<Entity> entities = new List<Entity>();
-            entities.Add(mario);
-            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
-
-            if (detected.Item1 == CollisionDetector.Touching.bottom)
+            
+           
+            switch (entity)
             {
-                BumpOrBreakTransition();
-                switch (Mario.currentPowerState)
-                {
-                    case SuperState:
-                        foreach (ItemEntity item in BlockItemList)
+                case MarioEntity:
+                    MarioEntity mario = (MarioEntity)entity;
+                    if (touching == CollisionDetector.Touching.bottom)
+                    {
+                        BumpOrBreakTransition(mario);
+                        switch (mario.currentPowerState)
                         {
-                            ItemEntityList.Add(item);
-                            item.BumpTransition();
-                        }
-                        BlockItemList.Clear();
-                        break;
-                    case FireState:
-                        foreach (ItemEntity item in BlockItemList)
-                        {
-                            ItemEntityList.Add(item);
-                            item.BumpTransition();
-                        }
-                        BlockItemList.Clear();
-                        break;
-                    default:
-                        if(BlockItemList.Count != 0)
-                        {
-                            ItemEntity temp = BlockItemList.First();
-                            ItemEntityList.Add(temp);
-                            temp.BumpTransition();
-                            BlockItemList.Remove(temp);
+                            case SuperState:
+                                foreach (ItemEntity item in BlockItemList)
+                                {
+                                    
+                                    item.BumpTransition();
+                                }
+                                BlockItemList.Clear();
+                                break;
+                            case FireState:
+                                foreach (ItemEntity item in BlockItemList)
+                                {
+                                    
+                                    item.BumpTransition();
+                                }
+                                BlockItemList.Clear();
+                                break;
+                            default:
+                                if (BlockItemList.Count != 0)
+                                {
+                                    ItemEntity temp = BlockItemList.First();
+                                    EntityList.Add(temp);
+                                    temp.BumpTransition();
+                                    BlockItemList.Remove(temp);
 
+                                }
+                                break;
                         }
-                        break;
-                }
+                    }
+                    break;
+                case EnemyEntity:
+                    Position = position;
+                    break;
             }
-
         }
 
-
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime,List<Entity> entities)
         {
-            Mario = mario;
-            marioCollsionDetection(mario);
-            base.Update(gameTime, mario,enemyEntities,blockEntities);
+
+            base.Update(gameTime, entities);
 
         }
         public override void Draw(SpriteBatch spriteBatch)

@@ -38,6 +38,7 @@ namespace Sprint0.State
         public virtual void Exit() { }
         public virtual void NormalTransition() { }
         public virtual void BumpTransition() { }
+        public virtual void BumpTransition(int count) { }
         public virtual void UsedTransition() { }
 
         public virtual void BreakTransition() { }

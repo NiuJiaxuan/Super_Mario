@@ -9,10 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sprint0.CollisionDetection;
+
 
 namespace Sprint0.Enemy
 {
-    public class EnemyEntity : Entity
+    public class EnemyEntity : Entity, IMovableEntity
     {
         public IEnemyState currentState { get; set; }
 
@@ -29,17 +31,29 @@ namespace Sprint0.Enemy
             Goomba = 1,
             KoopaTroopa = 2,
         }
+        //public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        //{
+        //    EntityStorage.Instance.EntityList.Remove(this);
+        //}
 
-        
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntity, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
-            base.Update(gameTime,mario,enemyEntity, blockEntities);
+            base.Update(gameTime, blockEntities);
 
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+        }
+
+        public void KillTransition()
+        {
+            currentState?.KillTransition();
+        }
+        public void ShellTransition()
+        {
+            currentState?.ShellTransition();
         }
     }
 }

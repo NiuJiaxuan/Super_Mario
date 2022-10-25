@@ -2,12 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
+using Sprint0.CollisionDetection;
 using Sprint0.Item.State;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using static Sprint0.State.BlockEntity;
 
 namespace Sprint0.Item
@@ -34,14 +36,17 @@ namespace Sprint0.Item
         {
         }
 
-        public override void Update(GameTime gameTime)
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //Debug.WriteLine("item response");
+            EntityStorage.Instance.EntityList.Remove(this);
+        }
+
+        public override void Update(GameTime gameTime, List<Entity> entities)
+        {            
+            base.Update(gameTime, entities);
+
             CurrentState?.Update(gameTime); 
-
-            base.Update(gameTime);
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)

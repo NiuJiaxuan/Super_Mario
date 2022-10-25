@@ -64,8 +64,8 @@ namespace Sprint0.Sprites.factory
         public override Sprite CreateMario(Game1 game, Vector2 pos, int type)
         {
             Sprite sprite = null;
-            Debug.WriteLine(type);
-            Debug.WriteLine((eMarioType)type);
+            //Debug.WriteLine(type);
+            //Debug.WriteLine((eMarioType)type);
             switch ((eMarioType)type)
             {
                 case eMarioType.DeadMario:

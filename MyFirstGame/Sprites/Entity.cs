@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Mario;
 using System.Threading;
+using Microsoft.VisualBasic.FileIO;
+using Sprint0.Interfaces;
 
 namespace Sprint0.Sprites
 {
@@ -17,11 +19,7 @@ namespace Sprint0.Sprites
     {
         private Sprite _sprite;
         public Game1 game;
-        public GraphicsDevice graphics;
         public bool showBoundBox;
-        public Texture2D texture;
-        public CollisionDetector collisionDetection;
-        public MarioEntity Mario;
         public bool IsVisible = true;
 
 
@@ -36,20 +34,14 @@ namespace Sprint0.Sprites
             get; set;
         }
 
-        public List<Entity> BlockEntities { get; set; }
-        public List<Entity> ItemEntities { get; set; }
-        public List<Entity> EnemyEntities { get; set; }
-
-
-        public Rectangle GetRectangle
+        public List<Grid> SurroundingGrids
         {
-            get { return new Rectangle((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y), (int)Sprite.FrameSize.X, (int)Sprite.FrameSize.Y); }
+            get { return Grid.getSurroundingGrids(this); }
         }
 
-        public CollisionDetector Collision
+        public virtual Rectangle GetRectangle
         {
-            get { return collisionDetection; }
-            set { this.collisionDetection = value; }
+            get { return new Rectangle((int)Position.X, (int)(Position.Y- Sprite.FrameSize.Y), (int)Sprite.FrameSize.X, (int)Sprite.FrameSize.Y); }
         }
 
 
@@ -83,30 +75,22 @@ namespace Sprint0.Sprites
             showBoundBox = false;            
         }
 
-        //for mario
-        public virtual void Update (GameTime gameTime, List<Entity> blockEntities, List<Entity> itemEntities, List<Entity> enemyEntities)
+
+        public virtual void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching) { }
+
+
+
+        public virtual void Update (GameTime gameTime, List<Entity> entities)
         {
 
-            this.Entities = blockEntities;
-            Sprite.Update(gameTime);
+
+            this.Entities = entities;
+            Sprite.Update(gameTime);           
+            
+            Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
-        // for block and enemy entity 
-        public virtual void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
-        {
-
-            this.EnemyEntities = enemyEntities;
-            this.BlockEntities = blockEntities;
-            Mario = mario;
-            Sprite.Update(gameTime);
-        }
-
-        // for item entity
-        public virtual void Update(GameTime gameTime)
-        {
-      
-            Sprite.Update(gameTime);
-        }
 
 
         public Color BoxColor { get; set; }
@@ -114,8 +98,17 @@ namespace Sprint0.Sprites
         public virtual void Draw(SpriteBatch spriteBatch)
         {
 
-            if(showBoundBox)
-            RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
+            if (showBoundBox)
+            {
+                RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
+                if (this is IMovableEntity)
+                {
+                    foreach (Grid grid in SurroundingGrids)
+                    {
+                        grid.Draw(spriteBatch);
+                    }
+                }
+            }
 
             if(IsVisible)
             Sprite.Draw(spriteBatch);

@@ -17,6 +17,7 @@ namespace Sprint0.Block.State
         void Update(GameTime gameTime);
         void NormalTransition();
         void BumpTransition();
+        void BumpTransition(int count);
         void UsedTransition();
         void BreakTransition();
         void EmptyTransition();

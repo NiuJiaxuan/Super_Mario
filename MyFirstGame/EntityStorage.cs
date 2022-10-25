@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block;
+using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
+using Sprint0.Interfaces;
 using Sprint0.Item;
 using Sprint0.level;
 using Sprint0.Mario;
@@ -21,31 +23,58 @@ namespace Sprint0
 {
     public class EntityStorage
     {
-        public List<Entity> BackgroundEntityList { get; set; }
-        public List<Entity> BlockEntityList { get; set; }
-        public List<Entity> ItemEntityList { get; set; }
-        public List<Entity> EnemyEntityList { get; set; }
         public List<Entity> EntityList { get; set; }
+        public List<Entity> MovableEntities { get; set; }
 
-        public List<Entity> PlayerList { get; set; }
-        public static EntityStorage Instance { get; } = new EntityStorage();
-        public Entity Mario { get; set; } 
+        //public List<Entity> PlayerList { get; set; }
+        public Entity Mario { get; set; }
+
+
+        public Grid[,] AllGrids { get; set; }
+
+        private static EntityStorage instance;
+        public static EntityStorage Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new EntityStorage();
+                }
+                return instance;
+            }
+        }
+
+
 
         public  EntityStorage()
         {
-           
+            EntityList = new List<Entity>();
+            MovableEntities = new List<Entity>();
         }
 
-        public void SetEntityList(List<Entity> value)
+        public void SetupGrids(GraphicsDeviceManager graphicsDevice)
         {
-            EntityList = value;
-        }
-        public void SetPlayerList (List<Entity> value)
-        {
-            PlayerList = value; 
+            double y = 450;
+            double x = 6000;
+
+            int colunms =(int)Math.Ceiling(x / 33);
+            int rows = (int)Math.Ceiling(y / 33);
+
+            AllGrids = new Grid[colunms, rows];
+            for (int i = 0; i < colunms; i++)
+            {
+                for (int j = 0; j <rows; j++)
+                {
+                    //Debug.WriteLine(new Vector2(33 * i, 33 * j));
+                    AllGrids[i, j] = new Grid(new Vector2(33 * i, 33 * j), new Vector2(33, 33));
+                    //Debug.WriteLine(AllGrids[i,j].Position + " " + AllGrids[i, j].Rectangle.X + " " + AllGrids[i, j].Rectangle.Y);
+                }
+            }
+            //Debug.WriteLine(AllGrids[0, 0].Position);
         }
 
-        private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> itemEntityList)
+        private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> entityList)
         {
             string objectType = levelObject.ObjectType;
             string objectName = levelObject.ObjectName;
@@ -53,19 +82,19 @@ namespace Sprint0
             {
                 List<ItemEntity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
                 if (objectName.Equals("BrickBlock")){
-                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, itemEntityList);
+                    return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("QuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock, itemEntityList);
+                    return new QuestionBlockEntity(game, levelObject.Position,true, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("HiddenBrickBlock"))
                 {
-                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
+                    return new BrickBlockEntity(game, levelObject.Position, false, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
-                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, itemEntityList);
+                    return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, entityList);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
@@ -157,92 +186,49 @@ namespace Sprint0
 
         public void  Add (LevelData levelData, Game1 game)
         {
-            BackgroundEntityList = new List<Entity>();
-            BlockEntityList = new List<Entity>();
-            ItemEntityList = new List<Entity>();
-            EnemyEntityList = new List<Entity>();
-
-            SetEntityList(new List<Entity>());
-            SetPlayerList(new List<Entity>());
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {
-                Entity entity = CreateEntity(levelObject, game, ItemEntityList);
+                Entity entity = CreateEntity(levelObject, game, EntityList);
                 EntityList.Add(entity);
-/*                if (levelObject.ObjectType.Equals("Blocks"))
+                if (entity.GetType() == typeof(MarioEntity))
                 {
-                    foreach (string item in levelObject.BlockItem)
-                    {
-                        Entity temp = CreateItemEntityInBlock(item, levelObject.Position, game);
-                        EntityList.Add(temp);
-                        ItemEntityList.Add(temp);
-                    }
-                }*/
-                switch (entity)
-                {
-                    case MarioEntity:
-                        Mario = entity;
-                        break;
-                    case BlockEntity:
-                        BlockEntityList.Add(entity);
-                        break;
-                    case ItemEntity:
-                        ItemEntityList.Add(entity); ;
-                        break;
-                    case EnemyEntity:
-                        EnemyEntityList.Add(entity);
-                        break;
+                    Mario = entity;
                 }
-
-                //if (!levelObject.ObjectType.Equals("Mario"))
-                //{
-                //    Entity entity = CreateEntity(levelObject, game);
-                //    EntityList.Add(entity);
-                //}
-                //else
-                //{
-                //    Mario = CreateEntity(levelObject, game);
-                //    PlayerList.Add(Mario);
-                //}
+                if (entity is IMovableEntity)
+                    MovableEntities.Add(entity);
             }
-            //foreach(Entity entity in BlockEntityList)
-            //    Debug.WriteLine(entity);
+       
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
-            Mario.Update(gameTime,BlockEntityList,ItemEntityList,EnemyEntityList);
-
-            for (int i = 0; i < BlockEntityList.Count; i++)
+          
+            for(int i = 0; i< EntityList.Count; i++)
             {
-                BlockEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
+                    EntityList[i].Update(gameTime, EntityList);
             }
 
-            foreach (Entity entity1 in ItemEntityList)
-            {
-                entity1.Update(gameTime);
-            }
+            CollisionDetector.Instance.DectectCollision();
 
-            for(int i = 0; i < EnemyEntityList.Count; i++)
-            {
-                EnemyEntityList[i].Update(gameTime, (MarioEntity)Mario, EnemyEntityList, BlockEntityList);
-            }
+        }
+        public void clear()
+        {
+            EntityList = new List<Entity>();
         }
         public void Draw(SpriteBatch batch)
         {
-            Mario.Draw(batch);
-            foreach (Entity entity in BlockEntityList)
+            foreach(Entity entity in EntityList)
             {
                 entity.Draw(batch);
             }
-            foreach (Entity entity1 in ItemEntityList)
-            {
-                entity1.Draw(batch);
-            }
-            foreach (Entity entity2 in EnemyEntityList)
-            {
-                entity2.Draw(batch);
-            }
+
+            CollisionDetector.Instance.Draw(batch);
+            //List<Grid> surroundinggrids =  CollisionDetector.Instance.getSurroundingGrids(Mario);
+            //foreach(Grid grid in surroundinggrids)
+            //{
+            //    grid.Draw(batch);
+            //}
         }
     }
 }

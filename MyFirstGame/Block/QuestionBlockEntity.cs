@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
 using Sprint0.Item;
 using Sprint0.Mario;
 using Sprint0.Sprites;
@@ -20,9 +21,9 @@ namespace Sprint0.Block
     {
 
         public List<ItemEntity> BlockItemList;
-        public List<Entity> ItemEntityList;
+        public List<Entity> EntityList;
 
-        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> itemEntityList)
+        public QuestionBlockEntity(Game1 game, Vector2 position, bool isVisible, List<ItemEntity> blockItemList, List<Entity> entityList)
             : base(game, position)
         {
             Sprite = BlockFactory.CreateBlock(game, position, (int)eBlockType.QuestionBlock);
@@ -32,46 +33,47 @@ namespace Sprint0.Block
             IsVisible = isVisible;
 
             BlockItemList = blockItemList;
-            ItemEntityList = itemEntityList;
+            EntityList = entityList;
+            
         }
 
-        public void marioCollsionDetection(MarioEntity mario)
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            List<Entity> entities = new List<Entity>();
-            entities.Add(mario);
-            Tuple<CollisionDetector.Touching, float, float, Entity> detected = collisionDetection.Collsion(entities);
-
-            if (detected.Item1 == CollisionDetector.Touching.bottom)
+            switch (entity)
             {
-                if (!IsVisible)
-                {
-                    ChangeToVisible();
-
-                }
-                else
-                {
-                    if (BlockItemList.Count != 0)
+                case MarioEntity:
+                    if (touching == CollisionDetector.Touching.bottom)
                     {
-                        BumpTransition();
-                        ItemEntity temp = BlockItemList[0];
-                        ItemEntityList.Add(temp);
-                        temp.BumpTransition();
-                        BlockItemList.RemoveAt(0);
-                    }
-                    else
-                    {
-                        Sprite = BlockFactory.CreateBlock(game, Position, (int)eBlockType.UsedBlock);
-                    }
+                        if (!IsVisible)
+                        {
+                            ChangeToVisible();
 
-                }
+                        }
+                        else
+                        {
+                            if (BlockItemList.Count != 0 && !isBumping)
+                            {
+                                BumpTransition(BlockItemList.Count - 1);
+                                ItemEntity temp = BlockItemList[0];
+                                EntityList.Add(temp);
+                                temp.BumpTransition();
+                                BlockItemList.RemoveAt(0);
+                            }
+                        }
+                    }
+                    break;
+                case EnemyEntity:
+                    
+                    break;
+                case ItemEntity:
+                    Position = position;
+                    break;
             }
-
         }
 
-        public override void Update(GameTime gameTime, MarioEntity mario, List<Entity> enemyEntities, List<Entity> blockEntities)
+        public override void Update(GameTime gameTime,  List<Entity> blockEntities)
         {
-            marioCollsionDetection(mario);
-            base.Update(gameTime, mario, enemyEntities, blockEntities);
+            base.Update(gameTime, blockEntities);
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

@@ -189,6 +189,18 @@
 /processorParam:TextureFormat=Color
 /build:Goomba-Walking.png
 
+#begin Idle-Koopa-Shell.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Idle-Koopa-Shell.png
+
 #begin koopaTroopa-Standing.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -261,7 +273,7 @@
 /processorParam:TextureFormat=Color
 /build:Pipe.png
 
-#begin questionBlock.png
+#begin QuestionBlock.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -271,7 +283,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:questionBlock.png
+/build:QuestionBlock.png
 
 #begin sky.png
 /importer:TextureImporter

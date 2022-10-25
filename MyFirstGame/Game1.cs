@@ -16,13 +16,15 @@ using Sprint0.Item;
 using System.Diagnostics;
 using Sprint0.level;
 using System.Reflection.PortableExecutable;
+using Sprint0.CollisionDetection;
+using Sprint0.Interfaces;
 
 namespace Sprint0
 {
     public class Game1 : Game
     {
         //new version ray
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
 
@@ -65,7 +67,7 @@ namespace Sprint0
             get { return enemyFactory ?? EnemyFactory.Instance; }
             protected set { enemyFactory = value; }
         }
-       
+
 
 
         public Color fontColor { get; set; } = Color.White;
@@ -91,6 +93,8 @@ namespace Sprint0
             background = Content.Load<Texture2D>("background");
 
 
+            EntityStorage.Instance.SetupGrids(_graphics);
+
 
             //-------------------------keyboard control------------------
             
@@ -114,7 +118,7 @@ namespace Sprint0
             keyboard.Command((int)Keys.D, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
             keyboard.Command((int)Keys.Right, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
 
-            keyboard.Command((int)Keys.C, new ShowBoundBox(levelBuilder.EntityStorage.EntityList));
+            keyboard.Command((int)Keys.C, new ShowBoundBox(EntityStorage.Instance.EntityList));
 
             
 
@@ -146,7 +150,7 @@ namespace Sprint0
             camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
             keyboard.Update();
             gamepad.Update();
-            levelBuilder.EntityStorage.Update(gameTime);
+            levelBuilder.EntityStorage.Update(gameTime, _graphics);
 
             base.Update(gameTime);
         }
@@ -175,6 +179,7 @@ namespace Sprint0
 
         public void ResetCommand()
         {
+            levelBuilder.EntityStorage.clear();
             Initialize();
             
         }

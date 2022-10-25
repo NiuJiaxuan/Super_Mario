@@ -53,8 +53,8 @@ namespace Sprint0.Sprites.factory
         public override Sprite CreateBlock(Game1 game, Vector2 pos, int type)
         {
             Sprite sprite = null;
-            Debug.WriteLine(type);
-            Debug.WriteLine((eBlockType)type);
+            //Debug.WriteLine(type);
+            //Debug.WriteLine((eBlockType)type);
             switch ((eBlockType)type)
             {
                 case eBlockType.QuestionBlock:
