@@ -10,6 +10,7 @@ using Sprint0.Item.State;
 using Sprint0.Mario;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.Sprites.factory;
+using Sprint0.CollisionDetection;
 
 namespace Sprint0.Item
 {
@@ -23,6 +24,16 @@ namespace Sprint0.Item
             CurrentState = new SuperMushroomNormalState(this);
             CurrentState.Enter(null);
 
+        }
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        {
+            switch (entity)
+            {
+                case MarioEntity:
+                    EntityStorage.Instance.EntityList.Remove(this);
+                    EntityStorage.Instance.ColliableEntites.Remove(this);
+                    break;
+            }
         }
 
         public override void Update(GameTime gameTime, List<Entity> entities)
