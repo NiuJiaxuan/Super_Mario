@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.CollisionDetection;
 using Sprint0.State;
+using Sprint0.Item;
 
 namespace Sprint0.Enemy
 {
@@ -69,20 +70,21 @@ namespace Sprint0.Enemy
                         }
                     }
                     break;
-                //case EnemyEntity:
-                //    EnemyEntity enemy = (EnemyEntity)entity;
-                //    switch(enemy.currentState)
-                //    {
-                //        case KoopaTroopaMovingShellState:
-                //            if (touching == CollisionDetector.Touching.right) 
-                //            {
-                //                Debug.WriteLine("Kill");
-                //                //KillTransition();
-                //                //EnemyType = eEnemyType.DeadGooma;
-                //            }
-                //            break;
-                //    }
-                //    break;
+                case ItemEntity:
+                    if (EnemyType.Equals(eEnemyType.Goomba))
+                    {
+                        if (touching == CollisionDetector.Touching.left)
+                        {
+                            //currentState = new GoombaNormalState(this, "right");
+                            NormalTransition("right");
+                        }
+                        else if (touching == CollisionDetector.Touching.right)
+                        {
+                            //currentState = new GoombaNormalState(this, "right");
+                            NormalTransition("left");
+                        }
+                    }
+                    break;
             }
         }
 

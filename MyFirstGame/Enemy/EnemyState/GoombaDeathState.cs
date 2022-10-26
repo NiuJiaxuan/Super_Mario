@@ -31,14 +31,10 @@ namespace Sprint0.Enemy.EnemyState
             this.previousState = previousState;
             Enemy.Sprite = Enemy.EnemyFactory.CreateEnemy(Enemy.game, Enemy.Position, 3);
         }
-        //public override void Update(GameTime gameTime)
-        //{
-        //    Enemy.Speed = new Vector2(0, 0);
-        //    if (lastTimeAlive + intervalBetweenAlive < gameTime.TotalGameTime)
-        //    {
-        //        Death();
-        //        lastTimeAlive = gameTime.TotalGameTime;
-        //    }
-        //}
+        public override void Update(GameTime gameTime)
+        {
+            Enemy.Speed = new Vector2(0, 0);
+            
+        }
     }
 }

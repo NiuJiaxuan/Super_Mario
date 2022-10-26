@@ -13,7 +13,6 @@ namespace Sprint0.Enemy.EnemyState
 {
     public class KoopaTroopaMovingShellState : EnemyState
     {
-        Vector2 Origin;
         string direction;
         public KoopaTroopaMovingShellState(EnemyEntity enemy, string dir) 
             : base(enemy)
@@ -25,16 +24,17 @@ namespace Sprint0.Enemy.EnemyState
         {
             CurrentState = this;
             this.previousState = previousState;
-            Origin = Enemy.Position;
 
             Debug.WriteLine("ENTER DEBUG :" + direction);
             if (direction == "left")
             {
                 Enemy.Speed = new Vector2(-40, 0);
+                Enemy.Position = new Vector2(Enemy.Position.X - 5, Enemy.Position.Y);
             }
             else if (direction == "right")
             {
                 Enemy.Speed = new Vector2(40, 0);
+                Enemy.Position = new Vector2(Enemy.Position.X + 5, Enemy.Position.Y);
             }
             else if (direction == "top")
             {

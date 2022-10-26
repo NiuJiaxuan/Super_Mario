@@ -190,10 +190,13 @@ namespace Sprint0.Mario
                             break;
                         case KoopaTroopaEntity:
                             KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
-                            if(koopa.currentState is KoopaTroopaDeathState)
+                            Debug.WriteLine(koopa.currentState.ToString());
+
+                            if (koopa.currentState is KoopaTroopaDeathState)
                             {
                                 if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
                                 {
+                                    Debug.WriteLine("DEBUG");
                                     Position = position;
                                     Idle();
                                 }
@@ -206,6 +209,7 @@ namespace Sprint0.Mario
                             {
                                 if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
                                 {
+                                    Debug.WriteLine("DEBUG - 2");
                                     Position = position;
                                     Idle();
                                     TakeDamage();
@@ -228,7 +232,6 @@ namespace Sprint0.Mario
 
             base.Update(gameTime, entities);
 
-            //Debug.WriteLine("speed is " + Speed);
             currentMotionState?.Update(gameTime);       
             currentPowerState?.Update(gameTime);
 
