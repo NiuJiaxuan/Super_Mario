@@ -189,36 +189,41 @@ namespace Sprint0.Mario
                             }
                             break;
                         case KoopaTroopaEntity:
-                            KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
-                            Debug.WriteLine(koopa.currentState.ToString());
+                            //KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
+                            //Debug.WriteLine(koopa.currentState.ToString());
 
-                            if (koopa.currentState is KoopaTroopaDeathState )
+                            //if (koopa.currentState is KoopaTroopaDeathState )
+                            //{
+                            //    if (touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.bottom)
+                            //    {
+                            //        Debug.WriteLine("DEBUG");
+                            //        Position = position;
+                            //        Idle();
+                            //    }
+                            //    else
+                            //    {
+                            //        Fall();
+                            //    }
+                            //}
+                            //else
+                            //{
+                            if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
                             {
-                                if (touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.bottom)
-                                {
-                                    Debug.WriteLine("DEBUG");
-                                    Position = position;
-                                    Idle();
-                                }
-                                else
-                                {
-                                    Fall();
-                                }
+                                Debug.WriteLine("DEBUG - 2");
+                                Position = position;
+                                Idle();
+                                //TakeDamage();
+                            }
+                            else if (touching != CollisionDetector.Touching.bottom)
+                            {
+                                Position = new Vector2(position.X, position.Y + 5);
+                                Idle();
                             }
                             else
                             {
-                                if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
-                                {
-                                    Debug.WriteLine("DEBUG - 2");
-                                    Position = position;
-                                    Idle();
-                                    TakeDamage();
-                                }
-                                else
-                                {
-                                    Fall();
-                                }
+                                Fall();
                             }
+                            //}
                             
                             break;
                     }
