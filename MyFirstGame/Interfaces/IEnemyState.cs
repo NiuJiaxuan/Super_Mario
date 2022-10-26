@@ -14,7 +14,7 @@ namespace Sprint0.Interfaces
         void Exit();
         void Update(GameTime gameTime);
         void KillTransition();
-        void NormalTransition();
+        void NormalTransition(string dir);
         void ShellTransition();
         void ShellBump(string dir);
         //void StopShell();

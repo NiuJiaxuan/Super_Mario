@@ -14,7 +14,7 @@ using Sprint0.CollisionDetection;
 
 namespace Sprint0.Enemy
 {
-    public class EnemyEntity : Entity//, IMovableEntity
+    public class EnemyEntity : Entity, IMovableEntity
     {
         public IEnemyState currentState { get; set; }
 
@@ -45,6 +45,10 @@ namespace Sprint0.Enemy
             base.Draw(spriteBatch);
         }
 
+        public void NormalTransition(string dir)
+        {
+            currentState?.NormalTransition(dir);
+        }
         public void KillTransition()
         {
             currentState?.KillTransition();

@@ -13,6 +13,7 @@ using Sprint0.Enemy.EnemyState;
 using System.Diagnostics;
 using Sprint0.Mario.MarioPowerState;
 using Sprint0.State;
+using Sprint0.Item;
 
 namespace Sprint0.Enemy
 {
@@ -25,12 +26,12 @@ namespace Sprint0.Enemy
         {
             Sprite = EnemyFactory.CreateEnemy(game, position, (int)eEnemyType.KoopaTroopa);
             EnemyType = eEnemyType.KoopaTroopa;
-            currentState = new KoopaTroopaNormalState(this);
+            currentState = new KoopaTroopaNormalState(this, dir);
             currentState.Enter(null);
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-
+            //this.Position = position;
             switch (entity)
             {
                 case MarioEntity:
@@ -47,14 +48,18 @@ namespace Sprint0.Enemy
                                     ShellTransition();
                                     EnemyType = eEnemyType.IdleDeadKoopaTroopa;
                                 }
-                                else
+                                else if (touching == CollisionDetector.Touching.left)
                                 {
-                                   // mario.TakeDamage();
+                                    NormalTransition("right");
+                                }
+                                else if (touching == CollisionDetector.Touching.right)
+                                {
+                                    NormalTransition("left");
                                 }
                             }
                             else if (EnemyType.Equals(eEnemyType.IdleDeadKoopaTroopa))
                             {
-                                //Debug.WriteLine("mario collide iwth koopa " + touching);
+                                Debug.WriteLine("mario collide iwth koopa " + touching);
                                 if (touching == CollisionDetector.Touching.left)
                                 {
                                     dir = "right";
@@ -85,32 +90,34 @@ namespace Sprint0.Enemy
                     }
                     break;
                 case BlockEntity:
+                    Debug.WriteLine("IS colliding");
                     if (EnemyType.Equals(eEnemyType.KoopaTroopa))
+                    {
+                        if (touching == CollisionDetector.Touching.left)
+                        {
+                            NormalTransition("right");
+                        }
+                        else if (touching == CollisionDetector.Touching.right)
+                        {
+                            NormalTransition("left");
+                        }
+                    }
+                    else if (EnemyType.Equals(eEnemyType.MovingDeadKoopaTroopa))
                     {
                         if (touching == CollisionDetector.Touching.left)
                         {
                             //switch direction to the right
                             dir = "right";
-                        }
-                        else if (touching == CollisionDetector.Touching.right)
-                        {
-                            //switch direction to the left
-                            dir = "left";
-                        }
-                    }
-                    else if (EnemyType.Equals(eEnemyType.MovingDeadKoopaTroopa))
-                    {
-                        if(touching != CollisionDetector.Touching.left)
-                        {
-                            //switch direction to the right
-                            dir = "right";
                             ShellBump(dir);
+                            //EnemyType = eEnemyType.MovingDeadKoopaTroopa;
+
                         }
                         else if (touching == CollisionDetector.Touching.right)
                         {
                             //switch direction to the left
                             dir = "left";
                             ShellBump(dir);
+                            EnemyType = eEnemyType.MovingDeadKoopaTroopa;
                         }
                     }
                     break;
@@ -137,6 +144,8 @@ namespace Sprint0.Enemy
                             }
                             break;
                     }
+                    break;
+                case ItemEntity:
                     break;
             }
         }

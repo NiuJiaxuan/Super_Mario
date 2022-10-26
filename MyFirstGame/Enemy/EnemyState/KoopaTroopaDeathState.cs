@@ -17,10 +17,10 @@ namespace Sprint0.Enemy.EnemyState
              : base(enemy)
         {
         }
-        public override void NormalTransition()
+        public override void NormalTransition(string dir)
         {
             CurrentState.Exit();
-            CurrentState = new KoopaTroopaNormalState(Enemy);
+            CurrentState = new KoopaTroopaNormalState(Enemy, dir);
             CurrentState.Enter(this);
         }
         public override void Enter(IEnemyState previousState)
@@ -44,11 +44,6 @@ namespace Sprint0.Enemy.EnemyState
                 lastTimeAlive = gameTime.TotalGameTime;
             }
         }
-        void Alive()
-        {
-            CurrentState.Exit();
-            CurrentState = new KoopaTroopaNormalState(Enemy);
-            CurrentState.Enter(this);
-        }
+        
     }
 }

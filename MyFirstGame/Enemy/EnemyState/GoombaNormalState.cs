@@ -3,6 +3,7 @@ using Sprint0.Interfaces;
 using Sprint0.Mario;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,11 @@ namespace Sprint0.Enemy.EnemyState
     class GoombaNormalState : EnemyState
     {
         string direction;
-        public GoombaNormalState(EnemyEntity enemy)
+        public GoombaNormalState(EnemyEntity enemy, string dir)
             : base(enemy)
         {
-
+            Enemy.Speed = new Vector2(-40, 0);
+            direction = dir;
         }
 
         public MarioEntity Mario { get; set; }
@@ -27,11 +29,20 @@ namespace Sprint0.Enemy.EnemyState
             if (direction == "left")
             {
                 Enemy.Speed = new Vector2(-40, 0);
+                Enemy.Position = new Vector2(Enemy.Position.X - 5, Enemy.Position.Y);
             }
             else if (direction == "right")
             {
+                Debug.WriteLine("SHIFT");
                 Enemy.Speed = new Vector2(40, 0);
+                Enemy.Position = new Vector2(Enemy.Position.X + 5, Enemy.Position.Y);
             }
+        }
+        public override void NormalTransition(string dir)
+        {
+            CurrentState.Exit();
+            CurrentState = new GoombaNormalState(Enemy, dir);
+            CurrentState.Enter(this);
         }
 
         public override void KillTransition()
