@@ -8,6 +8,7 @@ using Sprint0.Item.State;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.Sprites.factory;
+using Sprint0.State;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -48,6 +49,10 @@ namespace Sprint0.Item
                 case MarioEntity:
                     EntityStorage.Instance.EntityList.Remove(this);
                     EntityStorage.Instance.ColliableEntites.Remove(this);
+                    break;
+                case BlockEntity:
+                    Position = position;
+                    onGround = true;
                     break;
 
             }

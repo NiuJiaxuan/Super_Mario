@@ -206,7 +206,7 @@ namespace Sprint0
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {
-                Entity entity = CreateEntity(levelObject, game, EntityList);
+                Entity entity = CreateEntity(levelObject, game, ColliableEntites);
                 EntityList.Add(entity);
                 ColliableEntites.Add(entity);
                 if (entity.GetType() == typeof(MarioEntity))
