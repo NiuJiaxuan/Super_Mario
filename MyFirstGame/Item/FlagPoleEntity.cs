@@ -1,27 +1,28 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Sprint0.CollisionDetection;
+using Sprint0.Sprites.factory;
+using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Sprites;
-using Sprint0.Item.State;
 
 namespace Sprint0.Item
 {
-    public class StarEntity : ItemEntity
+    public class FlagPoleEntity : ItemEntity
     {
-        public StarEntity(Game1 game, Vector2 position)
+        public FlagPoleEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
-            ItemType = eItemType.Star;
+            ItemType = eItemType.Castle;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
-            CurrentState = new StarNormalState(this);
-            CurrentState.Enter(null);
         }
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        {
 
-
+        }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
             base.Update(gameTime, entities);
@@ -32,7 +33,5 @@ namespace Sprint0.Item
         {
             base.Draw(spriteBatch);
         }
-
-
     }
 }

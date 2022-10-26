@@ -81,9 +81,8 @@ namespace Sprint0.Enemy
                             {
                                 if (touching == CollisionDetector.Touching.top)
                                 {
-                                    dir = "top";
-                                    ShellBump(dir);
-                                    EnemyType = eEnemyType.IdleDeadKoopaTroopa;
+                                    EntityStorage.Instance.movableRemove(this);
+                                    EntityStorage.Instance.ColliableEntites.Remove(this);
                                 }
                             }
                             break;

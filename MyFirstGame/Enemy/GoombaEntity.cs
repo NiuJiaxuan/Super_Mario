@@ -66,10 +66,10 @@ namespace Sprint0.Enemy
                             NormalTransition("left");
                             break;
                     }
+                    
                     break;
                 case ItemEntity:
-                    if (EnemyType.Equals(eEnemyType.Goomba))
-                    {
+                    
                         if (touching == CollisionDetector.Touching.left)
                         {
                             //currentState = new GoombaNormalState(this, "right");

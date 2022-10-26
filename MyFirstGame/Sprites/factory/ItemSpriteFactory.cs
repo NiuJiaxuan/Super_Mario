@@ -23,6 +23,7 @@ namespace Sprint0.Sprites.factory
             None = 6,
             Castle = 7,
             Fireball = 8,
+            FlagPole = 9,
         }
         protected ItemSpriteFactory()
         {
@@ -75,6 +76,9 @@ namespace Sprint0.Sprites.factory
                     break;
                 case eItemType.Fireball:
                     sprite = new FireballSprite(game, pos);
+                    break;
+                case eItemType.FlagPole:
+                    sprite = new FlagPoleSprite(game, pos);
                     break;
             }
             return sprite;

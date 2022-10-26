@@ -83,9 +83,6 @@ namespace Sprint0.Block
                         }
                     }
                     break;
-                case EnemyEntity:
-                    Position = position;
-                    break;
             }
         }
 

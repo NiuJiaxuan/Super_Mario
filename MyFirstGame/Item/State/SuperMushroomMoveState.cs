@@ -10,6 +10,7 @@ using Sprint0.Sprites.factory;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.Mario.MarioPowerState;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace Sprint0.Item.State
 {
@@ -33,6 +34,17 @@ namespace Sprint0.Item.State
             Origion = Item.Position;
 
             Item.Speed = new Vector2(0, -40);
+            Debug.WriteLine("enter item moving state");
+            if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X) > 0)
+            {
+                Debug.WriteLine("move right");
+                Item.Speed = new Vector2(-40, 0);
+            }
+            else
+            {
+                Debug.WriteLine("move left");
+                Item.Speed = new Vector2(40, 0);
+            }
         }
 
         public override void Exit()
@@ -53,13 +65,10 @@ namespace Sprint0.Item.State
         }
         public override void Update(GameTime gameTime)
         {
-            if((Item.Position.X - EntityStorage.Instance.Mario.Position.X)> 0)
-            {
-                Item.Speed = new Vector2(-40, 0);
-            }else if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X) < 0)
-            {
-                Item.Speed = new Vector2(40, 0);
-            }
+            //if(Item.Position.X >= 480)
+            //{
+            //    Item.Speed = new Vector2 (-Item.Speed.X, 0);
+            //}
         }
     }
 }

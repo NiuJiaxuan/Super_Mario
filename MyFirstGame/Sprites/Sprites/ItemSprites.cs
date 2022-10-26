@@ -75,5 +75,14 @@ namespace Sprint0.Sprites.Sprites
         {
 
         }
+    
     }
-}
+    class FlagPoleSprite : Sprite
+    {
+        public FlagPoleSprite(Game1 game, Vector2 position)
+           : base(game.Content.Load<Texture2D>("Flag"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(33, 170), false)
+        {
+
+        }
+
+    }

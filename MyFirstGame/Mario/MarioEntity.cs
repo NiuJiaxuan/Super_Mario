@@ -192,9 +192,9 @@ namespace Sprint0.Mario
                             KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
                             Debug.WriteLine(koopa.currentState.ToString());
 
-                            if (koopa.currentState is KoopaTroopaDeathState)
+                            if (koopa.currentState is KoopaTroopaDeathState )
                             {
-                                if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
+                                if (touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.bottom)
                                 {
                                     Debug.WriteLine("DEBUG");
                                     Position = position;
