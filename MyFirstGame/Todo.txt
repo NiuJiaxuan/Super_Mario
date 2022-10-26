@@ -15,3 +15,7 @@ else if (touching == CollisionDetector.Touching.left)
                                     ShellBump(dir);
                                     mario.TakeDamage();
                                 }
+
+Should add a new interface called igravity 
+entity affected by gravity will inhernent from the igravity
+then when checking gravity, just check if it is igravity instead of check the i movable list. 

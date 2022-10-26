@@ -58,6 +58,10 @@ namespace Sprint0.Item
                 case EnemyEntity:
                     Position = position;
                     break;
+                    // item response
+                case ItemEntity:
+                    EntityStorage.Instance.movableRemove(this);
+                    break;
 
             }
         }
