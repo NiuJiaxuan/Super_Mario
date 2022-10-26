@@ -17,7 +17,7 @@ using Sprint0.Interfaces;
 
 namespace Sprint0.Enemy
 {
-    public class GoombaEntity : EnemyEntity , IMovableEntity
+    public class GoombaEntity : EnemyEntity //, IMovableEntity
     {
         public GoombaEntity(Game1 game, Vector2 position)
             : base(game, position) 
