@@ -75,15 +75,5 @@ namespace Sprint0.Item
         {
             CurrentState?.BumpTransition();
         }
-        //public void MovingTransition()
-      //  {
-           // switch (enum e)
-           // {
-
-           // }
-
-
-         //  CurrentState?.MovingTransition();
-      //  }
     }
 }
