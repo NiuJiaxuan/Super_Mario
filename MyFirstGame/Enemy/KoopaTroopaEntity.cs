@@ -80,8 +80,7 @@ namespace Sprint0.Enemy
                             {
                                 if (touching == CollisionDetector.Touching.top)
                                 {
-                                    EntityStorage.Instance.movableRemove(this);
-                                    EntityStorage.Instance.ColliableEntites.Remove(this);
+                                    ShellBump("top");
                                 }
                                 else if (touching == CollisionDetector.Touching.left)
                                 {
