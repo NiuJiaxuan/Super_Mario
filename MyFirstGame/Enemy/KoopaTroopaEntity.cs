@@ -146,6 +146,35 @@ namespace Sprint0.Enemy
                     }
                     break;
                 case ItemEntity:
+                    if (EnemyType.Equals(eEnemyType.KoopaTroopa))
+                    {
+                        if (touching == CollisionDetector.Touching.left)
+                        {
+                            NormalTransition("right");
+                        }
+                        else if (touching == CollisionDetector.Touching.right)
+                        {
+                            NormalTransition("left");
+                        }
+                    }
+                    else if (EnemyType.Equals(eEnemyType.MovingDeadKoopaTroopa))
+                    {
+                        if (touching == CollisionDetector.Touching.left)
+                        {
+                            //switch direction to the right
+                            dir = "right";
+                            ShellBump(dir);
+                            //EnemyType = eEnemyType.MovingDeadKoopaTroopa;
+
+                        }
+                        else if (touching == CollisionDetector.Touching.right)
+                        {
+                            //switch direction to the left
+                            dir = "left";
+                            ShellBump(dir);
+                            EnemyType = eEnemyType.MovingDeadKoopaTroopa;
+                        }
+                    }
                     break;
             }
         }
