@@ -144,7 +144,11 @@ namespace Sprint0.Enemy
                             break;
                     }
                     break;
-                case ItemEntity:
+                case FireballEntity:
+                    EntityStorage.Instance.movableRemove(this);
+                    EntityStorage.Instance.ColliableEntites.Remove(this);
+                    break;
+                default:
                     if (EnemyType.Equals(eEnemyType.KoopaTroopa))
                     {
                         if (touching == CollisionDetector.Touching.left)
