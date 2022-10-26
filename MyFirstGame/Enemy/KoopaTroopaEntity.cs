@@ -83,6 +83,18 @@ namespace Sprint0.Enemy
                                     EntityStorage.Instance.movableRemove(this);
                                     EntityStorage.Instance.ColliableEntites.Remove(this);
                                 }
+                                else if (touching == CollisionDetector.Touching.left)
+                                {
+                                    dir = "right";
+                                    ShellBump(dir);
+                                    mario.TakeDamage();
+                                }
+                                else if (touching == CollisionDetector.Touching.right)
+                                {
+                                    dir = "left";
+                                    ShellBump(dir);
+                                    mario.TakeDamage();
+                                }
                             }
                             break;
                     }
@@ -161,7 +173,11 @@ namespace Sprint0.Enemy
                             break;
                     }
                     break;
-                case ItemEntity:
+                case FireballEntity:
+                    EntityStorage.Instance.movableRemove(this);
+                    EntityStorage.Instance.ColliableEntites.Remove(this);
+                    break;
+                default:
                     if (EnemyType.Equals(eEnemyType.KoopaTroopa))
                     {
                         if (touching == CollisionDetector.Touching.left)

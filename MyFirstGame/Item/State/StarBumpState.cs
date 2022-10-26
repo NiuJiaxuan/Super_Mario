@@ -29,12 +29,6 @@ namespace Sprint0.Item.State
             Item.Speed = new Vector2(0, 0);
         }
 
-        public override void NormalTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new StarNormalState(Item);
-            CurrentState.Enter(this);
-        }
         public override void MovingTransition()
         {
             CurrentState.Exit();
@@ -44,7 +38,6 @@ namespace Sprint0.Item.State
         public override void Update(GameTime gameTime)
         {
             if (Math.Abs(Item.Position.Y - Origion.Y) > 30) { 
-                Item.Speed = new Vector2(0, 0);
                 MovingTransition();
             }
             //CurrentState = new StarMoveState(Item);

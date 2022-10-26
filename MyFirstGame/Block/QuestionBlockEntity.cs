@@ -65,7 +65,7 @@ namespace Sprint0.Block
                     {
                         if (!IsVisible)
                         {
-                            EntityStorage.Instance.ColliableEntites.Remove(this);
+                            EntityList.Remove(this);
                         }
                     }
                     break;
