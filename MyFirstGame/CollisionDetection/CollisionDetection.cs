@@ -216,8 +216,8 @@ namespace Sprint0.CollisionDetection
             {
                 if (!responsedEntities.Contains(currentCollisions[i].Item1))
                 {
-                    Debug.WriteLine(currentCollisions[i].Item1);
-                    Debug.WriteLine(currentCollisions[i].Item2);
+                    //Debug.WriteLine(currentCollisions[i].Item1);
+                    //Debug.WriteLine(currentCollisions[i].Item2);
 
                     responsedEntities.Add(currentCollisions[i].Item1);
                     //if (currentCollisions[i].Item2 is KoopaTroopaEntity)

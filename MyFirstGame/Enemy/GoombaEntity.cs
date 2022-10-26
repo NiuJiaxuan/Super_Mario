@@ -69,19 +69,24 @@ namespace Sprint0.Enemy
                     }
                     
                     break;
-                case ItemEntity:
-                    
-                        if (touching == CollisionDetector.Touching.left)
-                        {
-                            //currentState = new GoombaNormalState(this, "right");
-                            NormalTransition("right");
-                        }
-                        else if (touching == CollisionDetector.Touching.right)
-                        {
-                            //currentState = new GoombaNormalState(this, "right");
-                            NormalTransition("left");
-                        }
-                    
+                case FireballEntity:
+
+                    KillTransition();
+                    EnemyType = eEnemyType.DeadGooma;
+                    EntityStorage.Instance.movableRemove(this);
+                    break;
+
+                    default:
+                    if (touching == CollisionDetector.Touching.left)
+                    {
+                        //currentState = new GoombaNormalState(this, "right");
+                        NormalTransition("right");
+                    }
+                    else if (touching == CollisionDetector.Touching.right)
+                    {
+                        //currentState = new GoombaNormalState(this, "right");
+                        NormalTransition("left");
+                    }
                     break;
                 case EnemyEntity:
                     switch (entity)
