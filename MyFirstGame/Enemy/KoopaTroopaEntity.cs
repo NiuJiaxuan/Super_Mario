@@ -58,14 +58,13 @@ namespace Sprint0.Enemy
                             }
                             else if (EnemyType.Equals(eEnemyType.IdleDeadKoopaTroopa))
                             {
-                                Debug.WriteLine("mario collide iwth koopa " + touching);
                                 if (touching == CollisionDetector.Touching.left)
                                 {
                                     dir = "right";
                                     ShellBump(dir);
                                     EnemyType = eEnemyType.MovingDeadKoopaTroopa;
                                 }
-                                else if ( touching == CollisionDetector.Touching.right)
+                                else if (touching == CollisionDetector.Touching.right)
                                 {
                                     dir = "left";
                                     ShellBump(dir);
@@ -74,6 +73,8 @@ namespace Sprint0.Enemy
                                 else if (touching == CollisionDetector.Touching.top)
                                 {
                                     //Kills the troopa
+                                    //EntityStorage.Instance.movableRemove(this);
+                                    //EntityStorage.Instance.ColliableEntites.Remove(this);
                                 }
                             }
                             else if (EnemyType.Equals(eEnemyType.MovingDeadKoopaTroopa))
@@ -81,6 +82,7 @@ namespace Sprint0.Enemy
                                 if (touching == CollisionDetector.Touching.top)
                                 {
                                     ShellBump("top");
+                                    EnemyType = eEnemyType.IdleDeadKoopaTroopa;
                                 }
                                 else if (touching == CollisionDetector.Touching.left)
                                 {
