@@ -40,7 +40,7 @@ namespace Sprint0.Sprites.Sprites
         public SuperMushroomSprite(Game1 game, Vector2 position)
            : base(game.Content.Load<Texture2D>("SuperMushroom"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(30, 30), false)
         {
-            
+
         }
     }
 
@@ -49,7 +49,7 @@ namespace Sprint0.Sprites.Sprites
         public OneUpMushroomSprite(Game1 game, Vector2 position)
            : base(game.Content.Load<Texture2D>("1upMushroom"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(30, 30), false)
         {
-            
+
         }
     }
     class PipeSprite : Sprite
@@ -75,7 +75,7 @@ namespace Sprint0.Sprites.Sprites
         {
 
         }
-    
+
     }
     class FlagPoleSprite : Sprite
     {
@@ -86,3 +86,4 @@ namespace Sprint0.Sprites.Sprites
         }
 
     }
+}

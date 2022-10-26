@@ -80,7 +80,7 @@ namespace Sprint0.Enemy
                             //currentState = new GoombaNormalState(this, "right");
                             NormalTransition("left");
                         }
-                    }
+                    
                     break;
                 case EnemyEntity:
                     switch (entity)
