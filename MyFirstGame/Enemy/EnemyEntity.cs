@@ -14,7 +14,7 @@ using Sprint0.CollisionDetection;
 
 namespace Sprint0.Enemy
 {
-    public class EnemyEntity : Entity// IMovableEntity
+    public class EnemyEntity : Entity//, IMovableEntity
     {
         public IEnemyState currentState { get; set; }
 

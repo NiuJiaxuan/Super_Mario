@@ -134,7 +134,6 @@ namespace Sprint0.Mario
                         {
                             Idle();
                         }
-
                     }
                     break;
                 case ItemEntity:

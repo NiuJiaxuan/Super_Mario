@@ -40,9 +40,17 @@ namespace Sprint0.Enemy
                             onGround = true;
                             break;
                         case CollisionDetector.Touching.top:
+
+                            if(EntityStorage.Instance.EntityList.Contains(this)
+                                && EnemyType == eEnemyType.DeadGooma)
+                            {
+                                EntityStorage.Instance.movableRemove(this);
+                            }
+
                             Debug.WriteLine("TOP SIde");
                             KillTransition();
                             EnemyType = eEnemyType.DeadGooma;
+                            
                             break;
                         case CollisionDetector.Touching.left:
                             NormalTransition("right");
@@ -58,6 +66,7 @@ namespace Sprint0.Enemy
                     {
                         case CollisionDetector.Touching.bottom:
                             onGround = true;
+                            Position = position;
                             break;
                         case CollisionDetector.Touching.left:
                             NormalTransition("right");
@@ -86,10 +95,28 @@ namespace Sprint0.Enemy
                     switch (entity)
                     {
                         case GoombaEntity:
-                            this.Speed = Vector2.Zero;
+                            if (touching == CollisionDetector.Touching.left)
+                            {
+                                //currentState = new GoombaNormalState(this, "right");
+                                NormalTransition("right");
+                            }
+                            else if (touching == CollisionDetector.Touching.right)
+                            {
+                                //currentState = new GoombaNormalState(this, "right");
+                                NormalTransition("left");
+                            }
                             break;
                         case KoopaTroopaEntity:
-                            EntityStorage.Instance.movableRemove(this);
+                            if (touching == CollisionDetector.Touching.left)
+                            {
+                                //currentState = new GoombaNormalState(this, "right");
+                                NormalTransition("right");
+                            }
+                            else if (touching == CollisionDetector.Touching.right)
+                            {
+                                //currentState = new GoombaNormalState(this, "right");
+                                NormalTransition("left");
+                            }
                             break;
                     }
                     break;
@@ -103,6 +130,11 @@ namespace Sprint0.Enemy
             {
                 currentState = new GoombaNormalState(this, "left");
                 currentState.Enter(null);
+                EntityStorage.Instance.MovableEntities.Add(this);
+            }
+            else if(Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) > 350)
+            {
+                EntityStorage.Instance.MovableEntities.Remove(this);
             }
             base.Update(gameTime, blockEntities);
 
