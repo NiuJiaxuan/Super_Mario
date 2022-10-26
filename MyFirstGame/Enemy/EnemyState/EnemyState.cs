@@ -10,6 +10,7 @@ using Sprint0.Sprites;
 
 namespace Sprint0.Enemy.EnemyState
 {
+    //Ben Changes
     public class EnemyState : IEnemyState
     {
         protected IEnemyState previousState;
