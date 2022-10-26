@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
 using Sprint0.Interfaces;
 using Sprint0.Item.State;
 using Sprint0.Mario;
@@ -53,6 +54,9 @@ namespace Sprint0.Item
                 case BlockEntity:
                     Position = position;
                     onGround = true;
+                    break;
+                case EnemyEntity:
+                    Position = position;
                     break;
 
             }

@@ -43,6 +43,7 @@ namespace Sprint0.Enemy
                             Debug.WriteLine("TOP SIde");
                             KillTransition();
                             EnemyType = eEnemyType.DeadGooma;
+                            EntityStorage.Instance.ColliableEntites.Remove(this);
                             break;
                         case CollisionDetector.Touching.left:
                             NormalTransition("right");

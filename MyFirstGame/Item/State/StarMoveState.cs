@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,54 +17,33 @@ namespace Sprint0.Item.State
             : base(item)
         {
         }
-
-
+        public int ySpeed = -20;
+        public int xSpeed = 0;
         public override void Enter(IItemState previousState)
         {
-            EntityStorage.Instance.MovableEntities.Add(Item);
+            
             CurrentState = this;
             this.previousState = previousState;
 
             Origion = Item.Position;
 
-            Item.Speed = new Vector2(0, -40);
+            Item.Speed = new Vector2(xSpeed, ySpeed);
         }
 
-        public override void Exit()
-        {
-            Item.Speed = new Vector2(0, 0);
-        }
-        public override void BumpTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new StarBumpState(Item);
-            CurrentState.Enter(this);
-        }
-        public override void NormalTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new StarNormalState(Item);
-            CurrentState.Enter(this);
-        }
         public override void Update(GameTime gameTime)
         {
+            if (Item.Position.Y - Origion.Y > 10 || Item.Position.Y - Origion.Y < -10)
+            {
+                ySpeed = -ySpeed;
+                Item.Speed = new Vector2(xSpeed, ySpeed);
+            }
             if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X)> 0)
             {
-                Item.Speed = new Vector2(40, -10);
-                this.Origion = Item.Position;
-                if (Math.Abs(Item.Position.Y - Origion.Y) > 10)
-                {
-                    Item.Speed = new Vector2(40, 10);
-                }
+                xSpeed = 40;
             }
             else if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X) < 0)
             {
-                Item.Speed = new Vector2(-40, -10);
-                this.Origion = Item.Position;
-                if (Math.Abs(Item.Position.Y - Origion.Y) > 10)
-                {
-                    Item.Speed = new Vector2(-40, 10);
-                }
+                xSpeed = -40;
             }
             
         }
