@@ -21,6 +21,7 @@ namespace Sprint0.Item
             CurrentState.Enter(null);
         }
 
+
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
             base.Update(gameTime, entities);

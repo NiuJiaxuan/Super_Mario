@@ -42,8 +42,14 @@ namespace Sprint0.Item
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
             //Debug.WriteLine("item response");
-            EntityStorage.Instance.EntityList.Remove(this);
-            EntityStorage.Instance.ColliableEntites.Remove(this);
+            switch (entity)
+            {
+                case MarioEntity:
+                    EntityStorage.Instance.EntityList.Remove(this);
+                    EntityStorage.Instance.ColliableEntites.Remove(this);
+                    break;
+
+            }
         }
 
         public override void Update(GameTime gameTime, List<Entity> entities)

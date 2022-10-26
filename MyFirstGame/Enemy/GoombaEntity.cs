@@ -35,14 +35,13 @@ namespace Sprint0.Enemy
             switch (entity)
             {
                 case MarioEntity:
-                    MarioEntity mario = (MarioEntity)entity;
-                    if (EnemyType.Equals(eEnemyType.Goomba))
-                    {
+                   
                         if (touching == CollisionDetector.Touching.top)
                         {
                             Debug.WriteLine("TOP SIde");
                             KillTransition();
                             EnemyType = eEnemyType.DeadGooma;
+                        EntityStorage.Instance.movableRemove(this);
                             //EntityStorage.Instance.EntityList.Remove(this);
                         }
                         else if (touching == CollisionDetector.Touching.left)
@@ -55,24 +54,27 @@ namespace Sprint0.Enemy
                             //currentState = new GoombaNormalState(this, "right");
                             NormalTransition("left");
                         }
-                    }
+                    
                     break;
                 case BlockEntity:
-                    if (EnemyType.Equals(eEnemyType.Goomba))
-                    { 
-                        if (touching == CollisionDetector.Touching.left)
-                        {
-                            NormalTransition("right");
-                        }
-                        if (touching == CollisionDetector.Touching.right)
-                        {
-                            NormalTransition("left");
-                        }
+                    
+                    if (touching == CollisionDetector.Touching.left)
+                    {
+                        NormalTransition("right");
                     }
+                    if (touching == CollisionDetector.Touching.right)
+                    {
+                        NormalTransition("left");
+                    }
+                    if (touching == CollisionDetector.Touching.bottom)
+                    {
+                        onGround = true;
+                        Position = position;
+                    }
+                    
                     break;
                 case ItemEntity:
-                    if (EnemyType.Equals(eEnemyType.Goomba))
-                    {
+                    
                         if (touching == CollisionDetector.Touching.left)
                         {
                             //currentState = new GoombaNormalState(this, "right");
@@ -83,7 +85,7 @@ namespace Sprint0.Enemy
                             //currentState = new GoombaNormalState(this, "right");
                             NormalTransition("left");
                         }
-                    }
+                    
                     break;
             }
         }

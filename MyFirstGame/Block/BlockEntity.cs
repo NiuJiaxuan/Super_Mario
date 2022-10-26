@@ -34,29 +34,6 @@ namespace Sprint0.State
 
         public bool breakBlockVisible = true;
         public bool isBumping = false;
-
-        //public override Rectangle GetRectangle
-        //{
-        //    get
-        //    {
-        //        if (!IsVisible)
-        //        {
-        //            if (EntityStorage.Instance.Mario.Min.Y -5 > this.Max.Y
-        //                && EntityStorage.Instance.Mario.Speed.Y<= 0)
-        //            {
-
-        //                return base.GetRectangle;
-        //            }
-        //            else 
-        //                return new Rectangle();
-        //        }
-        //        else
-        //        {
-        //            return base.GetRectangle;
-        //        }
-        //    }
-        //}
-
         public Sprite SmallBlock1
         {
             get { return smallBlock1; }
