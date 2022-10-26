@@ -50,10 +50,12 @@ namespace Sprint0.Enemy
                                 else if (touching == CollisionDetector.Touching.left)
                                 {
                                     NormalTransition("right");
+                                    mario.TakeDamage();
                                 }
                                 else if (touching == CollisionDetector.Touching.right)
                                 {
                                     NormalTransition("left");
+                                    mario.TakeDamage();
                                 }
                             }
                             else if (EnemyType.Equals(eEnemyType.IdleDeadKoopaTroopa))

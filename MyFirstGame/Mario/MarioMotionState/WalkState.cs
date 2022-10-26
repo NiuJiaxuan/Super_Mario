@@ -60,11 +60,11 @@ namespace Sprint0.Mario.MarioMotionState
         {
             if (Mario.Sprite.Orientation == SpriteEffects.None)
             {
-                Mario.Speed = new Vector2(70, Mario.Speed.Y);
+                Mario.Speed = new Vector2(100, Mario.Speed.Y);
             }
             else if(Mario.Sprite.Orientation == SpriteEffects.FlipHorizontally)
             {
-                Mario.Speed = new Vector2(-70, Mario.Speed.Y);
+                Mario.Speed = new Vector2(-100, Mario.Speed.Y);
             }
 
             if (Mario.Sprite.Position.X < 0)
