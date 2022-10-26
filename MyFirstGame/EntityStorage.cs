@@ -138,6 +138,10 @@ namespace Sprint0
                 {
                     return new CastleEntity(game, levelObject.Position);
                 }
+                else if (objectName.Equals("Flag"))
+                {
+                    return new FlagPoleEntity(game, levelObject.Position);
+                }
             }
             else if (objectType.Equals("Enemies"))
             {
