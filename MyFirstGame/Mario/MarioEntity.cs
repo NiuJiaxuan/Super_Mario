@@ -378,8 +378,10 @@ namespace Sprint0.Mario
         }
         public void ShootingFireball()
         {
+            if (currentPowerState is FireState) { 
             FireballEntity fireball = new FireballEntity(game, Position, Entities);
             EntityStorage.Instance.movableAdd(fireball);
+            }
         }
 
         //-------------------------------------------Power Command Method--------------------------------
