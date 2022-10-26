@@ -138,6 +138,10 @@ namespace Sprint0
                 {
                     return new CastleEntity(game, levelObject.Position);
                 }
+                else if (objectName.Equals("Flag"))
+                {
+                    return new FlagPoleEntity(game, levelObject.Position);
+                }
             }
             else if (objectType.Equals("Enemies"))
             {
@@ -206,7 +210,7 @@ namespace Sprint0
 
             foreach (LevelObject levelObject in levelData.ObjectData)
             {
-                Entity entity = CreateEntity(levelObject, game, EntityList);
+                Entity entity = CreateEntity(levelObject, game, ColliableEntites);
                 EntityList.Add(entity);
                 ColliableEntites.Add(entity);
                 if (entity.GetType() == typeof(MarioEntity))

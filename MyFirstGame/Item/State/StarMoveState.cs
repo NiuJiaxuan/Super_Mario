@@ -53,7 +53,7 @@ namespace Sprint0.Item.State
                 this.Origion = Item.Position;
                 if (Math.Abs(Item.Position.Y - Origion.Y) > 10)
                 {
-                    Item.Speed = new Vector2(0, -Item.Speed.Y);
+                    Item.Speed = new Vector2(40, 10);
                 }
             }
             else if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X) < 0)
@@ -62,7 +62,7 @@ namespace Sprint0.Item.State
                 this.Origion = Item.Position;
                 if (Math.Abs(Item.Position.Y - Origion.Y) > 10)
                 {
-                    Item.Speed = new Vector2(0, -Item.Speed.Y);
+                    Item.Speed = new Vector2(-40, 10);
                 }
             }
             

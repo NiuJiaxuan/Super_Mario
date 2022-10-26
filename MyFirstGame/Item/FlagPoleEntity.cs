@@ -16,7 +16,7 @@ namespace Sprint0.Item
         public FlagPoleEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
-            ItemType = eItemType.Castle;
+            ItemType = eItemType.FlagPole;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
