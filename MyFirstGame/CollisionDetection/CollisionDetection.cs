@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
 using Sprint0.Sprites;
+using Sprint0.State;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -74,9 +75,10 @@ namespace Sprint0.CollisionDetection
             List<Entity> below = new List<Entity>();
             foreach(Entity surround in surroundings)
             {
-                if(( surround.Max.X > entity.Min.X || surround.Min.X< entity.Max.X)
+                if(( surround.Max.X > entity.Min.X && surround.Min.X< entity.Max.X)
                     && (Math.Abs(surround.Min.Y- entity.Max.Y)<2))
                 {
+                    if(!(surround is BlockEntity) || (surround as BlockEntity).IsVisible)
                     below.Add(surround);
                 }
             }
@@ -114,6 +116,7 @@ namespace Sprint0.CollisionDetection
                             collidables.Remove(movable);
 
                             List<Entity> surroundings = getSurroundingEntities(movable.SurroundingGrids, collidables);
+
 
                     CheckGrounded(movable, surroundings);
 

@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 using Sprint0.CollisionDetection;
 using Sprint0.State;
 using Sprint0.Item;
+using Sprint0.Interfaces;
 
 namespace Sprint0.Enemy
 {
-    public class GoombaEntity : EnemyEntity
+    public class GoombaEntity : EnemyEntity , IMovableEntity
     {
         public GoombaEntity(Game1 game, Vector2 position)
             : base(game, position) 
@@ -24,9 +25,6 @@ namespace Sprint0.Enemy
             //currentState = new IdleState(this);
             Sprite = EnemyFactory.CreateEnemy(game, position,(int)eEnemyType.Goomba);
             EnemyType = eEnemyType.Goomba;
-            currentState = new GoombaNormalState(this, "left");
-            currentState.Enter(null);
-
         }
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
@@ -36,38 +34,37 @@ namespace Sprint0.Enemy
             {
                 case MarioEntity:
                     MarioEntity mario = (MarioEntity)entity;
-                    if (EnemyType.Equals(eEnemyType.Goomba))
+                    switch (touching)
                     {
-                        if (touching == CollisionDetector.Touching.top)
-                        {
+                        case CollisionDetector.Touching.bottom:
+                            onGround = true;
+                            break;
+                        case CollisionDetector.Touching.top:
                             Debug.WriteLine("TOP SIde");
                             KillTransition();
                             EnemyType = eEnemyType.DeadGooma;
-                            //EntityStorage.Instance.EntityList.Remove(this);
-                        }
-                        else if (touching == CollisionDetector.Touching.left)
-                        {
-                            //currentState = new GoombaNormalState(this, "right");
+                            break;
+                        case CollisionDetector.Touching.left:
                             NormalTransition("right");
-                        }
-                        else if (touching == CollisionDetector.Touching.right)
-                        {
-                            //currentState = new GoombaNormalState(this, "right");
+                            break;
+                        case CollisionDetector.Touching.right:
                             NormalTransition("left");
-                        }
+                            break;
                     }
                     break;
                 case BlockEntity:
-                    if (EnemyType.Equals(eEnemyType.Goomba))
-                    { 
-                        if (touching == CollisionDetector.Touching.left)
-                        {
+                    Debug.WriteLine("goomba touch block from " + touching);
+                    switch(touching)
+                    {
+                        case CollisionDetector.Touching.bottom:
+                            onGround = true;
+                            break;
+                        case CollisionDetector.Touching.left:
                             NormalTransition("right");
-                        }
-                        if (touching == CollisionDetector.Touching.right)
-                        {
+                            break;
+                        case CollisionDetector.Touching.right:
                             NormalTransition("left");
-                        }
+                            break;
                     }
                     break;
                 case ItemEntity:
@@ -85,12 +82,28 @@ namespace Sprint0.Enemy
                         }
                     }
                     break;
+                case EnemyEntity:
+                    switch (entity)
+                    {
+                        case GoombaEntity:
+                            this.Speed = Vector2.Zero;
+                            break;
+                        case KoopaTroopaEntity:
+                            EntityStorage.Instance.movableRemove(this);
+                            break;
+                    }
+                    break;
             }
         }
 
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
- 
+            if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 350 
+                && currentState == null)
+            {
+                currentState = new GoombaNormalState(this, "left");
+                currentState.Enter(null);
+            }
             base.Update(gameTime, blockEntities);
 
         }
