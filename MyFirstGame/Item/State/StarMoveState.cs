@@ -32,7 +32,7 @@ namespace Sprint0.Item.State
 
         public override void Update(GameTime gameTime)
         {
-            if (Item.Position.Y - Origion.Y > 10 || Item.Position.Y - Origion.Y < -10)
+            if (Math.Abs(Item.Position.Y - Origion.Y) > 10 )
             {
                 ySpeed = -ySpeed;
                 Item.Speed = new Vector2(xSpeed, ySpeed);

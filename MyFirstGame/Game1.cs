@@ -108,7 +108,7 @@ namespace Sprint0
             keyboard.Command((int)Keys.Q, new ExitCommand(this));
             keyboard.Command((int)Keys.R, new ResetCommand(this));
             keyboard.Command((int)Keys.I, new ChangeToFireMario(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.T, new ShootingFireballCommand(levelBuilder.EntityStorage.Mario));
+            keyboard.Command((int)Keys.Space, new ShootingFireballCommand(levelBuilder.EntityStorage.Mario));
             keyboard.Command((int)Keys.U, new ChangeToSuperMario(levelBuilder.EntityStorage.Mario));
             keyboard.Command((int)Keys.Y, new ChangeToNormalMario(levelBuilder.EntityStorage.Mario));
             keyboard.Command((int)Keys.O, new MarioTakeDamege(levelBuilder.EntityStorage.Mario));
