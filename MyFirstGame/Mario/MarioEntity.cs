@@ -401,8 +401,10 @@ namespace Sprint0.Mario
         public void initalizeFireballPool()
         {
             FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
-            fireballPool.Add(fireball);
-            fireballPool.Add(fireball);
+            while(fireballPool.Count < 2)
+            {
+                fireballPool.Add(fireball);
+            }
         }
         public void ShootingFireball()
         {
