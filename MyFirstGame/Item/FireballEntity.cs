@@ -15,11 +15,11 @@ namespace Sprint0.Item
 {
     public class FireballEntity : ItemEntity
     {
-        public List<Entity> EntityList;
-        public FireballEntity(Game1 game, Vector2 position, List<Entity> entityList)
+        public List<Entity> FireballPool;
+        public FireballEntity(Game1 game, Vector2 position,List<Entity>fireballPool)
             : base(game, position)
         {
-            EntityList = entityList;
+            FireballPool = fireballPool;
             ItemType = eItemType.Fireball;
             if(EntityStorage.Instance.Mario.Orientation == SpriteEffects.None)
             {
@@ -46,10 +46,12 @@ namespace Sprint0.Item
                     else
                     {
                         EntityStorage.Instance.movableRemove(this);
+                        FireballPool.Add(this);
                     }
                     break;
                 default:
                     EntityStorage.Instance.movableRemove(this);
+                    FireballPool.Add(this);
                     break;
             }
         }

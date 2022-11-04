@@ -38,7 +38,7 @@ namespace Sprint0.Mario
 
         public  MarioFactory MarioFactory = MarioFactory.Instance;
 
-
+        List<Entity> fireballPool = new List<Entity>();
 
         public enum eMarioType
         {
@@ -398,11 +398,21 @@ namespace Sprint0.Mario
             }
 
         }
+        public void initalizeFireballPool()
+        {
+            FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
+            fireballPool.Add(fireball);
+            fireballPool.Add(fireball);
+        }
         public void ShootingFireball()
         {
             if (currentPowerState is FireState) { 
-            FireballEntity fireball = new FireballEntity(game, Position, Entities);
-            EntityStorage.Instance.movableAdd(fireball);
+            FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
+                if (fireballPool.Count > 0)
+                {
+                    EntityStorage.Instance.movableAdd(fireball);
+                    fireballPool.RemoveAt(0);
+                }
             }
         }
 

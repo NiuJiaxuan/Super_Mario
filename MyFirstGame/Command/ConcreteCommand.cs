@@ -31,6 +31,7 @@ namespace Sprint0.Command
         public override void Execute()
         {
            receiver.Fire();
+           receiver.initalizeFireballPool();
         }
     }
 
