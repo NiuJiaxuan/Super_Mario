@@ -19,6 +19,7 @@ namespace Sprint0.Item.State
         }
         public override void Enter(IItemState previousState)
         {
+            SoundStorage.Instance.PlayCoin();
             CurrentState = this;
             this.previousState = previousState;
             Origion = Item.Position;

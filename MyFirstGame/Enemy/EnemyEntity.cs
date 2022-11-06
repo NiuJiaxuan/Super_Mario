@@ -36,14 +36,6 @@ namespace Sprint0.Enemy
         }
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
-            //if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 350)
-            //{
-            //    EntityStorage.Instance.movableAdd(this);
-            //}
-            //else
-            //{
-            //    EntityStorage.Instance.movableRemove(this);
-            //}
 
             base.Update(gameTime, blockEntities);
             currentState?.Update(gameTime);

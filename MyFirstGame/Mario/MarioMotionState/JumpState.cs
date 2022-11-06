@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Mario.MarioPowerState;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,6 +20,14 @@ namespace Sprint0.Mario.MarioMotionState
 
         public override void Enter(IMarioMotionState state)
         {
+            if (PowerState.GetType() == typeof(FireState) || PowerState.GetType() == typeof(SuperState))
+            {
+                SoundStorage.Instance.PlayJumpSuper();
+            }
+            else
+            {
+                SoundStorage.Instance.PlayJumpSmall();
+            }
             CurrentState = this;
             this.previousState = state;
 

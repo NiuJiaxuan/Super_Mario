@@ -18,6 +18,7 @@ namespace Sprint0.Item.State
         }
         public override void Enter(IItemState previousState)
         {
+            SoundStorage.Instance.PlayPowerUpAppear();
             CurrentState = this;
             this.previousState = previousState;
             Origion = Item.Position;

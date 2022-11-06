@@ -24,6 +24,7 @@ using Sprint0.Interfaces;
 using System.Security.Cryptography;
 using System.ComponentModel.Design.Serialization;
 using Sprint0.Enemy.EnemyState;
+using static Sprint0.CollisionDetection.CollisionDetector;
 
 namespace Sprint0.Mario
 {
@@ -111,11 +112,7 @@ namespace Sprint0.Mario
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            //Debug.WriteLine("mario position top left: " + (Position.Y - Sprite.FrameSize.Y));
-            //Debug.WriteLine("before update position: " + this.Position);
-
             this.Position = position;
-            //Debug.WriteLine("after update position: " + this.Position);
             switch (entity)
             {
                 case BlockEntity block:
@@ -150,10 +147,13 @@ namespace Sprint0.Mario
                             }
                             break;
                         case OneUpMushroomEntity:
-
+                            SoundStorage.Instance.PlayOneUp();
+                            if (currentPowerState.GetType() == typeof(NormalState))
+                                Super();
+                            else if (currentPowerState.GetType() == typeof(SuperState))
+                                Fire();
                             break;
                         case CoinEntity:
-
                             break;
                         case SuperMushroomEntity:
                             if (currentPowerState.GetType() == typeof(NormalState))
@@ -176,7 +176,7 @@ namespace Sprint0.Mario
                     switch (entity)
                     {
                         case GoombaEntity:
-                            if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left)
+                            if (touching != CollisionDetector.Touching.bottom )
                             {
                                 Position = position;
                                 Idle();
@@ -184,6 +184,7 @@ namespace Sprint0.Mario
                             }
                             else
                             {
+                                SoundStorage.Instance.PlayStomp();
                                 Fall();
                             }
                             break;
@@ -269,6 +270,7 @@ namespace Sprint0.Mario
                         break;
                 }
             }
+
         }
 
         public void Idle()
@@ -412,6 +414,7 @@ namespace Sprint0.Mario
             FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
                 if (fireballPool.Count > 0)
                 {
+                    SoundStorage.Instance.PlayFireball();
                     EntityStorage.Instance.movableAdd(fireball);
                     fireballPool.RemoveAt(0);
                 }
@@ -422,7 +425,7 @@ namespace Sprint0.Mario
 
         public void Fire()
         {
-            
+            SoundStorage.Instance.PlayPowerUp();
             currentPowerState?.FireTransion();
         }
         public void Normal()
@@ -432,7 +435,7 @@ namespace Sprint0.Mario
         }
         public void Super()
         {
-            
+            SoundStorage.Instance.PlayPowerUp();
             currentPowerState?.SuperTransion();
         }
         public void TakeDamage()
@@ -440,6 +443,7 @@ namespace Sprint0.Mario
             switch (currentPowerState)
             {
                 case NormalState:
+                    
                     currentPowerState?.DeadTransion();
                     break;
                 case SuperState:

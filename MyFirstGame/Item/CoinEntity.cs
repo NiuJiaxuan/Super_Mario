@@ -25,6 +25,11 @@ namespace Sprint0.Item
             CurrentState = new CoinNormalState(this);
             CurrentState.Enter(null);
         }
+        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        {
+            SoundStorage.Instance.PlayCoin();
+            base.CollisionResponse(entity, position, touching);
+        }
 
         public override void Update(GameTime gameTime, List<Entity> entities)
         {

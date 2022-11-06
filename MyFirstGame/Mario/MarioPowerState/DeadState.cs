@@ -19,6 +19,7 @@ namespace Sprint0.Mario.MarioPowerState
 
         public override void Enter(IMarioPowerState powerState)
         {
+            SoundStorage.Instance.PlayDie();
             CurrentState = this;
             this.previousState = powerState;
             anchor.X += Mario.Sprite.FrameSize.X;
