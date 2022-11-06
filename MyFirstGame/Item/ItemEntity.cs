@@ -33,6 +33,7 @@ namespace Sprint0.Item
             Castle = 7,
             Fireball = 8,
             FlagPole = 9,
+            Flag =10, 
         }
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }

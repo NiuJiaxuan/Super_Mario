@@ -13,12 +13,12 @@ using Sprint0.Mario;
 
 namespace Sprint0.Item
 {
-    public class FlagPoleEntity : ItemEntity
+    public class FlagEntity : ItemEntity
     {
-        public FlagPoleEntity(Game1 game, Vector2 position)
+        public FlagEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
-            ItemType = eItemType.FlagPole;
+            ItemType = eItemType.Flag;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
