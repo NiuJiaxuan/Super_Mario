@@ -19,6 +19,7 @@ namespace Sprint0.Block.State
 
         public override void Enter(IBlockState previousState)
         {
+            SoundStorage.Instance.PlayStomp();
             CurrentState = this;
             this.previousState = previousState;
             Origion = Block.Position;

@@ -19,6 +19,7 @@ using System.Reflection.PortableExecutable;
 using Sprint0.CollisionDetection;
 using Sprint0.Interfaces;
 using System;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Sprint0
 {
@@ -90,17 +91,22 @@ namespace Sprint0
         protected override void Initialize()
         {
 
+            base.Initialize();
+        }
+
+        protected override void LoadContent()
+        {
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            EntityStorage.Instance.SetupGrids(_graphics);
+            SoundStorage.Instance.LoadSounds(Content);
             levelBuilder = new LevelBuilder();
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
             camera = new Camera(GraphicsDevice.Viewport);
-            camera.Limits= new Rectangle(0,0,6300,480);
-
+            camera.Limits = new Rectangle(0, 0, 6300, 480);
             background = Content.Load<Texture2D>("background");
             cloud = Content.Load<Texture2D>("cloud");
-            bush= Content.Load<Texture2D>("bush");
-
-            EntityStorage.Instance.SetupGrids(_graphics);
+            bush = Content.Load<Texture2D>("bush");
 
             //-------------------------keyboard control------------------
 
@@ -127,9 +133,6 @@ namespace Sprint0
 
             keyboard.Command((int)Keys.C, new ShowBoundBox(EntityStorage.Instance.EntityList));
 
-            
-
-
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
             gamepad.Command((int)Buttons.Start, new ExitCommand(this));
@@ -139,19 +142,10 @@ namespace Sprint0
             gamepad.Command((int)Buttons.DPadLeft, new MarioWalkLeft(levelBuilder.EntityStorage.Mario));
             gamepad.Command((int)Buttons.DPadRight, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
 
-            base.Initialize();
-        }
-
-        protected override void LoadContent()
-        {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
 
             camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
             keyboard.Update();

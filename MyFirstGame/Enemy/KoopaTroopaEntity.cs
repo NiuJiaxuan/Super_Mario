@@ -177,6 +177,7 @@ namespace Sprint0.Enemy
                     }
                     break;
                 case FireballEntity:
+                    SoundStorage.Instance.PlayStomp();
                     EntityStorage.Instance.movableRemove(this);
                     EntityStorage.Instance.ColliableEntites.Remove(this);
                     break;

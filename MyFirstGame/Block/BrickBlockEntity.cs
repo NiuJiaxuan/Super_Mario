@@ -50,7 +50,6 @@ namespace Sprint0.Block
                             case SuperState:
                                 foreach (ItemEntity item in BlockItemList)
                                 {
-                                    
                                     item.BumpTransition();
                                 }
                                 BlockItemList.Clear();
@@ -58,7 +57,6 @@ namespace Sprint0.Block
                             case FireState:
                                 foreach (ItemEntity item in BlockItemList)
                                 {
-                                    
                                     item.BumpTransition();
                                 }
                                 BlockItemList.Clear();

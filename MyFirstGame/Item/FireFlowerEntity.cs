@@ -9,6 +9,7 @@ using Sprint0.Sprites;
 using static Sprint0.State.BlockEntity;
 using Sprint0.Item.State;
 using Sprint0.CollisionDetection;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Sprint0.Item
 {
@@ -21,11 +22,6 @@ namespace Sprint0.Item
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
             CurrentState = new FireFlowerNormalState(this);
             CurrentState.Enter(null);
-        }
-
-        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
-        {
-            base.CollisionResponse(entity, position, touching);
         }
 
 
