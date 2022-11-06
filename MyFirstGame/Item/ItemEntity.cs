@@ -55,12 +55,12 @@ namespace Sprint0.Item
                     Position = position;
                     onGround = true;
                     break;
-                case EnemyEntity:
-                    Position = position;
-                    break;
+                //case EnemyEntity:
+                    //Position = position;
+                    //break;
                     // item response
                 case ItemEntity:
-                    EntityStorage.Instance.movableRemove(this);
+                    Position = position;
                     break;
 
             }

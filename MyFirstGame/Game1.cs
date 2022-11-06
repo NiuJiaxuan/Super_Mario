@@ -32,13 +32,8 @@ namespace Sprint0
         private Texture2D background;
         private Texture2D bush;
         private Texture2D cloud;
-        private Texture2D fireball;
 
-        Boolean canShoot = false;
-
-        private IController keyboard;
         private IController gamepad;
-
 
         Camera camera;
         public static LevelData levelData { get; set; }
@@ -99,34 +94,8 @@ namespace Sprint0
             background = Content.Load<Texture2D>("background");
             cloud = Content.Load<Texture2D>("cloud");
             bush= Content.Load<Texture2D>("bush");
-
+            EntityStorage.Instance.initialCommand(this);
             EntityStorage.Instance.SetupGrids(_graphics);
-
-            //-------------------------keyboard control------------------
-
-            keyboard = new KeyboardController();
-            keyboard.Command((int)Keys.Q, new ExitCommand(this));
-            keyboard.Command((int)Keys.R, new ResetCommand(this));
-            keyboard.Command((int)Keys.I, new ChangeToFireMario(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Space, new ShootingFireballCommand(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.U, new ChangeToSuperMario(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.O, new MarioTakeDamege(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.W, new MarioJump(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Up, new MarioJump(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.S, new MarioCrouch(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Down, new MarioCrouch(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.A, new MarioWalkLeft(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Left, new MarioWalkLeft(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.D, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Right, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.C, new ShowBoundBox(EntityStorage.Instance.EntityList));
-
             
 
 
@@ -150,13 +119,15 @@ namespace Sprint0
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            
+            
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    Exit();
 
-            camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
-            keyboard.Update();
-            gamepad.Update();
-            levelBuilder.EntityStorage.Update(gameTime, _graphics);
+                camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
+                gamepad.Update();
+                levelBuilder.EntityStorage.Update(gameTime, _graphics);
+            
 
             base.Update(gameTime);
         }
@@ -175,10 +146,6 @@ namespace Sprint0
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
             levelBuilder.EntityStorage.Draw(_spriteBatch);
 
-            if (canShoot)
-            {
-                _spriteBatch.Draw(fireball, new Vector2(levelBuilder.EntityStorage.Mario.Position.X+10, levelBuilder.EntityStorage.Mario.Position.Y-25),Color.White);
-            }
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -188,14 +155,14 @@ namespace Sprint0
         public void ResetCommand()
         {
             levelBuilder.EntityStorage.clear();
-            Initialize();
-            
+             levelBuilder = new LevelBuilder();
+            levelBuilder.LodeLevel(this);
+            levelData = levelBuilder.LevelData;
+            EntityStorage.Instance.initialCommand(this);
+
+
         }
-        public void ShootingFireBallCommand()
-        {
-            canShoot = true;
-            fireball = Content.Load<Texture2D>("fireball");
-        }
+
             public void ExitCommnad()
         {
             Exit();
