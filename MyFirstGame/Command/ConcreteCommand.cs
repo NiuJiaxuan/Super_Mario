@@ -30,7 +30,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-           receiver.Fire();
+           receiver.currentPowerState.Fire();
            receiver.initalizeFireballPool();
         }
     }
@@ -42,7 +42,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.Super();
+            receiver.currentPowerState.Super();
         }
     }
 
@@ -53,7 +53,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.Normal();
+            receiver.currentPowerState.Normal();
         }
     }
 
@@ -64,7 +64,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.TakeDamage();
+            receiver.currentPowerState.TakeDamage();
         }
     }
 
@@ -75,7 +75,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.Jump();
+            receiver.currentMotionState.Jump();
         }
     }
 
@@ -86,7 +86,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.Crouch();
+            receiver.currentMotionState.Crouch();
         }
     }
 
@@ -97,7 +97,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.WalkRight();
+            receiver.currentMotionState.WalkRight();
         }
     }
     public class MarioWalkLeft : MarioCommand
@@ -107,7 +107,7 @@ namespace Sprint0.Command
 
         public override void Execute()
         {
-            receiver.WalkLeft();
+            receiver.currentMotionState.WalkLeft();
         }
     }
 

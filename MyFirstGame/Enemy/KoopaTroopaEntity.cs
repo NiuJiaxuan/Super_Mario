@@ -50,12 +50,12 @@ namespace Sprint0.Enemy
                                 else if (touching == CollisionDetector.Touching.left)
                                 {
                                     NormalTransition("right");
-                                    mario.TakeDamage();
+                                    mario.currentPowerState.TakeDamage();
                                 }
                                 else if (touching == CollisionDetector.Touching.right)
                                 {
                                     NormalTransition("left");
-                                    mario.TakeDamage();
+                                    mario.currentPowerState.TakeDamage();
                                 }
                             }
                             else if (EnemyType.Equals(eEnemyType.IdleDeadKoopaTroopa))
@@ -90,13 +90,13 @@ namespace Sprint0.Enemy
                                 {
                                     dir = "right";
                                     ShellBump(dir);
-                                    mario.TakeDamage();
+                                    mario.currentPowerState.TakeDamage();
                                 }
                                 else if (touching == CollisionDetector.Touching.right)
                                 {
                                     dir = "left";
                                     ShellBump(dir);
-                                    mario.TakeDamage();
+                                    mario.currentPowerState.TakeDamage();
                                 }
                             }
                             break;

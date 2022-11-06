@@ -109,125 +109,130 @@ namespace Sprint0.Mario
             onGround = false;
         }
 
+        //public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        //{
+        //    //Debug.WriteLine("mario position top left: " + (Position.Y - Sprite.FrameSize.Y));
+        //    //Debug.WriteLine("before update position: " + this.Position);
+
+        //    this.Position = position;
+        //    //Debug.WriteLine("after update position: " + this.Position);
+        //    switch (entity)
+        //    {
+        //        case BlockEntity block:
+        //            if (block.IsVisible)
+        //            {
+        //                if (touching is CollisionDetector.Touching.bottom)
+        //                {
+        //                    onGround = true;
+        //                    currentMotionState.Fall();
+        //                }
+        //                else if(touching is CollisionDetector.Touching.top)
+        //                {
+        //                    Speed = new Vector2(Speed.X, -Speed.Y);
+        //                }
+        //                else
+        //                {
+        //                    currentMotionState.Idle();
+        //                }
+        //            }
+        //            break;
+        //        case ItemEntity:
+        //            switch (entity)
+        //            {
+        //                case FireFlowerEntity:
+        //                    if (currentPowerState.GetType() == typeof(SuperState))
+        //                    {
+        //                        currentPowerState.Fire();
+        //                    }
+        //                    if (currentPowerState.GetType() == typeof(NormalState))
+        //                    {
+        //                        currentPowerState.Super();
+        //                    }
+        //                    break;
+        //                case OneUpMushroomEntity:
+
+        //                    break;
+        //                case CoinEntity:
+
+        //                    break;
+        //                case SuperMushroomEntity:
+        //                    if (currentPowerState.GetType() == typeof(NormalState))
+        //                        currentPowerState.Super();
+        //                    break;
+        //                case StarEntity:
+        //                    //turn to star mario 
+        //                    break;
+        //                case PipeEntity:
+        //                    if (touching is CollisionDetector.Touching.bottom)
+        //                    {
+        //                        onGround = true;
+        //                        currentMotionState.Fall();
+        //                    }
+        //                    break;
+
+        //            }
+        //            break;
+        //        case EnemyEntity:
+        //            switch (entity)
+        //            {
+        //                case GoombaEntity:
+        //                    if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left)
+        //                    {
+        //                        Position = position;
+        //                        currentMotionState.Idle();
+        //                        currentPowerState.TakeDamage();
+        //                    }
+        //                    else
+        //                    {
+        //                        currentMotionState.Fall();
+        //                    }
+        //                    break;
+        //                case KoopaTroopaEntity:
+        //                    //KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
+        //                    //Debug.WriteLine(koopa.currentState.ToString());
+
+        //                    //if (koopa.currentState is KoopaTroopaDeathState )
+        //                    //{
+        //                    //    if (touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.bottom)
+        //                    //    {
+        //                    //        Debug.WriteLine("DEBUG");
+        //                    //        Position = position;
+        //                    //        Idle();
+        //                    //    }
+        //                    //    else
+        //                    //    {
+        //                    //        Fall();
+        //                    //    }
+        //                    //}
+        //                    //else
+        //                    //{
+        //                    if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
+        //                    {
+        //                        Debug.WriteLine("DEBUG - 2");
+        //                        Position = position;
+        //                        currentMotionState.Idle();
+        //                    }
+        //                    else if (touching != CollisionDetector.Touching.bottom)
+        //                    {
+        //                        Position = new Vector2(position.X, position.Y + 5);
+        //                        currentMotionState.Idle();
+        //                    }
+        //                    else
+        //                    {
+        //                        currentMotionState.Fall();
+        //                    }
+        //                    //}
+
+        //                    break;
+        //            }
+        //            break;
+        //    }
+        //}
+
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            //Debug.WriteLine("mario position top left: " + (Position.Y - Sprite.FrameSize.Y));
-            //Debug.WriteLine("before update position: " + this.Position);
-
-            this.Position = position;
-            //Debug.WriteLine("after update position: " + this.Position);
-            switch (entity)
-            {
-                case BlockEntity block:
-                    if (block.IsVisible)
-                    {
-                        if (touching is CollisionDetector.Touching.bottom)
-                        {
-                            onGround = true;
-                            Fall();
-                        }
-                        else if(touching is CollisionDetector.Touching.top)
-                        {
-                            Speed = new Vector2(Speed.X, -Speed.Y);
-                        }
-                        else
-                        {
-                            Idle();
-                        }
-                    }
-                    break;
-                case ItemEntity:
-                    switch (entity)
-                    {
-                        case FireFlowerEntity:
-                            if (currentPowerState.GetType() == typeof(SuperState))
-                            {
-                                Fire();
-                            }
-                            if (currentPowerState.GetType() == typeof(NormalState))
-                            {
-                                Super();
-                            }
-                            break;
-                        case OneUpMushroomEntity:
-
-                            break;
-                        case CoinEntity:
-
-                            break;
-                        case SuperMushroomEntity:
-                            if (currentPowerState.GetType() == typeof(NormalState))
-                                Super();
-                            break;
-                        case StarEntity:
-                            //turn to star mario 
-                            break;
-                        case PipeEntity:
-                            if (touching is CollisionDetector.Touching.bottom)
-                            {
-                                onGround = true;
-                                Fall();
-                            }
-                            break;
-
-                    }
-                    break;
-                case EnemyEntity:
-                    switch (entity)
-                    {
-                        case GoombaEntity:
-                            if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left)
-                            {
-                                Position = position;
-                                Idle();
-                                TakeDamage();
-                            }
-                            else
-                            {
-                                Fall();
-                            }
-                            break;
-                        case KoopaTroopaEntity:
-                            //KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
-                            //Debug.WriteLine(koopa.currentState.ToString());
-
-                            //if (koopa.currentState is KoopaTroopaDeathState )
-                            //{
-                            //    if (touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.bottom)
-                            //    {
-                            //        Debug.WriteLine("DEBUG");
-                            //        Position = position;
-                            //        Idle();
-                            //    }
-                            //    else
-                            //    {
-                            //        Fall();
-                            //    }
-                            //}
-                            //else
-                            //{
-                            if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
-                            {
-                                Debug.WriteLine("DEBUG - 2");
-                                Position = position;
-                                Idle();
-                                //TakeDamage();
-                            }
-                            else if (touching != CollisionDetector.Touching.bottom)
-                            {
-                                Position = new Vector2(position.X, position.Y + 5);
-                                Idle();
-                            }
-                            else
-                            {
-                                Fall();
-                            }
-                            //}
-                            
-                            break;
-                    }
-                    break;
-            }
+            currentMotionState.CollisionResponse(entity, position, touching);
+            currentPowerState.CollisionResponse(entity, position, touching);
         }
 
 
@@ -241,7 +246,7 @@ namespace Sprint0.Mario
 
             if(Position.Y> 480)
             {
-                TakeDamage();
+                currentPowerState.TakeDamage();
                 Speed = Vector2.Zero;
             }
         }
@@ -255,149 +260,7 @@ namespace Sprint0.Mario
 
 
  //----------------------------------------Motion Command Method-----------------------------------
-        public void Jump()
-        {
-            if( !(currentPowerState is DeadState))
-            {
-                switch (currentMotionState)
-                {
-                    case CrouchState:
-                        currentMotionState?.IdleTransion();
-                        break;
-                    default:
-                        currentMotionState?.JumpTransion();
-                        break;
-                }
-            }
-        }
-
-        public void Idle()
-        {
-            currentMotionState?.IdleTransion();
-        }
-
-        public void Fall()
-        {
-            currentMotionState?.FallTransion();
-        }
-        //the vertical and horizontal speed after state change will turn to zero
-        //need to fix this problem later
-        public void WalkRight()
-        {
-            if(!(currentPowerState is DeadState))
-            {
-                switch (currentMotionState)
-                {
-                    case IdleState:
-                        if (Sprite.Orientation == SpriteEffects.None)
-                        {
-                            currentMotionState?.WalkTransion();
-                        }
-                        else
-                        {
-                            Sprite.Orientation = SpriteEffects.None;
-                        }
-                        break;
-                    case WalkState:
-                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                        {
-                            currentMotionState?.IdleTransion();
-                        }
-                        break;
-                    case JumpState:
-                        if (Sprite.Orientation == SpriteEffects.None)
-                        {
-                            Speed += new Vector2(40, 0);
-                        }
-                        else
-                        {
-                            Sprite.Orientation = SpriteEffects.None;
-                            currentMotionState?.IdleTransion();
-                        }
-                        break;
-                    case CrouchState:
-                        if (Sprite.Orientation == SpriteEffects.None)
-                        {
-                            currentMotionState?.IdleTransion();
-                        }
-                        else
-                        {
-                            Sprite.Orientation = SpriteEffects.None;
-                            currentMotionState?.IdleTransion();
-                        }
-                        break;
-                }
-            }
-            
-
-        }
-        public void WalkLeft()
-        {
-            if(!(currentPowerState is DeadState))
-            {
-                switch (currentMotionState)
-                {
-                    case IdleState:
-                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                        {
-                            currentMotionState?.WalkTransion();
-                        }
-                        else
-                        {
-                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
-                        }
-                        break;
-                    case WalkState:
-                        if (Sprite.Orientation == SpriteEffects.None)
-                        {
-                            currentMotionState?.IdleTransion();
-                        }
-                        break;
-                    case JumpState:
-                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                        {
-                            Speed += new Vector2(-40, 0);
-                        }
-                        else
-                        {
-                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
-                            currentMotionState?.IdleTransion();
-                        }
-                        break;
-                    case CrouchState:
-                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
-                        {
-                            currentMotionState?.IdleTransion();
-                        }
-                        else
-                        {
-                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
-                            currentMotionState?.IdleTransion();
-                        }
-                        break;
-                }
-            }
-        }
-        public void Crouch()
-        {
-            if(!(currentPowerState is DeadState))
-            {
-                switch (currentMotionState)
-                {
-                    case JumpState:
-                        currentMotionState?.IdleTransion();
-                        break;
-                    case WalkState:
-                        currentMotionState?.IdleTransion();
-                        break;
-                    default:
-                        // if(currentPowerState.GetType() != typeof(NormalState))
-                        currentMotionState?.CrouchTransion();
-                        break;
-                }
-            }
-
-        }
+        
         public void initalizeFireballPool()
         {
             FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
@@ -419,36 +282,5 @@ namespace Sprint0.Mario
         }
 
         //-------------------------------------------Power Command Method--------------------------------
-
-        public void Fire()
-        {
-            
-            currentPowerState?.FireTransion();
-        }
-        public void Normal()
-        {
-            
-            currentPowerState?.NormalTransion();
-        }
-        public void Super()
-        {
-            
-            currentPowerState?.SuperTransion();
-        }
-        public void TakeDamage()
-        {
-            switch (currentPowerState)
-            {
-                case NormalState:
-                    currentPowerState?.DeadTransion();
-                    break;
-                case SuperState:
-                    currentPowerState?.NormalTransion();
-                    break;
-                case FireState:
-                    currentPowerState?.SuperTransion();
-                    break;
-            }
-        }
     }
 }
