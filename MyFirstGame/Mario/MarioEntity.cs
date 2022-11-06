@@ -140,6 +140,7 @@ namespace Sprint0.Mario
                             if (currentPowerState.GetType() == typeof(SuperState))
                             {
                                 Fire();
+                                initalizeFireballPool();
                             }
                             if (currentPowerState.GetType() == typeof(NormalState))
                             {

@@ -1,4 +1,5 @@
-﻿using Sprint0.Interfaces;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +10,11 @@ namespace Sprint0.Block.State.GameState
 {
     public class GameOverState : IGameState
     {
-        public Interfaces.GameStates Type
-        {
-            get
-            {
-                return Interfaces.GameStates.GameOver;
-            }
-        }
-        public void Proceed()
+        public void Update()
         {
 
         }
-        public void PlayDemo()
-        {
-
-        }
-        public void Pause()
-        {
-            
-        }
-        public void Died()
-        {
-
-        }
-        public void GameOver()
+        public void Draw(SpriteBatch spriteBatch)
         {
 
         }

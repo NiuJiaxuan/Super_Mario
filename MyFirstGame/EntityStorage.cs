@@ -38,6 +38,8 @@ namespace Sprint0
         private IController keyboard;
         private IController pausedKeyboard;
 
+        public Game1 Game { get; set; }
+
         public Grid[,] AllGrids { get; set; }
 
         private static EntityStorage instance;
@@ -255,7 +257,7 @@ namespace Sprint0
 
             keyboard.Command((int)Keys.C, new ShowBoundBox(EntityStorage.Instance.EntityList));
         }
-        public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
+        public void Update(GameTime gameTime)
         {
             if (!isPause)
             {
@@ -283,7 +285,8 @@ namespace Sprint0
         public void PauseCommand()
         {
             isPause = !isPause;
-            pausedKeyboard = new KeyboardController();
+            pausedKeyboard = new KeyboardController();   
+            pausedKeyboard.Command((int)Keys.Q, new ExitCommand(Game));
             pausedKeyboard.Command((int)Keys.P, new PauseCommand(this));
         }
         public void clear()

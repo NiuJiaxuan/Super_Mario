@@ -87,6 +87,7 @@ namespace Sprint0
         {
 
             base.Initialize();
+            EntityStorage.Instance.Game = this;
         }
 
         protected override void LoadContent()
@@ -123,7 +124,7 @@ namespace Sprint0
 
                 camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
                 gamepad.Update();
-                levelBuilder.EntityStorage.Update(gameTime, _graphics);
+                levelBuilder.EntityStorage.Update(gameTime);
             
 
             base.Update(gameTime);
@@ -135,8 +136,8 @@ namespace Sprint0
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
             _spriteBatch.Draw(background, new Rectangle((int)(-camera.Position.X*0.5f), (int)(camera.Position.Y*0.5f), 3500, 430), Color.White);
-            _spriteBatch.Draw(cloud, new Vector2(0, 50), new Rectangle((int)(camera.Position.X * 2f), (int)(camera.Position.Y * 0.5f), 1300, 120), Color.White);
-            _spriteBatch.Draw(bush, new Vector2(0,330),new Rectangle((int)(camera.Position.X * 1.5f), (int)(camera.Position.Y * 0.5f), 1300, 100), Color.White);
+            _spriteBatch.Draw(cloud, new Vector2(0, 50), new Rectangle((int)(camera.Position.X * 0.7f), (int)(camera.Position.Y * 0.5f), 1300, 120), Color.White);
+            _spriteBatch.Draw(bush, new Vector2(0,330),new Rectangle((int)(camera.Position.X * 0.6f), (int)(camera.Position.Y * 0.5f), 1300, 100), Color.White);
             _spriteBatch.End();
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(new Vector2(1f)));
@@ -160,7 +161,7 @@ namespace Sprint0
 
         }
 
-            public void ExitCommnad()
+        public void ExitCommnad()
         {
             Exit();
         }

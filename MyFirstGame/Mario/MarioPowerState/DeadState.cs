@@ -1,8 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Block.State.GameState;
+using Sprint0.Item;
 using Sprint0.Mario.MarioMotionState;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +14,7 @@ namespace Sprint0.Mario.MarioPowerState
 {
     public class DeadState : MarioPowerState
     {
-
+        private Texture2D background;
         Vector2 anchor;
         public DeadState(MarioEntity mario)
             : base(mario)
@@ -33,6 +37,7 @@ namespace Sprint0.Mario.MarioPowerState
             int type = Mario.generateType(CurrentMotionState, CurrentState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
             Mario.marioType = type;
+            //background = Game1.Instance.Content.Load<Texture2D>("gameover");
         }
 
         public override void NormalTransion()
