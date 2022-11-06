@@ -19,6 +19,7 @@ namespace Sprint0.Mario.MarioPowerState
 
         public override void Enter(IMarioPowerState powerState)
         {
+            SoundStorage.Instance.PlayDie();
             EntityStorage.Instance.movableRemove(Mario);
             CurrentState = this;
             this.previousState = powerState;

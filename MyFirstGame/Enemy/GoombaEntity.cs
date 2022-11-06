@@ -79,6 +79,7 @@ namespace Sprint0.Enemy
                     break;
                 case FireballEntity:
 
+                    SoundStorage.Instance.PlayStomp();
                     KillTransition();
                     EnemyType = eEnemyType.DeadGooma;
                     EntityStorage.Instance.movableRemove(this);

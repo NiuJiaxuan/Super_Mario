@@ -24,6 +24,7 @@ using Sprint0.Interfaces;
 using System.Security.Cryptography;
 using System.ComponentModel.Design.Serialization;
 using Sprint0.Enemy.EnemyState;
+using static Sprint0.CollisionDetection.CollisionDetector;
 
 namespace Sprint0.Mario
 {
@@ -261,6 +262,150 @@ namespace Sprint0.Mario
 
  //----------------------------------------Motion Command Method-----------------------------------
         
+        public void Jump()
+        {
+            if( !(currentPowerState is DeadState))
+            {
+                switch (currentMotionState)
+                {
+                    case CrouchState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    default:
+                        currentMotionState?.JumpTransion();
+                        break;
+                }
+            }
+
+        }
+
+        public void Idle()
+        {
+            currentMotionState?.IdleTransion();
+        }
+
+        public void Fall()
+        {
+            currentMotionState?.FallTransion();
+        }
+        //the vertical and horizontal speed after state change will turn to zero
+        //need to fix this problem later
+        public void WalkRight()
+        {
+            if(!(currentPowerState is DeadState))
+            {
+                switch (currentMotionState)
+                {
+                    case IdleState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.WalkTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                        }
+                        break;
+                    case WalkState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case JumpState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            Speed += new Vector2(40, 0);
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case CrouchState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                }
+            }
+            
+
+        }
+        public void WalkLeft()
+        {
+            if(!(currentPowerState is DeadState))
+            {
+                switch (currentMotionState)
+                {
+                    case IdleState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.WalkTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                        }
+                        break;
+                    case WalkState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case JumpState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            Speed += new Vector2(-40, 0);
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case CrouchState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                }
+            }
+        }
+        public void Crouch()
+        {
+            if(!(currentPowerState is DeadState))
+            {
+                switch (currentMotionState)
+                {
+                    case JumpState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    case WalkState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    default:
+                        // if(currentPowerState.GetType() != typeof(NormalState))
+                        currentMotionState?.CrouchTransion();
+                        break;
+                }
+            }
+
+        }
         public void initalizeFireballPool()
         {
             FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
@@ -275,6 +420,7 @@ namespace Sprint0.Mario
             FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
                 if (fireballPool.Count > 0)
                 {
+                    SoundStorage.Instance.PlayFireball();
                     EntityStorage.Instance.movableAdd(fireball);
                     fireballPool.RemoveAt(0);
                 }
@@ -282,5 +428,37 @@ namespace Sprint0.Mario
         }
 
         //-------------------------------------------Power Command Method--------------------------------
+
+        public void Fire()
+        {
+            SoundStorage.Instance.PlayPowerUp();
+            currentPowerState?.FireTransion();
+        }
+        public void Normal()
+        {
+            
+            currentPowerState?.NormalTransion();
+        }
+        public void Super()
+        {
+            SoundStorage.Instance.PlayPowerUp();
+            currentPowerState?.SuperTransion();
+        }
+        public void TakeDamage()
+        {
+            switch (currentPowerState)
+            {
+                case NormalState:
+                    
+                    currentPowerState?.DeadTransion();
+                    break;
+                case SuperState:
+                    currentPowerState?.NormalTransion();
+                    break;
+                case FireState:
+                    currentPowerState?.SuperTransion();
+                    break;
+            }
+        }
     }
 }

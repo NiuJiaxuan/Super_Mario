@@ -20,6 +20,7 @@ namespace Sprint0.Block.State
 
         public override void Enter(IBlockState previousState)
         {
+            SoundStorage.Instance.PlayBreakBlock();
             CurrentState = this;
             this.previousState = previousState;
             Block.SmallBlock1 = Block.BlockFactory.CreateBlock(Block.game, Block.Position, (int)BlockSpriteFactory.eBlockType.SmallBrickBlock);
