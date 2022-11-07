@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Sprint0.Interfaces;
+using Sprint0.ScoreSystem;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,6 +29,7 @@ namespace Sprint0.Enemy.EnemyState
         }
         public override void Enter(IEnemyState previousState)
         {
+            ScoreSystemManager.Instance.KillGoomba();
             CurrentState = this;
             this.previousState = previousState;
             Enemy.Sprite = Enemy.EnemyFactory.CreateEnemy(Enemy.game, Enemy.Position, 3);

@@ -13,12 +13,16 @@ namespace Sprint0
     {
         public List<SoundEffect> SoundEffectList { get; set; }
         public List<Song> SongList { get; set; }
+
+        bool isPlaying = true;
+        bool isHurry = true;
         public void LoadSounds(ContentManager content)
         {
-            //music
+            //Song
+            SongList.Add(content.Load<Song>("Sound/bgm"));
+            SongList.Add(content.Load<Song>("Sound/TimeWarning"));
 
-
-            //sound effects
+            //Sound Effect
             SoundEffectList.Add(content.Load<SoundEffect>("Sound/smb_1-up"));
             SoundEffectList.Add(content.Load<SoundEffect>("Sound/smb_breakblock"));
             SoundEffectList.Add(content.Load<SoundEffect>("Sound/smb_coin"));
@@ -119,6 +123,37 @@ namespace Sprint0
         public void PlayDie()
         {
             SoundEffectList[13].Play();
+        }
+        public void PlayBGM()
+        {
+            MediaPlayer.Play(SongList[0]);
+            MediaPlayer.IsRepeating = true;
+        }
+        public void PauseBGM()
+        {
+            if (isPlaying)
+            {
+                MediaPlayer.Pause();
+                isPlaying = false;
+            }
+            else
+            {
+                MediaPlayer.Resume();
+                isPlaying = true;
+            }
+        }
+        public void StopBGM()
+        {
+            MediaPlayer.Stop();
+        }
+        public void PlayTimeWarning()
+        {
+            if (!isHurry)
+            {
+                MediaPlayer.Play(SongList[1]);
+                MediaPlayer.IsRepeating = true;
+                isHurry = true;
+            }
         }
 
     }

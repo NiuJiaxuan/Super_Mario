@@ -25,7 +25,29 @@ namespace Sprint0.Command
         public abstract void Execute();
 
     }
+    public abstract class EntityStorageCommand : ICommand
+    {
+        protected EntityStorage receiver;
 
+        protected EntityStorageCommand(EntityStorage receiver)
+        {
+            this.receiver = receiver;
+        }
+
+        public abstract void Execute();
+
+    }
+    public abstract class SoundStorageCommand : ICommand
+    {
+        protected SoundStorage receiver;
+        protected SoundStorageCommand(SoundStorage receiver)
+        {
+            this.receiver = receiver;
+        }
+
+        public abstract void Execute();
+
+    }
     public abstract class EntityCommand : ICommand
     {
         protected List<Entity> receiver;

@@ -3,11 +3,13 @@ using Sprint0.Block;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.State;
+using Sprint0.Block.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sprint0.Block.State.GameState;
 
 namespace Sprint0.Command
 {
@@ -151,7 +153,18 @@ namespace Sprint0.Command
             receiver.ResetCommand();
         }
     }
+    public class PauseCommand : EntityStorageCommand
+    {
+        public PauseCommand(EntityStorage receiver)
+            : base(receiver) { }
 
+        public override void Execute()
+        {
+            receiver.PauseCommand();
+            SoundStorage.Instance.PauseBGM();
+ 
+        }
+    }
     public class ShootingFireballCommand : MarioCommand
     {
         public ShootingFireballCommand(Entity receiver)
@@ -160,6 +173,17 @@ namespace Sprint0.Command
         public override void Execute()
         {
             receiver.ShootingFireball();
+        }
+    }
+    public class MuteCommand : SoundStorageCommand
+    {
+        public MuteCommand(SoundStorage receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.PauseBGM();
+
         }
     }
 

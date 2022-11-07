@@ -20,6 +20,7 @@ using Sprint0.CollisionDetection;
 using Sprint0.Interfaces;
 using System;
 using Microsoft.Xna.Framework.Audio;
+using Sprint0.ScoreSystem;
 
 namespace Sprint0
 {
@@ -29,17 +30,13 @@ namespace Sprint0
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        SpriteFont font;
 
         private Texture2D background;
         private Texture2D bush;
         private Texture2D cloud;
-        private Texture2D fireball;
 
-        Boolean canShoot = false;
-
-        private IController keyboard;
         private IController gamepad;
-
 
         Camera camera;
         public static LevelData levelData { get; set; }
@@ -94,6 +91,7 @@ namespace Sprint0
         {
 
             base.Initialize();
+            EntityStorage.Instance.Game = this;
         }
 
         protected override void LoadContent()
@@ -107,32 +105,14 @@ namespace Sprint0
             camera.Limits = new Rectangle(0, 0, 6300, 480);
             background = Content.Load<Texture2D>("background");
             cloud = Content.Load<Texture2D>("cloud");
-            bush = Content.Load<Texture2D>("bush");
+            bush= Content.Load<Texture2D>("bush");
+            EntityStorage.Instance.initialCommand(this);
+            EntityStorage.Instance.SetupGrids(_graphics);
 
-            //-------------------------keyboard control------------------
+            SoundStorage.Instance.PlayBGM();
 
-            keyboard = new KeyboardController();
-            keyboard.Command((int)Keys.Q, new ExitCommand(this));
-            keyboard.Command((int)Keys.R, new ResetCommand(this));
-            keyboard.Command((int)Keys.I, new ChangeToFireMario(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Space, new ShootingFireballCommand(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.U, new ChangeToSuperMario(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.O, new MarioTakeDamege(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.W, new MarioJump(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Up, new MarioJump(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.S, new MarioCrouch(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Down, new MarioCrouch(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.A, new MarioWalkLeft(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Left, new MarioWalkLeft(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.D, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
-            keyboard.Command((int)Keys.Right, new MarioWalkRight(levelBuilder.EntityStorage.Mario));
-
-            keyboard.Command((int)Keys.C, new ShowBoundBox(EntityStorage.Instance.EntityList));
+            font = Content.Load<SpriteFont>("file");
+            HUD.Instance.SetUpFont(font);
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
@@ -149,9 +129,11 @@ namespace Sprint0
         {
 
             camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
-            keyboard.Update();
             gamepad.Update();
-            levelBuilder.EntityStorage.Update(gameTime, _graphics);
+            levelBuilder.EntityStorage.Update(gameTime);
+            HUD.Instance.SetUpGameTime(gameTime);
+            HUD.Instance.TimeConcurrent();
+            
 
             base.Update(gameTime);
         }
@@ -162,18 +144,17 @@ namespace Sprint0
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.LinearWrap, null, null);
             _spriteBatch.Draw(background, new Rectangle((int)(-camera.Position.X*0.5f), (int)(camera.Position.Y*0.5f), 3500, 430), Color.White);
-            _spriteBatch.Draw(cloud, new Vector2(0, 50), new Rectangle((int)(camera.Position.X * 2f), (int)(camera.Position.Y * 0.5f), 1300, 120), Color.White);
-            _spriteBatch.Draw(bush, new Vector2(0,330),new Rectangle((int)(camera.Position.X * 1.5f), (int)(camera.Position.Y * 0.5f), 1300, 100), Color.White);
+            _spriteBatch.Draw(cloud, new Vector2(0, 50), new Rectangle((int)(camera.Position.X * 0.7f), (int)(camera.Position.Y * 0.5f), 1300, 120), Color.White);
+            _spriteBatch.Draw(bush, new Vector2(0,330),new Rectangle((int)(camera.Position.X * 0.6f), (int)(camera.Position.Y * 0.5f), 1300, 100), Color.White);
             _spriteBatch.End();
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(new Vector2(1f)));
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
             levelBuilder.EntityStorage.Draw(_spriteBatch);
+            _spriteBatch.End();
 
-            if (canShoot)
-            {
-                _spriteBatch.Draw(fireball, new Vector2(levelBuilder.EntityStorage.Mario.Position.X+10, levelBuilder.EntityStorage.Mario.Position.Y-25),Color.White);
-            }
+            _spriteBatch.Begin();
+            HUD.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -183,15 +164,15 @@ namespace Sprint0
         public void ResetCommand()
         {
             levelBuilder.EntityStorage.clear();
-            Initialize();
-            
+             levelBuilder = new LevelBuilder();
+            levelBuilder.LodeLevel(this);
+            levelData = levelBuilder.LevelData;
+            EntityStorage.Instance.initialCommand(this);
+
+
         }
-        public void ShootingFireBallCommand()
-        {
-            canShoot = true;
-            fireball = Content.Load<Texture2D>("fireball");
-        }
-            public void ExitCommnad()
+
+        public void ExitCommnad()
         {
             Exit();
         }

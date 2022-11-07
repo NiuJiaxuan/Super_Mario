@@ -1,8 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Sprint0.Block;
 using Sprint0.CollisionDetection;
+using Sprint0.Command;
+using Sprint0.Controller;
 using Sprint0.Enemy;
+using Sprint0.interfaces;
 using Sprint0.Interfaces;
 using Sprint0.Item;
 using Sprint0.level;
@@ -23,6 +27,7 @@ namespace Sprint0
 {
     public class EntityStorage
     {
+        public bool isPause = false;
         public List<Entity> DrawableEntities { get; set; }
         public List<Entity> EntityList { get; set; }
         public List<Entity> MovableEntities { get; set; }
@@ -32,6 +37,12 @@ namespace Sprint0
         //public List<Entity> PlayerList { get; set; }
         public Entity Mario { get; set; }
 
+        private IController keyboard;
+        private IController pausedKeyboard;
+
+        public Game1 Game { get; set; }
+
+        public Grid[,] AllGrids { get; set; }
 
         private static EntityStorage instance;
         public static EntityStorage Instance
@@ -123,9 +134,13 @@ namespace Sprint0
                 {
                     return new CastleEntity(game, levelObject.Position);
                 }
-                else if (objectName.Equals("Flag"))
+                else if (objectName.Equals("Flagpole"))
                 {
                     return new FlagPoleEntity(game, levelObject.Position);
+                }
+                else if (objectName.Equals("Flag"))
+                {
+                    return new FlagEntity(game, levelObject.Position);
                 }
             }
             else if (objectType.Equals("Enemies"))
@@ -222,9 +237,50 @@ namespace Sprint0
             }       
         }
 
-        public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
+        public void initialCommand(Game1 game)
         {
+            keyboard = new KeyboardController();
+            keyboard.Command((int)Keys.Q, new ExitCommand(game));
+            keyboard.Command((int)Keys.R, new ResetCommand(game));
+            keyboard.Command((int)Keys.P, new PauseCommand(this));
+            keyboard.Command((int)Keys.I, new ChangeToFireMario(Mario));
+            keyboard.Command((int)Keys.Space, new ShootingFireballCommand(Mario));
+            keyboard.Command((int)Keys.U, new ChangeToSuperMario(Mario));
+            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(Mario));
+            keyboard.Command((int)Keys.O, new MarioTakeDamege(Mario));
 
+            keyboard.Command((int)Keys.M, new MuteCommand(SoundStorage.Instance)); 
+
+            keyboard.Command((int)Keys.W, new MarioJump(Mario));
+            keyboard.Command((int)Keys.Up, new MarioJump(Mario));
+
+            keyboard.Command((int)Keys.S, new MarioCrouch(Mario));
+            keyboard.Command((int)Keys.Down, new MarioCrouch(Mario));
+
+            keyboard.Command((int)Keys.A, new MarioWalkLeft(Mario));
+            keyboard.Command((int)Keys.Left, new MarioWalkLeft(Mario));
+
+            keyboard.Command((int)Keys.D, new MarioWalkRight(Mario));
+            keyboard.Command((int)Keys.Right, new MarioWalkRight(Mario));
+
+            keyboard.Command((int)Keys.C, new ShowBoundBox(EntityStorage.Instance.EntityList));
+        }
+        public void Update(GameTime gameTime)
+        {
+            if (!isPause)
+            {
+                foreach (Entity entity in ColliableEntites)
+                {
+                    if (!EntityList.Contains(entity))
+                    {
+                        EntityList.Add(entity);
+                    }
+                }
+                keyboard.Update();
+                for (int i = 0; i < EntityList.Count; i++)
+                {
+                    EntityList[i].Update(gameTime, EntityList);
+                }
             //synchronize entity list
             foreach(Entity entity in ColliableEntites)
             {
@@ -239,8 +295,20 @@ namespace Sprint0
                 EntityList[i].Update(gameTime, EntityList);
             }
 
-            CollisionDetector.Instance.DectectCollision();
-
+                CollisionDetector.Instance.DectectCollision();
+            }
+            else
+            {
+                pausedKeyboard.Update();
+            }
+            
+        }
+        public void PauseCommand()
+        {
+            isPause = !isPause;
+            pausedKeyboard = new KeyboardController();   
+            pausedKeyboard.Command((int)Keys.Q, new ExitCommand(Game));
+            pausedKeyboard.Command((int)Keys.P, new PauseCommand(this));
         }
         public void clear()
         {

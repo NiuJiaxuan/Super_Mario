@@ -86,4 +86,13 @@ namespace Sprint0.Sprites.Sprites
         }
 
     }
+    class FlagSprite : Sprite
+    {
+        public FlagSprite(Game1 game, Vector2 position)
+           : base(game.Content.Load<Texture2D>("sprite sheet"), position, Vector2.Zero, Point.Zero, new Point(1, 1), new Point(35, 34), false)
+        {
+
+        }
+
+    }
 }

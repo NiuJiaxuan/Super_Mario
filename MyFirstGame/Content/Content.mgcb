@@ -213,6 +213,18 @@
 /processorParam:TextureFormat=Color
 /build:floorBlock.png
 
+#begin gameover.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:gameover.png
+
 #begin goomba-injured.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -429,6 +441,12 @@
 /processorParam:TextureFormat=Color
 /build:smb_mario_sheet.png
 
+#begin Sound/bgm.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/bgm.mp3
+
 #begin Sound/smb_1-up.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -524,6 +542,24 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sound/smb_world_clear.wav
+
+#begin Sound/TimeWarning.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sound/TimeWarning.mp3
+
+#begin sprite sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprite sheet.png
 
 #begin stairBlock.jpg
 /importer:TextureImporter

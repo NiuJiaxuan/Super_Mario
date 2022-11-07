@@ -33,6 +33,7 @@ namespace Sprint0.Item
             Castle = 7,
             Fireball = 8,
             FlagPole = 9,
+            Flag =10, 
         }
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }
@@ -56,12 +57,12 @@ namespace Sprint0.Item
                     if(touching == CollisionDetector.Touching.bottom)
                         onGround = true;
                     break;
-                case EnemyEntity:
-                    Position = position;
-                    break;
+                //case EnemyEntity:
+                    //Position = position;
+                    //break;
                     // item response
                 case ItemEntity:
-                    //EntityStorage.Instance.completeRemove(this);
+                    Position = position;
                     break;
 
             }

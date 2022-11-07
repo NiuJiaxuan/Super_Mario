@@ -25,6 +25,7 @@ using System.Security.Cryptography;
 using System.ComponentModel.Design.Serialization;
 using Sprint0.Enemy.EnemyState;
 using static Sprint0.CollisionDetection.CollisionDetector;
+using Sprint0.ScoreSystem;
 
 namespace Sprint0.Mario
 {
