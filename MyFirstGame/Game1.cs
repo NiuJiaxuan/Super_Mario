@@ -105,8 +105,8 @@ namespace Sprint0
             bush= Content.Load<Texture2D>("bush");
             EntityStorage.Instance.initialCommand(this);
             EntityStorage.Instance.SetupGrids(_graphics);
-            
 
+            SoundStorage.Instance.PlayBGM();
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
