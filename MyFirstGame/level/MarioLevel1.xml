@@ -3698,7 +3698,7 @@
 	</Item>
 	<Item>
 		<ObjectType>Items</ObjectType>
-		<ObjectName>Flag</ObjectName>
+		<ObjectName>Flagpole</ObjectName>
 		<Position>200 420</Position>
 	</Item>
 </ObjectData>

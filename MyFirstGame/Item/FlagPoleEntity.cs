@@ -15,18 +15,22 @@ namespace Sprint0.Item
 {
     public class FlagPoleEntity : ItemEntity
     {
+        FlagEntity flag;
         public FlagPoleEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
             ItemType = eItemType.FlagPole;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
+            flag = new FlagEntity(game, new Vector2(position.X - 20, position.Y - 120));
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
             switch (entity)
             {
                 case MarioEntity:
-                    
+                    if (flag.Position.Y < 420) {
+                        flag.Position = new Vector2(flag.Position.X,flag.Position.Y+1);
+                    }
                     break;
             }
         }
@@ -38,6 +42,7 @@ namespace Sprint0.Item
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            flag.Draw(spriteBatch);
             base.Draw(spriteBatch);
         }
     }

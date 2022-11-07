@@ -21,15 +21,7 @@ namespace Sprint0.Item
             ItemType = eItemType.Flag;
             Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
         }
-        public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
-        {
-            switch (entity)
-            {
-                case MarioEntity:
-                    
-                    break;
-            }
-        }
+
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
             base.Update(gameTime, entities);
