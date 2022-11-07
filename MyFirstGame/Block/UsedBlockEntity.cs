@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
+using Sprint0.Interfaces;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.State;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Block
 {
-    public class UsedBlockEntity : BlockEntity
+    public class UsedBlockEntity : BlockEntity, IStaticEntity
     {
         public UsedBlockEntity(Game1 game, Vector2 position)
             : base(game, position)

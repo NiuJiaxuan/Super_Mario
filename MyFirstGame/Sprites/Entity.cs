@@ -45,9 +45,9 @@ namespace Sprint0.Sprites
             get { return new Point((int)(Position.X + Sprite.FrameSize.X), (int)Position.Y); }
         }
 
-        public List<Grid> SurroundingGrids
+        public List<Cell> SurroundingGrids
         {
-            get { return Grid.getSurroundingGrids(this); }
+            get { return Grid.getSurroundingCells(this); }
         }
 
         public virtual Rectangle GetRectangle
@@ -114,7 +114,14 @@ namespace Sprint0.Sprites
 
 
             Speed += Accelation * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if(Speed != Vector2.Zero)
+            {
+                Grid.Instance.RemoveEntity(this);
+            }
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (Speed != Vector2.Zero)
+                Grid.Instance.AddEntity(this);
         }
 
 
@@ -129,7 +136,7 @@ namespace Sprint0.Sprites
                 RectangleSprite.DrawRectangle(spriteBatch, GetRectangle, Color.Green, 2);
                 if (this is IMovableEntity)
                 {
-                    foreach (Grid grid in SurroundingGrids)
+                    foreach (Cell grid in SurroundingGrids)
                     {
                         grid.Draw(spriteBatch);
                     }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Sprint0.interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using Sprint0.Sprites.Sprites;
 
 namespace Sprint0.Sprites.factory
 {
@@ -23,6 +24,7 @@ namespace Sprint0.Sprites.factory
             StairBlock = 4,
             UsedBlock = 5,
             SmallBrickBlock = 6,
+            Pipe = 7
         }
         protected BlockSpriteFactory()
         {
@@ -68,6 +70,9 @@ namespace Sprint0.Sprites.factory
                     break;
                 case eBlockType.SmallBrickBlock:
                     sprite = new SmallBrickBlockSprite(game, pos);
+                    break;
+                case eBlockType.Pipe:
+                    sprite = new PipeSprite(game, pos);
                     break;
                 case eBlockType.StairBlock:
                     sprite = new StairBlockSprite(game, pos);

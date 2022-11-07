@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,54 +11,111 @@ namespace Sprint0.CollisionDetection
 {
     public class Grid
     {
-        Vector2 Min;
-        Vector2 Max;
-        Vector2 GridSize;
-        public Rectangle Rectangle { get; set; }
-        public Vector2 Position { get; set; }
+        public static Cell[,] GetGrid { get; set; }
 
-        public Grid(Vector2 position,Vector2 gridSize)
+        static int height = 33;
+        static int width = 33;
+
+        private static Grid instance;
+
+        public static Grid Instance
         {
-            Min = position;
-            this.Position = position;
-            Max = new Vector2(position.X + gridSize.X, position.Y + gridSize.Y);
-            this.GridSize = gridSize;
-            Rectangle = new Rectangle((int)position.X, (int)position.Y, (int)gridSize.X, (int)gridSize.Y);
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Grid();
+                }
+                return instance;
+            }
         }
 
-        public static List<Grid> getSurroundingGrids(Entity entity)
+
+        public Grid()
         {
-            List<Grid> surroundingGrids = new List<Grid>();
-            foreach (Grid grid in EntityStorage.Instance.AllGrids)
+            SetupGrids();
+        }
+
+        public static List<Cell> getSurroundingCells(Entity entity)
+        {
+            List<Cell> surroundingCells = new List<Cell>();
+
+            int startColunm = (int)Math.Floor((double)entity.Min.X / width);
+            int startRow = (int)Math.Floor((double)entity.Min.Y / height);
+
+            int endColunm = (int)Math.Floor((double)entity.Max.X / width);
+            int endRow = (int)Math.Floor((double)entity.Max.Y / height);
+
+            for (int i = startColunm; i <= endColunm; i++)
             {
-                if (grid.Rectangle.Intersects(entity.GetRectangle))
+                for (int j = startRow; j <= endRow; j++)
                 {
-                    surroundingGrids.Add(grid);
+                    surroundingCells.Add(GetGrid[i, j]);
                 }
             }
 
-            return surroundingGrids;
+            return surroundingCells;
         }
 
-        public List<Grid> Contains(Grid[,] grids, Entity entity)
-        {
-            List<Grid> containsEntity = new List<Grid>();
 
-            foreach(Grid grid in grids)
+        public void AddEntity(Entity entity)
+        {
+            List<Cell> surroundingCells = getSurroundingCells(entity);
+
+            foreach(Cell cell in surroundingCells)
             {
-                if (entity.GetRectangle.Intersects(grid.Rectangle))
+                if(!cell.CellEntities.Contains(entity))
+                    cell.CellEntities.Add(entity);
+            }
+
+        }
+
+        public void RemoveEntity(Entity entity)
+        {
+            List<Cell> surroundingCells = getSurroundingCells(entity);
+
+            foreach (Cell cell in surroundingCells)
+            {
+                cell.CellEntities.Remove(entity);
+            }
+        }
+
+        public List<Entity> getSurroundingEntity(Entity entity, List<Entity> collidables)
+        {
+            List<Entity> surroundingEntities = new List<Entity>();
+            List<Cell> surroundingCells = getSurroundingCells(entity);
+
+            foreach(Cell cell in surroundingCells)
+            {
+                foreach(Entity entity1 in cell.CellEntities)
                 {
-                    containsEntity.Add(grid);
+
+                    //
+                    if (!surroundingEntities.Contains(entity1) && collidables.Contains(entity1))
+                        surroundingEntities.Add(entity1);
                 }
             }
 
-            return containsEntity;
+            return surroundingEntities;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void SetupGrids()
         {
-            RectangleSprite.DrawRectangle(spriteBatch, Rectangle, Color.Wheat, 1);
-        }
+            double y = 510;
+            double x = 6350;
 
+            int colunms = (int)Math.Ceiling(x / width);
+            int rows = (int)Math.Ceiling(y / height);
+
+            GetGrid = new Cell[colunms, rows];
+            Debug.WriteLine("there are " + colunms + "colunms and " + rows + "rows");
+            for (int i = 0; i < colunms; i++)
+            {
+                for (int j = 0; j < rows; j++)
+                {
+                    GetGrid[i, j] = new Cell(new Vector2(33 * i, 33 * j), new Vector2(33, 33));
+                }
+            }
+        }
     }
 }

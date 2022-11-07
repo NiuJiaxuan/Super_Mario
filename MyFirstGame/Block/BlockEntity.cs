@@ -18,7 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 
-namespace Sprint0.State
+namespace Sprint0.Block
 {
     public class BlockEntity : Entity
     {
@@ -30,7 +30,7 @@ namespace Sprint0.State
         public IBlockState CurrentState { get; set; }
         public eBlockType BlockType { get; set; }
 
-        public virtual BlockFactory BlockFactory => game.BlockFactory;
+        public virtual BlockFactory BlockFactory => BlockFactory.Instance;
 
         public bool breakBlockVisible = true;
         public bool isBumping = false;
@@ -62,6 +62,7 @@ namespace Sprint0.State
             StairBlock = 4,
             UsedBlock = 5,
             SmallBrickBlock = 6,
+            Pipe = 7,
         }
 
         public enum BlockItemType

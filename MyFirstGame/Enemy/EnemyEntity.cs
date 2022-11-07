@@ -10,11 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sprint0.CollisionDetection;
-
+using Sprint0.Enemy.EnemyState;
 
 namespace Sprint0.Enemy
 {
-    public class EnemyEntity : Entity//, IMovableEntity
+    public class EnemyEntity : Entity, IGravityEntity //, IMovableEntity
     {
         public IEnemyState currentState { get; set; }
 

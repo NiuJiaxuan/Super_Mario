@@ -52,6 +52,8 @@ namespace Sprint0
 
         private LevelBuilder levelBuilder;
 
+        private CollisionDetector cd = CollisionDetector.Instance;
+
 
         public MarioFactory MarioFactory
         {
@@ -97,7 +99,6 @@ namespace Sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            EntityStorage.Instance.SetupGrids(_graphics);
             SoundStorage.Instance.LoadSounds(Content);
             levelBuilder = new LevelBuilder();
             levelBuilder.LodeLevel(this);

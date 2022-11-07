@@ -8,7 +8,6 @@ using static System.Formats.Asn1.AsnWriter;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
-using static Sprint0.State.BlockEntity;
 using Sprint0.Item.State;
 using Sprint0.CollisionDetection;
 using Sprint0.State;

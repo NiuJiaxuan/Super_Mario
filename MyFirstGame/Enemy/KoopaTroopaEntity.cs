@@ -14,6 +14,7 @@ using System.Diagnostics;
 using Sprint0.Mario.MarioPowerState;
 using Sprint0.State;
 using Sprint0.Item;
+using Sprint0.Block;
 
 namespace Sprint0.Enemy
 {
@@ -178,7 +179,7 @@ namespace Sprint0.Enemy
                     break;
                 case FireballEntity:
                     SoundStorage.Instance.PlayStomp();
-                    EntityStorage.Instance.movableRemove(this);
+                    EntityStorage.Instance.completeRemove(this);
                     EntityStorage.Instance.ColliableEntites.Remove(this);
                     break;
                 default:
@@ -223,9 +224,15 @@ namespace Sprint0.Enemy
                 currentState.Enter(null);
                 EntityStorage.Instance.MovableEntities.Add(this);
             }
-            else if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) > 350)
+            else if (Position.X - EntityStorage.Instance.Mario.Position.X < -350)
             {
-                EntityStorage.Instance.MovableEntities.Remove(this);
+                Debug.WriteLine(this + " was being removed");
+
+                EntityStorage.Instance.completeRemove(this);
+            }
+            else if (Position.Y > 480)
+            {
+                EntityStorage.Instance.completeRemove(this);
             }
             base.Update(gameTime, blockEntities);
         }

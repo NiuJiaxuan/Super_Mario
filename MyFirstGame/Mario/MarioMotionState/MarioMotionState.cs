@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Block;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
 using Sprint0.interfaces;
@@ -224,12 +225,10 @@ namespace Sprint0.Mario.MarioMotionState
                             {
                                 Mario.Position = position;
                                 Idle();
-                                Mario.currentPowerState.TakeDamage();
                             }
                             else if (touching == CollisionDetector.Touching.top)
                             {
                                 Fall();
-                                Mario.currentPowerState.TakeDamage();
                             }
                             else
                             {

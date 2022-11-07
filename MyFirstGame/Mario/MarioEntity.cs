@@ -28,7 +28,7 @@ using static Sprint0.CollisionDetection.CollisionDetector;
 
 namespace Sprint0.Mario
 {
-    public class MarioEntity   : Entity, IMovableEntity
+    public class MarioEntity   : Entity, IMovableEntity, IGravityEntity
     {
 
         public IMarioPowerState currentPowerState { get; set; }
@@ -100,7 +100,6 @@ namespace Sprint0.Mario
         }
 
 
-
         public MarioEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -110,125 +109,6 @@ namespace Sprint0.Mario
             onGround = false;
         }
 
-        //public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
-        //{
-        //    //Debug.WriteLine("mario position top left: " + (Position.Y - Sprite.FrameSize.Y));
-        //    //Debug.WriteLine("before update position: " + this.Position);
-
-        //    this.Position = position;
-        //    //Debug.WriteLine("after update position: " + this.Position);
-        //    switch (entity)
-        //    {
-        //        case BlockEntity block:
-        //            if (block.IsVisible)
-        //            {
-        //                if (touching is CollisionDetector.Touching.bottom)
-        //                {
-        //                    onGround = true;
-        //                    currentMotionState.Fall();
-        //                }
-        //                else if(touching is CollisionDetector.Touching.top)
-        //                {
-        //                    Speed = new Vector2(Speed.X, -Speed.Y);
-        //                }
-        //                else
-        //                {
-        //                    currentMotionState.Idle();
-        //                }
-        //            }
-        //            break;
-        //        case ItemEntity:
-        //            switch (entity)
-        //            {
-        //                case FireFlowerEntity:
-        //                    if (currentPowerState.GetType() == typeof(SuperState))
-        //                    {
-        //                        currentPowerState.Fire();
-        //                    }
-        //                    if (currentPowerState.GetType() == typeof(NormalState))
-        //                    {
-        //                        currentPowerState.Super();
-        //                    }
-        //                    break;
-        //                case OneUpMushroomEntity:
-
-        //                    break;
-        //                case CoinEntity:
-
-        //                    break;
-        //                case SuperMushroomEntity:
-        //                    if (currentPowerState.GetType() == typeof(NormalState))
-        //                        currentPowerState.Super();
-        //                    break;
-        //                case StarEntity:
-        //                    //turn to star mario 
-        //                    break;
-        //                case PipeEntity:
-        //                    if (touching is CollisionDetector.Touching.bottom)
-        //                    {
-        //                        onGround = true;
-        //                        currentMotionState.Fall();
-        //                    }
-        //                    break;
-
-        //            }
-        //            break;
-        //        case EnemyEntity:
-        //            switch (entity)
-        //            {
-        //                case GoombaEntity:
-        //                    if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left)
-        //                    {
-        //                        Position = position;
-        //                        currentMotionState.Idle();
-        //                        currentPowerState.TakeDamage();
-        //                    }
-        //                    else
-        //                    {
-        //                        currentMotionState.Fall();
-        //                    }
-        //                    break;
-        //                case KoopaTroopaEntity:
-        //                    //KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
-        //                    //Debug.WriteLine(koopa.currentState.ToString());
-
-        //                    //if (koopa.currentState is KoopaTroopaDeathState )
-        //                    //{
-        //                    //    if (touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.bottom)
-        //                    //    {
-        //                    //        Debug.WriteLine("DEBUG");
-        //                    //        Position = position;
-        //                    //        Idle();
-        //                    //    }
-        //                    //    else
-        //                    //    {
-        //                    //        Fall();
-        //                    //    }
-        //                    //}
-        //                    //else
-        //                    //{
-        //                    if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
-        //                    {
-        //                        Debug.WriteLine("DEBUG - 2");
-        //                        Position = position;
-        //                        currentMotionState.Idle();
-        //                    }
-        //                    else if (touching != CollisionDetector.Touching.bottom)
-        //                    {
-        //                        Position = new Vector2(position.X, position.Y + 5);
-        //                        currentMotionState.Idle();
-        //                    }
-        //                    else
-        //                    {
-        //                        currentMotionState.Fall();
-        //                    }
-        //                    //}
-
-        //                    break;
-        //            }
-        //            break;
-        //    }
-        //}
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
@@ -421,7 +301,7 @@ namespace Sprint0.Mario
                 if (fireballPool.Count > 0)
                 {
                     SoundStorage.Instance.PlayFireball();
-                    EntityStorage.Instance.movableAdd(fireball);
+                    EntityStorage.Instance.newEneityAdd(fireball);
                     fireballPool.RemoveAt(0);
                 }
             }

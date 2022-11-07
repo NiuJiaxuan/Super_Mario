@@ -23,15 +23,15 @@ namespace Sprint0
 {
     public class EntityStorage
     {
+        public List<Entity> DrawableEntities { get; set; }
         public List<Entity> EntityList { get; set; }
         public List<Entity> MovableEntities { get; set; }
         public List<Entity> ColliableEntites { get; set; }
+        public List<Entity> GravityEntites { get; set; }
 
         //public List<Entity> PlayerList { get; set; }
         public Entity Mario { get; set; }
 
-
-        public Grid[,] AllGrids { get; set; }
 
         private static EntityStorage instance;
         public static EntityStorage Instance
@@ -53,25 +53,10 @@ namespace Sprint0
             EntityList = new List<Entity>();
             MovableEntities = new List<Entity>();
             ColliableEntites = new List<Entity>();
+            GravityEntites = new List<Entity>();
+            DrawableEntities = new List<Entity>();
         }
 
-        public void SetupGrids(GraphicsDeviceManager graphicsDevice)
-        {
-            double y = 450;
-            double x = 6000;
-
-            int colunms =(int)Math.Ceiling(x / 33);
-            int rows = (int)Math.Ceiling(y / 33);
-
-            AllGrids = new Grid[colunms, rows];
-            for (int i = 0; i < colunms; i++)
-            {
-                for (int j = 0; j <rows; j++)
-                {
-                    AllGrids[i, j] = new Grid(new Vector2(33 * i, 33 * j), new Vector2(33, 33));
-                }
-            }
-        }
 
         private static Entity CreateEntity(LevelObject levelObject, Game1 game, List<Entity> entityList)
         {
@@ -191,18 +176,28 @@ namespace Sprint0
             return temp;
         }
 
-        public void movableAdd(Entity entity)
+        public void newEneityAdd(Entity entity)
         {
             EntityList.Add(entity);
             MovableEntities.Add(entity);
             ColliableEntites.Add(entity);
+            GravityEntites.Add(entity);
+            Grid.Instance.AddEntity(entity);
         }
 
-        public void movableRemove(Entity entity)
+        public void completeRemove(Entity entity)
         {
             EntityList.Remove(entity);
             MovableEntities.Remove(entity);
             ColliableEntites.Remove(entity);
+            GravityEntites.Remove(entity);
+            Grid.Instance.RemoveEntity(entity);
+        }
+
+        public void movableRemove(Entity entity)
+        {
+            MovableEntities.Remove(entity);
+            GravityEntites.Remove(entity);
         }
 
         public void  Add (LevelData levelData, Game1 game)
@@ -219,8 +214,12 @@ namespace Sprint0
                 }
                 if (entity is IMovableEntity)
                     MovableEntities.Add(entity);
-            }
-       
+
+                if (entity is IGravityEntity)
+                    GravityEntites.Add(entity);
+
+                Grid.Instance.AddEntity(entity);
+            }       
         }
 
         public void Update(GameTime gameTime, GraphicsDeviceManager graphics)
@@ -234,10 +233,10 @@ namespace Sprint0
                     EntityList.Add(entity);
                 }
             }
-          
-            for(int i = 0; i< EntityList.Count; i++)
+
+            for (int i = 0; i< EntityList.Count; i++)
             {
-                    EntityList[i].Update(gameTime, EntityList);
+                EntityList[i].Update(gameTime, EntityList);
             }
 
             CollisionDetector.Instance.DectectCollision();

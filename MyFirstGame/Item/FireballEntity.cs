@@ -10,13 +10,14 @@ using Sprint0.Item.State;
 using Sprint0.CollisionDetection;
 using System.Net.Http.Headers;
 using Sprint0.State;
+using Sprint0.Block;
 
 namespace Sprint0.Item
 {
     public class FireballEntity : ItemEntity
     {
         public List<Entity> FireballPool;
-        public FireballEntity(Game1 game, Vector2 position,List<Entity>fireballPool)
+        public FireballEntity(Game1 game, Vector2 position, List<Entity>fireballPool)
             : base(game, position)
         {
             FireballPool = fireballPool;
@@ -45,12 +46,12 @@ namespace Sprint0.Item
                     }
                     else
                     {
-                        EntityStorage.Instance.movableRemove(this);
+                        EntityStorage.Instance.completeRemove(this);
                         FireballPool.Add(this);
                     }
                     break;
                 default:
-                    EntityStorage.Instance.movableRemove(this);
+                    EntityStorage.Instance.completeRemove(this);
                     FireballPool.Add(this);
                     break;
             }

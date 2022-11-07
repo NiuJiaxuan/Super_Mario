@@ -6,6 +6,7 @@ using Sprint0.Mario.MarioMotionState;
 using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,31 +45,32 @@ namespace Sprint0.Mario.MarioPowerState
 
         public void Fire()
         {
-
-            this.FireTransion();
+            SoundStorage.Instance.PlayPowerUp();
+            FireTransion();
         }
         public void Normal()
         {
 
-            this.NormalTransion();
+            NormalTransion();
         }
         public void Super()
         {
-
-            this?.SuperTransion();
+            SoundStorage.Instance.PlayPowerUp();
+            SuperTransion();
         }
         public void TakeDamage()
         {
+            Debug.WriteLine("take damage");
             switch (this)
             {
                 case NormalState:
-                    this?.DeadTransion();
+                    DeadTransion();
                     break;
                 case SuperState:
-                    this?.NormalTransion();
+                    NormalTransion();
                     break;
                 case FireState:
-                    this?.SuperTransion();
+                    SuperTransion();
                     break;
             }
         }
@@ -83,6 +85,7 @@ namespace Sprint0.Mario.MarioPowerState
                         case GoombaEntity:
                             if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left || touching == CollisionDetector.Touching.top)
                             {
+                                if(this.GetType() != typeof(DeadState))
                                 TakeDamage();
                             }
                             break;

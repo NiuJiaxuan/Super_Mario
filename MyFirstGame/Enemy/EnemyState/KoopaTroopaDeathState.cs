@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint0.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Enemy.EnemyState
 {
-    public class KoopaTroopaDeathState : EnemyState
+    public class KoopaTroopaDeathState : KoopaTroopaState
     {
         private static readonly TimeSpan intervalBetweenAlive = TimeSpan.FromMilliseconds(4000);
         private TimeSpan lastTimeAlive;

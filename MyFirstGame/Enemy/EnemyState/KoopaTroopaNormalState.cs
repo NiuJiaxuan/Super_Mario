@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint0.Interfaces;
 using Sprint0.Mario;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Enemy.EnemyState
 {
-    class KoopaTroopaNormalState : EnemyState
+    class KoopaTroopaNormalState : KoopaTroopaState
     {
         string direction;
         public KoopaTroopaNormalState(EnemyEntity enemy, string dir)

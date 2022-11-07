@@ -14,7 +14,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Sprint0.State.BlockEntity;
 
 namespace Sprint0.Block
 {
