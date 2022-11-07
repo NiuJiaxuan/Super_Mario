@@ -76,6 +76,10 @@ namespace Sprint0.Enemy
                         case CollisionDetector.Touching.right:
                             NormalTransition("left");
                             break;
+                        case CollisionDetector.Touching.top:
+                            Position = position;
+                            break;
+
                     }
                     
                     break;

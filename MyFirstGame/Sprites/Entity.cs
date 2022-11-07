@@ -122,6 +122,11 @@ namespace Sprint0.Sprites
             Position += Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (Speed != Vector2.Zero)
                 Grid.Instance.AddEntity(this);
+
+            if (Position.Y > 480 && !(this is MarioEntity))
+            {
+                EntityStorage.Instance.completeRemove(this);
+            }
         }
 
 
