@@ -15,10 +15,12 @@ namespace Sprint0
         public List<Song> SongList { get; set; }
 
         bool isPlaying = true;
+        bool isHurry = true;
         public void LoadSounds(ContentManager content)
         {
             //Song
             SongList.Add(content.Load<Song>("Sound/bgm"));
+            SongList.Add(content.Load<Song>("Sound/TimeWarning"));
 
             //Sound Effect
             SoundEffectList.Add(content.Load<SoundEffect>("Sound/smb_1-up"));
@@ -143,6 +145,15 @@ namespace Sprint0
         public void StopBGM()
         {
             MediaPlayer.Stop();
+        }
+        public void PlayTimeWarning()
+        {
+            if (!isHurry)
+            {
+                MediaPlayer.Play(SongList[1]);
+                MediaPlayer.IsRepeating = true;
+                isHurry = true;
+            }
         }
 
     }

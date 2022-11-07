@@ -20,6 +20,7 @@ using Sprint0.CollisionDetection;
 using Sprint0.Interfaces;
 using System;
 using Microsoft.Xna.Framework.Audio;
+using Sprint0.ScoreSystem;
 
 namespace Sprint0
 {
@@ -29,6 +30,7 @@ namespace Sprint0
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        SpriteFont font;
 
         private Texture2D background;
         private Texture2D bush;
@@ -108,6 +110,9 @@ namespace Sprint0
 
             SoundStorage.Instance.PlayBGM();
 
+            font = Content.Load<SpriteFont>("file");
+            HUD.Instance.SetUpFont(font);
+
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
             gamepad.Command((int)Buttons.Start, new ExitCommand(this));
@@ -122,9 +127,11 @@ namespace Sprint0
         protected override void Update(GameTime gameTime)
         {
 
-                camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
-                gamepad.Update();
-                levelBuilder.EntityStorage.Update(gameTime);
+            camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
+            gamepad.Update();
+            levelBuilder.EntityStorage.Update(gameTime);
+            HUD.Instance.SetUpGameTime(gameTime);
+            HUD.Instance.TimeConcurrent();
             
 
             base.Update(gameTime);
@@ -143,7 +150,10 @@ namespace Sprint0
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.GetViewMatrix(new Vector2(1f)));
             //_spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
             levelBuilder.EntityStorage.Draw(_spriteBatch);
+            _spriteBatch.End();
 
+            _spriteBatch.Begin();
+            HUD.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
