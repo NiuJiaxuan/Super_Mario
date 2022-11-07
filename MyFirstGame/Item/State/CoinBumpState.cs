@@ -30,19 +30,14 @@ namespace Sprint0.Item.State
         public override void Exit()
         {
             Item.Speed = new Vector2(0, 0);
+            EntityStorage.Instance.movableRemove(Item);
         }
 
-        public override void NormalTransition()
-        {
-            CurrentState.Exit();
-            CurrentState = new CoinNormalState(Item);
-            CurrentState.Enter(this);
-        }
 
         public override void Update(GameTime gameTime)
         {
             if (Math.Abs(Item.Position.Y - Origion.Y) >= 30)
-                NormalTransition();
+                Exit();
         }
     }
 }

@@ -149,10 +149,7 @@ namespace Sprint0.Mario
                             break;
                         case OneUpMushroomEntity:
                             SoundStorage.Instance.PlayOneUp();
-                            if (currentPowerState.GetType() == typeof(NormalState))
-                                Super();
-                            else if (currentPowerState.GetType() == typeof(SuperState))
-                                Fire();
+                            //Life++
                             break;
                         case CoinEntity:
                             break;
