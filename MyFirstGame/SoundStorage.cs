@@ -13,6 +13,8 @@ namespace Sprint0
     {
         public List<SoundEffect> SoundEffectList { get; set; }
         public List<Song> SongList { get; set; }
+
+        bool isPlaying = true;
         public void LoadSounds(ContentManager content)
         {
             //Song
@@ -124,6 +126,23 @@ namespace Sprint0
         {
             MediaPlayer.Play(SongList[0]);
             MediaPlayer.IsRepeating = true;
+        }
+        public void PauseBGM()
+        {
+            if (isPlaying)
+            {
+                MediaPlayer.Pause();
+                isPlaying = false;
+            }
+            else
+            {
+                MediaPlayer.Resume();
+                isPlaying = true;
+            }
+        }
+        public void StopBGM()
+        {
+            MediaPlayer.Stop();
         }
 
     }

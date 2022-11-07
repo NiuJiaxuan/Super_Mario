@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Sprint0.Block.State;
+using Sprint0.ScoreSystem;
 using Sprint0.State;
 
 namespace Sprint0.Item.State
@@ -20,6 +21,7 @@ namespace Sprint0.Item.State
         public override void Enter(IItemState previousState)
         {
             SoundStorage.Instance.PlayCoin();
+            ScoreSystemManager.Instance.Coin();
             CurrentState = this;
             this.previousState = previousState;
             Origion = Item.Position;

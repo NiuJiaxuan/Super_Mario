@@ -25,6 +25,7 @@ using System.Security.Cryptography;
 using System.ComponentModel.Design.Serialization;
 using Sprint0.Enemy.EnemyState;
 using static Sprint0.CollisionDetection.CollisionDetector;
+using Sprint0.ScoreSystem;
 
 namespace Sprint0.Mario
 {
@@ -137,6 +138,7 @@ namespace Sprint0.Mario
                     switch (entity)
                     {
                         case FireFlowerEntity:
+                            ScoreSystemManager.Instance.FireFlower(); 
                             if (currentPowerState.GetType() == typeof(SuperState))
                             {
                                 Fire();
@@ -149,15 +151,18 @@ namespace Sprint0.Mario
                             break;
                         case OneUpMushroomEntity:
                             SoundStorage.Instance.PlayOneUp();
-                            //Life++
+                            ScoreSystemManager.Instance.OneUpMushroom();
                             break;
                         case CoinEntity:
+                            ScoreSystemManager.Instance.Coin();
                             break;
                         case SuperMushroomEntity:
+                            ScoreSystemManager.Instance.SuperMushroom();
                             if (currentPowerState.GetType() == typeof(NormalState))
                                 Super();
                             break;
                         case StarEntity:
+                            ScoreSystemManager.Instance.Star();
                             //turn to star mario 
                             break;
                         case PipeEntity:

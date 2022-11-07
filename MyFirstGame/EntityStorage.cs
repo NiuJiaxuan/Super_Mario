@@ -243,6 +243,8 @@ namespace Sprint0
             keyboard.Command((int)Keys.Y, new ChangeToNormalMario(Mario));
             keyboard.Command((int)Keys.O, new MarioTakeDamege(Mario));
 
+            keyboard.Command((int)Keys.M, new MuteCommand(SoundStorage.Instance)); 
+
             keyboard.Command((int)Keys.W, new MarioJump(Mario));
             keyboard.Command((int)Keys.Up, new MarioJump(Mario));
 

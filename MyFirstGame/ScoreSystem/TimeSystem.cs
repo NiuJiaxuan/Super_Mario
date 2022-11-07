@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Sprint0.ScoreSystem
 {
-    internal class TimeSystem
+    public class TimeSystem
     {
+
     }
 }

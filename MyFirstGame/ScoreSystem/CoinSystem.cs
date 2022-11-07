@@ -8,7 +8,7 @@ namespace Sprint0.ScoreSystem
 {
     public class CoinSystem
     {
-        public int coinCount { get; set; }
+        public int CoinCount { get; set; }
 
         private static CoinSystem instance;
 
@@ -26,13 +26,13 @@ namespace Sprint0.ScoreSystem
 
         public CoinSystem()
         {
-            coinCount = 0;
+            CoinCount = 0;
         }
 
         public void GainOneCoin()
         {
-            coinCount++;
-            if (coinCount == 100)
+            CoinCount++;
+            if (CoinCount == 100)
             {
                 LifeSystem.Instance.GainOneLife();
                 CoinReset();
@@ -40,7 +40,7 @@ namespace Sprint0.ScoreSystem
         }
         public void CoinReset()
         {
-            coinCount = 0;
+            CoinCount = 0;
         }
 
     }

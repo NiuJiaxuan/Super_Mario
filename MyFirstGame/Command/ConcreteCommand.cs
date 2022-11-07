@@ -174,5 +174,16 @@ namespace Sprint0.Command
             receiver.ShootingFireball();
         }
     }
+    public class MuteCommand : SoundStorageCommand
+    {
+        public MuteCommand(SoundStorage receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.PauseBGM();
+
+        }
+    }
 
 }
