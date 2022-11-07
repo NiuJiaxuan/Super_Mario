@@ -16,6 +16,7 @@ namespace Sprint0.Item
     public class FlagPoleEntity : ItemEntity
     {
         FlagEntity flag;
+        bool isfall = false;
         public FlagPoleEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -28,14 +29,16 @@ namespace Sprint0.Item
             switch (entity)
             {
                 case MarioEntity:
-                    if (flag.Position.Y < 420) {
-                        flag.Position = new Vector2(flag.Position.X,flag.Position.Y+1);
-                    }
+                    isfall = true;
                     break;
             }
         }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
+            if (flag.Position.Y < 420 && isfall)
+            {
+                flag.Position = new Vector2(flag.Position.X, flag.Position.Y + 1);
+            }
             base.Update(gameTime, entities);
 
         }
