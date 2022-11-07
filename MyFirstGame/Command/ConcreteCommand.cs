@@ -161,6 +161,7 @@ namespace Sprint0.Command
         public override void Execute()
         {
             receiver.PauseCommand();
+            SoundStorage.Instance.PauseBGM();
  
         }
     }
