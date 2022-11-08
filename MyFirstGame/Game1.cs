@@ -191,6 +191,7 @@ namespace Sprint0
             SoundStorage.Instance.PlayBGM();
             GameOverState.Instance.candraw = false;
             EntityStorage.Instance.gameOver = false;
+            HUD.Instance.gameOver = false;
             
         }
 
