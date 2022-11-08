@@ -49,7 +49,7 @@ namespace Sprint0.ScoreSystem
         }
         public void TimeConcurrent()
         {
-            if (!isPasued||gameOver)
+            if (!isPasued && !gameOver)
             {
                 timeCounter += gameTime.ElapsedGameTime.Ticks;
                 TimeDisplay = timeLimit - timeCounter;

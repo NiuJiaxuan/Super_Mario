@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Sprint0.Command;
 using Sprint0.Interfaces;
 using Sprint0.ScoreSystem;
 using System;
@@ -14,7 +16,9 @@ namespace Sprint0.Block.State.GameState
 {
     public class GameOverState : IGameState
     {
+        public SpriteFont Font;
         public Texture2D background;
+        public bool candraw = false;
         private static GameOverState instance;
 
         public static GameOverState Instance
@@ -28,19 +32,19 @@ namespace Sprint0.Block.State.GameState
                 return instance;
             }
         }
-        
-        public GameOverState()
-        {
-            
-        }
-        public void loadGameOverBackground(ContentManager content)
+
+        public void loadGameOverBackground(ContentManager content, SpriteFont font)
         {
             background = content.Load<Texture2D>("gameover");
+            Font = font;
         }
 
         public void gameOver()
         {
             HUD.Instance.gameOver = !HUD.Instance.gameOver;
+            EntityStorage.Instance.gameOver = true;
+            candraw = !candraw;
+
         }
         public void Update()
         {
@@ -48,7 +52,15 @@ namespace Sprint0.Block.State.GameState
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, new Rectangle(0,0,800,480), Color.White);
+            spriteBatch.Begin();
+            if (candraw)
+            {
+                spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
+
+                spriteBatch.DrawString(Font, "Press R to replay " , new Vector2(350, 300), Color.White);
+                spriteBatch.DrawString(Font, "Press Q to quit " , new Vector2(350, 350), Color.White);
+            }
+            spriteBatch.End();
         }
     }
 }

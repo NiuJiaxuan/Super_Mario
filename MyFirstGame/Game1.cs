@@ -112,10 +112,10 @@ namespace Sprint0
 
             SoundStorage.Instance.PlayBGM();
 
-            GameOverState.Instance.loadGameOverBackground(Content);
 
             font = Content.Load<SpriteFont>("file");
             HUD.Instance.SetUpFont(font);
+            GameOverState.Instance.loadGameOverBackground(Content, font);
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
@@ -168,6 +168,8 @@ namespace Sprint0
             levelBuilder.EntityStorage.Draw(_spriteBatch);
             _spriteBatch.End();
 
+            GameOverState.Instance.Draw(_spriteBatch);
+
             _spriteBatch.Begin();
             HUD.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
@@ -187,6 +189,10 @@ namespace Sprint0
             ScoreSystemManager.Instance.ResetScore();
             CoinSystem.Instance.resetCoin();
             SoundStorage.Instance.PlayBGM();
+            GameOverState.Instance.candraw = false;
+            EntityStorage.Instance.gameOver = false;
+            HUD.Instance.gameOver = false;
+            
         }
 
         public void ExitCommnad()

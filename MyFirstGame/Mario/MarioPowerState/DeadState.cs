@@ -47,7 +47,7 @@ namespace Sprint0.Mario.MarioPowerState
             int type = Mario.generateType(CurrentMotionState, CurrentState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
             Mario.marioType = type;
-            //background = Game1.Instance.Content.Load<Texture2D>("gameover");
+            GameOverState.Instance.gameOver();
         }
 
         public override void NormalTransion()

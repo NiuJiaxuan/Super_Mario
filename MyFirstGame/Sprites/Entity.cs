@@ -123,7 +123,7 @@ namespace Sprint0.Sprites
             if (Speed != Vector2.Zero)
                 Grid.Instance.AddEntity(this);
 
-            if (Position.Y > 480 && !(this is MarioEntity))
+            if ((Position.X < 0 || Position.Y > 480 )&& !(this is MarioEntity))
             {
                 EntityStorage.Instance.completeRemove(this);
             }
