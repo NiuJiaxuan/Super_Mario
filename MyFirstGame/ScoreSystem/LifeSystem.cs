@@ -24,7 +24,7 @@ namespace Sprint0.ScoreSystem
         }
         public LifeSystem()
         {
-            LifeCount = 0;
+            LifeCount = 2;
         }
 
         public void InitializeLife(int numOfLives)

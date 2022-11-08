@@ -18,6 +18,7 @@ namespace Sprint0.Item
     {
         FlagEntity flag;
         bool canfall = false;
+        bool canGetSocre = true;
         public FlagPoleEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -31,6 +32,12 @@ namespace Sprint0.Item
             {
                 case MarioEntity:
                     canfall = true;
+                    if (canGetSocre)
+                    {
+                        ScoreSystemManager.Instance.Flagpole((int)(Position.Y - position.Y));
+                        SoundStorage.Instance.PlayWin();
+                        canGetSocre = false;
+                    }
                     break;
             }
         }
