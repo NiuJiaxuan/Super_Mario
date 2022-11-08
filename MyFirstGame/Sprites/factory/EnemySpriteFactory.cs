@@ -19,6 +19,7 @@ namespace Sprint0.Sprites.factory
             KoopaTroopa = 2,
             DeadGooma = 3,
             IdleDeadKoopaTroopa = 4,
+            Piranha = 6,
         }
 
         protected EnemySpriteFactory()
@@ -61,6 +62,9 @@ namespace Sprint0.Sprites.factory
                     break;
                 case eEnemeyType.IdleDeadKoopaTroopa:
                     sprite = new IdleKoopaTroopaInjuredSprite(game, pos);
+                    break;
+                case eEnemeyType.Piranha:
+                    sprite = new PiranhaSprite(game, pos);
                     break;
             }
             return sprite;

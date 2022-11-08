@@ -33,6 +33,7 @@ namespace Sprint0.Enemy
             DeadGooma = 3,
             IdleDeadKoopaTroopa = 4,
             MovingDeadKoopaTroopa = 5,
+            Piranha = 6,
         }
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
@@ -61,6 +62,10 @@ namespace Sprint0.Enemy
         public void ShellBump(string dir)
         {
             currentState?.ShellBump(dir);
+        }
+        public void EmergeTransition()
+        {
+            currentState?.EmergeTransition();
         }
     }
 }

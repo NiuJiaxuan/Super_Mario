@@ -77,6 +77,8 @@ namespace Sprint0
             if (objectType.Equals("Blocks"))
             {
                 List<ItemEntity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
+                List<EnemyEntity> enemyInBlock = CreateEnemyEntityInBlock(levelObject, game);
+
                 if (objectName.Equals("BrickBlock")){
                     return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, entityList);
                 }
@@ -91,6 +93,10 @@ namespace Sprint0
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
                     return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, entityList);
+                }
+                else if (objectName.Equals("Pipe"))
+                {
+                    return new PipeEntity(game, levelObject.Position, itemInBlock, entityList, enemyInBlock);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
@@ -127,10 +133,10 @@ namespace Sprint0
                 {
                     return new FireFlowerEntity(game, levelObject.Position);
                 }
-                else if (objectName.Equals("Pipe"))
-                {
-                    return new PipeEntity(game, levelObject.Position);
-                }
+                //else if (objectName.Equals("Pipe"))
+                //{
+                //    return new PipeEntity(game, levelObject.Position);
+                //}
                 else if (objectName.Equals("Castle"))
                 {
                     return new CastleEntity(game, levelObject.Position);
@@ -154,6 +160,10 @@ namespace Sprint0
                 {
                     return new KoopaTroopaEntity(game, levelObject.Position);
                 }
+                //else if (objectName.Equals("Piranha"))
+                //{
+                //    return new PiranhaEntity(game, levelObject.Position);
+                //}
             }
             else
             {
@@ -161,7 +171,22 @@ namespace Sprint0
             }
             return null;
         }
-
+        private static List<EnemyEntity> CreateEnemyEntityInBlock(LevelObject levelObject, Game1 game)
+        {
+            List<EnemyEntity> temp = new List<EnemyEntity>();
+            if (levelObject.EnemyItem != null)
+            {
+                foreach (string enemy in levelObject.EnemyItem)
+                {
+                    if (enemy.Equals("Piranha"))
+                    {
+                        Vector2 pos = new Vector2((int)levelObject.Position.X + 15, (int)levelObject.Position.Y - 15);
+                        temp.Add(new PiranhaEntity(game, pos));
+                    }
+                }
+            }
+            return temp;
+        }
         private static List<ItemEntity> CreateItemEntityInBlock(LevelObject levelObject, Game1 game)
         {
             List<ItemEntity> temp = new List<ItemEntity>();

@@ -45,6 +45,13 @@ namespace Sprint0.level
                         string temp = levelFile.ReadElementContentAsString();
                         string[] items = temp.Split(' ');
                         levelObject.BlockItem = items;
+                        if (levelObject.ObjectName.Equals("Pipe"))
+                        {
+                            levelFile.ReadToNextSibling("BlockEnemy");
+                            temp = levelFile.ReadElementContentAsString();
+                            string[] enemies = temp.Split(' ');
+                            levelObject.EnemyItem = enemies;
+                        }
                     }
                     if (levelObject.ObjectType.Equals("Mario"))
                     {
