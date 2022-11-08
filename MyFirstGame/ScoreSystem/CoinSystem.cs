@@ -28,6 +28,10 @@ namespace Sprint0.ScoreSystem
         {
             CoinCount = 0;
         }
+        public void resetCoin()
+        {
+            CoinCount = 0;
+        }
 
         public void GainOneCoin()
         {

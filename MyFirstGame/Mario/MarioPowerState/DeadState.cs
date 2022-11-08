@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State.GameState;
 using Sprint0.Item;
 using Sprint0.Mario.MarioMotionState;
+using Sprint0.ScoreSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Sprint0.Mario.MarioPowerState
             SoundStorage.Instance.PlayDie();
             EntityStorage.Instance.movableRemove(Mario);
             SoundStorage.Instance.StopBGM();
+            LifeSystem.Instance.LoseOneLife();
             CurrentState = this;
             this.previousState = powerState;
 

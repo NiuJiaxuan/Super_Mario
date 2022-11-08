@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Block;
+using Sprint0.Block.State.GameState;
 using Sprint0.CollisionDetection;
 using Sprint0.Command;
 using Sprint0.Controller;
@@ -11,6 +12,7 @@ using Sprint0.Interfaces;
 using Sprint0.Item;
 using Sprint0.level;
 using Sprint0.Mario;
+using Sprint0.ScoreSystem;
 using Sprint0.Sprites;
 using Sprint0.State;
 using System;
@@ -35,7 +37,7 @@ namespace Sprint0
         public List<Entity> GravityEntites { get; set; }
 
         //public List<Entity> PlayerList { get; set; }
-        public Entity Mario { get; set; }
+        public MarioEntity Mario { get; set; }
 
         private IController keyboard;
         private IController pausedKeyboard;
@@ -225,7 +227,7 @@ namespace Sprint0
                 ColliableEntites.Add(entity);
                 if (entity.GetType() == typeof(MarioEntity))
                 {
-                    Mario = entity;
+                    Mario = (MarioEntity)entity;
                 }
                 if (entity is IMovableEntity)
                     MovableEntities.Add(entity);
@@ -306,10 +308,12 @@ namespace Sprint0
         public void PauseCommand()
         {
             isPause = !isPause;
-            pausedKeyboard = new KeyboardController();   
+            pausedKeyboard = new KeyboardController();
             pausedKeyboard.Command((int)Keys.Q, new ExitCommand(Game));
             pausedKeyboard.Command((int)Keys.P, new PauseCommand(this));
+            HUD.Instance.isPasued = !HUD.Instance.isPasued;
         }
+
         public void clear()
         {
             EntityList.Clear();
@@ -323,7 +327,6 @@ namespace Sprint0
             {
                 entity.Draw(batch);
             }
-
             CollisionDetector.Instance.Draw(batch);
 
         }

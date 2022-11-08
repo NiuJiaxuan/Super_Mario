@@ -32,7 +32,7 @@ namespace Sprint0.Item.State
         public override void Exit()
         {
             Item.Speed = new Vector2(0, 0);
-            EntityStorage.Instance.movableRemove(Item);
+            EntityStorage.Instance.completeRemove(Item);
         }
 
 

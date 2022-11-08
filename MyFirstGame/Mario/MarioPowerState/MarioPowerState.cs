@@ -3,6 +3,7 @@ using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
 using Sprint0.Item;
 using Sprint0.Mario.MarioMotionState;
+using Sprint0.ScoreSystem;
 using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
@@ -98,6 +99,7 @@ namespace Sprint0.Mario.MarioPowerState
                     switch (entity)
                     {
                         case FireFlowerEntity:
+                            ScoreSystemManager.Instance.FireFlower();
                             if (this.GetType() == typeof(SuperState))
                             {
                                 Fire();
@@ -108,17 +110,17 @@ namespace Sprint0.Mario.MarioPowerState
                             }
                             break;
                         case OneUpMushroomEntity:
-
+                            LifeSystem.Instance.GainOneLife();
                             break;
                         case CoinEntity:
-
+                            ScoreSystemManager.Instance.Coin();
                             break;
                         case SuperMushroomEntity:
                             if (this.GetType() == typeof(NormalState))
                                 Super();
                             break;
                         case StarEntity:
-                            //turn to star mario 
+                            ScoreSystemManager.Instance.Star();
                             break;
                     }
                     break;

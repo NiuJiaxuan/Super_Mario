@@ -24,7 +24,7 @@ namespace Sprint0.ScoreSystem
         }
         public LifeSystem()
         {
-            LifeCount = 0;
+            LifeCount = 3;
         }
 
         public void InitializeLife(int numOfLives)
@@ -40,6 +40,10 @@ namespace Sprint0.ScoreSystem
             if (LifeCount > 0)
             {
                 LifeCount--;
+            }
+            else
+            {
+                //game over
             }
         }
 
