@@ -330,7 +330,6 @@ namespace Sprint0.Mario
             switch (currentPowerState)
             {
                 case NormalState:
-                    
                     currentPowerState?.DeadTransion();
                     break;
                 case SuperState:
@@ -340,6 +339,10 @@ namespace Sprint0.Mario
                     currentPowerState?.SuperTransion();
                     break;
             }
+        }
+        public void Die()
+        {
+            currentPowerState?.DeadTransion();
         }
     }
 }

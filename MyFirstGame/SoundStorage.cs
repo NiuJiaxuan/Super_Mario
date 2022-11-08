@@ -55,6 +55,7 @@ namespace Sprint0
         }
         public SoundStorage()
         {
+            
             SoundEffectList = new List<SoundEffect>();
             SongList = new List<Song>();
         }
