@@ -56,5 +56,9 @@ namespace Sprint0.ScoreSystem
         {
             Score += 1000;
         }
+        public void ResetScore()
+        {
+            Score = 0;
+        }
     }
 }

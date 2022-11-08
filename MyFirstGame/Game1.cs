@@ -167,7 +167,8 @@ namespace Sprint0
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
             EntityStorage.Instance.initialCommand(this);
-
+            HUD.Instance.ResetTime();
+            ScoreSystemManager.Instance.ResetScore();
 
         }
 

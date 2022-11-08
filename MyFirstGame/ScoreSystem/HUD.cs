@@ -18,6 +18,7 @@ namespace Sprint0.ScoreSystem
         long timeHurry = 1000000000;
         public long TimeDisplay { get; set; } = 4000000000;
         GameTime gameTime;
+        public bool isPasued = false;
         private static HUD instance;
         public static HUD Instance
         {
@@ -48,13 +49,15 @@ namespace Sprint0.ScoreSystem
         }
         public void TimeConcurrent()
         {
-            timeCounter += gameTime.ElapsedGameTime.Ticks;
-            TimeDisplay = timeLimit - timeCounter;
-            if (TimeDisplay <= timeHurry)
+            if (!isPasued)
             {
-                SoundStorage.Instance.PlayTimeWarning();
+                timeCounter += gameTime.ElapsedGameTime.Ticks;
+                TimeDisplay = timeLimit - timeCounter;
+                if (TimeDisplay <= timeHurry)
+                {
+                    SoundStorage.Instance.PlayTimeWarning();
+                }
             }
-            
         }
         public void Draw (SpriteBatch batch)
         {

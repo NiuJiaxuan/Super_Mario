@@ -11,6 +11,7 @@ using Sprint0.Interfaces;
 using Sprint0.Item;
 using Sprint0.level;
 using Sprint0.Mario;
+using Sprint0.ScoreSystem;
 using Sprint0.Sprites;
 using Sprint0.State;
 using System;
@@ -291,10 +292,12 @@ namespace Sprint0
         public void PauseCommand()
         {
             isPause = !isPause;
-            pausedKeyboard = new KeyboardController();   
+            pausedKeyboard = new KeyboardController();
             pausedKeyboard.Command((int)Keys.Q, new ExitCommand(Game));
             pausedKeyboard.Command((int)Keys.P, new PauseCommand(this));
+            HUD.Instance.isPasued = !HUD.Instance.isPasued;
         }
+
         public void clear()
         {
             EntityList.Clear();
