@@ -44,6 +44,7 @@ namespace Sprint0
         private IController gameOverKeyboard;
         public Game1 Game { get; set; }
 
+        public List<Vector2> checkPoints;
         public Grid[,] AllGrids { get; set; }
 
         private static EntityStorage instance;
@@ -59,7 +60,16 @@ namespace Sprint0
             }
         }
 
-
+        public void initialCheckPoints()
+        {
+            checkPoints = new List<Vector2>();
+            checkPoints.Add(new Vector2(200,100));
+            checkPoints.Add(new Vector2(500, 100));
+            checkPoints.Add(new Vector2(750, 100));
+            checkPoints.Add(new Vector2(1000, 100));
+            checkPoints.Add(new Vector2(1250, 100));
+            checkPoints.Add(new Vector2(1500, 100));
+        }
 
         public  EntityStorage()
         {

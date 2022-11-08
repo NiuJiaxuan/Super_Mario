@@ -296,6 +296,20 @@ namespace Sprint0.Mario
             }
 
         }
+
+        public void respawn()
+        {
+             Normal();
+            Vector2 Closest = new Vector2(0, 0);
+            foreach (Vector2 cp in EntityStorage.Instance.checkPoints)
+            {
+                // need change
+                Closest = cp;
+            }
+            Position = Closest;
+        }
+
+        //-------------------------------------------fire ball--------------------------------
         public void initalizeFireballPool()
         {
             FireballEntity fireball = new FireballEntity(game, Position,fireballPool);

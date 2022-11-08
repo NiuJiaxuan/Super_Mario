@@ -109,7 +109,7 @@ namespace Sprint0
             cloud = Content.Load<Texture2D>("cloud");
             bush= Content.Load<Texture2D>("bush");
             EntityStorage.Instance.initialCommand(this);
-
+            EntityStorage.Instance.initialCheckPoints();
             SoundStorage.Instance.PlayBGM();
 
 
