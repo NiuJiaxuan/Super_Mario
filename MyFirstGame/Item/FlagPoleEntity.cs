@@ -39,7 +39,7 @@ namespace Sprint0.Item
                         SoundStorage.Instance.PlayWin();
                         canGetSocre = false;
                     }
-                    WinningState.Instance.winning();
+                    
                     break;
             }
         }
@@ -48,6 +48,10 @@ namespace Sprint0.Item
             if (flag.Position.Y < 420 && canfall)
             {
                 flag.Position = new Vector2(flag.Position.X, flag.Position.Y + 1);
+            }
+            if (flag.Position.Y == 420)
+            {
+                WinningState.Instance.winning();
             }
             base.Update(gameTime, entities);
 
