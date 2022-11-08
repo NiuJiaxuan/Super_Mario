@@ -27,6 +27,7 @@ namespace Sprint0.Item
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
             SoundStorage.Instance.PlayCoin();
+            EntityStorage.Instance.completeRemove(this);
             base.CollisionResponse(entity, position, touching);
         }
 
