@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State.GameState;
 using Sprint0.Item;
 using Sprint0.Mario.MarioMotionState;
+using Sprint0.ScoreSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,11 @@ namespace Sprint0.Mario.MarioPowerState
 
         public override void Enter(IMarioPowerState powerState)
         {
-            SoundStorage.Instance.PlayDie();
+            if (!LifeSystem.Instance.isNoLife)
+                SoundStorage.Instance.PlayDie();
             EntityStorage.Instance.movableRemove(Mario);
             SoundStorage.Instance.StopBGM();
+            LifeSystem.Instance.LoseOneLife();
             CurrentState = this;
             this.previousState = powerState;
 
@@ -45,7 +48,7 @@ namespace Sprint0.Mario.MarioPowerState
             int type = Mario.generateType(CurrentMotionState, CurrentState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
             Mario.marioType = type;
-            //background = Game1.Instance.Content.Load<Texture2D>("gameover");
+            Mario.respawn();
         }
 
         public override void NormalTransion()

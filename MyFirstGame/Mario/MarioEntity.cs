@@ -126,6 +126,15 @@ namespace Sprint0.Mario
             currentMotionState?.Update(gameTime);       
             currentPowerState?.Update(gameTime);
 
+            if(Position.X <= 2 && Orientation is SpriteEffects.FlipHorizontally)
+            {
+                Speed = new Vector2(0, Speed.Y);
+            }
+            else if(Position.Y <= 5 + Sprite.FrameSize.Y)
+            {
+                Speed = new Vector2(Speed.X, - Speed.Y);
+            }
+
             if(Position.Y> 480)
             {
                 currentPowerState.TakeDamage();
@@ -287,6 +296,20 @@ namespace Sprint0.Mario
             }
 
         }
+
+        public void respawn()
+        {
+             Normal();
+            Vector2 Closest = new Vector2(0, 0);
+            foreach (Vector2 cp in EntityStorage.Instance.checkPoints)
+            {
+                // need change
+                Closest = cp;
+            }
+            Position = Closest;
+        }
+
+        //-------------------------------------------fire ball--------------------------------
         public void initalizeFireballPool()
         {
             FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
@@ -330,7 +353,6 @@ namespace Sprint0.Mario
             switch (currentPowerState)
             {
                 case NormalState:
-                    
                     currentPowerState?.DeadTransion();
                     break;
                 case SuperState:
@@ -340,6 +362,10 @@ namespace Sprint0.Mario
                     currentPowerState?.SuperTransion();
                     break;
             }
+        }
+        public void Die()
+        {
+            currentPowerState?.DeadTransion();
         }
     }
 }

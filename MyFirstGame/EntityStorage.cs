@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Block;
+using Sprint0.Block.State.GameState;
 using Sprint0.CollisionDetection;
 using Sprint0.Command;
 using Sprint0.Controller;
@@ -28,7 +29,7 @@ namespace Sprint0
 {
     public class EntityStorage
     {
-        public bool isPause = false;
+        public bool isPause = false, gameOver=false;
         public List<Entity> DrawableEntities { get; set; }
         public List<Entity> EntityList { get; set; }
         public List<Entity> MovableEntities { get; set; }
@@ -36,13 +37,14 @@ namespace Sprint0
         public List<Entity> GravityEntites { get; set; }
 
         //public List<Entity> PlayerList { get; set; }
-        public Entity Mario { get; set; }
+        public MarioEntity Mario { get; set; }
 
         private IController keyboard;
         private IController pausedKeyboard;
-
+        private IController gameOverKeyboard;
         public Game1 Game { get; set; }
 
+        public List<Vector2> checkPoints;
         public Grid[,] AllGrids { get; set; }
 
         private static EntityStorage instance;
@@ -58,7 +60,16 @@ namespace Sprint0
             }
         }
 
-
+        public void initialCheckPoints()
+        {
+            checkPoints = new List<Vector2>();
+            checkPoints.Add(new Vector2(200,100));
+            checkPoints.Add(new Vector2(500, 100));
+            checkPoints.Add(new Vector2(750, 100));
+            checkPoints.Add(new Vector2(1000, 100));
+            checkPoints.Add(new Vector2(1250, 100));
+            checkPoints.Add(new Vector2(1500, 100));
+        }
 
         public  EntityStorage()
         {
@@ -251,7 +262,7 @@ namespace Sprint0
                 ColliableEntites.Add(entity);
                 if (entity.GetType() == typeof(MarioEntity))
                 {
-                    Mario = entity;
+                    Mario = (MarioEntity)entity;
                 }
                 if (entity is IMovableEntity)
                     MovableEntities.Add(entity);
@@ -290,10 +301,14 @@ namespace Sprint0
             keyboard.Command((int)Keys.Right, new MarioWalkRight(Mario));
 
             keyboard.Command((int)Keys.C, new ShowBoundBox(EntityStorage.Instance.EntityList));
+
+            gameOverKeyboard = new KeyboardController();
+            gameOverKeyboard.Command((int)Keys.Q, new ExitCommand(game));
+            gameOverKeyboard.Command((int)Keys.R, new ResetCommand(game));
         }
         public void Update(GameTime gameTime)
         {
-            if (!isPause)
+            if (!isPause&&!gameOver)
             {
                 foreach (Entity entity in ColliableEntites)
                 {
@@ -323,9 +338,14 @@ namespace Sprint0
 
                 CollisionDetector.Instance.DectectCollision();
             }
-            else
+            else if(isPause)
             {
                 pausedKeyboard.Update();
+            }
+            else if (gameOver)
+            {
+
+                gameOverKeyboard.Update();
             }
             
         }
@@ -351,7 +371,7 @@ namespace Sprint0
             {
                 entity.Draw(batch);
             }
-
+ 
             CollisionDetector.Instance.Draw(batch);
 
         }

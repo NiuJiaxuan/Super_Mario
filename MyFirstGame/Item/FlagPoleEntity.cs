@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Sprint0.State;
 using Sprint0.Mario;
 using Sprint0.ScoreSystem;
+using Sprint0.Block.State.GameState;
 
 namespace Sprint0.Item
 {
@@ -38,6 +39,7 @@ namespace Sprint0.Item
                         SoundStorage.Instance.PlayWin();
                         canGetSocre = false;
                     }
+                    
                     break;
             }
         }
@@ -46,6 +48,10 @@ namespace Sprint0.Item
             if (flag.Position.Y < 420 && canfall)
             {
                 flag.Position = new Vector2(flag.Position.X, flag.Position.Y + 1);
+            }
+            if (flag.Position.Y == 420)
+            {
+                WinningState.Instance.winning();
             }
             base.Update(gameTime, entities);
 

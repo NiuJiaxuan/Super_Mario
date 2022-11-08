@@ -38,6 +38,7 @@ namespace Sprint0
             SoundEffectList.Add(content.Load<SoundEffect>("Sound/smb_jump-super"));
             SoundEffectList.Add(content.Load<SoundEffect>("Sound/smb_mariodie"));
             SoundEffectList.Add(content.Load<SoundEffect>("Sound/smb_stage_clear"));
+            SoundEffectList.Add(content.Load<SoundEffect>("Sound/smb_gameover"));
         }
 
         private static SoundStorage instance;
@@ -55,6 +56,7 @@ namespace Sprint0
         }
         public SoundStorage()
         {
+            
             SoundEffectList = new List<SoundEffect>();
             SongList = new List<Song>();
         }
@@ -125,6 +127,15 @@ namespace Sprint0
         {
             SoundEffectList[13].Play();
         }
+        public void PlayWin()
+        {
+            MediaPlayer.Stop();
+            SoundEffectList[14].Play();
+        }
+        public void PlayGameOver()
+        {
+            SoundEffectList[15].Play();
+        }
         public void PlayBGM()
         {
             MediaPlayer.Play(SongList[0]);
@@ -156,11 +167,7 @@ namespace Sprint0
                 isHurry = true;
             }
         }
-        public void PlayWin()
-        {
-            MediaPlayer.Stop();
-            SoundEffectList[14].Play();
-        }
+        
 
     }
 }

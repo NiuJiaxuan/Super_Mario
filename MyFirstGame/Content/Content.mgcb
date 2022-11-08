@@ -495,6 +495,12 @@
 /processorParam:Quality=Best
 /build:Sound/smb_flagpole.wav
 
+#begin Sound/smb_gameover.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/smb_gameover.wav
+
 #begin Sound/smb_jump-small.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -638,4 +644,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:usedBlock.jpg
+
+#begin victory.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:victory.jpg
 
