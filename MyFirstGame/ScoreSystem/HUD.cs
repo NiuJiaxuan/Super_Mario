@@ -18,7 +18,7 @@ namespace Sprint0.ScoreSystem
         long timeHurry = 1000000000;
         public long TimeDisplay { get; set; } = 4000000000;
         GameTime gameTime;
-        public bool isPasued = false;
+        public bool isPasued = false, gameOver = false;
         private static HUD instance;
         public static HUD Instance
         {
@@ -49,7 +49,7 @@ namespace Sprint0.ScoreSystem
         }
         public void TimeConcurrent()
         {
-            if (!isPasued)
+            if (!isPasued||gameOver)
             {
                 timeCounter += gameTime.ElapsedGameTime.Ticks;
                 TimeDisplay = timeLimit - timeCounter;
