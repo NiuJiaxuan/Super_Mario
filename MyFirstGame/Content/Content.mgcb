@@ -483,6 +483,12 @@
 /processorParam:Quality=Best
 /build:Sound/smb_flagpole.wav
 
+#begin Sound/smb_gameover.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/smb_gameover.wav
+
 #begin Sound/smb_jump-small.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

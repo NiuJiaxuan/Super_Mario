@@ -141,6 +141,7 @@ namespace Sprint0
             if (HUD.Instance.TimeDisplay < 0 && !isTimeUp)
             {
                 SoundStorage.Instance.StopBGM();
+                if (!LifeSystem.Instance.isNoLife)
                 EntityStorage.Instance.Mario.Die();
                 isTimeUp = true;
             }
