@@ -40,7 +40,7 @@ namespace Sprint0.Item
             {
                 case BlockEntity:
                     Position = position;
-                    if (touching == CollisionDetector.Touching.bottom)
+                    if (touching == CollisionDetector.Touching.bottom || entity is FloorBlockEntity)
                     {
                         this.Speed = new Vector2(Speed.X, -200);
                     }

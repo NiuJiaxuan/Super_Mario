@@ -38,7 +38,7 @@ namespace Sprint0.Item.State
         }
         public override void Update(GameTime gameTime)
         {
-            if (Math.Abs(Item.Position.Y - Origion.Y) > 30) { 
+            if (Math.Abs(Item.Position.Y - Origion.Y) > 40) { 
                 MovingTransition();
             }
             //CurrentState = new StarMoveState(Item);

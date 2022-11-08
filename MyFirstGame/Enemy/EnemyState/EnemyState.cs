@@ -43,10 +43,10 @@
 
 //        public virtual void ShellBump(string dir) { }
 
+////    }
+////}
+//        public void EmergeTransition(string dir)
+//        {
+//        }
 //    }
 //}
-        public void EmergeTransition(string dir)
-        {
-        }
-    }
-}

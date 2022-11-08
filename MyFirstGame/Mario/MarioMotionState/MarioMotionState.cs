@@ -4,6 +4,7 @@ using Sprint0.Block;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
 using Sprint0.interfaces;
+using Sprint0.Item;
 using Sprint0.Mario.MarioPowerState;
 using Sprint0.Sprites;
 using Sprint0.State;
@@ -274,7 +275,13 @@ namespace Sprint0.Mario.MarioMotionState
                             }
                             break;
                     }
-                    break; 
+                    break;
+                case ItemEntity:
+                    if(entity is CastleEntity)
+                    {
+                        Idle();
+                    }
+                    break;
             }
         }
 

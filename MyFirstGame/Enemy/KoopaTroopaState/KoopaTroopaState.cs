@@ -45,6 +45,8 @@ namespace Sprint0.Enemy.KoopaTroopaStates
 
         public virtual void ShellTransition() { }
         public virtual void ShellMovingTransition(string dir) { }
+        public virtual void EmergeTransition(string dir) { }
+
 
 
         public void ChangeDirection(CollisionDetector.Touching touching)
