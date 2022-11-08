@@ -161,6 +161,7 @@ namespace Sprint0.Mario
                 }
             }
             Position = Closest;
+            SoundStorage.Instance.ResumeBGM();
         }
 
         //-------------------------------------------fire ball--------------------------------

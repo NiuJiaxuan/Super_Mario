@@ -27,7 +27,7 @@ namespace Sprint0.Mario.MarioPowerState
             if (!LifeSystem.Instance.isNoLife)
                 SoundStorage.Instance.PlayDie();
             EntityStorage.Instance.movableRemove(Mario);
-            SoundStorage.Instance.StopBGM();
+            SoundStorage.Instance.PauseBGM();
             LifeSystem.Instance.LoseOneLife();
             CurrentState = this;
             this.previousState = powerState;

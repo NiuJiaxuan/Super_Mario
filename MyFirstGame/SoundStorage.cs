@@ -158,6 +158,10 @@ namespace Sprint0
         {
             MediaPlayer.Stop();
         }
+        public void ResumeBGM()
+        {
+            MediaPlayer.Resume();
+        }
         public void PlayTimeWarning()
         {
             if (!isHurry)
