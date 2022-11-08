@@ -189,6 +189,7 @@ namespace Sprint0
             ScoreSystemManager.Instance.ResetScore();
             CoinSystem.Instance.resetCoin();
             SoundStorage.Instance.PlayBGM();
+            LifeSystem.Instance.resetLife();
             GameOverState.Instance.candraw = false;
             EntityStorage.Instance.gameOver = false;
             HUD.Instance.gameOver = false;

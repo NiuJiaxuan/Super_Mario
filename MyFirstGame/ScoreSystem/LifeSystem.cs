@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sprint0.Block.State.GameState;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -27,6 +28,10 @@ namespace Sprint0.ScoreSystem
             LifeCount = 3;
         }
 
+        public void resetLife()
+        {
+            LifeCount = 3;
+        }
         public void InitializeLife(int numOfLives)
         {
             LifeCount = numOfLives;
@@ -43,7 +48,7 @@ namespace Sprint0.ScoreSystem
             }
             else
             {
-                //game over
+                GameOverState.Instance.gameOver();
             }
         }
 
