@@ -16,9 +16,15 @@
 		<Position>1080 420</Position>
 	</Item>
 	<Item>
-		<ObjectType>Items</ObjectType>
+		<ObjectType>Blocks</ObjectType>
 		<ObjectName>Pipe</ObjectName>
 		<Position>1150 420</Position>
+		<BlockItem>SuperMushroom FireFlower</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Enemies</ObjectType>
+		<ObjectName>PiranhaPlant</ObjectName>
+		<Position>1150 220</Position>
 	</Item>
 	<Item>
 		<ObjectType>Enemies</ObjectType>
@@ -26,9 +32,10 @@
 		<Position>1250 420</Position>
 	</Item>
 	<Item>
-		<ObjectType>Items</ObjectType>
+		<ObjectType>Blocks</ObjectType>
 		<ObjectName>Pipe</ObjectName>
 		<Position>1350 420</Position>
+		<BlockItem>SuperMushroom FireFlower</BlockItem>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
@@ -3246,9 +3253,10 @@
 		<BlockItem>None</BlockItem>
 	</Item>
 	<Item>
-		<ObjectType>Items</ObjectType>
+		<ObjectType>Blocks</ObjectType>
 		<ObjectName>Pipe</ObjectName>
 		<Position>4380 420</Position>
+		<BlockItem>SuperMushroom FireFlower</BlockItem>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
@@ -3285,9 +3293,10 @@
 		<Position>4740 420</Position>
 	</Item>
 	<Item>
-		<ObjectType>Items</ObjectType>
+		<ObjectType>Blocks</ObjectType>
 		<ObjectName>Pipe</ObjectName>
 		<Position>4830 420</Position>
+		<BlockItem>SuperMushroom FireFlower</BlockItem>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>

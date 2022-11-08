@@ -9,16 +9,15 @@ using Sprint0.Sprites;
 
 namespace Sprint0.Enemy.EnemyState
 {
-    //Ben Changes
-    public class KoopaTroopaState : IEnemyState
+    public class PiranhaState : IEnemyState
     {
         protected IEnemyState previousState;
         IEnemyState IEnemyState.PreviousState { get { return previousState; } }
         protected IEnemyState CurrentState { get { return Enemy.currentState; } set { Enemy.currentState = value; } }
-        public bool isRemoved = false; 
+        public bool isRemoved = false;
 
         public EnemyEntity Enemy;
-        protected KoopaTroopaState(EnemyEntity enemy)
+        protected PiranhaState(EnemyEntity enemy)
         {
             Enemy = enemy;
         }
@@ -35,9 +34,8 @@ namespace Sprint0.Enemy.EnemyState
         public virtual void KillTransition() { }
         public virtual void NormalTransition(string dir) { }
         public virtual void ShellTransition() { }
-        public virtual void EmergeTransition() { }
-
         public virtual void ShellBump(string dir) { }
 
+        public virtual void EmergeTransition() { }
     }
 }

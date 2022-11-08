@@ -25,6 +25,8 @@ namespace Sprint0.level
             public String ObjectName { get; set; }
             public Vector2 Position { get; set; } 
             public string[]  BlockItem { get; set; }
+            public string[] EnemyItem { get; set; }
+
             public int Lives { get; set; }
             
 
