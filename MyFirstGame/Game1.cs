@@ -21,6 +21,7 @@ using Sprint0.Interfaces;
 using System;
 using Microsoft.Xna.Framework.Audio;
 using Sprint0.ScoreSystem;
+using Sprint0.Block.State.GameState;
 
 namespace Sprint0
 {
@@ -109,6 +110,8 @@ namespace Sprint0
             EntityStorage.Instance.initialCommand(this);
 
             SoundStorage.Instance.PlayBGM();
+
+            GameOverState.Instance.loadGameOverBackground(Content);
 
             font = Content.Load<SpriteFont>("file");
             HUD.Instance.SetUpFont(font);

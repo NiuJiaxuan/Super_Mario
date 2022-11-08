@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Block;
+using Sprint0.Block.State.GameState;
 using Sprint0.CollisionDetection;
 using Sprint0.Command;
 using Sprint0.Controller;
@@ -326,7 +327,6 @@ namespace Sprint0
             {
                 entity.Draw(batch);
             }
-
             CollisionDetector.Instance.Draw(batch);
 
         }
