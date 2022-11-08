@@ -12,6 +12,7 @@ namespace Sprint0.ScoreSystem
     {
         public int LifeCount { get; set; }
         private static LifeSystem instance;
+        public bool isNoLife = false;
         public static LifeSystem Instance
         {
             get
@@ -39,16 +40,19 @@ namespace Sprint0.ScoreSystem
         public void GainOneLife()
         {
             LifeCount++;
+            if (LifeCount > 0) isNoLife = false;
         }
         public void LoseOneLife()
         {
             if (LifeCount > 0)
             {
                 LifeCount--;
+                if (LifeCount == 0) isNoLife = true;
             }
             else
             {
                 GameOverState.Instance.gameOver();
+                SoundStorage.Instance.PlayGameOver();
             }
         }
 

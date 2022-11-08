@@ -24,7 +24,8 @@ namespace Sprint0.Mario.MarioPowerState
 
         public override void Enter(IMarioPowerState powerState)
         {
-            SoundStorage.Instance.PlayDie();
+            if (!LifeSystem.Instance.isNoLife)
+                SoundStorage.Instance.PlayDie();
             EntityStorage.Instance.movableRemove(Mario);
             SoundStorage.Instance.StopBGM();
             LifeSystem.Instance.LoseOneLife();
