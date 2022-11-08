@@ -32,6 +32,7 @@ namespace Sprint0
         private SpriteBatch _spriteBatch;
 
         SpriteFont font;
+        bool isTimeUp = false;
 
         private Texture2D background;
         private Texture2D bush;
@@ -135,7 +136,19 @@ namespace Sprint0
             levelBuilder.EntityStorage.Update(gameTime);
             HUD.Instance.SetUpGameTime(gameTime);
             HUD.Instance.TimeConcurrent();
-            
+
+            if (HUD.Instance.TimeDisplay < 0 && !isTimeUp)
+            {
+                SoundStorage.Instance.StopBGM();
+                EntityStorage.Instance.Mario.Die();
+                isTimeUp = true;
+            }
+            if (isTimeUp && HUD.Instance.TimeDisplay < -30000000)
+            {
+                ResetCommand();
+                isTimeUp = false;
+            }
+
 
             base.Update(gameTime);
         }
@@ -168,13 +181,14 @@ namespace Sprint0
         public void ResetCommand()
         {
             levelBuilder.EntityStorage.clear();
-             levelBuilder = new LevelBuilder();
+            levelBuilder = new LevelBuilder();
             levelBuilder.LodeLevel(this);
             levelData = levelBuilder.LevelData;
             EntityStorage.Instance.initialCommand(this);
             HUD.Instance.ResetTime();
             ScoreSystemManager.Instance.ResetScore();
             CoinSystem.Instance.resetCoin();
+            SoundStorage.Instance.PlayBGM();
             GameOverState.Instance.candraw = false;
             EntityStorage.Instance.gameOver = false;
             

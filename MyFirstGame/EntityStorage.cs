@@ -37,7 +37,7 @@ namespace Sprint0
         public List<Entity> GravityEntites { get; set; }
 
         //public List<Entity> PlayerList { get; set; }
-        public Entity Mario { get; set; }
+        public MarioEntity Mario { get; set; }
 
         private IController keyboard;
         private IController pausedKeyboard;
@@ -227,7 +227,7 @@ namespace Sprint0
                 ColliableEntites.Add(entity);
                 if (entity.GetType() == typeof(MarioEntity))
                 {
-                    Mario = entity;
+                    Mario = (MarioEntity)entity;
                 }
                 if (entity is IMovableEntity)
                     MovableEntities.Add(entity);
