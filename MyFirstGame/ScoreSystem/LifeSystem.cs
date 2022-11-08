@@ -41,6 +41,10 @@ namespace Sprint0.ScoreSystem
             {
                 LifeCount--;
             }
+            else
+            {
+                //game over
+            }
         }
 
     }
