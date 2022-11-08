@@ -55,33 +55,6 @@ namespace Sprint0
         private CollisionDetector cd = CollisionDetector.Instance;
 
 
-        public MarioFactory MarioFactory
-        {
-            get { return marioFactory ?? MarioFactory.Instance; }
-            protected set { marioFactory = value; }
-        }
-        public ItemFactory ItemFactory
-        {
-            get { return itemFactory ?? ItemFactory.Instance; }
-            protected set { itemFactory = value; }
-        }
-        public BlockFactory BlockFactory
-        {
-            get { return blockFactory ?? BlockFactory.Instance; }
-            protected set { blockFactory = value; }
-        }
-
-        public EnemyFactory EnemyFactory
-        {
-            get { return enemyFactory ?? EnemyFactory.Instance; }
-            protected set { enemyFactory = value; }
-        }
-
-
-
-        public Color fontColor { get; set; } = Color.White;
-        //private SpriteFont HUDFont;
-
 
         public Game1()
         {

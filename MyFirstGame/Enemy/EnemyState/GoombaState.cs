@@ -35,7 +35,9 @@ namespace Sprint0.Enemy.EnemyState
         public virtual void KillTransition() { }
         public virtual void NormalTransition(string dir) { }
         public virtual void ShellTransition() { }
-        public virtual void ShellBump(string dir) { }
+        public virtual void ShellMovingTransition(string dir) { }
+
+        public virtual void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching) { }
 
     }
 }

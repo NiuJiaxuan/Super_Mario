@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Camera\" />
+    <Folder Include="Enemy\KoopaTroopaState\MovingState\" />
     <Folder Include="Pipe\" />
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint0.Enemy.EnemyState
+namespace Sprint0.Enemy.KoopaTroopaStates
 {
     public class KoopaTroopaWalkingState
     {

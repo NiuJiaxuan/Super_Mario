@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
+using Sprint0.Enemy.KoopaTroopaStates;
 using Sprint0.Item;
 using Sprint0.Mario.MarioMotionState;
 using Sprint0.ScoreSystem;
@@ -87,11 +88,30 @@ namespace Sprint0.Mario.MarioPowerState
                             if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left || touching == CollisionDetector.Touching.top)
                             {
                                 if(this.GetType() != typeof(DeadState))
-                                TakeDamage();
+                                    TakeDamage();
                             }
                             break;
                         case KoopaTroopaEntity:
-
+                            //Debug.WriteLine((entity as KoopaTroopaEntity).currentState);
+                            //switch((entity as KoopaTroopaEntity).currentState)
+                            //{
+                            //    case KoopaTroopaNormalState:
+                            //        if(touching != CollisionDetector.Touching.bottom)
+                            //        {
+                            //            if (this.GetType() != typeof(DeadState))
+                            //                TakeDamage();
+                            //        }
+                            //        break;
+                            //    case KoopaTroopaShellState:
+                            //        break;
+                            //    case KoopaTroopaMovingShellState:
+                            //        if(touching != CollisionDetector.Touching.bottom)
+                            //        {
+                            //            if (this.GetType() != typeof(DeadState))
+                            //                TakeDamage();
+                            //        }
+                            //        break;
+                            //}
                             break;
                     }
                     break;

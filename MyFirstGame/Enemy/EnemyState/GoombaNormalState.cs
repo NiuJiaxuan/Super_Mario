@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Enemy.EnemyState
 {
-    class GoombaNormalState : KoopaTroopaState
+    class GoombaNormalState : GoombaState
     {
         string direction;
         public GoombaNormalState(EnemyEntity enemy, string dir)

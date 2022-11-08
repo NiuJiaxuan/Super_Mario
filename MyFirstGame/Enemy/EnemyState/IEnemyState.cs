@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Sprint0.CollisionDetection;
+using Sprint0.Sprites;
 
 namespace Sprint0.Enemy.EnemyState
 {
@@ -16,7 +18,10 @@ namespace Sprint0.Enemy.EnemyState
         void KillTransition();
         void NormalTransition(string dir);
         void ShellTransition();
-        void ShellBump(string dir);
+        void ShellMovingTransition(string dir);
         //void StopShell();
+
+        void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching);
+
     }
 }

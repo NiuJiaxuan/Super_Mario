@@ -15,6 +15,7 @@ using Sprint0.State;
 using Sprint0.Item;
 using Sprint0.Interfaces;
 using Sprint0.Block;
+using Sprint0.Enemy.KoopaTroopaStates;
 
 namespace Sprint0.Enemy
 {
@@ -113,15 +114,22 @@ namespace Sprint0.Enemy
                             }
                             break;
                         case KoopaTroopaEntity:
-                            if (touching == CollisionDetector.Touching.left)
+                            if((entity as KoopaTroopaEntity).currentState is  KoopaTroopaNormalState || (entity as KoopaTroopaEntity).currentState is KoopaTroopaShellState)
                             {
-                                //currentState = new GoombaNormalState(this, "right");
-                                NormalTransition("right");
+                                if (touching == CollisionDetector.Touching.left)
+                                {
+                                    //currentState = new GoombaNormalState(this, "right");
+                                    NormalTransition("right");
+                                }
+                                else if (touching == CollisionDetector.Touching.right)
+                                {
+                                    //currentState = new GoombaNormalState(this, "right");
+                                    NormalTransition("left");
+                                }
                             }
-                            else if (touching == CollisionDetector.Touching.right)
+                            else
                             {
-                                //currentState = new GoombaNormalState(this, "right");
-                                NormalTransition("left");
+                                EntityStorage.Instance.completeRemove(this);
                             }
                             break;
                     }
@@ -131,14 +139,14 @@ namespace Sprint0.Enemy
 
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
-            if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 350 
+            if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 380 
                 && currentState == null)
             {
                 currentState = new GoombaNormalState(this, "left");
                 currentState.Enter(null);
                 EntityStorage.Instance.MovableEntities.Add(this);
             }
-            else if(Position.X - EntityStorage.Instance.Mario.Position.X < -350)
+            else if(Position.X - EntityStorage.Instance.Mario.Position.X < -400)
             {
                 EntityStorage.Instance.completeRemove(this);
             }

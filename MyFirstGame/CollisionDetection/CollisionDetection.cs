@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
+using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.State;
 using System;
@@ -60,12 +61,17 @@ namespace Sprint0.CollisionDetection
             foreach(Entity surround in surroundings)
             {
                 if(( surround.Max.X > entity.Min.X && surround.Min.X< entity.Max.X)
-                    && (Math.Abs(surround.Min.Y- entity.Max.Y)<2))
+                    && (Math.Abs(surround.Min.Y- entity.Max.Y)<5))
                 {
-                    if(!(surround is BlockEntity) || (surround as BlockEntity).IsVisible)
+                    //if(surround is not BlockEntity || (surround as BlockEntity).IsVisible)
                     below.Add(surround);
                 }
             }
+            //if(entity is MarioEntity)
+            //{
+            //    Debug.WriteLine("there are surrounding : " + surroundings.Count);
+            //    Debug.WriteLine("there are below: " + below.Count);
+            //}
             if(below.Count == 0)
             {
                 entity.onGround = false;

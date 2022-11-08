@@ -20,7 +20,7 @@ namespace Sprint0.Enemy
     {
         public IEnemyState currentState { get; set; }
 
-        public virtual EnemyFactory EnemyFactory => game.EnemyFactory;
+        public virtual EnemyFactory EnemyFactory => EnemyFactory.Instance;
         public eEnemyType EnemyType { get; set; }
 
 
@@ -74,7 +74,7 @@ namespace Sprint0.Enemy
         }
         public void ShellBump(string dir)
         {
-            currentState?.ShellBump(dir);
+            currentState?.ShellMovingTransition(dir);
         }
     }
 }

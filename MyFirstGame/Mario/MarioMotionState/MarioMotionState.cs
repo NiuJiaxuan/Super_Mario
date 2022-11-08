@@ -9,6 +9,7 @@ using Sprint0.Sprites;
 using Sprint0.State;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -196,7 +197,6 @@ namespace Sprint0.Mario.MarioMotionState
         public void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
             Mario.Position = position;
-
             switch (entity)
             {
                 case BlockEntity block:
@@ -236,6 +236,23 @@ namespace Sprint0.Mario.MarioMotionState
                             }
                             break;
                         case KoopaTroopaEntity:
+
+                            if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
+                            {
+                                Debug.WriteLine("DEBUG - 2");
+                                Mario.Position = position;
+                                Idle();
+                                //TakeDamage();
+                            }
+                            else if (touching != CollisionDetector.Touching.bottom)
+                            {
+                                Mario.Position = new Vector2(position.X, position.Y + 5);
+                                Idle();
+                            }
+                            else
+                            {
+                                Fall();
+                            }
 
                             break;
                     }

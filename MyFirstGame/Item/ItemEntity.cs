@@ -20,7 +20,7 @@ namespace Sprint0.Item
     public class ItemEntity : Entity, IGravityEntity//, IMovableEntity
     {
 
-        public virtual ItemFactory ItemFactory => game.ItemFactory;
+        public virtual ItemFactory ItemFactory => ItemFactory.Instance;
         public enum eItemType
         {
             Coin = 0,
