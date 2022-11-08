@@ -18,8 +18,6 @@ namespace Sprint0.Item
     {
         FlagEntity flag;
         bool canfall = false;
-        bool canGetSocre = true;
-        int basepoint = 20;
         public FlagPoleEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -33,11 +31,7 @@ namespace Sprint0.Item
             {
                 case MarioEntity:
                     canfall = true;
-                    if (canGetSocre)
-                    {
-                        ScoreSystemManager.Instance.Score += (int)(position.Y * basepoint);
-                    }
-                    canGetSocre = false;
+
                     break;
             }
         }
