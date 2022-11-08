@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Block;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
 using Sprint0.Sprites;
@@ -41,36 +42,19 @@ namespace Sprint0.CollisionDetection
 
 
         private GraphicsDeviceManager graphicsDevice { get; set; }
-        private List<Grid> surroundingGrids { get; set; }
+        private List<Cell> surroundingGrids { get; set; }
 
 
         public CollisionDetector()
         {
+
         }
 
 
 
 
 
-        public List<Entity> getSurroundingEntities(List<Grid> grids, List<Entity> entities)
-        {
-            List<Entity> surroundingEntities = new List<Entity>();
-            foreach(Grid grid in grids)
-            {
-                foreach(Entity entity in entities)
-                {
-                    if (entity.GetRectangle.Intersects(grid.Rectangle) && !surroundingEntities.Contains(entity))
-                    {
-                        surroundingEntities.Add(entity);
-                        //Debug.WriteLine(entity);
-                    }
-                }
-            }
-
-            return surroundingEntities;
-        }
-
-        private void CheckGrounded(Entity entity, List<Entity> surroundings)
+        public void CheckGrounded(Entity entity, List<Entity> surroundings)
         {
             List<Entity> below = new List<Entity>();
             foreach(Entity surround in surroundings)
@@ -115,9 +99,7 @@ namespace Sprint0.CollisionDetection
                             //step 1: get the surrounding entity list
                             collidables.Remove(movable);
 
-                            List<Entity> surroundings = getSurroundingEntities(movable.SurroundingGrids, collidables);
-
-
+                            List<Entity> surroundings = Grid.Instance.getSurroundingEntity(movable, collidables);
                     CheckGrounded(movable, surroundings);
 
                             //Debug.WriteLine(surroundings.Count);

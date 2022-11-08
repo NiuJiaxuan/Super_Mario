@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Sprint0.CollisionDetection;
+using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +23,12 @@ namespace Sprint0.Mario.MarioPowerState
         void DeadTransion();
 
         void Update(GameTime gameTime);
+        void Fire();
+        void Normal();
+        void Super();
+        void TakeDamage();
+
+        void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching);
+
     }
 }

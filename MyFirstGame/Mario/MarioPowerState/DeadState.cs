@@ -24,13 +24,21 @@ namespace Sprint0.Mario.MarioPowerState
         public override void Enter(IMarioPowerState powerState)
         {
             SoundStorage.Instance.PlayDie();
+            EntityStorage.Instance.movableRemove(Mario);
+            SoundStorage.Instance.StopBGM();
             CurrentState = this;
             this.previousState = powerState;
+
+
+            EntityStorage.Instance.ColliableEntites.Remove(Mario);
+            Mario.Accelation = Vector2.Zero;
+            Mario.Speed = Vector2.Zero;
+
+
             anchor.X += Mario.Sprite.FrameSize.X;
 
-            EntityStorage.Instance.MovableEntities.Remove(Mario);
             anchor = Mario.Position;
-            Mario.onGround = false;
+            Mario.onGround = true;
             //Mario.Speed = new Vector2(0, -200);
 
 
@@ -65,12 +73,6 @@ namespace Sprint0.Mario.MarioPowerState
             base.Exit();
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            //if((anchor.X - Mario.Position.X) > 50)
-            //{
-            //    Mario.Speed = -Mario.Speed;
-            //}
-        }
+
     }
 }

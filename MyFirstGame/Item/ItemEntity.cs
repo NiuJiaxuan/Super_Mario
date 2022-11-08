@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Block;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
@@ -13,11 +14,10 @@ using Sprint0.State;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using static Sprint0.State.BlockEntity;
 
 namespace Sprint0.Item
 {
-    public class ItemEntity : Entity//, IMovableEntity
+    public class ItemEntity : Entity, IGravityEntity//, IMovableEntity
     {
 
         public virtual ItemFactory ItemFactory => game.ItemFactory;
@@ -54,7 +54,8 @@ namespace Sprint0.Item
                     break;
                 case BlockEntity:
                     Position = position;
-                    onGround = true;
+                    if(touching == CollisionDetector.Touching.bottom)
+                        onGround = true;
                     break;
                 //case EnemyEntity:
                     //Position = position;

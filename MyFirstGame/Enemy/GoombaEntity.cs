@@ -14,6 +14,7 @@ using Sprint0.CollisionDetection;
 using Sprint0.State;
 using Sprint0.Item;
 using Sprint0.Interfaces;
+using Sprint0.Block;
 
 namespace Sprint0.Enemy
 {
@@ -33,7 +34,7 @@ namespace Sprint0.Enemy
             switch (entity)
             {
                 case MarioEntity:
-                    MarioEntity mario = (MarioEntity)entity;
+
                     switch (touching)
                     {
                         case CollisionDetector.Touching.bottom:
@@ -44,7 +45,7 @@ namespace Sprint0.Enemy
                             if(EntityStorage.Instance.EntityList.Contains(this)
                                 && EnemyType == eEnemyType.DeadGooma)
                             {
-                                EntityStorage.Instance.movableRemove(this);
+                                EntityStorage.Instance.completeRemove(this);
                             }
 
                             Debug.WriteLine("TOP SIde");
@@ -53,6 +54,7 @@ namespace Sprint0.Enemy
                             
                             break;
                         case CollisionDetector.Touching.left:
+                            if(Speed.X <0)
                             NormalTransition("right");
                             break;
                         case CollisionDetector.Touching.right:
@@ -74,6 +76,10 @@ namespace Sprint0.Enemy
                         case CollisionDetector.Touching.right:
                             NormalTransition("left");
                             break;
+                        case CollisionDetector.Touching.top:
+                            Position = position;
+                            break;
+
                     }
                     
                     break;
@@ -82,10 +88,10 @@ namespace Sprint0.Enemy
                     SoundStorage.Instance.PlayStomp();
                     KillTransition();
                     EnemyType = eEnemyType.DeadGooma;
-                    EntityStorage.Instance.movableRemove(this);
+                    EntityStorage.Instance.completeRemove(this);
                     break;
 
-                    default:
+                default:
                     if (touching == CollisionDetector.Touching.left)
                     {
                         //currentState = new GoombaNormalState(this, "right");
@@ -138,9 +144,13 @@ namespace Sprint0.Enemy
                 currentState.Enter(null);
                 EntityStorage.Instance.MovableEntities.Add(this);
             }
-            else if(Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) > 350)
+            else if(Position.X - EntityStorage.Instance.Mario.Position.X < -350)
             {
-                EntityStorage.Instance.MovableEntities.Remove(this);
+                EntityStorage.Instance.completeRemove(this);
+            }
+            else if(Position.Y > 480)
+            {
+                EntityStorage.Instance.completeRemove(this);
             }
             base.Update(gameTime, blockEntities);
 

@@ -27,7 +27,9 @@ namespace Sprint0.Item.State
 
         public override void Enter(IItemState previousState)
         {
+            EntityStorage.Instance.GravityEntites.Add(Item);
             EntityStorage.Instance.MovableEntities.Add(Item);
+
             CurrentState = this;
             this.previousState = previousState;
             

@@ -9,24 +9,26 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block.State;
 using Sprint0.CollisionDetection;
+using Sprint0.Item;
+using Sprint0.Interfaces;
 
-namespace Sprint0.Item
+namespace Sprint0.Block
 {
-    public class PipeEntity : ItemEntity
+    public class PipeEntity : BlockEntity, IStaticEntity
     {
         public PipeEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
-            ItemType = eItemType.Pipe;
-            Sprite = ItemFactory.CreateItem(game, position, (int)ItemType);
+            BlockType =  eBlockType.Pipe;
+            Sprite = BlockFactory.CreateBlock(game, position, (int)BlockType);
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            
+
         }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            base.Update(gameTime,entities);
+            base.Update(gameTime, entities);
 
         }
 

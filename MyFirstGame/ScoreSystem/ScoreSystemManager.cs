@@ -56,6 +56,34 @@ namespace Sprint0.ScoreSystem
         {
             Score += 1000;
         }
+        public void Flagpole(int position)
+        {
+            if (position <= 17)
+            {
+                Score += 100;
+            }
+            else if (position <= 57)
+            {
+                Score += 400;
+            }
+            else if (position <= 81)
+            {
+                Score += 800;
+            }
+            else if (position <= 127)
+            {
+                Score += 2000;
+            }
+            else if (position <= 153)
+            {
+                Score += 4000;
+            }
+            else
+            {
+                LifeSystem.Instance.GainOneLife();
+            }
+
+        }
         public void ResetScore()
         {
             Score = 0;

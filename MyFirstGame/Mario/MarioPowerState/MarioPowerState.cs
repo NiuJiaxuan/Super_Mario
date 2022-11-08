@@ -1,7 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Sprint0.CollisionDetection;
+using Sprint0.Enemy;
+using Sprint0.Item;
 using Sprint0.Mario.MarioMotionState;
+using Sprint0.Sprites;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,5 +43,86 @@ namespace Sprint0.Mario.MarioPowerState
         public virtual void DeadTransion() { }
         public virtual void Update(GameTime gameTime) { }
 
+        public void Fire()
+        {
+            SoundStorage.Instance.PlayPowerUp();
+            FireTransion();
+        }
+        public void Normal()
+        {
+
+            NormalTransion();
+        }
+        public void Super()
+        {
+            SoundStorage.Instance.PlayPowerUp();
+            SuperTransion();
+        }
+        public void TakeDamage()
+        {
+            Debug.WriteLine("take damage");
+            switch (this)
+            {
+                case NormalState:
+                    DeadTransion();
+                    break;
+                case SuperState:
+                    NormalTransion();
+                    break;
+                case FireState:
+                    SuperTransion();
+                    break;
+            }
+        }
+
+        public void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        {
+            switch (entity)
+            {
+                case EnemyEntity:
+                    switch (entity)
+                    {
+                        case GoombaEntity:
+                            if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left || touching == CollisionDetector.Touching.top)
+                            {
+                                if(this.GetType() != typeof(DeadState))
+                                TakeDamage();
+                            }
+                            break;
+                        case KoopaTroopaEntity:
+
+                            break;
+                    }
+                    break;
+                case ItemEntity:
+                    switch (entity)
+                    {
+                        case FireFlowerEntity:
+                            if (this.GetType() == typeof(SuperState))
+                            {
+                                Fire();
+                            }
+                            if (this.GetType() == typeof(NormalState))
+                            {
+                                Super();
+                            }
+                            break;
+                        case OneUpMushroomEntity:
+
+                            break;
+                        case CoinEntity:
+
+                            break;
+                        case SuperMushroomEntity:
+                            if (this.GetType() == typeof(NormalState))
+                                Super();
+                            break;
+                        case StarEntity:
+                            //turn to star mario 
+                            break;
+                    }
+                    break;
+            }
+        }
     }
 }

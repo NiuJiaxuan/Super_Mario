@@ -10,7 +10,7 @@ using Sprint0.Sprites;
 namespace Sprint0.Enemy.EnemyState
 {
     //Ben Changes
-    public class KoopaTroopaState : IEnemyState
+    public class GoombaState : IEnemyState
     {
         protected IEnemyState previousState;
         IEnemyState IEnemyState.PreviousState { get { return previousState; } }
@@ -18,7 +18,7 @@ namespace Sprint0.Enemy.EnemyState
         public bool isRemoved = false; 
 
         public EnemyEntity Enemy;
-        protected KoopaTroopaState(EnemyEntity enemy)
+        protected GoombaState(EnemyEntity enemy)
         {
             Enemy = enemy;
         }

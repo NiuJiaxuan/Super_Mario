@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sprint0.Interfaces;
 using System.Diagnostics;
 using Sprint0.Sprites;
 using Sprint0.CollisionDetection;
 
 namespace Sprint0.Enemy.EnemyState
 {
-    public class KoopaTroopaMovingShellState : EnemyState
+    public class KoopaTroopaMovingShellState : KoopaTroopaState
     {
         string direction;
         public KoopaTroopaMovingShellState(EnemyEntity enemy, string dir) 

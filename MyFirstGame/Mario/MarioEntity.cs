@@ -29,7 +29,7 @@ using Sprint0.ScoreSystem;
 
 namespace Sprint0.Mario
 {
-    public class MarioEntity   : Entity, IMovableEntity
+    public class MarioEntity   : Entity, IMovableEntity, IGravityEntity
     {
 
         public IMarioPowerState currentPowerState { get; set; }
@@ -101,7 +101,6 @@ namespace Sprint0.Mario
         }
 
 
-
         public MarioEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -111,127 +110,11 @@ namespace Sprint0.Mario
             onGround = false;
         }
 
+
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            this.Position = position;
-            switch (entity)
-            {
-                case BlockEntity block:
-                    if (block.IsVisible)
-                    {
-                        if (touching is CollisionDetector.Touching.bottom)
-                        {
-                            onGround = true;
-                            Fall();
-                        }
-                        else if(touching is CollisionDetector.Touching.top)
-                        {
-                            Speed = new Vector2(Speed.X, -Speed.Y);
-                        }
-                        else
-                        {
-                            Idle();
-                        }
-                    }
-                    break;
-                case ItemEntity:
-                    switch (entity)
-                    {
-                        case FireFlowerEntity:
-                            ScoreSystemManager.Instance.FireFlower(); 
-                            if (currentPowerState.GetType() == typeof(SuperState))
-                            {
-                                Fire();
-                                initalizeFireballPool();
-                            }
-                            if (currentPowerState.GetType() == typeof(NormalState))
-                            {
-                                Super();
-                            }
-                            break;
-                        case OneUpMushroomEntity:
-                            SoundStorage.Instance.PlayOneUp();
-                            ScoreSystemManager.Instance.OneUpMushroom();
-                            break;
-                        case CoinEntity:
-                            ScoreSystemManager.Instance.Coin();
-                            break;
-                        case SuperMushroomEntity:
-                            ScoreSystemManager.Instance.SuperMushroom();
-                            if (currentPowerState.GetType() == typeof(NormalState))
-                                Super();
-                            break;
-                        case StarEntity:
-                            ScoreSystemManager.Instance.Star();
-                            //turn to star mario 
-                            break;
-                        case PipeEntity:
-                            if (touching is CollisionDetector.Touching.bottom)
-                            {
-                                onGround = true;
-                                Fall();
-                            }
-                            break;
-
-                    }
-                    break;
-                case EnemyEntity:
-                    switch (entity)
-                    {
-                        case GoombaEntity:
-                            if (touching != CollisionDetector.Touching.bottom )
-                            {
-                                Position = position;
-                                Idle();
-                                TakeDamage();
-                            }
-                            else
-                            {
-                                SoundStorage.Instance.PlayStomp();
-                                Fall();
-                            }
-                            break;
-                        case KoopaTroopaEntity:
-                            //KoopaTroopaEntity koopa = (KoopaTroopaEntity)entity;
-                            //Debug.WriteLine(koopa.currentState.ToString());
-
-                            //if (koopa.currentState is KoopaTroopaDeathState )
-                            //{
-                            //    if (touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.bottom)
-                            //    {
-                            //        Debug.WriteLine("DEBUG");
-                            //        Position = position;
-                            //        Idle();
-                            //    }
-                            //    else
-                            //    {
-                            //        Fall();
-                            //    }
-                            //}
-                            //else
-                            //{
-                            if (touching != CollisionDetector.Touching.bottom && touching != CollisionDetector.Touching.none && touching != CollisionDetector.Touching.top)
-                            {
-                                Debug.WriteLine("DEBUG - 2");
-                                Position = position;
-                                Idle();
-                                //TakeDamage();
-                            }
-                            else if (touching != CollisionDetector.Touching.bottom)
-                            {
-                                Position = new Vector2(position.X, position.Y + 5);
-                                Idle();
-                            }
-                            else
-                            {
-                                Fall();
-                            }
-                            //}
-                            
-                            break;
-                    }
-                    break;
-            }
+            currentMotionState.CollisionResponse(entity, position, touching);
+            currentPowerState.CollisionResponse(entity, position, touching);
         }
 
 
@@ -245,7 +128,7 @@ namespace Sprint0.Mario
 
             if(Position.Y> 480)
             {
-                TakeDamage();
+                currentPowerState.TakeDamage();
                 Speed = Vector2.Zero;
             }
         }
@@ -259,6 +142,7 @@ namespace Sprint0.Mario
 
 
  //----------------------------------------Motion Command Method-----------------------------------
+        
         public void Jump()
         {
             if( !(currentPowerState is DeadState))
@@ -418,7 +302,7 @@ namespace Sprint0.Mario
                 if (fireballPool.Count > 0)
                 {
                     SoundStorage.Instance.PlayFireball();
-                    EntityStorage.Instance.movableAdd(fireball);
+                    EntityStorage.Instance.newEneityAdd(fireball);
                     fireballPool.RemoveAt(0);
                 }
             }

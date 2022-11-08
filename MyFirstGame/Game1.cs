@@ -49,6 +49,8 @@ namespace Sprint0
 
         private LevelBuilder levelBuilder;
 
+        private CollisionDetector cd = CollisionDetector.Instance;
+
 
         public MarioFactory MarioFactory
         {
@@ -95,7 +97,6 @@ namespace Sprint0
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            EntityStorage.Instance.SetupGrids(_graphics);
             SoundStorage.Instance.LoadSounds(Content);
             levelBuilder = new LevelBuilder();
             levelBuilder.LodeLevel(this);
@@ -106,7 +107,6 @@ namespace Sprint0
             cloud = Content.Load<Texture2D>("cloud");
             bush= Content.Load<Texture2D>("bush");
             EntityStorage.Instance.initialCommand(this);
-            EntityStorage.Instance.SetupGrids(_graphics);
 
             SoundStorage.Instance.PlayBGM();
 
