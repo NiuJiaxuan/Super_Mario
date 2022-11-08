@@ -37,6 +37,7 @@ namespace Sprint0.Enemy.KoopaTroopaStates
             this.previousState = previousState;
         }
         public virtual void Exit() { }
+        public virtual void EmergeTransition() { }
 
         public virtual void KillTransition() { }
 

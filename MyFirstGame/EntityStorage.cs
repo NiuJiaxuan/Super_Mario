@@ -249,6 +249,14 @@ namespace Sprint0
             Grid.Instance.RemoveEntity(entity);
         }
 
+        public void movableAdd(Entity entity)
+        {
+            if (!MovableEntities.Contains(entity))
+                MovableEntities.Add(entity);
+            if (!GravityEntites.Contains(entity))
+                GravityEntites.Add(entity);
+        }
+
         public void movableRemove(Entity entity)
         {
             MovableEntities.Remove(entity);

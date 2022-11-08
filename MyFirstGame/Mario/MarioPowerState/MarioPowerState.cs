@@ -92,26 +92,7 @@ namespace Sprint0.Mario.MarioPowerState
                             }
                             break;
                         case KoopaTroopaEntity:
-                            //Debug.WriteLine((entity as KoopaTroopaEntity).currentState);
-                            //switch((entity as KoopaTroopaEntity).currentState)
-                            //{
-                            //    case KoopaTroopaNormalState:
-                            //        if(touching != CollisionDetector.Touching.bottom)
-                            //        {
-                            //            if (this.GetType() != typeof(DeadState))
-                            //                TakeDamage();
-                            //        }
-                            //        break;
-                            //    case KoopaTroopaShellState:
-                            //        break;
-                            //    case KoopaTroopaMovingShellState:
-                            //        if(touching != CollisionDetector.Touching.bottom)
-                            //        {
-                            //            if (this.GetType() != typeof(DeadState))
-                            //                TakeDamage();
-                            //        }
-                            //        break;
-                            //}
+
                             break;
                     }
                     break;

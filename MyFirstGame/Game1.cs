@@ -45,11 +45,6 @@ namespace Sprint0
         public static LevelData levelData { get; set; }
 
 
-        private ItemFactory itemFactory = null;
-        private MarioFactory marioFactory = null;
-        private BlockFactory blockFactory = null;
-        private EnemyFactory enemyFactory = null;
-
         private LevelBuilder levelBuilder;
 
         private CollisionDetector cd = CollisionDetector.Instance;

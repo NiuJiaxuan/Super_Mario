@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Sprint0.Enemy.EnemyState;
 using Sprint0.Sprites.factory;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sprint0.Enemy.EnemyState
+namespace Sprint0.Enemy.PiranhaStates
 {
     public class PiranhaNormalState : PiranhaState
     {

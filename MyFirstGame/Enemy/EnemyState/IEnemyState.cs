@@ -11,7 +11,7 @@ namespace Sprint0.Enemy.EnemyState
 {
     public interface IEnemyState
     {
-        IEnemyState PreviousState { get; }
+        IEnemyState PreviousState { get; } 
         void Enter(IEnemyState PreviousState);
         void Exit();
         void Update(GameTime gameTime);
@@ -19,6 +19,8 @@ namespace Sprint0.Enemy.EnemyState
         void NormalTransition(string dir);
         void ShellTransition();
         void ShellMovingTransition(string dir);
+        void EmergeTransition();
+
         //void StopShell();
 
         void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching);

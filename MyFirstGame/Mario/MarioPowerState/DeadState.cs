@@ -33,7 +33,6 @@ namespace Sprint0.Mario.MarioPowerState
             this.previousState = powerState;
 
 
-            EntityStorage.Instance.ColliableEntites.Remove(Mario);
             Mario.Accelation = Vector2.Zero;
             Mario.Speed = Vector2.Zero;
 
@@ -81,7 +80,7 @@ namespace Sprint0.Mario.MarioPowerState
 
         public override void Exit()
         {
-            EntityStorage.Instance.MovableEntities.Add(Mario);
+            EntityStorage.Instance.movableAdd(Mario);
             base.Exit();
         }
 

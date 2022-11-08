@@ -38,6 +38,8 @@ namespace Sprint0.Item
         public IItemState CurrentState { get; set; }
         public eItemType ItemType { get; set; }
 
+        public Entity currentColliding;
+
         public ItemEntity(Game1 game, Vector2 position)
             : base(game, position)
         {
@@ -56,6 +58,8 @@ namespace Sprint0.Item
                     Position = position;
                     if(touching == CollisionDetector.Touching.bottom)
                         onGround = true;
+
+
                     break;
                 //case EnemyEntity:
                     //Position = position;
@@ -72,6 +76,11 @@ namespace Sprint0.Item
         {            
             base.Update(gameTime, entities);
 
+            if (currentColliding != null && !this.GetRectangle.Intersects(currentColliding.GetRectangle)
+                && !EntityStorage.Instance.ColliableEntites.Contains(this))
+            {
+                EntityStorage.Instance.ColliableEntites.Add(this);
+            }
             CurrentState?.Update(gameTime); 
         }
 
