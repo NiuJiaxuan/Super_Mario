@@ -35,6 +35,7 @@ namespace Sprint0.Enemy
             DeadGooma = 3,
             IdleDeadKoopaTroopa = 4,
             MovingDeadKoopaTroopa = 5,
+            Piranha = 6,
         }
 
         public void StartRemovalTimer(int milliseconds)
@@ -75,6 +76,10 @@ namespace Sprint0.Enemy
         public void ShellBump(string dir)
         {
             currentState?.ShellMovingTransition(dir);
+        }
+        public void EmergeTransition()
+        {
+            currentState?.EmergeTransition();
         }
     }
 }

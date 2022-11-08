@@ -45,4 +45,13 @@ namespace Sprint0.Sprites.Sprites
         }
     }
 
+    class PiranhaSprite : Sprite
+    {
+        public PiranhaSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("Piranha-Plant"), position, Vector2.Zero, Point.Zero, new Point(2, 1), new Point(60 / 2, 45), true)
+        {
+
+        }
+    }
+
 }

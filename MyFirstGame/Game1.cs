@@ -83,13 +83,14 @@ namespace Sprint0
             cloud = Content.Load<Texture2D>("cloud");
             bush= Content.Load<Texture2D>("bush");
             EntityStorage.Instance.initialCommand(this);
-
+            EntityStorage.Instance.initialCheckPoints();
             SoundStorage.Instance.PlayBGM();
 
-            GameOverState.Instance.loadGameOverBackground(Content);
 
             font = Content.Load<SpriteFont>("file");
             HUD.Instance.SetUpFont(font);
+            GameOverState.Instance.loadGameOverBackground(Content, font);
+            WinningState.Instance.loadWinningBackground(Content, font);
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
@@ -115,6 +116,7 @@ namespace Sprint0
             if (HUD.Instance.TimeDisplay < 0 && !isTimeUp)
             {
                 SoundStorage.Instance.StopBGM();
+                if (!LifeSystem.Instance.isNoLife)
                 EntityStorage.Instance.Mario.Die();
                 isTimeUp = true;
             }
@@ -143,6 +145,9 @@ namespace Sprint0
             levelBuilder.EntityStorage.Draw(_spriteBatch);
             _spriteBatch.End();
 
+            GameOverState.Instance.Draw(_spriteBatch);
+            WinningState.Instance.Draw(_spriteBatch);
+
             _spriteBatch.Begin();
             HUD.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
@@ -162,6 +167,14 @@ namespace Sprint0
             ScoreSystemManager.Instance.ResetScore();
             CoinSystem.Instance.resetCoin();
             SoundStorage.Instance.PlayBGM();
+            LifeSystem.Instance.resetLife();
+
+            GameOverState.Instance.candraw = false;
+            EntityStorage.Instance.gameOver = false;
+            HUD.Instance.gameOver = false;
+
+            WinningState.Instance.candraw = false;
+            
         }
 
         public void ExitCommnad()

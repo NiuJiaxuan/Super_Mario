@@ -29,7 +29,7 @@ namespace Sprint0
 {
     public class EntityStorage
     {
-        public bool isPause = false;
+        public bool isPause = false, gameOver=false;
         public List<Entity> DrawableEntities { get; set; }
         public List<Entity> EntityList { get; set; }
         public List<Entity> MovableEntities { get; set; }
@@ -41,9 +41,10 @@ namespace Sprint0
 
         private IController keyboard;
         private IController pausedKeyboard;
-
+        private IController gameOverKeyboard;
         public Game1 Game { get; set; }
 
+        public List<Vector2> checkPoints;
         public Grid[,] AllGrids { get; set; }
 
         private static EntityStorage instance;
@@ -59,7 +60,19 @@ namespace Sprint0
             }
         }
 
-
+        public void initialCheckPoints()
+        {
+            checkPoints = new List<Vector2>();
+            checkPoints.Add(new Vector2(0, 100));
+            checkPoints.Add(new Vector2(500,100));
+            checkPoints.Add(new Vector2(1000, 100));
+            checkPoints.Add(new Vector2(1500, 100));
+            checkPoints.Add(new Vector2(2000, 100));
+            checkPoints.Add(new Vector2(2500, 100));
+            checkPoints.Add(new Vector2(3000, 100));
+            checkPoints.Add(new Vector2(3500, 100));
+            checkPoints.Add(new Vector2(4000, 100));
+        }
 
         public  EntityStorage()
         {
@@ -78,6 +91,8 @@ namespace Sprint0
             if (objectType.Equals("Blocks"))
             {
                 List<ItemEntity> itemInBlock = CreateItemEntityInBlock(levelObject, game);
+                List<EnemyEntity> enemyInBlock = CreateEnemyEntityInBlock(levelObject, game);
+
                 if (objectName.Equals("BrickBlock")){
                     return new BrickBlockEntity(game, levelObject.Position, true, itemInBlock, entityList);
                 }
@@ -92,6 +107,10 @@ namespace Sprint0
                 else if (objectName.Equals("HiddenQuestionBlock"))
                 {
                     return new QuestionBlockEntity(game, levelObject.Position, false, itemInBlock, entityList);
+                }
+                else if (objectName.Equals("Pipe"))
+                {
+                    return new PipeEntity(game, levelObject.Position, itemInBlock, entityList, enemyInBlock);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
@@ -128,10 +147,10 @@ namespace Sprint0
                 {
                     return new FireFlowerEntity(game, levelObject.Position);
                 }
-                else if (objectName.Equals("Pipe"))
-                {
-                    return new PipeEntity(game, levelObject.Position);
-                }
+                //else if (objectName.Equals("Pipe"))
+                //{
+                //    return new PipeEntity(game, levelObject.Position);
+                //}
                 else if (objectName.Equals("Castle"))
                 {
                     return new CastleEntity(game, levelObject.Position);
@@ -155,6 +174,10 @@ namespace Sprint0
                 {
                     return new KoopaTroopaEntity(game, levelObject.Position);
                 }
+                //else if (objectName.Equals("Piranha"))
+                //{
+                //    return new PiranhaEntity(game, levelObject.Position);
+                //}
             }
             else
             {
@@ -162,7 +185,22 @@ namespace Sprint0
             }
             return null;
         }
-
+        private static List<EnemyEntity> CreateEnemyEntityInBlock(LevelObject levelObject, Game1 game)
+        {
+            List<EnemyEntity> temp = new List<EnemyEntity>();
+            if (levelObject.EnemyItem != null)
+            {
+                foreach (string enemy in levelObject.EnemyItem)
+                {
+                    if (enemy.Equals("Piranha"))
+                    {
+                        Vector2 pos = new Vector2((int)levelObject.Position.X + 15, (int)levelObject.Position.Y - 15);
+                        temp.Add(new PiranhaEntity(game, pos));
+                    }
+                }
+            }
+            return temp;
+        }
         private static List<ItemEntity> CreateItemEntityInBlock(LevelObject levelObject, Game1 game)
         {
             List<ItemEntity> temp = new List<ItemEntity>();
@@ -266,10 +304,14 @@ namespace Sprint0
             keyboard.Command((int)Keys.Right, new MarioWalkRight(Mario));
 
             keyboard.Command((int)Keys.C, new ShowBoundBox(EntityStorage.Instance.EntityList));
+
+            gameOverKeyboard = new KeyboardController();
+            gameOverKeyboard.Command((int)Keys.Q, new ExitCommand(game));
+            gameOverKeyboard.Command((int)Keys.R, new ResetCommand(game));
         }
         public void Update(GameTime gameTime)
         {
-            if (!isPause)
+            if (!isPause&&!gameOver)
             {
                 foreach (Entity entity in ColliableEntites)
                 {
@@ -299,9 +341,14 @@ namespace Sprint0
 
                 CollisionDetector.Instance.DectectCollision();
             }
-            else
+            else if(isPause)
             {
                 pausedKeyboard.Update();
+            }
+            else if (gameOver)
+            {
+
+                gameOverKeyboard.Update();
             }
             
         }
@@ -327,6 +374,7 @@ namespace Sprint0
             {
                 entity.Draw(batch);
             }
+ 
             CollisionDetector.Instance.Draw(batch);
 
         }

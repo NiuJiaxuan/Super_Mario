@@ -14,36 +14,36 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Block.State.GameState
 {
-    public class GameOverState : IGameState
+    public class WinningState : IGameState
     {
         public SpriteFont Font;
         public Texture2D background;
         public bool candraw = false;
-        private static GameOverState instance;
+        private static WinningState instance;
 
-        public static GameOverState Instance
+        public static WinningState Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new GameOverState();
+                    instance = new WinningState();
                 }
                 return instance;
             }
         }
 
-        public void loadGameOverBackground(ContentManager content, SpriteFont font)
+        public void loadWinningBackground(ContentManager content, SpriteFont font)
         {
-            background = content.Load<Texture2D>("gameover");
+            background = content.Load<Texture2D>("victory");
             Font = font;
         }
 
-        public void gameOver()
+        public void winning()
         {
-            HUD.Instance.gameOver = !HUD.Instance.gameOver;
-            EntityStorage.Instance.gameOver = true;
-            candraw = !candraw;
+            //HUD.Instance.gameOver = !HUD.Instance.gameOver;
+            //EntityStorage.Instance.gameOver = true;
+            candraw = true;
 
         }
         public void Update()
@@ -57,8 +57,8 @@ namespace Sprint0.Block.State.GameState
             {
                 spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
 
-                spriteBatch.DrawString(Font, "Press R to replay " , new Vector2(350, 300), Color.White);
-                spriteBatch.DrawString(Font, "Press Q to quit " , new Vector2(350, 350), Color.White);
+                spriteBatch.DrawString(Font, "Press R to replay " , new Vector2(350, 300), Color.Red);
+                spriteBatch.DrawString(Font, "Press Q to quit " , new Vector2(350, 350), Color.Red);
             }
             spriteBatch.End();
         }

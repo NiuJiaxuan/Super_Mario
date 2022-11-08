@@ -49,7 +49,7 @@ namespace Sprint0.ScoreSystem
         }
         public void TimeConcurrent()
         {
-            if (!isPasued||gameOver)
+            if (!isPasued && !gameOver)
             {
                 timeCounter += gameTime.ElapsedGameTime.Ticks;
                 TimeDisplay = timeLimit - timeCounter;
@@ -68,7 +68,7 @@ namespace Sprint0.ScoreSystem
             Vector2 currentTime = new Vector2(600, 0);
             batch.DrawString(currentFont, "Score: " + ScoreSystemManager.Instance.Score, scorePosition, Color.White);
             batch.DrawString(currentFont, "Coin X " + CoinSystem.Instance.CoinCount, coinPosition, Color.White);
-            batch.DrawString(currentFont, "Player X " + LifeSystem.Instance.LifeCount, lifePosition, Color.White);
+            batch.DrawString(currentFont, "Mario X " + LifeSystem.Instance.LifeCount, lifePosition, Color.White);
             batch.DrawString(currentFont, "Time: " + TimeDisplay / 10000000, currentTime, Color.White);
         }
     }
