@@ -148,7 +148,171 @@ namespace Sprint0.Mario
         }
 
 
-//--------------------------------------------------fire ball---------------------------------------
+
+
+ //----------------------------------------Motion Command Method-----------------------------------
+        
+        public void Jump()
+        {
+            if( !(currentPowerState is DeadState))
+            {
+                switch (currentMotionState)
+                {
+                    case CrouchState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    default:
+                        currentMotionState?.JumpTransion();
+                        break;
+                }
+            }
+
+        }
+
+        public void Idle()
+        {
+            currentMotionState?.IdleTransion();
+        }
+
+        public void Fall()
+        {
+            currentMotionState?.FallTransion();
+        }
+        //the vertical and horizontal speed after state change will turn to zero
+        //need to fix this problem later
+        public void WalkRight()
+        {
+            if(!(currentPowerState is DeadState))
+            {
+                switch (currentMotionState)
+                {
+                    case IdleState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.WalkTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                        }
+                        break;
+                    case WalkState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case JumpState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            Speed += new Vector2(40, 0);
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case CrouchState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.None;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                }
+            }
+            
+
+        }
+        public void WalkLeft()
+        {
+            if(!(currentPowerState is DeadState))
+            {
+                switch (currentMotionState)
+                {
+                    case IdleState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.WalkTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                        }
+                        break;
+                    case WalkState:
+                        if (Sprite.Orientation == SpriteEffects.None)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case JumpState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            Speed += new Vector2(-40, 0);
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                    case CrouchState:
+                        if (Sprite.Orientation == SpriteEffects.FlipHorizontally)
+                        {
+                            currentMotionState?.IdleTransion();
+                        }
+                        else
+                        {
+                            Sprite.Orientation = SpriteEffects.FlipHorizontally;
+                            currentMotionState?.IdleTransion();
+                        }
+                        break;
+                }
+            }
+        }
+        public void Crouch()
+        {
+            if(!(currentPowerState is DeadState))
+            {
+                switch (currentMotionState)
+                {
+                    case JumpState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    case WalkState:
+                        currentMotionState?.IdleTransion();
+                        break;
+                    default:
+                        // if(currentPowerState.GetType() != typeof(NormalState))
+                        currentMotionState?.CrouchTransion();
+                        break;
+                }
+            }
+
+        }
+
+        public void respawn()
+        {
+             Normal();
+            Vector2 Closest = new Vector2(0, 0);
+            foreach (Vector2 cp in EntityStorage.Instance.checkPoints)
+            {
+
+                if (cp.X < Position.X)
+                {
+                    Closest = cp;
+                }
+            }
+            Position = Closest;
+        }
+
+        //-------------------------------------------fire ball--------------------------------
         public void initalizeFireballPool()
         {
             FireballEntity fireball = new FireballEntity(game, Position,fireballPool);
