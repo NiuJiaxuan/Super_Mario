@@ -63,12 +63,15 @@ namespace Sprint0
         public void initialCheckPoints()
         {
             checkPoints = new List<Vector2>();
-            checkPoints.Add(new Vector2(200,100));
-            checkPoints.Add(new Vector2(500, 100));
-            checkPoints.Add(new Vector2(750, 100));
+            checkPoints.Add(new Vector2(0, 100));
+            checkPoints.Add(new Vector2(500,100));
             checkPoints.Add(new Vector2(1000, 100));
-            checkPoints.Add(new Vector2(1250, 100));
             checkPoints.Add(new Vector2(1500, 100));
+            checkPoints.Add(new Vector2(2000, 100));
+            checkPoints.Add(new Vector2(2500, 100));
+            checkPoints.Add(new Vector2(3000, 100));
+            checkPoints.Add(new Vector2(3500, 100));
+            checkPoints.Add(new Vector2(4000, 100));
         }
 
         public  EntityStorage()

@@ -15,8 +15,8 @@ namespace Sprint0.Mario.MarioPowerState
 {
     public class DeadState : MarioPowerState
     {
-        private Texture2D background;
         Vector2 anchor;
+        long timeCounter = 0;
         public DeadState(MarioEntity mario)
             : base(mario)
         {
@@ -48,9 +48,18 @@ namespace Sprint0.Mario.MarioPowerState
             int type = Mario.generateType(CurrentMotionState, CurrentState);
             Mario.Sprite = Mario.MarioFactory.CreateMario(Mario.game, Mario.Position, type);
             Mario.marioType = type;
-            Mario.respawn();
+            
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            timeCounter +=gameTime.ElapsedGameTime.Ticks;
+
+            if (timeCounter > 30000000)
+            {
+                Mario.respawn();
+            }
+        }
         public override void NormalTransion()
         {
             CurrentState.Exit();
