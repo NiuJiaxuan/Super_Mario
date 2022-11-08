@@ -13,7 +13,7 @@ namespace Sprint0.Enemy.EnemyState
     public class GoombaDeathState : GoombaState
     {
         private static readonly TimeSpan intervalBetweenAlive = TimeSpan.FromMilliseconds(4000);
-        private TimeSpan lastTimeAlive;
+        private int lastTimeAlive = 0;
         EnemyEntity goomba;
 
         public GoombaDeathState(EnemyEntity enemy)
@@ -32,12 +32,17 @@ namespace Sprint0.Enemy.EnemyState
             ScoreSystemManager.Instance.KillGoomba();
             CurrentState = this;
             this.previousState = previousState;
+            EntityStorage.Instance.movableRemove(Enemy);
             Enemy.Sprite = Enemy.EnemyFactory.CreateEnemy(Enemy.game, Enemy.Position, 3);
         }
         public override void Update(GameTime gameTime)
         {
             Enemy.Speed = new Vector2(0, 0);
-            
+            lastTimeAlive += gameTime.ElapsedGameTime.Milliseconds;
+            if(lastTimeAlive >= 200)
+            {
+                EntityStorage.Instance.completeRemove(Enemy);
+            }
         }
     }
 }

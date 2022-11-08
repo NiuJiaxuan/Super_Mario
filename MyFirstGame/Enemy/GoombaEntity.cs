@@ -42,12 +42,6 @@ namespace Sprint0.Enemy
                             break;
                         case CollisionDetector.Touching.top:
 
-                            if(EntityStorage.Instance.EntityList.Contains(this)
-                                && EnemyType == eEnemyType.DeadGooma)
-                            {
-                                EntityStorage.Instance.completeRemove(this);
-                            }
-
                             Debug.WriteLine("TOP SIde");
                             KillTransition();
                             EnemyType = eEnemyType.DeadGooma;

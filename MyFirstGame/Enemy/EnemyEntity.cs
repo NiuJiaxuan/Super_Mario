@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy.EnemyState;
+using Sprint0.Timers;
+using System.Diagnostics;
 
 namespace Sprint0.Enemy
 {
@@ -34,6 +36,18 @@ namespace Sprint0.Enemy
             IdleDeadKoopaTroopa = 4,
             MovingDeadKoopaTroopa = 5,
         }
+
+        public void StartRemovalTimer(int milliseconds)
+        {
+            TimerManager.Instance.RemoveFromTimerList( new Timer(milliseconds, RemoveFromEntity));
+        }
+
+        public void RemoveFromEntity()
+        {
+            Debug.WriteLine("removed from entity storage");
+            EntityStorage.Instance.completeRemove(this);
+        }
+
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
 

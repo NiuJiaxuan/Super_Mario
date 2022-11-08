@@ -4,12 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Sprint0.Enemy.EnemyState
 {
-    class GoombaNormalState : GoombaState
+    class GoombaNormalState : KoopaTroopaState
     {
         string direction;
         public GoombaNormalState(EnemyEntity enemy, string dir)
@@ -50,6 +51,11 @@ namespace Sprint0.Enemy.EnemyState
             CurrentState = new GoombaDeathState(Enemy);
             CurrentState.Enter(this);
         }
-      
+
+        public override void Update(GameTime gameTime)
+        {
+
+            base.Update(gameTime);
+        }
     }
 }
