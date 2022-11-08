@@ -40,6 +40,10 @@ namespace Sprint0.Enemy.EnemyState
         public virtual void EmergeTransition() { }
 
         public virtual void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching) { }
+        public void EmergeTransition(string dir)
+        {
+        }
+        public virtual void ShellBump(string dir) { }
 
     }
 }

@@ -58,7 +58,7 @@ namespace Sprint0.Enemy
                     }
                     break;
                 case BlockEntity:
-                    Debug.WriteLine("goomba touch block from " + touching);
+                    //Debug.WriteLine("goomba touch block from " + touching);
                     switch(touching)
                     {
                         case CollisionDetector.Touching.bottom:

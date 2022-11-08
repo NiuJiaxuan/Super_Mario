@@ -21,6 +21,8 @@ namespace Sprint0.Enemy.EnemyState
         void ShellMovingTransition(string dir);
         void EmergeTransition();
 
+        void EmergeTransition(string dir);
+        void ShellBump(string dir);
         //void StopShell();
 
         void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching);

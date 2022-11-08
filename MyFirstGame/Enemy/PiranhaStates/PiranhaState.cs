@@ -41,5 +41,6 @@ namespace Sprint0.Enemy.EnemyState
         public virtual void EmergeTransition() { }
 
 
+        public virtual void EmergeTransition(string dir) { }
     }
 }

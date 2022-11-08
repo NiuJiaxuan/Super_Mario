@@ -77,9 +77,9 @@ namespace Sprint0.Enemy
         {
             currentState?.ShellMovingTransition(dir);
         }
-        public void EmergeTransition()
+        public void EmergeTransition(string dir)
         {
-            currentState?.EmergeTransition();
+            currentState?.EmergeTransition(dir);
         }
     }
 }

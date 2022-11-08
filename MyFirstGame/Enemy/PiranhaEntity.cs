@@ -36,7 +36,7 @@ namespace Sprint0.Enemy
         }
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
-            EntityStorage.Instance.ColliableEntites.Remove(this);
+            //EntityStorage.Instance.ColliableEntites.Remove(this);
             //EntityStorage.Instance.completeRemove(this);
             base.Update(gameTime, blockEntities);
         }

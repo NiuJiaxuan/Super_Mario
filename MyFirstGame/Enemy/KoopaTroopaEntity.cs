@@ -287,7 +287,7 @@ namespace Sprint0.Enemy
             }
             else if (Position.X - EntityStorage.Instance.Mario.Position.X < -400)
             {
-                Debug.WriteLine(this + " was being removed");
+                //Debug.WriteLine(this + " was being removed");
 
                 EntityStorage.Instance.completeRemove(this);
             }
