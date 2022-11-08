@@ -31,10 +31,10 @@ namespace Sprint0.Enemy.EnemyState
             Enemy.Position = Origin;
         }
 
-        public override void EmergeTransition()
+        public override void EmergeTransition(string dir)
         {
             CurrentState.Exit();
-            CurrentState = new PiranhaEmergeState(Enemy);
+            CurrentState = new PiranhaEmergeState(Enemy, dir);
             CurrentState.Enter(this);
         }
     }

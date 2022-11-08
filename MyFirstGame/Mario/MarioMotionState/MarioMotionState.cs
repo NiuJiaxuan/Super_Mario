@@ -238,6 +238,24 @@ namespace Sprint0.Mario.MarioMotionState
                         case KoopaTroopaEntity:
 
                             break;
+                        case PiranhaEntity:
+                            Idle();
+                            if (touching == CollisionDetector.Touching.right)
+                            {
+                                Vector2 pos = new Vector2(Mario.Position.X - 10, Mario.Position.Y);
+                                Mario.Position = pos;
+                            }
+                            else if (touching == CollisionDetector.Touching.left)
+                            {
+                                Vector2 pos = new Vector2(Mario.Position.X + 10, Mario.Position.Y);
+                                Mario.Position = pos;
+                            }
+                            else if(touching == CollisionDetector.Touching.top)
+                            {
+                                Vector2 pos = new Vector2(Mario.Position.X, Mario.Position.Y + 10);
+                                Mario.Position = pos;
+                            }
+                            break;
                     }
                     break; 
             }

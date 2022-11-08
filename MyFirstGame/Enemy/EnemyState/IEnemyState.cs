@@ -16,7 +16,7 @@ namespace Sprint0.Enemy.EnemyState
         void KillTransition();
         void NormalTransition(string dir);
         void ShellTransition();
-        void EmergeTransition();
+        void EmergeTransition(string dir);
         void ShellBump(string dir);
         //void StopShell();
     }

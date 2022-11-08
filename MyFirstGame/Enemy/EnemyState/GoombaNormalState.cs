@@ -32,7 +32,7 @@ namespace Sprint0.Enemy.EnemyState
             }
             else if (direction == "right")
             {
-                Debug.WriteLine("SHIFT");
+                //Debug.WriteLine("SHIFT");
                 Enemy.Speed = new Vector2(40, 0);
                 Enemy.Position = new Vector2(Enemy.Position.X + 5, Enemy.Position.Y);
             }

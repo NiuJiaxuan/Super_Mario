@@ -25,6 +25,7 @@ namespace Sprint0.Block
         public List<Entity> EntityList;
         int time;
         bool plant;
+        
         public PipeEntity(Game1 game, Vector2 position, List<ItemEntity> blockItemList, List<Entity> entityList, List<EnemyEntity> blockEnemyList)
             : base(game, position)
         {
@@ -47,7 +48,7 @@ namespace Sprint0.Block
             if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 350)
             {
                 time++;
-                Debug.WriteLine(time);
+                //Debug.WriteLine(time);
                 if (BlockItemList.Count != 0)
                 {
                     if(time % 300 == 0)
@@ -63,13 +64,20 @@ namespace Sprint0.Block
                 }
                 if(BlockEnemyList.Count != 0)
                 {
-                    if(time % 1000 == 0)
+                    plant = true;
+                    EnemyEntity temp = BlockEnemyList[0];
+                    if (time % 500 == 0)
                     {
-                        plant = true;
-                        EnemyEntity temp = BlockEnemyList[0];
                         EntityList.Add(temp);
-                        temp.EmergeTransition();
+                        string dir = "up";
+                        temp.EmergeTransition(dir);
+                    }
+                    else if(time % 700 == 0)
+                    {
+                        string dir = "down";
+                        temp.EmergeTransition(dir);
                         BlockEnemyList.RemoveAt(0);
+
                     }
                 }
             }

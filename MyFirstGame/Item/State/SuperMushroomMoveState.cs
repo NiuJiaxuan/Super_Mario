@@ -36,15 +36,15 @@ namespace Sprint0.Item.State
             Origion = Item.Position;
 
             Item.Speed = new Vector2(0, -40);
-            Debug.WriteLine("enter item moving state");
+            //Debug.WriteLine("enter item moving state");
             if ((Item.Position.X - EntityStorage.Instance.Mario.Position.X) > 0)
             {
-                Debug.WriteLine("move right");
+                //Debug.WriteLine("move right");
                 Item.Speed = new Vector2(-40, 0);
             }
             else
             {
-                Debug.WriteLine("move left");
+                //Debug.WriteLine("move left");
                 Item.Speed = new Vector2(40, 0);
             }
         }
@@ -71,6 +71,7 @@ namespace Sprint0.Item.State
             //{
             //    Item.Speed = new Vector2 (-Item.Speed.X, 0);
             //}
+            base.Update(gameTime);
         }
     }
 }

@@ -46,6 +46,7 @@ namespace Sprint0.Item
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
             //Debug.WriteLine("item response");
+            
             switch (entity)
             {
                 case MarioEntity:
@@ -56,11 +57,15 @@ namespace Sprint0.Item
                     Position = position;
                     if(touching == CollisionDetector.Touching.bottom)
                         onGround = true;
+                    if (touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left)
+                    {
+                        CurrentState?.NormalTransition();
+                    }
                     break;
-                //case EnemyEntity:
-                    //Position = position;
-                    //break;
-                    // item response
+                case EnemyEntity:
+                    EntityStorage.Instance.EntityList.Remove(this);
+                    EntityStorage.Instance.ColliableEntites.Remove(this);
+                    break;
                 case ItemEntity:
                     Position = position;
                     break;

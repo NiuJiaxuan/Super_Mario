@@ -104,7 +104,7 @@ namespace Sprint0.Enemy
                     }
                     break;
                 case BlockEntity:
-                    Debug.WriteLine("IS colliding");
+                    //Debug.WriteLine("IS colliding");
                     if (EnemyType.Equals(eEnemyType.KoopaTroopa))
                     {
                         if (touching == CollisionDetector.Touching.left)
@@ -150,7 +150,7 @@ namespace Sprint0.Enemy
                                 }
                                 else if (touching == CollisionDetector.Touching.right)
                                 {
-                                    Debug.WriteLine("Right");
+                                    //Debug.WriteLine("Right");
                                     //switch direction to the left
                                     dir = "left";
                                     NormalTransition("left");
@@ -168,7 +168,7 @@ namespace Sprint0.Enemy
                                 }
                                 else if (touching == CollisionDetector.Touching.right)
                                 {
-                                    Debug.WriteLine("Right");
+                                    //Debug.WriteLine("Right");
                                     //switch direction to the left
                                     dir = "left";
                                     NormalTransition("left");
@@ -226,7 +226,7 @@ namespace Sprint0.Enemy
             }
             else if (Position.X - EntityStorage.Instance.Mario.Position.X < -350)
             {
-                Debug.WriteLine(this + " was being removed");
+                //Debug.WriteLine(this + " was being removed");
 
                 EntityStorage.Instance.completeRemove(this);
             }

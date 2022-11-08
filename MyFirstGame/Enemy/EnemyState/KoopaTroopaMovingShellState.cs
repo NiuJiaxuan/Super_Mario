@@ -24,7 +24,7 @@ namespace Sprint0.Enemy.EnemyState
             CurrentState = this;
             this.previousState = previousState;
 
-            Debug.WriteLine("ENTER DEBUG :" + direction);
+            //Debug.WriteLine("ENTER DEBUG :" + direction);
             if (direction == "left")
             {
                 Enemy.Speed = new Vector2(-40, 0);

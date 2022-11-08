@@ -61,7 +61,7 @@ namespace Sprint0.Mario.MarioPowerState
         }
         public void TakeDamage()
         {
-            Debug.WriteLine("take damage");
+            //Debug.WriteLine("take damage");
             switch (this)
             {
                 case NormalState:
@@ -92,6 +92,9 @@ namespace Sprint0.Mario.MarioPowerState
                             break;
                         case KoopaTroopaEntity:
 
+                            break;
+                        case PiranhaEntity:
+                            TakeDamage();
                             break;
                     }
                     break;

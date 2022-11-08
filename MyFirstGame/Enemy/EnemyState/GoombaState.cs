@@ -36,7 +36,9 @@ namespace Sprint0.Enemy.EnemyState
         public virtual void NormalTransition(string dir) { }
         public virtual void ShellTransition() { }
         public virtual void EmergeTransition() { }
-
+        public void EmergeTransition(string dir)
+        {
+        }
         public virtual void ShellBump(string dir) { }
 
     }
