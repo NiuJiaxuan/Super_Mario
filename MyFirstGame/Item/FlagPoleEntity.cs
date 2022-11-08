@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Sprint0.State;
 using Sprint0.Mario;
 using Sprint0.ScoreSystem;
+using Sprint0.Block.State.GameState;
 
 namespace Sprint0.Item
 {
@@ -38,6 +39,7 @@ namespace Sprint0.Item
                         SoundStorage.Instance.PlayWin();
                         canGetSocre = false;
                     }
+                    WinningState.Instance.winning();
                     break;
             }
         }
