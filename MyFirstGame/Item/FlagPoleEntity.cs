@@ -31,7 +31,6 @@ namespace Sprint0.Item
             {
                 case MarioEntity:
                     canfall = true;
-
                     break;
             }
         }

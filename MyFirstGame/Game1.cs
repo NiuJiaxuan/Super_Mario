@@ -169,7 +169,7 @@ namespace Sprint0
             EntityStorage.Instance.initialCommand(this);
             HUD.Instance.ResetTime();
             ScoreSystemManager.Instance.ResetScore();
-
+            CoinSystem.Instance.resetCoin();
         }
 
         public void ExitCommnad()
