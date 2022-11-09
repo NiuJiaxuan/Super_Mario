@@ -77,19 +77,19 @@ namespace Sprint0.Block
             {
                 time++;
                 //Debug.WriteLine(time);
-                if (BlockItemList.Count != 0)
-                {
-                    if(time % 300 == 0)
-                    { 
-                        if (!plant)
-                        {
-                            ItemEntity temp = BlockItemList[0];
-                            EntityList.Add(temp);
-                            temp.BumpTransition();
-                            BlockItemList.RemoveAt(0);
-                        }
-                    }
-                }
+                //if (BlockItemList.Count != 0)
+                //{
+                //    if(time % 300 == 0)
+                //    { 
+                //        if (!plant)
+                //        {
+                //            ItemEntity temp = BlockItemList[0];
+                //            EntityList.Add(temp);
+                //            temp.BumpTransition();
+                //            BlockItemList.RemoveAt(0);
+                //        }
+                //    }
+                //}
                 if(BlockEnemyList.Count != 0)
                 {
                     EnemyEntity temp = BlockEnemyList[0];
