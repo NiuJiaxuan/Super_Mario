@@ -32,7 +32,6 @@ namespace Sprint0.level
         }
 
         public bool hidden = false;
-        string file = "MarioLevel1.xml";
         public LevelData LevelData { get; private set; }
 
         public void LodeLevel (Game1 game, string file)

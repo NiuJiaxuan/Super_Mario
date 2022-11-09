@@ -45,7 +45,7 @@ namespace Sprint0
         public static LevelData levelData { get; set; }
 
 
-        private LevelBuilder levelBuilder;
+        public LevelBuilder levelBuilder;
 
         private CollisionDetector cd = CollisionDetector.Instance;
 

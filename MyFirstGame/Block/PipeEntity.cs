@@ -54,26 +54,13 @@ namespace Sprint0.Block
                 WarpPosition = new Vector2(Int32.Parse(temp[0]), Int32.Parse(temp[1]) - 60);
                 plant = false;
             }
-            //Vector2 pos = new Vector2((int)position.X, (int)position.Y - 200);
-            //PiranhaPlant = new PiranhaEntity(game, pos);
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
             switch(entity)
             {
                case MarioEntity:
-                    /*if (touching == CollisionDetector.Touching.top)
-                    {
-                        if (!plant)
-                        {
-                            SoundStorage.Instance.PlayPipe();
-                            if (!isHiddenMap)
-                            {
-                                EntityStorage.Instance.Mario.Position = WarpPosition;
-                            }
-                        }
-                        
-                    }*/
+
                     break;
             }
         }
@@ -82,20 +69,6 @@ namespace Sprint0.Block
             if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 400 && Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) > 100)
             {
                 time++;
-                //Debug.WriteLine(time);
-                //if (BlockItemList.Count != 0)
-                //{
-                //    if(time % 300 == 0)
-                //    { 
-                //        if (!plant)
-                //        {
-                //            ItemEntity temp = BlockItemList[0];
-                //            EntityList.Add(temp);
-                //            temp.BumpTransition();
-                //            BlockItemList.RemoveAt(0);
-                //        }
-                //    }
-                //}
                 if(BlockEnemyList.Count != 0)
                 {
                     EnemyEntity temp = BlockEnemyList[0];
@@ -115,12 +88,7 @@ namespace Sprint0.Block
                     }
                 }
             }
-            //else if (Position.X - EntityStorage.Instance.Mario.Position.X < -350)
-            //{
-            //}
-            //else if (Position.Y > 480)
-            //{
-            //}
+
             base.Update(gameTime, entities);
 
         }
