@@ -110,7 +110,7 @@ namespace Sprint0
                 }
                 else if (objectName.Equals("Pipe"))
                 {
-                    return new PipeEntity(game, levelObject.Position, itemInBlock, entityList, enemyInBlock);
+                    return new PipeEntity(game, levelObject.Position, itemInBlock, entityList, enemyInBlock, levelObject.Warp);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
