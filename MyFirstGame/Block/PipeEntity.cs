@@ -16,6 +16,7 @@ using Sprint0.Interfaces;
 using System.Diagnostics;
 using System.Numerics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
+using Sprint0.Mario;
 
 namespace Sprint0.Block
 {
@@ -26,7 +27,7 @@ namespace Sprint0.Block
         public List<Entity> EntityList;
         int time;
         bool plant;
-        Vector2 WarpPosition;
+        public Vector2 WarpPosition;
         string HiddenMap;
         
         public PipeEntity(Game1 game, Vector2 position, List<ItemEntity> blockItemList, List<Entity> entityList, List<EnemyEntity> blockEnemyList, String warp)
@@ -43,19 +44,30 @@ namespace Sprint0.Block
             if (warp.Contains(".xml"))
             {
                 HiddenMap = warp;
+                WarpPosition = position;
             }
             else if(warp.Length != 0) 
             {
                 string[] temp = warp.Split(' ');
-                WarpPosition = new Vector2(Int32.Parse(temp[0]), Int32.Parse(temp[1]));
+                WarpPosition = new Vector2(Int32.Parse(temp[0]), Int32.Parse(temp[1]) - 60);
             }
             //Vector2 pos = new Vector2((int)position.X, (int)position.Y - 200);
             //PiranhaPlant = new PiranhaEntity(game, pos);
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            if (true)
-                EntityStorage.Instance.Mario.Position = WarpPosition;
+            //switch(entity)
+            //{
+            //    case MarioEntity:
+            //        if (touching == CollisionDetector.Touching.top)
+            //        {
+            //            Debug.WriteLine("TOP - Pipe");
+            //            Debug.WriteLine(WarpPosition.ToString());
+            //            Debug.WriteLine("X:" + EntityStorage.Instance.Mario.Position.X);
+            //            EntityStorage.Instance.Mario.Position = WarpPosition;
+            //        }
+            //        break;
+            //}
         }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {

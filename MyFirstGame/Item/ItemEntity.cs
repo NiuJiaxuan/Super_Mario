@@ -65,6 +65,7 @@ namespace Sprint0.Item
                     break;
                 case EnemyEntity:
                     EntityStorage.Instance.EntityList.Remove(this);
+                    EntityStorage.Instance.completeRemove(this);
                     break;
                 case ItemEntity:
                     Position = position;

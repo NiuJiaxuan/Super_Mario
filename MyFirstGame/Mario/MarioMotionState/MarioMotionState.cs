@@ -200,8 +200,8 @@ namespace Sprint0.Mario.MarioMotionState
             Mario.Position = position;
             switch (entity)
             {
-                case BlockEntity block:
-                    if (block.IsVisible)
+                case BlockEntity:
+                    if (entity.IsVisible)
                     {
                         if (touching is CollisionDetector.Touching.bottom)
                         {
@@ -216,6 +216,15 @@ namespace Sprint0.Mario.MarioMotionState
                         {
                             Idle();
                         }
+                    }
+                    switch (entity)
+                    {
+                        case PipeEntity pipe:
+                            if(touching == CollisionDetector.Touching.bottom)
+                            {
+                                Mario.Position = pipe.WarpPosition;
+                            }
+                            break;
                     }
                     break;
                 case EnemyEntity:
