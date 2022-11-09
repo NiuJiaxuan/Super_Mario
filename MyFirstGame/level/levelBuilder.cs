@@ -35,15 +35,8 @@ namespace Sprint0.level
         string file = "MarioLevel1.xml";
         public LevelData LevelData { get; private set; }
 
-        public void LodeLevel (Game1 game)
+        public void LodeLevel (Game1 game, string file)
         {
-            if (!hidden)
-            {
-                file  = "MarioLevel1.xml";
-            }else
-            {
-                file = "CoinRoom.xml";
-            }
             using (XmlReader levelFile = XmlReader.Create(file))
             {
                 LevelData = new LevelData();
@@ -87,8 +80,8 @@ namespace Sprint0.level
                     LevelData.ObjectData.Add(levelObject);
                     levelFile.ReadToFollowing("Item");
                 }
-                
-                
+
+
             }
 
             EntityStorage.Add(LevelData, game);

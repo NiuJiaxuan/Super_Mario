@@ -222,7 +222,14 @@ namespace Sprint0.Mario.MarioMotionState
                         case PipeEntity pipe:
                             if(touching == CollisionDetector.Touching.bottom)
                             {
-                                Mario.Position = pipe.WarpPosition;
+                                if (!pipe.plant)
+                                {
+                                    SoundStorage.Instance.PlayPipe();
+                                    if (!pipe.isHiddenMap)
+                                    {
+                                        EntityStorage.Instance.Mario.Position = pipe.WarpPosition;
+                                    }
+                                }
                             }
                             break;
                     }
