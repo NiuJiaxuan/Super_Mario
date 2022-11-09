@@ -47,7 +47,7 @@ namespace Sprint0
         public List<Vector2> checkPoints;
         public Grid[,] AllGrids { get; set; }
 
-        private static EntityStorage instance;
+        public static EntityStorage instance;
         public static EntityStorage Instance
         {
             get
@@ -174,10 +174,7 @@ namespace Sprint0
                 {
                     return new KoopaTroopaEntity(game, levelObject.Position);
                 }
-                //else if (objectName.Equals("Piranha"))
-                //{
-                //    return new PiranhaEntity(game, levelObject.Position);
-                //}
+
             }
             else
             {

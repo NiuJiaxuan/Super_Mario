@@ -25,8 +25,7 @@ namespace Sprint0.Mario.MarioMotionState
         protected IMarioPowerState PowerState { get { return Mario.currentPowerState; } }
 
         public MarioEntity Mario;
-        List<Entity> temp1;
-        List<Entity> temp2;
+        EntityStorage temp;
 
         protected IMarioMotionState CurrentState { get { return Mario.currentMotionState; } set { Mario.currentMotionState = value; } }
         IMarioMotionState IMarioMotionState.PreviousState { get { return previousState; } }
@@ -236,18 +235,13 @@ namespace Sprint0.Mario.MarioMotionState
                                     {
                                         if (pipe.HiddenMap != "MarioLevel1.xml")
                                         {
-                                            temp1 = EntityStorage.Instance.EntityList;
-                                            temp2 = EntityStorage.Instance.MovableEntities;
-                                            EntityStorage.Instance.MovableEntities.Clear();
-                                            EntityStorage.Instance.EntityList.Clear();
+                                            temp = EntityStorage.Instance;
+                                            EntityStorage.Instance.clear();
                                             Mario.game.levelBuilder.LodeLevel(Mario.game, pipe.HiddenMap);
                                         }
                                         else
                                         {
-                                            EntityStorage.Instance.MovableEntities.Clear();
-                                            EntityStorage.Instance.EntityList.Clear();
-                                            EntityStorage.Instance.EntityList = temp1;
-                                            EntityStorage.Instance.MovableEntities = temp2;
+                                            //.Instance = temp;
                                         }
                                     }
                                 }
