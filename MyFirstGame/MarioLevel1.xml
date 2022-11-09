@@ -21,6 +21,7 @@
 		<Position>1150 420</Position>
 		<BlockItem>SuperMushroom</BlockItem>
 		<BlockEnemy>Piranha</BlockEnemy>
+		<Warp></Warp>
 	</Item>
 	<Item>
 		<ObjectType>Enemies</ObjectType>
@@ -33,6 +34,7 @@
 		<Position>1350 420</Position>
 		<BlockItem>SuperMushroom FireFlower</BlockItem>
 		<BlockEnemy>Piranha</BlockEnemy>
+		<Warp></Warp>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
@@ -3255,6 +3257,7 @@
 		<Position>4380 420</Position>
 		<BlockItem>SuperMushroom FireFlower</BlockItem>
 		<BlockEnemy>Piranha</BlockEnemy>
+		<Warp></Warp>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
@@ -3296,6 +3299,7 @@
 		<Position>4830 420</Position>
 		<BlockItem>SuperMushroom FireFlower</BlockItem>
 		<BlockEnemy>Piranha</BlockEnemy>
+		<Warp></Warp>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>

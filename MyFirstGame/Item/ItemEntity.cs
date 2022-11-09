@@ -52,8 +52,7 @@ namespace Sprint0.Item
             switch (entity)
             {
                 case MarioEntity:
-                    EntityStorage.Instance.EntityList.Remove(this);
-                    EntityStorage.Instance.ColliableEntites.Remove(this);
+                    EntityStorage.Instance.completeRemove(this);
                     break;
                 case BlockEntity:
                     Position = position;

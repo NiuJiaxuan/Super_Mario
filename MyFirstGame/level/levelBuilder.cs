@@ -51,6 +51,10 @@ namespace Sprint0.level
                             temp = levelFile.ReadElementContentAsString();
                             string[] enemies = temp.Split(' ');
                             levelObject.EnemyItem = enemies;
+                            levelFile.ReadToNextSibling("Warp");
+                            temp = levelFile.ReadElementContentAsString();
+                            levelObject.Warp = temp;
+
                         }
                     }
                     if (levelObject.ObjectType.Equals("Mario"))

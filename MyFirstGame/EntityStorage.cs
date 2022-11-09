@@ -29,7 +29,7 @@ namespace Sprint0
 {
     public class EntityStorage
     {
-        public bool isPause = false, gameOver=false;
+        public bool isPause = false, isLocked=false;
         public List<Entity> DrawableEntities { get; set; }
         public List<Entity> EntityList { get; set; }
         public List<Entity> MovableEntities { get; set; }
@@ -110,7 +110,7 @@ namespace Sprint0
                 }
                 else if (objectName.Equals("Pipe"))
                 {
-                    return new PipeEntity(game, levelObject.Position, itemInBlock, entityList, enemyInBlock);
+                    return new PipeEntity(game, levelObject.Position, itemInBlock, entityList, enemyInBlock, levelObject.Warp);
                 }
                 else if (objectName.Equals("UsedBlock"))
                 {
@@ -319,7 +319,7 @@ namespace Sprint0
         }
         public void Update(GameTime gameTime)
         {
-            if (!isPause&&!gameOver)
+            if (!isPause&&!isLocked)
             {
                 foreach (Entity entity in ColliableEntites)
                 {
@@ -353,7 +353,7 @@ namespace Sprint0
             {
                 pausedKeyboard.Update();
             }
-            else if (gameOver)
+            else if (isLocked)
             {
 
                 gameOverKeyboard.Update();

@@ -14,6 +14,8 @@ using Sprint0.Enemy;
 
 using Sprint0.Interfaces;
 using System.Diagnostics;
+using System.Numerics;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace Sprint0.Block
 {
@@ -21,12 +23,13 @@ namespace Sprint0.Block
     {
         public List<ItemEntity> BlockItemList;
         public List<EnemyEntity> BlockEnemyList;
-
         public List<Entity> EntityList;
         int time;
         bool plant;
+        Vector2 WarpPosition;
+        string HiddenMap;
         
-        public PipeEntity(Game1 game, Vector2 position, List<ItemEntity> blockItemList, List<Entity> entityList, List<EnemyEntity> blockEnemyList)
+        public PipeEntity(Game1 game, Vector2 position, List<ItemEntity> blockItemList, List<Entity> entityList, List<EnemyEntity> blockEnemyList, String warp)
             : base(game, position)
         {
             time = 0;
@@ -36,12 +39,23 @@ namespace Sprint0.Block
             BlockEnemyList = blockEnemyList;
             EntityList = entityList;
             plant = false;
+
+            if (warp.Contains(".xml"))
+            {
+                HiddenMap = warp;
+            }
+            else if(warp.Length != 0) 
+            {
+                string[] temp = warp.Split(' ');
+                WarpPosition = new Vector2(Int32.Parse(temp[0]), Int32.Parse(temp[1]));
+            }
             //Vector2 pos = new Vector2((int)position.X, (int)position.Y - 200);
             //PiranhaPlant = new PiranhaEntity(game, pos);
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-
+            if (true)
+                EntityStorage.Instance.Mario.Position = WarpPosition;
         }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
@@ -64,10 +78,10 @@ namespace Sprint0.Block
                 }
                 if(BlockEnemyList.Count != 0)
                 {
-                    plant = true;
                     EnemyEntity temp = BlockEnemyList[0];
                     if (time % 500 == 0)
                     {
+                        plant = true;
                         EntityList.Add(temp);
                         string dir = "up";
                         temp.EmergeTransition(dir);

@@ -41,8 +41,8 @@ namespace Sprint0.Block.State.GameState
 
         public void gameOver()
         {
-            HUD.Instance.gameOver = !HUD.Instance.gameOver;
-            EntityStorage.Instance.gameOver = true;
+            HUD.Instance.isLocked = !HUD.Instance.isLocked;
+            EntityStorage.Instance.isLocked = true;
             candraw = !candraw;
 
         }

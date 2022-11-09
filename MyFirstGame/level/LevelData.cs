@@ -27,6 +27,8 @@ namespace Sprint0.level
             public string[]  BlockItem { get; set; }
             public string[] EnemyItem { get; set; }
 
+            public string Warp { get; set; }
+
             public int Lives { get; set; }
             
 
