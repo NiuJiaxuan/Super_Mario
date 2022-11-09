@@ -60,13 +60,13 @@ namespace Sprint0.Block
             switch(entity)
             {
                case MarioEntity:
-                    if (touching == CollisionDetector.Touching.top)
+                    if (touching == CollisionDetector.Touching.left)
                     {
                         //Debug.WriteLine("TOP - Pipe");
                         //Debug.WriteLine(WarpPosition.ToString());
                         //Debug.WriteLine("X:" + EntityStorage.Instance.Mario.Position.X);
-                        LevelBuilder.Instance.hidden=!LevelBuilder.Instance.hidden; 
-                        
+
+                        LevelBuilder.Instance.hidden=!LevelBuilder.Instance.hidden;  
                     }
                     break;
             }
@@ -106,7 +106,6 @@ namespace Sprint0.Block
                         temp.EmergeTransition(dir);
                         EntityList.Remove(temp);
                         BlockEnemyList.RemoveAt(0);
-
                     }
                 }
             }
