@@ -38,10 +38,6 @@ namespace Sprint0.Enemy
             Piranha = 6,
         }
 
-        public void StartRemovalTimer(int milliseconds)
-        {
-            TimerManager.Instance.RemoveFromTimerList( new Timer(milliseconds, RemoveFromEntity));
-        }
 
         public void RemoveFromEntity()
         {
