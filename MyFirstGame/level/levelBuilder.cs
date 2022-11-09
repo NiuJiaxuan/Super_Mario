@@ -4,6 +4,7 @@ using Sprint0.level;
 using System.Xml;
 using static Sprint0.level.LevelData;
 using System.Diagnostics;
+using Sprint0.ScoreSystem;
 
 namespace Sprint0.level
 {
@@ -14,15 +15,36 @@ namespace Sprint0.level
             get { return  EntityStorage.Instance; }
         }
 
+        private static LevelBuilder instance;
+        public static LevelBuilder Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new LevelBuilder();
+                }
+                return instance;
+            }
+        }
         public LevelBuilder()
         {
         }
 
+        public bool hidden = false;
+        string file = "MarioLevel1.xml";
         public LevelData LevelData { get; private set; }
 
         public void LodeLevel (Game1 game)
         {
-            using (XmlReader levelFile = XmlReader.Create("MarioLevel1.xml"))
+            if (!hidden)
+            {
+                file  = "MarioLevel1.xml";
+            }else
+            {
+                file = "CoinRoom.xml";
+            }
+            using (XmlReader levelFile = XmlReader.Create(file))
             {
                 LevelData = new LevelData();
                 levelFile.ReadToFollowing("ObjectData");
