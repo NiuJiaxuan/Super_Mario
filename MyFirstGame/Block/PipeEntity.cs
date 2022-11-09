@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Numerics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 using Sprint0.Mario;
+using Sprint0.level;
 
 namespace Sprint0.Block
 {
@@ -56,18 +57,19 @@ namespace Sprint0.Block
         }
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            //switch(entity)
-            //{
-            //    case MarioEntity:
-            //        if (touching == CollisionDetector.Touching.top)
-            //        {
-            //            Debug.WriteLine("TOP - Pipe");
-            //            Debug.WriteLine(WarpPosition.ToString());
-            //            Debug.WriteLine("X:" + EntityStorage.Instance.Mario.Position.X);
-            //            EntityStorage.Instance.Mario.Position = WarpPosition;
-            //        }
-            //        break;
-            //}
+            switch(entity)
+            {
+               case MarioEntity:
+                    if (touching == CollisionDetector.Touching.top)
+                    {
+                        //Debug.WriteLine("TOP - Pipe");
+                        //Debug.WriteLine(WarpPosition.ToString());
+                        //Debug.WriteLine("X:" + EntityStorage.Instance.Mario.Position.X);
+                        LevelBuilder.Instance.hidden=!LevelBuilder.Instance.hidden; 
+                        
+                    }
+                    break;
+            }
         }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
