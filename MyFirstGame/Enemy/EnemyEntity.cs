@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy.EnemyState;
-using Sprint0.Timers;
 using System.Diagnostics;
 
 namespace Sprint0.Enemy
