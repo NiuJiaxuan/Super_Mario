@@ -21,7 +21,7 @@
 		<Position>1150 420</Position>
 		<BlockItem>SuperMushroom</BlockItem>
 		<BlockEnemy>Piranha</BlockEnemy>
-		<Warp></Warp>
+		<Warp>1350 420</Warp>
 	</Item>
 	<Item>
 		<ObjectType>Enemies</ObjectType>
@@ -34,7 +34,7 @@
 		<Position>1350 420</Position>
 		<BlockItem>SuperMushroom FireFlower</BlockItem>
 		<BlockEnemy>Piranha</BlockEnemy>
-		<Warp></Warp>
+		<Warp>1150 420</Warp>
 	</Item>
 	<Item>
 		<ObjectType>Blocks</ObjectType>
