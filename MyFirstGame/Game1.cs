@@ -45,7 +45,7 @@ namespace Sprint0
         public static LevelData levelData { get; set; }
 
 
-        private LevelBuilder levelBuilder;
+        public LevelBuilder levelBuilder;
 
         private CollisionDetector cd = CollisionDetector.Instance;
 
@@ -70,8 +70,8 @@ namespace Sprint0
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             SoundStorage.Instance.LoadSounds(Content);
             levelBuilder = new LevelBuilder();
-            levelBuilder.LodeLevel(this);
-            levelData = levelBuilder.LevelData;
+            levelBuilder.LodeLevel(this, "MarioLevel1.xml");
+            //levelData = levelBuilder.LevelData;
             camera = new Camera(GraphicsDevice.Viewport);
             camera.Limits = new Rectangle(0, 0, 6300, 480);
             background = Content.Load<Texture2D>("background");
@@ -155,8 +155,8 @@ namespace Sprint0
         {
             levelBuilder.EntityStorage.clear();
             levelBuilder = new LevelBuilder();
-            levelBuilder.LodeLevel(this);
-            levelData = levelBuilder.LevelData;
+            levelBuilder.LodeLevel(this, "MarioLevel1.xml");
+            //levelData = levelBuilder.LevelData;
             EntityStorage.Instance.initialCommand(this);
             HUD.Instance.ResetTime();
             ScoreSystemManager.Instance.ResetScore();

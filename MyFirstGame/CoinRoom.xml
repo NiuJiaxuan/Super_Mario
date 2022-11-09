@@ -1,0 +1,2260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Item>
+		<ObjectType>Mario</ObjectType>
+		<ObjectName>MarioEntity</ObjectName>
+		<Position>100 400</Position>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>210 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>240 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>270 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>300 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>330 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>360 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>390 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>420 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>450 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>480 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>510 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>540 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>570 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>600 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>630 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>210 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>240 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>270 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>300 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>330 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>360 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>390 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>420 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>450 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>480 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>510 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>540 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>570 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>600 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>630 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>210 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>240 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>270 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>300 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>330 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>360 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>390 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>420 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>450 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>480 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>510 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>540 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>570 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>600 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>630 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>630 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>210 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>210 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>BrickBlock</ObjectName>
+		<Position>630 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>570 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>540 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>510 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>480 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>450 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>420 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>390 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>360 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>330 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>300 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>270 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>270 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>300 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>330 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>360 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>390 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>420 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>450 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>480 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>510 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>540 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Items</ObjectType>
+		<ObjectName>Coin</ObjectName>
+		<Position>570 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>HiddenQuestionBlock</ObjectName>
+		<Position>100 350</Position>
+		<BlockItem>FireFlower</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>30 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>60 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>90 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>120 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>150 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>180 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>210 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>240 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>270 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>300 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>330 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>360 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>390 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>420 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>450 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>480 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>510 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>540 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>570 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>600 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>630 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>660 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>690 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>720 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>750 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>780 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>30 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>60 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>90 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>120 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>150 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>180 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>210 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>240 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>270 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>300 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>330 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>360 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>390 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>420 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>450 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>480 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>510 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>540 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>570 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>600 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>630 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>660 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>690 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>720 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>750 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>FloorBlock</ObjectName>
+		<Position>780 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>30 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>60 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>90 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>120 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>150 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>180 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>210 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>240 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>270 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>300 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>330 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>360 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>390 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>420 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>450 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>480 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>510 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>540 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>570 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>600 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>630 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>660 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>690 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>720 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>750 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>780 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 420</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 390</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 360</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 330</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 300</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 270</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 240</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 210</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 180</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 150</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 120</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 90</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 60</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>810 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>840 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>870 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>900 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>930 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>960 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>990 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1020 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1050 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1080 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1110 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1140 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>1170 30</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 450</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>StairBlock</ObjectName>
+		<Position>0 480</Position>
+		<BlockItem>None</BlockItem>
+	</Item>
+	<Item>
+		<ObjectType>Blocks</ObjectType>
+		<ObjectName>Pipe</ObjectName>
+		<Position>750 420</Position>
+		<BlockItem>None</BlockItem>
+		<BlockEnemy></BlockEnemy>
+		<Warp>MarioLevel1.xml</Warp>
+	</Item>
+</ObjectData>

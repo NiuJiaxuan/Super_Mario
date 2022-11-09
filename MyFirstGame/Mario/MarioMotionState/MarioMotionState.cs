@@ -5,6 +5,7 @@ using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
 using Sprint0.interfaces;
 using Sprint0.Item;
+using Sprint0.level;
 using Sprint0.Mario.MarioPowerState;
 using Sprint0.Sprites;
 using Sprint0.State;
@@ -24,6 +25,8 @@ namespace Sprint0.Mario.MarioMotionState
         protected IMarioPowerState PowerState { get { return Mario.currentPowerState; } }
 
         public MarioEntity Mario;
+        List<Entity> temp1;
+        List<Entity> temp2;
 
         protected IMarioMotionState CurrentState { get { return Mario.currentMotionState; } set { Mario.currentMotionState = value; } }
         IMarioMotionState IMarioMotionState.PreviousState { get { return previousState; } }
@@ -222,7 +225,32 @@ namespace Sprint0.Mario.MarioMotionState
                         case PipeEntity pipe:
                             if(touching == CollisionDetector.Touching.bottom)
                             {
-                                Mario.Position = pipe.WarpPosition;
+                                if (!pipe.plant)
+                                {
+                                    SoundStorage.Instance.PlayPipe();
+                                    if (!pipe.isHiddenMap)
+                                    {
+                                        EntityStorage.Instance.Mario.Position = pipe.WarpPosition;
+                                    }
+                                    else
+                                    {
+                                        if (pipe.HiddenMap != "MarioLevel1.xml")
+                                        {
+                                            temp1 = EntityStorage.Instance.EntityList;
+                                            temp2 = EntityStorage.Instance.MovableEntities;
+                                            EntityStorage.Instance.MovableEntities.Clear();
+                                            EntityStorage.Instance.EntityList.Clear();
+                                            Mario.game.levelBuilder.LodeLevel(Mario.game, pipe.HiddenMap);
+                                        }
+                                        else
+                                        {
+                                            EntityStorage.Instance.MovableEntities.Clear();
+                                            EntityStorage.Instance.EntityList.Clear();
+                                            EntityStorage.Instance.EntityList = temp1;
+                                            EntityStorage.Instance.MovableEntities = temp2;
+                                        }
+                                    }
+                                }
                             }
                             break;
                     }
