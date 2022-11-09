@@ -64,10 +64,10 @@ namespace Sprint0.Block
                 }
                 if(BlockEnemyList.Count != 0)
                 {
-                    plant = true;
                     EnemyEntity temp = BlockEnemyList[0];
                     if (time % 500 == 0)
                     {
+                        plant = true;
                         EntityList.Add(temp);
                         string dir = "up";
                         temp.EmergeTransition(dir);
