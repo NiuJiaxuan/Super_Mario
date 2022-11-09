@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Block;
 using Sprint0.CollisionDetection;
 using Sprint0.Enemy;
+using Sprint0.Item;
 using Sprint0.Mario;
 using Sprint0.Sprites;
 using Sprint0.State;
@@ -210,13 +211,17 @@ namespace Sprint0.CollisionDetection
             {
                 if (!responsedEntities.Contains(currentCollisions[i].Item1))
                 {
-                    Debug.WriteLine(currentCollisions[i].Item1);
-                    Debug.WriteLine(currentCollisions[i].Item2);
+                    //Debug.WriteLine(currentCollisions[i].Item1);
+                    //Debug.WriteLine(currentCollisions[i].Item2);
 
                     responsedEntities.Add(currentCollisions[i].Item1);
                     //if (currentCollisions[i].Item2 is KoopaTroopaEntity)
                     //    Debug.WriteLine("mario touch koopa with " + currentCollisions[i].Item6);
-                    currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item7, currentCollisions[i].Item6);
+                    if (currentCollisions[i].Item2 is FlagPoleEntity)
+                        currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item4, currentCollisions[i].Item6);
+                    else
+                        currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item7, currentCollisions[i].Item6);
+
                     currentCollisions[i].Item1.CollisionResponse(currentCollisions[i].Item2, currentCollisions[i].Item4, currentCollisions[i].Item5);
                 }
             }
