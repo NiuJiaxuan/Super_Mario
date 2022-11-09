@@ -22,7 +22,6 @@ using System;
 using Microsoft.Xna.Framework.Audio;
 using Sprint0.ScoreSystem;
 using Sprint0.Block.State.GameState;
-using Sprint0.Timers;
 
 namespace Sprint0
 {
@@ -104,7 +103,6 @@ namespace Sprint0
             camera.LookAt(levelBuilder.EntityStorage.Mario.Position);
             gamepad.Update();
             levelBuilder.EntityStorage.Update(gameTime);
-            TimerManager.Instance.Update(gameTime);
             HUD.Instance.SetUpGameTime(gameTime);
             HUD.Instance.TimeConcurrent();
 
