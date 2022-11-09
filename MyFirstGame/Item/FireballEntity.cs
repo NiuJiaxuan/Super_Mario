@@ -59,8 +59,12 @@ namespace Sprint0.Item
 
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
+            if(Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) > 400)
+            {
+                EntityStorage.Instance.completeRemove(this);
+                FireballPool.Add(this);
+            }
             base.Update(gameTime, entities);
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)

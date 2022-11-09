@@ -26,7 +26,10 @@ namespace Sprint0.Mario.MarioPowerState
         {
             if (!LifeSystem.Instance.isNoLife)
                 SoundStorage.Instance.PlayDie();
+
             EntityStorage.Instance.movableRemove(Mario);
+            EntityStorage.Instance.ColliableEntites.Remove(Mario);
+
             SoundStorage.Instance.StopBGM();
             LifeSystem.Instance.LoseOneLife();
             CurrentState = this;
@@ -81,6 +84,8 @@ namespace Sprint0.Mario.MarioPowerState
         public override void Exit()
         {
             EntityStorage.Instance.movableAdd(Mario);
+            EntityStorage.Instance.ColliableEntites.Add(Mario);
+
             base.Exit();
         }
 

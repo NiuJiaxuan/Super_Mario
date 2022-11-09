@@ -65,11 +65,15 @@ namespace Sprint0.Item
                     }
                     break;
                 case EnemyEntity:
-                    EntityStorage.Instance.EntityList.Remove(this);
+                    currentColliding = entity;
                     EntityStorage.Instance.ColliableEntites.Remove(this);
                     break;
                 case ItemEntity:
                     Position = position;
+                    if(touching == CollisionDetector.Touching.right || touching == CollisionDetector.Touching.left)
+                        this.Speed = new Vector2( -Speed.X, Speed.Y );
+                    else
+                        this.Speed = new Vector2(Speed.X, -Speed.Y );
                     break;
 
             }

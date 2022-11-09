@@ -31,91 +31,80 @@ namespace Sprint0.Enemy
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
-            //this.Position = position;
-            switch (entity)
+            if (currentState is not GoombaDeathState)
             {
-                case MarioEntity:
+                //this.Position = position;
+                switch (entity)
+                {
 
-                    switch (touching)
-                    {
-                        case CollisionDetector.Touching.bottom:
-                            onGround = true;
-                            break;
-                        case CollisionDetector.Touching.top:
+                    case MarioEntity:
 
-                            Debug.WriteLine("TOP SIde");
-                            KillTransition();
-                            EnemyType = eEnemyType.DeadGooma;
-                            
-                            break;
-                        case CollisionDetector.Touching.left:
-                            if(Speed.X <0)
-                            NormalTransition("right");
-                            break;
-                        case CollisionDetector.Touching.right:
-                            NormalTransition("left");
-                            break;
-                    }
-                    break;
-                case BlockEntity:
-                    //Debug.WriteLine("goomba touch block from " + touching);
-                    switch(touching)
-                    {
-                        case CollisionDetector.Touching.bottom:
-                            onGround = true;
-                            Position = position;
-                            break;
-                        case CollisionDetector.Touching.left:
-                            NormalTransition("right");
-                            break;
-                        case CollisionDetector.Touching.right:
-                            NormalTransition("left");
-                            break;
-                        case CollisionDetector.Touching.top:
-                            Position = position;
-                            break;
+                        switch (touching)
+                        {
+                            case CollisionDetector.Touching.bottom:
+                                onGround = true;
+                                break;
+                            case CollisionDetector.Touching.top:
 
-                    }
-                    
-                    break;
-                case FireballEntity:
+                                Debug.WriteLine("TOP SIde");
+                                KillTransition();
+                                EnemyType = eEnemyType.DeadGooma;
 
-                    SoundStorage.Instance.PlayStomp();
-                    KillTransition();
-                    EnemyType = eEnemyType.DeadGooma;
-                    EntityStorage.Instance.completeRemove(this);
-                    break;
-
-                default:
-                    if (touching == CollisionDetector.Touching.left)
-                    {
-                        //currentState = new GoombaNormalState(this, "right");
-                        NormalTransition("right");
-                    }
-                    else if (touching == CollisionDetector.Touching.right)
-                    {
-                        //currentState = new GoombaNormalState(this, "right");
-                        NormalTransition("left");
-                    }
-                    break;
-                case EnemyEntity:
-                    switch (entity)
-                    {
-                        case GoombaEntity:
-                            if (touching == CollisionDetector.Touching.left)
-                            {
-                                //currentState = new GoombaNormalState(this, "right");
-                                NormalTransition("right");
-                            }
-                            else if (touching == CollisionDetector.Touching.right)
-                            {
-                                //currentState = new GoombaNormalState(this, "right");
+                                break;
+                            case CollisionDetector.Touching.left:
+                                if (Speed.X < 0)
+                                    NormalTransition("right");
+                                break;
+                            case CollisionDetector.Touching.right:
                                 NormalTransition("left");
-                            }
-                            break;
-                        case KoopaTroopaEntity:
-                            if((entity as KoopaTroopaEntity).currentState is  KoopaTroopaNormalState || (entity as KoopaTroopaEntity).currentState is KoopaTroopaShellState)
-                            {
+                                break;
+                        }
+                        break;
+                    case BlockEntity:
+                        //Debug.WriteLine("goomba touch block from " + touching);
+                        switch (touching)
+                        {
+                            case CollisionDetector.Touching.bottom:
+                                onGround = true;
+                                Position = position;
+                                break;
+                            case CollisionDetector.Touching.left:
+                                NormalTransition("right");
+                                break;
+                            case CollisionDetector.Touching.right:
+                                NormalTransition("left");
+                                break;
+                            case CollisionDetector.Touching.top:
+                                Position = position;
+                                break;
+
+                        }
+
+                        break;
+                    case FireballEntity:
+
+                        SoundStorage.Instance.PlayStomp();
+                        KillTransition();
+                        EnemyType = eEnemyType.DeadGooma;
+                        EntityStorage.Instance.completeRemove(this);
+                        break;
+
+                    default:
+                        if (touching == CollisionDetector.Touching.left)
+                        {
+                            //currentState = new GoombaNormalState(this, "right");
+                            NormalTransition("right");
+                        }
+                        else if (touching == CollisionDetector.Touching.right)
+                        {
+                            //currentState = new GoombaNormalState(this, "right");
+                            NormalTransition("left");
+                        }
+                        break;
+                    case EnemyEntity:
+                        switch (entity)
+                        {
+                            case GoombaEntity:
                                 if (touching == CollisionDetector.Touching.left)
                                 {
                                     //currentState = new GoombaNormalState(this, "right");
@@ -126,14 +115,29 @@ namespace Sprint0.Enemy
                                     //currentState = new GoombaNormalState(this, "right");
                                     NormalTransition("left");
                                 }
-                            }
-                            else
-                            {
-                                EntityStorage.Instance.completeRemove(this);
-                            }
-                            break;
-                    }
-                    break;
+                                break;
+                            case KoopaTroopaEntity:
+                                if ((entity as KoopaTroopaEntity).currentState is KoopaTroopaNormalState || (entity as KoopaTroopaEntity).currentState is KoopaTroopaShellState)
+                                {
+                                    if (touching == CollisionDetector.Touching.left)
+                                    {
+                                        //currentState = new GoombaNormalState(this, "right");
+                                        NormalTransition("right");
+                                    }
+                                    else if (touching == CollisionDetector.Touching.right)
+                                    {
+                                        //currentState = new GoombaNormalState(this, "right");
+                                        NormalTransition("left");
+                                    }
+                                }
+                                else
+                                {
+                                    EntityStorage.Instance.completeRemove(this);
+                                }
+                                break;
+                        }
+                        break;
+                }
             }
         }
 
@@ -146,10 +150,10 @@ namespace Sprint0.Enemy
                 currentState.Enter(null);
                 EntityStorage.Instance.MovableEntities.Add(this);
             }
-            else if(Position.X - EntityStorage.Instance.Mario.Position.X < -400)
-            {
-                EntityStorage.Instance.completeRemove(this);
-            }
+            //else if(Position.X - EntityStorage.Instance.Mario.Position.X < -400)
+            //{
+            //    EntityStorage.Instance.completeRemove(this);
+            //}
             else if(Position.Y > 480)
             {
                 EntityStorage.Instance.completeRemove(this);

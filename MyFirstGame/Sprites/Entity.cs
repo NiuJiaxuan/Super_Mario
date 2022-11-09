@@ -12,6 +12,7 @@ using Sprint0.Mario;
 using System.Threading;
 using Microsoft.VisualBasic.FileIO;
 using Sprint0.Interfaces;
+using Sprint0.Item;
 
 namespace Sprint0.Sprites
 {
@@ -103,7 +104,10 @@ namespace Sprint0.Sprites
             {
                 if (!onGround)
                 {
-                    Accelation = new Vector2(0, 500);
+                    if (this is FireballEntity && Speed.Y > 300)
+                        Accelation = Vector2.Zero;
+                    else
+                        Accelation = new Vector2(0, 500);
                 }
                 else
                 {

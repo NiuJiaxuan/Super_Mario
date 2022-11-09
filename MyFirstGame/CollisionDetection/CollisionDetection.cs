@@ -15,6 +15,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Sprint0.CollisionDetection
 {
     public class CollisionDetector
@@ -89,7 +90,7 @@ namespace Sprint0.CollisionDetection
             List<Entity> movables = EntityStorage.Instance.MovableEntities;
 
             //list of collision pairs (entity1, entity2, time, position)
-            List<(Entity,Entity, float, Vector2, Touching,Touching)> currentCollisions = new List<(Entity,Entity,float, Vector2, Touching, Touching)>();
+            List<(Entity,Entity, float, Vector2, Touching,Touching, Vector2)> currentCollisions = new List<(Entity,Entity,float, Vector2, Touching, Touching, Vector2)>();
             //step 6: go back to step 1 for collided objects
             while (true)
             {
@@ -133,19 +134,20 @@ namespace Sprint0.CollisionDetection
 
 
 
-        public List<(Entity, Entity, float, Vector2, Touching, Touching)> Collsion(Entity collidable, List<Entity> entities)
+        public List<(Entity, Entity, float, Vector2, Touching, Touching, Vector2)> Collsion(Entity collidable, List<Entity> entities)
         {
             Touching e1touching = Touching.none;
             Touching e2touching = Touching.none;
             Rectangle interactionRec;
             float x = collidable.Position.X, y = collidable.Position.Y;
 
-            List<(Entity, Entity, float, Vector2, Touching, Touching)> result = new List<(Entity, Entity, float, Vector2, Touching, Touching)>();
+            List<(Entity, Entity, float, Vector2, Touching, Touching, Vector2)> result = new List<(Entity, Entity, float, Vector2, Touching, Touching,Vector2)>();
             float timePercent;
 
 
             foreach (Entity entity in entities)
             {
+                float x1 = entity.Position.X, y1 = entity.Position.Y;
 
                 interactionRec = Rectangle.Intersect(collidable.GetRectangle, entity.GetRectangle);
                 if (!interactionRec.IsEmpty)
@@ -162,12 +164,14 @@ namespace Sprint0.CollisionDetection
                             e1touching = Touching.top;
                             e2touching = Touching.bottom;
                             y += interactionRec.Height;
+                            y1-=interactionRec.Height; 
                         }
                         else
                         {
                             e1touching = Touching.bottom;
                             e2touching = Touching.top;
                             y -= interactionRec.Height;
+                            y1 += interactionRec.Height;
                         }
                         timePercent = interactionRec.Height / Math.Abs(collidable.Speed.Y);
                     }
@@ -178,18 +182,20 @@ namespace Sprint0.CollisionDetection
                             e1touching = Touching.right;
                             e2touching = Touching.left;
                             x -= interactionRec.Width;
+                            x1 += interactionRec.Width;
                         }
                         else
                         {
                             e1touching = Touching.left;
                             e2touching = Touching.right;
                             x += interactionRec.Width;
+                            x1 -= interactionRec.Width;
                         }
                         timePercent = interactionRec.Width / Math.Abs(collidable.Speed.X);
                     }
                     //Debug.WriteLine(touching);
                     //Debug.WriteLine("collide with "+ entity);
-                    result.Add((collidable, entity, timePercent, new Vector2(x, y),e1touching, e2touching));
+                    result.Add((collidable, entity, timePercent, new Vector2(x, y),e1touching, e2touching, new Vector2(x1,y1)));
                 }
 
             }
@@ -197,20 +203,20 @@ namespace Sprint0.CollisionDetection
         }
 
 
-        public void CollsionResponse(List<(Entity, Entity, float, Vector2, Touching,Touching)> currentCollisions)
+        public void CollsionResponse(List<(Entity, Entity, float, Vector2, Touching,Touching, Vector2)> currentCollisions)
         {
             List<Entity> responsedEntities = new List<Entity>();
             for(int i = 0; i < currentCollisions.Count; i++)
             {
                 if (!responsedEntities.Contains(currentCollisions[i].Item1))
                 {
-                    //Debug.WriteLine(currentCollisions[i].Item1);
-                    //Debug.WriteLine(currentCollisions[i].Item2);
+                    Debug.WriteLine(currentCollisions[i].Item1);
+                    Debug.WriteLine(currentCollisions[i].Item2);
 
                     responsedEntities.Add(currentCollisions[i].Item1);
                     //if (currentCollisions[i].Item2 is KoopaTroopaEntity)
                     //    Debug.WriteLine("mario touch koopa with " + currentCollisions[i].Item6);
-                    currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item4, currentCollisions[i].Item6);
+                    currentCollisions[i].Item2.CollisionResponse(currentCollisions[i].Item1, currentCollisions[i].Item7, currentCollisions[i].Item6);
                     currentCollisions[i].Item1.CollisionResponse(currentCollisions[i].Item2, currentCollisions[i].Item4, currentCollisions[i].Item5);
                 }
             }
@@ -230,9 +236,9 @@ namespace Sprint0.CollisionDetection
     }
 }
 
-public class TimeComparer : IComparer<(Entity, Entity, float,Vector2, CollisionDetector.Touching, CollisionDetector.Touching)>
+public class TimeComparer : IComparer<(Entity, Entity, float,Vector2, CollisionDetector.Touching, CollisionDetector.Touching, Vector2)>
 {
-    public int Compare((Entity, Entity, float, Vector2, CollisionDetector.Touching, CollisionDetector.Touching) e1, (Entity, Entity, float, Vector2, CollisionDetector.Touching, CollisionDetector.Touching) e2)
+    public int Compare((Entity, Entity, float, Vector2, CollisionDetector.Touching, CollisionDetector.Touching, Vector2) e1, (Entity, Entity, float, Vector2, CollisionDetector.Touching, CollisionDetector.Touching, Vector2) e2)
     {
         return e1.Item3.CompareTo(e2.Item3);
     }
