@@ -285,12 +285,12 @@ namespace Sprint0.Enemy
                 currentState.Enter(null);
                 EntityStorage.Instance.MovableEntities.Add(this);
             }
-            else if (Position.X - EntityStorage.Instance.Mario.Position.X < -400)
-            {
-                //Debug.WriteLine(this + " was being removed");
+            //else if (Position.X - EntityStorage.Instance.Mario.Position.X < -400)
+            //{
+            //    //Debug.WriteLine(this + " was being removed");
 
-                EntityStorage.Instance.completeRemove(this);
-            }
+            //    EntityStorage.Instance.completeRemove(this);
+            //}
             else if (Position.Y > 480)
             {
                 EntityStorage.Instance.completeRemove(this);

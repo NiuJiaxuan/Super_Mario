@@ -33,7 +33,9 @@ namespace Sprint0.Enemy
 
         public override void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
         {
+
         }
+
         public override void Update(GameTime gameTime, List<Entity> blockEntities)
         {
             //EntityStorage.Instance.ColliableEntites.Remove(this);
