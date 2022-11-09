@@ -71,7 +71,7 @@ namespace Sprint0.Block
         }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 350)
+            if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) > 200)
             {
                 time++;
                 //Debug.WriteLine(time);

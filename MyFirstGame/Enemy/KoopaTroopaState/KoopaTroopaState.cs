@@ -51,6 +51,7 @@ namespace Sprint0.Enemy.KoopaTroopaStates
 
         public void ChangeDirection(CollisionDetector.Touching touching)
         {
+
             if(Enemy.Orientation is SpriteEffects.None && touching == CollisionDetector.Touching.left)
             {
                 Enemy.Orientation = SpriteEffects.FlipHorizontally;
@@ -190,8 +191,10 @@ namespace Sprint0.Enemy.KoopaTroopaStates
                     }
                     break;
                 case EnemyEntity:
+                    Enemy.Position = position;
                     switch (entity)
                     {
+                         
                         case KoopaTroopaEntity:
                             if (touching == CollisionDetector.Touching.left)
                             {

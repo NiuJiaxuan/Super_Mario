@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Sprint0.CollisionDetection;
+using Sprint0.Item;
 using Sprint0.Sprites;
 
 namespace Sprint0.Enemy.EnemyState
@@ -37,7 +38,16 @@ namespace Sprint0.Enemy.EnemyState
         public virtual void ShellBump(string dir) { }
 
         public virtual void ShellMovingTransition(String dir) { }
-        public virtual void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching) { }
+
+        public void CollisionResponse(Entity entity, Vector2 position, CollisionDetector.Touching touching)
+        {
+            switch (entity)
+            {
+                case ItemEntity:
+
+                    break;
+            }
+        }
 
         public virtual void EmergeTransition(string dir) { }
     }
