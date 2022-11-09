@@ -165,8 +165,8 @@ namespace Sprint0
             LifeSystem.Instance.resetLife();
 
             GameOverState.Instance.candraw = false;
-            EntityStorage.Instance.gameOver = false;
-            HUD.Instance.gameOver = false;
+            EntityStorage.Instance.isLocked = false;
+            HUD.Instance.isLocked = false;
 
             WinningState.Instance.candraw = false;
             
