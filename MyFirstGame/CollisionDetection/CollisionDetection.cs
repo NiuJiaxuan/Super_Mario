@@ -64,7 +64,7 @@ namespace Sprint0.CollisionDetection
                 if(( surround.Max.X > entity.Min.X && surround.Min.X< entity.Max.X)
                     && (Math.Abs(surround.Min.Y- entity.Max.Y)<5))
                 {
-                    //if(surround is not BlockEntity || (surround as BlockEntity).IsVisible)
+                    if(surround is not BlockEntity || (surround as BlockEntity).IsVisible)
                     below.Add(surround);
                 }
             }

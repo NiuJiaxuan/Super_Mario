@@ -374,6 +374,7 @@ namespace Sprint0
             EntityList.Clear();
             MovableEntities.Clear();
             ColliableEntites.Clear();
+            GravityEntites.Clear();
             Mario = null;
         }
         public void Draw(SpriteBatch batch)

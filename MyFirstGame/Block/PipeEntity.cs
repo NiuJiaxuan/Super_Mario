@@ -79,7 +79,7 @@ namespace Sprint0.Block
         }
         public override void Update(GameTime gameTime, List<Entity> entities)
         {
-            if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 350)
+            if (Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) < 400 && Math.Abs(Position.X - EntityStorage.Instance.Mario.Position.X) > 100)
             {
                 time++;
                 //Debug.WriteLine(time);
@@ -110,8 +110,8 @@ namespace Sprint0.Block
                     {
                         string dir = "down";
                         temp.EmergeTransition(dir);
+                        EntityList.Remove(temp);
                         BlockEnemyList.RemoveAt(0);
-
                     }
                 }
             }

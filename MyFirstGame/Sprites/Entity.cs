@@ -130,6 +130,8 @@ namespace Sprint0.Sprites
             if ((Position.X < 5 || Position.Y > 480) && !(this is MarioEntity) && !(this is IStaticEntity))
             {
                 EntityStorage.Instance.completeRemove(this);
+                if (this is FireballEntity)
+                    (this as FireballEntity).FireballPool.Add(this);
             }
         }
 
